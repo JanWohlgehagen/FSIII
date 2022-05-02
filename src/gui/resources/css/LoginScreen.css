@@ -1,0 +1,65 @@
+.ParentPane{
+    -fx-background-image: url("../images/LoginBackground.jpg");
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
+}
+
+.button{
+    -fill: black;
+    -fx-background-color: -fill;
+    -fx-border-color: white;
+    -fx-border-radius: 75;
+    -fx-background-radius: 75;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}
+
+.button:hover {
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+    -fx-background-color: #92D293;
+    -fx-text-fill: black;
+    -fx-border-insets: -1 -1 -2 -1;
+}
+
+.button:armed {
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+    -fx-background-color: #92D293;
+    -fx-text-fill: black;
+    -fx-border-insets: -1 -1 -2 -1;
+}
+
+.button:focused{
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+    -fx-background-color: #92D293;
+    -fx-text-fill: black;
+    -fx-border-insets: -1 -1 -2 -1;
+}
+
+.loginBox{
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-background-radius: 5;
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 0);
+}
+
+.text-field{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+}
