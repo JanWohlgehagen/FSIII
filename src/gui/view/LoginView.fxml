@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -8,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="950.0" styleClass="ParentPane" stylesheets="@../resources/css/LoginScreen.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.LoginController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="950.0" styleClass="ParentPane" stylesheets="@../resources/css/LoginScreen.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.LoginController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
@@ -34,8 +36,8 @@
             <RowConstraints />
         </rowConstraints>
          <children>
-            <TextField fx:id="txtUsername" alignment="CENTER" promptText="Username" />
-            <TextField fx:id="txtPassword" alignment="CENTER" promptText="Password" GridPane.rowIndex="2" />
+            <TextField fx:id="txtUsername" alignment="CENTER" promptText="Borgernavn" />
+            <PasswordField fx:id="txtPassword" alignment="CENTER" promptText="Kode" GridPane.rowIndex="2" />
             <Separator prefWidth="200.0" GridPane.rowIndex="1" />
             <Separator prefWidth="200.0" GridPane.rowIndex="3" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="4" GridPane.rowSpan="2">
