@@ -30,7 +30,11 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        credentialModel = new CredentialModel(new ManagerFacade());
+        try {
+            credentialModel = new CredentialModel(new ManagerFacade());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setPrimaryStage(Stage stage){
