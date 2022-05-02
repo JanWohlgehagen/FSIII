@@ -1,7 +1,8 @@
 package be.HelbredstilstandsMock;
 
+import be.Funktionstilstand;
+import be.FunktionstilstandsUnderkategori;
 import be.Helbredstilstand;
-import be.HelbredstilstandsUnderkategori;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,31 +10,31 @@ import java.util.List;
 public class HelbredstilstandsTest {
     public static void main(String[] args) {
 
-        HelbredstilstandsUnderkategori hs = new HelbredstilstandsUnderkategori("Noget med piller", "Piller", "tilstand 1", "Vurdering", "Årsag", "Et meget fagligt notat", "Aktuelt Problem");
-        HelbredstilstandsUnderkategori hs1 = new HelbredstilstandsUnderkategori("Noget andet med piller", "Piller", "tilstand 1", "Vurdering", "Årsag", "Et meget fagligt notat", "Aktuelt Problem");
-        HelbredstilstandsUnderkategori hs2 = new HelbredstilstandsUnderkategori("Noget tredje piller", "Piller", "tilstand 1", "Vurdering", "Årsag", "Et meget fagligt notat", "Aktuelt Problem");
-        HelbredstilstandsUnderkategori hs4 = new HelbredstilstandsUnderkategori("Noget med Bæ", "Bæ", "tilstand 1", "Vurdering", "Årsag", "Et meget fagligt notat", "Aktuelt Problem");
-        HelbredstilstandsUnderkategori hs5 = new HelbredstilstandsUnderkategori("Noget andet med bæ", "Bæ", "tilstand 1", "Vurdering", "Årsag", "Et meget fagligt notat", "Aktuelt Problem");
-        HelbredstilstandsUnderkategori hs6 = new HelbredstilstandsUnderkategori("Noget tredje med bæ", "Bæ", "tilstand 1", "Vurdering", "Årsag", "Et meget fagligt notat", "Aktuelt Problem");
+        List<FunktionstilstandsUnderkategori> list = new ArrayList<>();
+        List<FunktionstilstandsUnderkategori> list1 = new ArrayList<>();
 
-        List<HelbredstilstandsUnderkategori> list = new ArrayList<>();
-        List<HelbredstilstandsUnderkategori> list1 = new ArrayList<>();
+        FunktionstilstandsUnderkategori fs = new FunktionstilstandsUnderkategori("Egenomsorg", "Gå på toilet", 9);
+        FunktionstilstandsUnderkategori fs1 = new FunktionstilstandsUnderkategori("Egenomsorg", "Spise", 9);
+        FunktionstilstandsUnderkategori fs2 = new FunktionstilstandsUnderkategori("Egenomsorg", "Drikke", 9);
 
-        list.add(hs);
-        list.add(hs1);
-        list.add(hs2);
+        FunktionstilstandsUnderkategori fs3 = new FunktionstilstandsUnderkategori("Praktiske opgaver", "udføre daglige rutiner", 9);
+        FunktionstilstandsUnderkategori fs4 = new FunktionstilstandsUnderkategori("Praktiske opgaver", "lave mad", 9);
+        FunktionstilstandsUnderkategori fs5 = new FunktionstilstandsUnderkategori("Praktiske opgaver", "lave husligt arbejde", 9);
+        list.add(fs);
+        list.add(fs1);
+        list.add(fs2);
 
-        list1.add(hs4);
-        list1.add(hs5);
-        list1.add(hs6);
+        list1.add(fs3);
+        list1.add(fs4);
+        list1.add(fs5);
 
-        Helbredstilstand helbredstilstand = new Helbredstilstand();
+        Funktionstilstand funktionstilstand = new Funktionstilstand();
 
-        helbredstilstand.addCategoryField(list.get(0).getOverkategoriProperty().get(), list);
-        helbredstilstand.addCategoryField(list1.get(0).getOverkategoriProperty().get(), list1);
+        funktionstilstand.addCategoryField(list.get(0).getOverKategoriProperty().get(), list);
+        funktionstilstand.addCategoryField(list1.get(0).getOverKategoriProperty().get(), list1);
 
-        for (String helbred: helbredstilstand.getHelbredsTilstandsKort().keySet()) {
-            System.out.println(helbredstilstand.getHelbredsTilstandsKort().get(helbred) +  " - ");
+        for (String helbred: funktionstilstand.getFunktionsTilstandsKort().keySet()) {
+            System.out.println(funktionstilstand.getFunktionsTilstandsKort().get(helbred) +  " - ");
         }
 
         System.exit(-1);
