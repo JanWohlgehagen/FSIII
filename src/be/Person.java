@@ -20,8 +20,18 @@ public class Person {
         this.lastName.set(lastName);
     }
 
-    public void setUserType(UserType userType){
-        this.userType.add(userType);
+    public void setUserType(String userType){
+        switch (userType){
+            case "STUDENT" -> {
+                this.userType.add(UserType.STUDENT);
+            }
+            case "TEACHER" -> {
+                this.userType.add(UserType.TEACHER);
+            }
+            case "ADMIN" -> {
+                this.userType.add(UserType.ADMIN);
+            }
+        }
     }
 
     public boolean checkType(UserType userType){

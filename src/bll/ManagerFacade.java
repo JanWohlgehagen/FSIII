@@ -2,13 +2,16 @@ package bll;
 
 import be.Person;
 import bll.Interfaces.IManagerFacade;
+import dal.DatabaseFacade;
+
+import java.io.IOException;
 
 public class ManagerFacade implements IManagerFacade {
 
-    private CredentialManager credentialManager;
+    private final CredentialManager credentialManager;
 
-    public ManagerFacade() {
-        credentialManager = new CredentialManager();
+    public ManagerFacade() throws IOException {
+        credentialManager = new CredentialManager(new DatabaseFacade());
     }
 
     @Override

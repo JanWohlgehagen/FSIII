@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+
     @FXML
     private TextField txtUsername;
     @FXML
@@ -30,7 +31,11 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        credentialModel = new CredentialModel(new ManagerFacade());
+        try {
+            credentialModel = new CredentialModel(new ManagerFacade());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setPrimaryStage(Stage stage){
@@ -39,24 +44,25 @@ public class LoginController implements Initializable {
 
     public void handleLoginButton(ActionEvent actionEvent) throws IOException {
         Person person = credentialModel.checkCredential(txtUsername.getText(), txtPassword.getText());
-
-        switch (person.getUserType()){
-            case STUDENT -> {
-                ISceneLoader<DashboardController> dashboardScene =  new DashboardScene();
-                dashboardScene.loadNewScene(this.primaryStage);
-                DashboardController dashboardSceneController = dashboardScene.getController();
-                dashboardSceneController.setDashboardController(dashboardSceneController);
-                dashboardSceneController.setloginPerson(person);
+        if(person != null){
+            switch (person.getUserType()){
+                case STUDENT -> {
+                    ISceneLoader<DashboardController> dashboardScene =  new DashboardScene();
+                    dashboardScene.loadNewScene(this.primaryStage);
+                    DashboardController dashboardSceneController = dashboardScene.getController();
+                    dashboardSceneController.setDashboardController(dashboardSceneController);
+                    dashboardSceneController.setloginPerson(person);
+                }
+                case TEACHER -> {
+                    //TODO Implement this case
+                    throw new UnsupportedOperationException();
+                }
+                case ADMIN -> {
+                    //TODO Implement this case
+                    throw new UnsupportedOperationException();
+                }
+                default ->  throw new UnsupportedOperationException();
             }
-            case TEACHER -> {
-                //TODO Implement this case
-                throw new UnsupportedOperationException();
-            }
-            case ADMIN -> {
-                //TODO Implement this case
-                throw new UnsupportedOperationException();
-            }
-            default ->  throw new UnsupportedOperationException();
         }
 
     }
