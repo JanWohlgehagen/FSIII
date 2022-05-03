@@ -2,6 +2,8 @@ package be;
 
 import javafx.beans.property.*;
 
+import java.util.ArrayList;
+
 public class Case {
     //Istedet for personID kunne case evt. holde en borger så casen ved hvilken borger den er tilknyttet?
     private IntegerProperty personID =  new SimpleIntegerProperty();
@@ -12,6 +14,7 @@ public class Case {
     private StringProperty Bevillingstekst= new SimpleStringProperty();
     private StringProperty plan= new SimpleStringProperty();
     private StringProperty Opfoelgningstag= new SimpleStringProperty();
+    private ArrayList<CaseDocumentation> listOfDocumentations = new ArrayList<>();
 
     public Case(int personID, String caseTitle, String caseDescription)
     {
@@ -19,6 +22,14 @@ public class Case {
         this.caseTitle.set(caseTitle);
         this.caseDescription.set(caseDescription);
 
+    }
+
+    public ArrayList<CaseDocumentation> getListOfDocumentations() {
+        return listOfDocumentations;
+    }
+
+    public void setListOfDocumentations(ArrayList<CaseDocumentation> listOfDocumentations) {
+        this.listOfDocumentations = listOfDocumentations;
     }
 
     public IntegerProperty personIDProperty() {
