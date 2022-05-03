@@ -11,4 +11,12 @@ public class Credential {
         this.userName = userName;
         this.password = password;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
