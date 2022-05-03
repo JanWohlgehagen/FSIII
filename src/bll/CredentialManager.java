@@ -2,9 +2,9 @@ package bll;
 
 import be.Credential;
 import be.Person;
-import be.user.UserType;
 import bll.util.BCrypt;
 import dal.interfaces.IDatabaseFacade;
+import javafx.scene.control.Alert;
 
 public class CredentialManager {
 
@@ -19,7 +19,13 @@ public class CredentialManager {
     public Person loginCredential(String userName, String userPassword){
         if(checkCredential(userName, userPassword)){
             return databaseFacade.getPersonById(credential.getId());
-        }else return null;
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Failed");
+            alert.setContentText("Username or Password is wrong");
+            alert.showAndWait();
+        }
+        return null;
     }
 
     private boolean checkCredential(String userName, String userPassword){
