@@ -1,5 +1,6 @@
 package gui.controller;
 
+import be.Case;
 import be.Person;
 import gui.util.CaseOpeningScene;
 import gui.util.CreateAndEditCaseScene;
