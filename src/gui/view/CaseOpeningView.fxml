@@ -28,15 +28,15 @@
             <Insets left="20.0" top="30.0" />
          </GridPane.margin>
          <children>
-            <ComboBox fx:id="vaelgSagCbx" prefWidth="500.0" promptText="Vælg Sag">
+            <ComboBox fx:id="vaelgSagCbx" onAction="#handleVaelgSag" prefWidth="500.0" promptText="Vælg Sag">
                <VBox.margin>
                   <Insets bottom="5.0" left="20.0" right="20.0" />
                </VBox.margin>
             </ComboBox>
             <Label text="Overtilstand:" />
-            <TextField />
+            <TextField fx:id="overtilstandTxtField" editable="false" promptText="Overtilstand" />
             <Label text="Undertilstand:" />
-            <TextField />
+            <TextField fx:id="undertilstandTxtField" editable="false" promptText="Undertilstand" />
             <HBox spacing="10.0">
                <children>
                   <VBox spacing="12.0">
@@ -77,13 +77,13 @@
          <children>
             <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0">
                <children>
-                  <Button fx:id="createSagBtn" mnemonicParsing="false" text="Opret Sag">
+                  <Button fx:id="opretSagBtn" mnemonicParsing="false" onAction="#handleOpretSag" text="Opret Sag">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="editSagBtn" mnemonicParsing="false" text="Rediger Sag" />
-                  <Button fx:id="deleteSagBtn" mnemonicParsing="false" text="Slet Sag" />
+                  <Button fx:id="redigerSagBtn" mnemonicParsing="false" onAction="#handleRedigerSag" text="Rediger Sag" />
+                  <Button fx:id="sletSagBtn" mnemonicParsing="false" onAction="#handleSletSag" text="Slet Sag" />
                </children>
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
@@ -98,7 +98,7 @@
          <children>
             <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0">
                <children>
-                  <Button fx:id="videreBtn" mnemonicParsing="false" text="Videre" />
+                  <Button fx:id="videreBtn" mnemonicParsing="false" onAction="#handleVidere" text="Videre" />
                </children>
             </HBox>
          </children>
@@ -113,9 +113,29 @@
                   <Insets top="35.0" />
                </VBox.margin>
             </Label>
-            <TextArea fx:id="sagTextArea" prefHeight="500.0" prefWidth="200.0" text="Description (tekst)&#10;bla bla bla&#10;&#10;Årsagsfritekst (teksts)&#10;bla bla bla&#10;&#10;Årsagsdiagnose (teksts)&#10;bla bla bla&#10;&#10;Årsagstilstand (tekst???)&#10;bla bla bla&#10;&#10;Borgerens ønsker og mål (teksts)&#10;bla bla bla" VBox.vgrow="ALWAYS">
+            <TextArea fx:id="beskrivelseTxtArea" editable="false" promptText="Beskrivelse" wrapText="true" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <TextArea fx:id="aarsagsfritekstTxtArea" editable="false" promptText="Årsagsfritekst" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <TextArea fx:id="aarsagsdiagnoseTxtArea" editable="false" promptText="Årsagsdiagnose" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <TextArea fx:id="aarsagstilstandTxtArea" editable="false" promptText="Årsagstilstand" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <TextArea fx:id="borgerMaalTxtArea" editable="false" promptText="Borgerens ønsker og mål" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
             </TextArea>
          </children>
