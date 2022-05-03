@@ -1,12 +1,15 @@
 package gui.controller;
 
+import be.Case;
 import be.Person;
-import gui.util.DashboardScene;
+
 import gui.util.ISceneLoader;
 import gui.util.SagsoplysningScene;
+import gui.util.BestillingsScene;
+
+
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +21,7 @@ public class DashboardController implements Initializable {
 
     private DashboardController dashboardController;
     private Person loginPerson;
+    private Case currentCase;
 
 
     @Override
@@ -38,7 +42,12 @@ public class DashboardController implements Initializable {
         sagsoplysningController.setSagsoplysningsController(sagsoplysningController);
     }
 
-    public void handleButtonBestilling(ActionEvent actionEvent) {
+    public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<BestillingsViewController> bestillingsScene =  new BestillingsScene();
+        bestillingsScene.loadNewScene(new Stage());
+        BestillingsViewController bestillingsViewController = bestillingsScene.getController();
+        bestillingsViewController.setBestillingsViewController(bestillingsViewController);
+        bestillingsViewController.setCurrentCase(currentCase);
     }
 
     public void handleButtonPlanlægning(ActionEvent actionEvent) {

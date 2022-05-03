@@ -25,6 +25,7 @@ CREATE TABLE [Case]
     [Title] NVARCHAR(50) NULL,
     [Description] NVARCHAR(250) NULL,
     [Bevilling] BIT NULL,
+    [Bevillings_Tekst] NVARCHAR (350) NULL,
     [Plan] NVARCHAR(150) NULL,
     [Opfoelgnings_Tag] NVARCHAR(30) NULL,
 
