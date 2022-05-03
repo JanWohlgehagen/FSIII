@@ -1,13 +1,20 @@
 package gui.controller;
 
+import be.Case;
 import be.Person;
+
 import gui.util.CaseOpeningScene;
-import gui.util.DashboardScene;
+
+
 import gui.util.ISceneLoader;
 import gui.util.SagsoplysningScene;
+import gui.util.BestillingsScene;
+
+
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +26,7 @@ public class DashboardController implements Initializable {
 
     private DashboardController dashboardController;
     private Person loginPerson;
+    private Case currentCase;
 
 
     @Override
@@ -43,7 +51,19 @@ public class DashboardController implements Initializable {
         sagsoplysningController.setSagsoplysningsController(sagsoplysningController);
     }
 
-    public void handleButtonBestilling(ActionEvent actionEvent) {
+    public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
+        if(currentCase == null)
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
+        else {
+            ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
+            bestillingsScene.loadNewScene(new Stage());
+            BestillingsViewController bestillingsViewController = bestillingsScene.getController();
+            bestillingsViewController.setBestillingsViewController(bestillingsViewController);
+            bestillingsViewController.setCurrentCase(currentCase);
+        }
     }
 
     public void handleButtonPlanlægning(ActionEvent actionEvent) {
