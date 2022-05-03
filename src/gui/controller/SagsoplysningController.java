@@ -49,8 +49,6 @@ public class SagsoplysningController implements Initializable {
     }
 
 
-
-
     public void setSagsoplysningsController(SagsoplysningController sagsoplysningController){
         this.sagsoplysningController = sagsoplysningController;
     }

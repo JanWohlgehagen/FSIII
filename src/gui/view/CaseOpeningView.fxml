@@ -25,7 +25,7 @@
    <children>
       <VBox spacing="2.0" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets left="20.0" top="30.0" />
+            <Insets left="20.0" right="20.0" top="30.0" />
          </GridPane.margin>
          <children>
             <ComboBox fx:id="vaelgSagCbx" onAction="#handleVaelgSag" prefWidth="500.0" promptText="Vælg Sag">

@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.Person;
+import gui.util.CaseOpeningScene;
 import gui.util.DashboardScene;
 import gui.util.ISceneLoader;
 import gui.util.SagsoplysningScene;
@@ -25,7 +26,11 @@ public class DashboardController implements Initializable {
 
     }
 
-    public void handleButtonSagsåbning(ActionEvent actionEvent) {
+    public void handleButtonSagsåbning(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CaseOpeningController> caseOpeningScene = new CaseOpeningScene();
+        caseOpeningScene.loadNewScene(new Stage());
+        CaseOpeningController caseOpeningController = caseOpeningScene.getController();
+        caseOpeningController.setCaseOpeningController(caseOpeningController);
     }
 
     public void handleButtonOpfølgning(ActionEvent actionEvent) {

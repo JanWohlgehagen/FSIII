@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class CaseOpeningController implements Initializable {
 
     @FXML
-    private ComboBox vaelgSagCbx;
+    private ComboBox<Case> vaelgSagCbx;
     @FXML
     private TextField overtilstandTxtField;
     @FXML
@@ -51,6 +51,7 @@ public class CaseOpeningController implements Initializable {
     private TextArea borgerMaalTxtArea;
 
     private Stage primaryStage;
+    CaseOpeningController caseOpeningController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,19 +66,31 @@ public class CaseOpeningController implements Initializable {
 
     }
 
+    public void setCaseOpeningController(CaseOpeningController caseOpeningController){
+        this.caseOpeningController = caseOpeningController;
+    }
+
     public void handleOpretSag(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CreateAndEditCaseController> createAndEditCaseScene = new CreateAndEditCaseScene();
         createAndEditCaseScene.loadNewScene(new Stage());
         CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
-
     }
 
-    public void handleRedigerSag(ActionEvent actionEvent) {
+    public void handleRedigerSag(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CreateAndEditCaseController> createAndEditCaseScene = new CreateAndEditCaseScene();
+        createAndEditCaseScene.loadNewScene(new Stage());
+        CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
     }
 
     public void handleSletSag(ActionEvent actionEvent) {
+        // noget med at se på items i comboboxen og slette selected item?
     }
 
     public void handleVidere(ActionEvent actionEvent) {
+        //Gem alt +
+        //ISCeneLoader næste scene
+    }
+
+    public void handleVaelgSag(ActionEvent actionEvent) {
     }
 }
