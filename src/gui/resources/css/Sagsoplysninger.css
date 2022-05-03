@@ -69,3 +69,18 @@
 .text-area:armed{
     -fx-border-color: black;
 }
+
+.tooltip{
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+}
+
+.nextButton{
+    -fx-background-image: url("../images/nextBtn.png");
+    -fx-background-size: 50, 100;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    str
+}
