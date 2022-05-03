@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -87,8 +88,8 @@ public class SagsoplysningController implements Initializable {
         this.sagsoplysningController = sagsoplysningController;
     }
 
-    public void HandleGemOgNaesteBtn(ActionEvent actionEvent) {
-        //TODO - Update a citizen with the content of the text areas
+    public void handleSaveAndNextBtn(MouseEvent mouseEvent) {
+        //TODO
     }
 
 

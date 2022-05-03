@@ -38,6 +38,10 @@
     -fx-stroke-width: 5;
 }
 
+.button{
+    -fx-cursor: hand;
+}
+
 .topButton{
     -fx-background-color: rgba(119,161,131,1);
     -fx-border-width: 2;
