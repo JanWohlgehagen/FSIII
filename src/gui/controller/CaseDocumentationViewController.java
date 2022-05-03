@@ -1,5 +1,6 @@
 package gui.controller;
 
+import be.Case;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -15,6 +16,7 @@ public class CaseDocumentationViewController {
     private TextArea txtAreaDok;
 
     private CaseDocumentationViewController caseDocumentationViewController;
+    private Case currentCase;
 
     public void btnNewDocumentation(ActionEvent actionEvent) {
     }
@@ -27,5 +29,9 @@ public class CaseDocumentationViewController {
 
     public void setCaseDocumentationViewController(CaseDocumentationViewController caseDocumentationViewController) {
         this.caseDocumentationViewController = caseDocumentationViewController;
+    }
+    public void setCurrentCase(Case currentCase)
+    {
+        this.currentCase = currentCase;
     }
 }
