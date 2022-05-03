@@ -4,6 +4,7 @@ import be.Case;
 import be.Person;
 
 import gui.util.ISceneLoader;
+import gui.util.PlanlægningScene;
 import gui.util.SagsoplysningScene;
 import gui.util.BestillingsScene;
 
@@ -50,7 +51,11 @@ public class DashboardController implements Initializable {
         bestillingsViewController.setCurrentCase(currentCase);
     }
 
-    public void handleButtonPlanlægning(ActionEvent actionEvent) {
+    public void handleButtonPlanlægning(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<PlanlægningController> planlægningScene = new PlanlægningScene();
+        planlægningScene.loadNewScene(new Stage());
+        PlanlægningController planlægningController = planlægningScene.getController();
+        planlægningController.setDashboardController(dashboardController);
     }
 
     public void handleButtonLevering(ActionEvent actionEvent) {
