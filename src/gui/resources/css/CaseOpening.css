@@ -1,10 +1,7 @@
 .ParentPane{
-    -fx-background-image: url("../images/LoginBackground.jpg");
-    -fx-background-size: 100% 100%;
-    -fx-background-position: center center;
 }
 
-.button{
+/*.button{
     -fill: black;
     -fx-background-color: -fill;
     -fx-border-color: white;
@@ -12,7 +9,15 @@
     -fx-background-radius: 75;
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-font-size: 15;
+    -fx-font-size: 15;*/
+}
+
+.buttonVidere {
+    -fx-background-image: url("../images/viderePil.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
 }
 
 .button:hover {
@@ -46,6 +51,19 @@
     -fx-background-color: #92D293;
     -fx-text-fill: black;
     -fx-border-insets: -1 -1 -2 -1;
+}
+
+.buttonVidere:hover,
+.buttonVidere:armed,
+.buttonVidere:focused{
+    -fx-border-color: transparent;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+    -fx-background-color: #92D293;
+    -fx-text-fill: black;
+    -fx-border-insets: -1 -1 -2 -1;
+    -fx-background-color: transparent;
 }
 
 .label{

@@ -96,10 +96,13 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0">
+            <HBox alignment="BOTTOM_RIGHT" prefWidth="300.0" spacing="30.0">
                <children>
-                  <Button fx:id="videreBtn" mnemonicParsing="false" onAction="#handleVidere" text="Videre" />
+                  <Button fx:id="videreBtn" minHeight="75.0" minWidth="110.0" mnemonicParsing="false" onAction="#handleVidere" styleClass="buttonVidere" text="Gem &amp; Næste   " />
                </children>
+               <padding>
+                  <Insets right="20.0" top="8.0" />
+               </padding>
             </HBox>
          </children>
          <GridPane.margin>
