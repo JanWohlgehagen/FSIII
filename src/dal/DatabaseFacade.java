@@ -60,5 +60,10 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbCaseDAO.deleteCaseOnCitizen(citizenID, caseID);
     }
 
+    @Override
+    public Case createCaseOnCitizen(int citizenID) {
+        return dbCaseDAO.createCaseOnCitizen(citizenID);
+    }
+
 
 }

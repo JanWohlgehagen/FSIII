@@ -1,5 +1,6 @@
 package gui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -44,5 +45,11 @@ public class CreateAndEditCaseController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public void handleGem(ActionEvent actionEvent) {
+    }
+
+    public void handleAnnuller(ActionEvent actionEvent) {
     }
 }

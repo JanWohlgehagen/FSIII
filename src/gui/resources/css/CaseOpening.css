@@ -1,7 +1,7 @@
 .ParentPane{
 }
 
-/*.button{
+.button{
     -fill: black;
     -fx-background-color: -fill;
     -fx-border-color: white;
@@ -9,7 +9,7 @@
     -fx-background-radius: 75;
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-font-size: 15;*/
+    -fx-font-size: 15;
 }
 
 .buttonVidere {

@@ -22,4 +22,6 @@ public interface IManagerFacade {
 
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 
+    public Case createCaseOnCitizen(int citizenID);
+
 }

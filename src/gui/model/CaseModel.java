@@ -29,4 +29,8 @@ public class CaseModel {
     public void deleteCaseOnCitizen(int citizenID, int caseID){
         managerFacade.deleteCaseOnCitizen(citizenID, caseID);
     }
+
+    public Case createCaseOnCitizen(int citizenID) {
+       return managerFacade.createCaseOnCitizen(citizenID);
+    }
 }

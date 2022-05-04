@@ -13,6 +13,10 @@ public class CaseManager {
         this.databaseFacade = databaseFacade;
     }
 
+    public Case createCaseOnCitizen(int citizenID){
+       return databaseFacade.createCaseOnCitizen(citizenID);
+    }
+
     public List<Case> getAllCasesOnCitizen(int id){
         return databaseFacade.getAllCasesOnCitizen(id);
     }
@@ -28,4 +32,7 @@ public class CaseManager {
     public void deleteCaseOnCitizen(int citizenID, int caseID){
         databaseFacade.deleteCaseOnCitizen(citizenID, caseID);
     }
+
+
+
 }
