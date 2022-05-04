@@ -1,5 +1,8 @@
 package gui.controller;
 
+import be.Borger;
+import be.Case;
+import gui.model.CaseModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,19 +12,24 @@ import javafx.scene.control.TextArea;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PlanlægningController implements Initializable {
+public class PlanlaegningController implements Initializable {
 
     private DashboardController dashboardController;
+    private CaseModel caseModel;
+    private Case selectCase;
+    private Borger selectCitizen;
 
 
     @FXML
-    private TextArea txtAreaPlanlægning;
+    private TextArea txtAreaPlanlaegning;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
+            selectCase = dashboardController.getSelectedCase();
+            selectCitizen = dashboardController.getSelectedCitizen();
 
-            //txtAreaPlanlægning.setText(dashboardController.);
+            txtAreaPlanlaegning.setText(selectCase.planProperty().get());
 
         });
     }
@@ -30,7 +38,10 @@ public class PlanlægningController implements Initializable {
         this.dashboardController = dashboardController;
     }
 
+    public void setCaseModel(CaseModel caseModel){
+        this.caseModel = caseModel;
+    }
     public void handelVidere(ActionEvent actionEvent) {
-
+        caseModel.updateCaseOnCitizen(selectCitizen.IDProperty().get(), selectCase);
     }
 }

@@ -4,7 +4,7 @@ package dal;
 import be.Borger;
 import be.Case;
 import be.Credential;
-import be.Person;
+import be.user.User;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public Person getPersonById(int id) {
+    public User getPersonById(int id) {
         return dbPersonDAO.getPersonById(id);
     }
 
@@ -54,8 +54,8 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public void updateCaseOnCitizen(int citizenID, int caseID) {
-        dbCaseDAO.updateCaseOnCitizen(citizenID, caseID);
+    public void updateCaseOnCitizen(int citizenID, Case selectCase) {
+        dbCaseDAO.updateCaseOnCitizen(citizenID, selectCase);
     }
 
     @Override
@@ -84,6 +84,11 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
+    public List<Borger> getAllTemplates() {
+        return dbCitizenDAO.getAllTemplates();
+    }
+
+    @Override
     public void updateCitizen(Borger borger) {
         dbCitizenDAO.updateCitizen(borger);
 
@@ -94,6 +99,8 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbCitizenDAO.deleteCitizen(borger);
 
     }
+
+
 
 
 }

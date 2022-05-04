@@ -3,9 +3,8 @@ package dal.interfaces;
 import be.Borger;
 import be.Case;
 import be.Credential;
-import be.Person;
+import be.user.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,13 +13,13 @@ import java.util.List;
 public interface IDatabaseFacade {
 
     Credential checkCredential(String userName);
-    Person getPersonById(int id);
+    User getPersonById(int id);
 
     public List<Case> getAllCasesOnCitizen(int id);
 
     public Case getCaseOnCitizen(int citizenID, int caseID);
 
-    public void updateCaseOnCitizen(int citizenID, int caseID);
+    public void updateCaseOnCitizen(int citizenID, Case selectCase);
 
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 
@@ -32,9 +31,12 @@ public interface IDatabaseFacade {
 
     public List<Borger> getAllCitizens();
 
+    public List<Borger> getAllTemplates();
+
     public void updateCitizen(Borger borger);
 
     public void deleteCitizen(Borger borger);
+
 
 
 

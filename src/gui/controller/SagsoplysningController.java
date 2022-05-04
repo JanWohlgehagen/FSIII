@@ -1,19 +1,25 @@
 package gui.controller;
 
-import javafx.event.ActionEvent;
+import be.*;
+import gui.model.CitizenModel;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Tooltip;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SagsoplysningController implements Initializable {
+
 
     @FXML
     private TextArea txtAreaMestring;
@@ -63,11 +69,31 @@ public class SagsoplysningController implements Initializable {
     @FXML
     private Button btnInformationBoligensIndretning;
 
-    SagsoplysningController sagsoplysningController;
+    @FXML
+    private VBox vBoxLeftHelbredstilstand;
+    @FXML
+    private VBox vBoxRightHelbredstilstand;
+    @FXML
+    private VBox vBoxLeftFunktionstilstand;
+    @FXML
+    private VBox vBoxRightFunktionstilstand;
+
+    @FXML
+    private ScrollPane scrollPaneFunktionstilstand;
+    @FXML
+    private ScrollPane scrollPaneHelbredstilstand;
+
+    private DashboardController dashboardController;
     private TooltipBank tooltipBank = new TooltipBank();
+    private Borger borger;
+    private CitizenModel citizenModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
+            borger = dashboardController.getSelectedCitizen();
+        });
+        int insertionCounter = 0;
 
         // Setting up tooltips for the information buttons in the view that guides the student
         btnInformationMestring.setTooltip(tooltipBank.getMestring());
@@ -82,11 +108,60 @@ public class SagsoplysningController implements Initializable {
         btnInformationHjaelpemidler.setTooltip(tooltipBank.getHjaelpemidler());
         btnInformationBoligensIndretning.setTooltip(tooltipBank.getBoligensIndretning());
 
+
+        Helbredstilstand helbredstilstand = new Helbredstilstand();
+        Funktionstilstand funktionstilstand = new Funktionstilstand();
+
+        HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandsKort = helbredstilstand.getHelbredsTilstandsKort();
+        HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = funktionstilstand.getFunktionsTilstandsKort();
+
+        for (String klassifikation: helbredstilstandsKort.keySet()) {
+            TableView<HelbredstilstandsUnderkategori> tableView = new TableView();
+            tableView.setItems(FXCollections.observableList(helbredstilstandsKort.get(klassifikation)));
+            TableColumn<HelbredstilstandsUnderkategori, String> tableColumn = new TableColumn<>();
+            tableColumn.setText(klassifikation);
+            tableColumn.setCellValueFactory(addSubCategory -> addSubCategory.getValue().getTilstandsklassifikationProperty());
+            tableView.setFixedCellSize(25);
+            tableView.prefHeightProperty().bind(Bindings.size(tableView.getItems()).multiply(tableView.getFixedCellSize()).add(30));
+            tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+            tableView.getColumns().add(tableColumn);
+            tableView.setMaxWidth(245.0);
+            if(insertionCounter %2 == 0){
+                vBoxLeftHelbredstilstand.getChildren().add(tableView);
+            } else {
+                vBoxRightHelbredstilstand.getChildren().add(tableView);
+            }
+            insertionCounter ++;
+        }
+        insertionCounter = 0;
+
+        for (String klassifikation: funktionstilstandsKort.keySet()) {
+            TableView<FunktionstilstandsUnderkategori> tableView = new TableView();
+            tableView.setItems(FXCollections.observableList(funktionstilstandsKort.get(klassifikation)));
+            TableColumn<FunktionstilstandsUnderkategori, String> tableColumn = new TableColumn<>();
+            tableColumn.setText(klassifikation);
+            tableColumn.setCellValueFactory(addSubCategory -> addSubCategory.getValue().getTilstandsklassifikationProperty());
+            tableView.setFixedCellSize(25);
+            tableView.prefHeightProperty().bind(Bindings.size(tableView.getItems()).multiply(tableView.getFixedCellSize()).add(30));
+            tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+            tableView.getColumns().add(tableColumn);
+            tableView.setMaxWidth(245.0);
+            if(insertionCounter %2 == 0){
+                vBoxLeftFunktionstilstand.getChildren().add(tableView);
+            } else {
+                vBoxRightFunktionstilstand.getChildren().add(tableView);
+            }
+            insertionCounter ++;
+        }
     }
 
 
-    public void setSagsoplysningsController(SagsoplysningController sagsoplysningController){
-        this.sagsoplysningController = sagsoplysningController;
+    public void setDashboardController (DashboardController dashboardController){
+        this.dashboardController = dashboardController;
+    }
+
+    public void setCitizenModel(CitizenModel citizenModel) {
+        this.citizenModel = citizenModel;
     }
 
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
@@ -97,11 +172,19 @@ public class SagsoplysningController implements Initializable {
         //TODO
     }
 
-    public void helbredstilstandHandleSaveAndExitBtn(KeyEvent keyEvent) {
+    public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         //TODO
     }
 
     public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+        //TODO
+    }
+
+    public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        //TODO
+    }
+
+    public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
         //TODO
     }
 

@@ -18,6 +18,11 @@ public class CitizenManager {
         return databaseFacade.getAllCitizens();
     }
 
+    public List<Borger> getAllTemplates()
+    {
+        return databaseFacade.getAllTemplates();
+    }
+
     public Borger createCitizen(Borger borger)
     {
         return databaseFacade.createCitizen(borger);

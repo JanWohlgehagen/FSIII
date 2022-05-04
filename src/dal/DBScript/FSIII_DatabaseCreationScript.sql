@@ -10,9 +10,11 @@ GO
 
 CREATE TABLE [Borger]
 (
-    [ID] int IDENTITY NOT NULL,
+    [ID] INT IDENTITY NOT NULL,
     [FistName] NVARCHAR(50) NULL,
     [LastName] NVARCHAR(50) NULL,
+    [Age] INT NULL,
+    [Template] BIT NULL,
 
     CONSTRAINT PK_Borger_ID PRIMARY KEY (ID)
 

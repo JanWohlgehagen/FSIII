@@ -60,10 +60,12 @@ public class DBCitizenDAO {
     {
         try(Connection connection = dbConnecting.getConnection())
         {
-            String sql = "INSERT INTO [Borger] VALUES (FirstName, LastName) = (?,?)";
+            String sql = "INSERT INTO [Borger] VALUES (FirstName, LastName, Age, Template) = (?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, borger.firstNameProperty().get());
             preparedStatement.setString(2, borger.lastNameProperty().get());
+            preparedStatement.setInt(3, borger.ageProperty().get());
+            preparedStatement.setBoolean(4, borger.isTemplateProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
@@ -85,7 +87,7 @@ public class DBCitizenDAO {
         List<Borger> listOfCitizens = new ArrayList<>();
         try(Connection connection =dbConnecting.getConnection())
         {
-            String sql = "SELECT * FROM [Borger]";
+            String sql = "SELECT * FROM [Borger] WHERE Template = 0";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -94,12 +96,48 @@ public class DBCitizenDAO {
                 int ID = resultSet.getInt(1);
                 String firsteName =resultSet.getString(2);
                 String lastName =resultSet.getString(3);
-                Borger borger = new Borger(firsteName, lastName);
+                int age = resultSet.getInt(4);
+                boolean isTemplate = resultSet.getBoolean(5);
+                Borger borger = new Borger(firsteName, lastName, isTemplate, age);
                 borger.setID(ID);
                 listOfCitizens.add(borger);
 
             }
             return listOfCitizens;
+        } catch (SQLServerException throwables) {
+            throwables.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Couldnt find any citizens", ButtonType.OK);
+        alert.setTitle("FSIII");
+        alert.show();
+        return null;
+    }
+
+    public List<Borger> getAllTemplates()
+    {
+        List<Borger> listOfTemplates = new ArrayList<>();
+        try(Connection connection =dbConnecting.getConnection())
+        {
+            String sql = "SELECT * FROM [Borger] WHERE Template = 1";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                int ID = resultSet.getInt(1);
+                String firsteName =resultSet.getString(2);
+                String lastName =resultSet.getString(3);
+                int age = resultSet.getInt(4);
+                boolean isTemplate = resultSet.getBoolean(5);
+                Borger borger = new Borger(firsteName, lastName, isTemplate, age);
+                borger.setID(ID);
+                listOfTemplates.add(borger);
+
+            }
+            return listOfTemplates;
         } catch (SQLServerException throwables) {
             throwables.printStackTrace();
         } catch (SQLException throwables) {

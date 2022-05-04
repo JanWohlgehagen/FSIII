@@ -1,8 +1,6 @@
 package be.user;
 
-import be.Person;
-
-public class Teacher extends Person {
+public class Teacher extends User {
 
     public Teacher(String firstName, String lastName) {
         super(firstName, lastName);

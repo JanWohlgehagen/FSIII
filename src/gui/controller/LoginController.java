@@ -1,8 +1,6 @@
 package gui.controller;
 
-import be.Person;
-import be.user.UserType;
-import bll.CredentialManager;
+import be.user.User;
 import bll.ManagerFacade;
 import gui.model.CredentialModel;
 import gui.util.DashboardScene;
@@ -43,15 +41,15 @@ public class LoginController implements Initializable {
     }
 
     public void handleLoginButton(ActionEvent actionEvent) throws IOException {
-        Person person = credentialModel.checkCredential(txtUsername.getText(), txtPassword.getText());
-        if(person != null){
-            switch (person.getUserType()){
+        User user = credentialModel.checkCredential(txtUsername.getText(), txtPassword.getText());
+        if(user != null){
+            switch (user.getUserType()){
                 case STUDENT -> {
                     ISceneLoader<DashboardController> dashboardScene =  new DashboardScene();
                     dashboardScene.loadNewScene(this.primaryStage);
                     DashboardController dashboardSceneController = dashboardScene.getController();
                     dashboardSceneController.setDashboardController(dashboardSceneController);
-                    dashboardSceneController.setloginPerson(person);
+                    dashboardSceneController.setloginPerson(user);
                 }
                 case TEACHER -> {
                     //TODO Implement this case

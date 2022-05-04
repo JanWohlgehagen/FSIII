@@ -1,7 +1,6 @@
 package dal;
 
 import be.Case;
-import be.Person;
 
 import java.sql.*;
 import java.util.List;
@@ -26,6 +25,9 @@ public class DBCaseDAO {
     }
 
     public Case getCaseOnCitizen(int citizenID, int caseID){
+        /*
+             HUSK !!!!!! Opfølgning Tag skal skrives ned til databasen, som "Afsluttes", "Fortsættes", "Ændres", "Revisitation"
+         */
         try (Connection connection = dbConnecting.getConnection()) {
             //TODO
             throw new UnsupportedOperationException();
@@ -36,7 +38,7 @@ public class DBCaseDAO {
         }
     }
 
-    public void updateCaseOnCitizen(int citizenID, int caseID){
+    public void updateCaseOnCitizen(int citizenID, Case selectCase){
         try (Connection connection = dbConnecting.getConnection()) {
             //TODO
             throw new UnsupportedOperationException();

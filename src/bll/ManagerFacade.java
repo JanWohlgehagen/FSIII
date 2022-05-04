@@ -2,7 +2,7 @@ package bll;
 
 import be.Borger;
 import be.Case;
-import be.Person;
+import be.user.User;
 import bll.Interfaces.IManagerFacade;
 import dal.DatabaseFacade;
 
@@ -26,7 +26,7 @@ public class ManagerFacade implements IManagerFacade {
                             /***************************************************/
 
     @Override
-    public Person loginCredential(String userName, String userPassword) {
+    public User loginCredential(String userName, String userPassword) {
         return credentialManager.loginCredential(userName, userPassword);
     }
 
@@ -53,8 +53,8 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public void updateCaseOnCitizen(int citizenID, int caseID) {
-        caseManager.updateCaseOnCitizen(citizenID, caseID);
+    public void updateCaseOnCitizen(int citizenID,Case selectCase) {
+        caseManager.updateCaseOnCitizen(citizenID, selectCase);
     }
 
     @Override
@@ -74,6 +74,11 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public List<Borger> getAllCitizen() {
         return citizenManager.getAllCitizen();
+    }
+
+    @Override
+    public List<Borger> getAllTemplates() {
+        return citizenManager.getAllTemplates();
     }
 
     @Override

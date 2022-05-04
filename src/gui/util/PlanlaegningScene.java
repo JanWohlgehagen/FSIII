@@ -1,6 +1,6 @@
 package gui.util;
 
-import gui.controller.PlanlægningController;
+import gui.controller.PlanlaegningController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class PlanlægningScene implements ISceneLoader<PlanlægningController>{
+public class PlanlaegningScene implements ISceneLoader<PlanlaegningController>{
 
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
@@ -24,7 +24,7 @@ public class PlanlægningScene implements ISceneLoader<PlanlægningController>{
     }
 
     @Override
-    public PlanlægningController getController() {
+    public PlanlaegningController getController() {
         return loader.getController();
     }
 }

@@ -1,16 +1,15 @@
 package be;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import java.util.ArrayList;
 
 public class Borger {
     private IntegerProperty ID = new SimpleIntegerProperty();
+    private IntegerProperty age = new SimpleIntegerProperty();
     private StringProperty firstName= new SimpleStringProperty();
     private StringProperty lastName= new SimpleStringProperty();
+    private BooleanProperty isTemplate = new SimpleBooleanProperty();
 
     //Generelle oplysninger
     private StringProperty mestring = new SimpleStringProperty();
@@ -29,12 +28,28 @@ public class Borger {
     private Funktionstilstand funktionstilstand;
     private Helbredstilstand helbredstilstand;
 
-    public Borger(String firstName, String lastName)
-    {
+    public Borger(String firstName, String lastName, boolean isTemplate, int age) {
         this.firstName.set(firstName);
         this.lastName.set(lastName);
+        this.isTemplate.set(isTemplate);
+        this.age.set(age);
     }
 
+    public void setAge(int age) {
+        this.age.set(age);
+    }
+
+    public IntegerProperty ageProperty() {
+        return age;
+    }
+
+    public void setIsTemplate(boolean isTemplate) {
+        this.isTemplate.set(isTemplate);
+    }
+
+    public BooleanProperty isTemplateProperty() {
+        return isTemplate;
+    }
 
     public IntegerProperty IDProperty() {
         return ID;
