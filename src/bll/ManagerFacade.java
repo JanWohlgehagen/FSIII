@@ -1,5 +1,6 @@
 package bll;
 
+import be.Borger;
 import be.Case;
 import be.Person;
 import bll.Interfaces.IManagerFacade;
@@ -12,10 +13,12 @@ public class ManagerFacade implements IManagerFacade {
 
     private final CredentialManager credentialManager;
     private final CaseManager caseManager;
+    private final CitizenManager citizenManager;
 
     public ManagerFacade() throws IOException {
         credentialManager = new CredentialManager(new DatabaseFacade());
         caseManager = new CaseManager(new DatabaseFacade());
+        citizenManager = new CitizenManager(new DatabaseFacade());
     }
 
                             /***************************************************/
@@ -62,6 +65,30 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public Case createCaseOnCitizen(int citizenID) {
         return caseManager.createCaseOnCitizen(citizenID);
+    }
+
+                                /***************************************************/
+                                /******************** Citizen **********************/
+                                /***************************************************/
+
+    @Override
+    public List<Borger> getAllCitizen() {
+        return citizenManager.getAllCitizen();
+    }
+
+    @Override
+    public Borger createCitizen(Borger borger) {
+        return citizenManager.createCitizen(borger);
+    }
+
+    @Override
+    public void updateCitizen(Borger borger) {
+        citizenManager.updateCitizen(borger);
+    }
+
+    @Override
+    public void deleteCitizen(Borger borger) {
+        citizenManager.deleteCitizen(borger);
     }
 
 }
