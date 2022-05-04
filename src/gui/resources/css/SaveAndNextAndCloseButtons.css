@@ -1,0 +1,59 @@
+
+/*Apply this to the hbox that serves as the save and next button*/
+.nextBox{
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: rgba(119, 161, 131, 1);
+    -fx-cursor: hand;
+}
+
+/*Apply this to the hbox that serves as the save and next button*/
+.nextBox:hover{
+    -fx-background-color: rgba(185, 105, 144, 1);
+}
+
+/*Apply this to the button in the save and next hbox*/
+.nextButton:disabled{
+    -fx-background-image: url("../images/nextBtn.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-background-repeat: no-repeat;
+    -fx-opacity: 1;
+}
+
+/*Apply this to the hbox that serves as the save and close button*/
+.saveBox{
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: rgb(119, 132, 161);
+    -fx-cursor: hand;
+}
+
+/*Apply this to the hbox that serves as the save and close button*/
+.saveBox:hover{
+    -fx-background-color: rgba(185, 105, 144, 1);
+}
+
+/*Apply this to the button in the save and close hbox*/
+.saveButton:disabled{
+    -fx-background-image: url("../images/saveBtn.png");
+    -fx-background-size: 60% 75%;
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-background-repeat: no-repeat;
+    -fx-opacity: 1;
+    -fx-background-position: center;
+}
+
+/*Apply this to the label inside the boxes*/
+.label{
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
