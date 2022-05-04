@@ -1,11 +1,8 @@
 package gui.controller;
 
 import be.Case;
-import be.Person;
 import gui.model.CaseModel;
-import gui.util.CaseOpeningScene;
 import gui.util.CreateAndEditCaseScene;
-import gui.util.DashboardScene;
 import gui.util.ISceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

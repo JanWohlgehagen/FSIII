@@ -2,7 +2,7 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import be.Person;
+import be.user.User;
 
 import bll.ManagerFacade;
 import gui.model.CaseModel;
@@ -25,7 +25,7 @@ public class DashboardController implements Initializable {
 
 
     private DashboardController dashboardController;
-    private Person loginPerson;
+    private User loginUser;
 
     private CaseModel caseModel;
     private CitizenModel citizenModel;
@@ -125,7 +125,7 @@ public class DashboardController implements Initializable {
         this.dashboardController = dashboardController;
     }
 
-    public void setloginPerson(Person person){
-        this.loginPerson = person;
+    public void setloginPerson(User user){
+        this.loginUser = user;
     }
 }

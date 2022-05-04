@@ -1,7 +1,6 @@
 package dal;
 
-import be.Credential;
-import be.Person;
+import be.user.User;
 
 import java.sql.*;
 
@@ -13,7 +12,7 @@ public class DBPersonDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public Person getPersonById(int id){
+    public User getPersonById(int id){
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Person] WHERE ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -25,10 +24,10 @@ public class DBPersonDAO {
                 String firstName = resultSet.getString("FirstName");
                 String lastName = resultSet.getString("LastName");
                 String role = resultSet.getString("Role");
-                Person person = new Person(firstName,lastName);
-                person.setUserType(role);
-                person.setId(id);
-                return person;
+                User user = new User(firstName,lastName);
+                user.setUserType(role);
+                user.setId(id);
+                return user;
             }
 
         } catch (SQLException SQLe) {

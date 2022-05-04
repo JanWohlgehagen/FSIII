@@ -1,7 +1,6 @@
 package dal;
 
 import be.Case;
-import be.Person;
 
 import java.sql.*;
 import java.util.List;

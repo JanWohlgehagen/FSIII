@@ -1,4 +1,4 @@
-package be;
+package be.user;
 
 import be.user.UserType;
 import javafx.beans.property.IntegerProperty;
@@ -8,14 +8,14 @@ import javafx.beans.property.StringProperty;
 
 import java.util.EnumSet;
 
-public class Person {
+public class User {
 
     protected IntegerProperty id = new SimpleIntegerProperty();
     protected StringProperty firstName = new SimpleStringProperty();
     protected StringProperty lastName = new SimpleStringProperty();
     protected EnumSet<UserType> userType = EnumSet.noneOf(UserType.class);
 
-    public Person(String firstName, String lastName) {
+    public User(String firstName, String lastName) {
         this.firstName.set(firstName);
         this.lastName.set(lastName);
     }

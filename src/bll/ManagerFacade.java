@@ -2,7 +2,7 @@ package bll;
 
 import be.Borger;
 import be.Case;
-import be.Person;
+import be.user.User;
 import bll.Interfaces.IManagerFacade;
 import dal.DatabaseFacade;
 
@@ -26,7 +26,7 @@ public class ManagerFacade implements IManagerFacade {
                             /***************************************************/
 
     @Override
-    public Person loginCredential(String userName, String userPassword) {
+    public User loginCredential(String userName, String userPassword) {
         return credentialManager.loginCredential(userName, userPassword);
     }
 
