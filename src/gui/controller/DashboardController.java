@@ -3,13 +3,13 @@ package gui.controller;
 import be.Case;
 import be.Person;
 
-import gui.util.CaseDocumentationScene;
-import gui.util.ISceneLoader;
-import gui.util.PlanlægningScene;
-import gui.util.SagsoplysningScene;
-import gui.util.BestillingsScene;
+import bll.ManagerFacade;
+import dal.DatabaseFacade;
+import gui.model.CaseModel;
+import gui.util.*;
 
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -27,13 +27,26 @@ public class DashboardController implements Initializable {
     private Person loginPerson;
     private Case currentCase;
 
+    private CaseModel caseModel;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
+            try {
+                caseModel = new CaseModel(new ManagerFacade());
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
-    public void handleButtonSagsåbning(ActionEvent actionEvent) {
+    public void handleButtonSagsåbning(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CaseOpeningController> caseOpeningScene =  new CaseOpeningScene();
+        caseOpeningScene.loadNewScene(new Stage());
+        CaseOpeningController caseOpeningController = caseOpeningScene.getController();
+        caseOpeningController.setCaseModel(caseModel);
     }
 
     public void handleButtonOpfølgning(ActionEvent actionEvent) {

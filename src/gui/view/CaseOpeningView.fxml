@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="ParentPane" stylesheets="@../resources/css/CaseOpening.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CaseOpeningController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+  </rowConstraints>
+   <children>
+      <VBox spacing="2.0" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" top="30.0" />
+         </GridPane.margin>
+         <children>
+            <ComboBox fx:id="vaelgSagCbx" onAction="#handleVaelgSag" prefWidth="500.0" promptText="Vælg Sag">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </ComboBox>
+            <Label text="Overtilstand:" />
+            <TextField fx:id="overtilstandTxtField" editable="false" promptText="Overtilstand" />
+            <Label text="Undertilstand:" />
+            <TextField fx:id="undertilstandTxtField" editable="false" promptText="Undertilstand" />
+            <HBox spacing="10.0">
+               <children>
+                  <VBox spacing="12.0">
+                     <children>
+                        <Label text="Borger fornavn:" />
+                        <Label text="Borger efternavn:" />
+                        <Label text="Borger alder:" />
+                        <Label text="Aktive sager:" />
+                        <Label text="Sagsansvarlig:" />
+                        <Label text="Andet info?" />
+                        <Label text="Andet info?" />
+                        <Label text="Andet info?" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox spacing="12.0">
+                     <children>
+                        <Label fx:id="fornavnLbl" text="Fornavn placeholder" />
+                        <Label fx:id="efternavnLbl" text="Efternavn placeholder" />
+                        <Label fx:id="alderLbl" text="Alder placeholder" />
+                        <Label fx:id="antalAktiveSagerLbl" text="Sag antal placeholder" />
+                        <Label text="navn placeholder" />
+                        <Label text="placeholder" />
+                        <Label text="placeholder" />
+                        <Label text="placeholder" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+         <children>
+            <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0">
+               <children>
+                  <Button fx:id="opretSagBtn" mnemonicParsing="false" onAction="#handleOpretSag" text="Opret Sag">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="redigerSagBtn" mnemonicParsing="false" onAction="#handleRedigerSag" text="Rediger Sag" />
+                  <Button fx:id="sletSagBtn" mnemonicParsing="false" onAction="#handleSletSag" text="Slet Sag" />
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="30.0" />
+         </GridPane.margin>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <HBox alignment="BOTTOM_RIGHT" prefWidth="300.0" spacing="30.0">
+               <children>
+                  <Button fx:id="videreBtn" minHeight="75.0" minWidth="110.0" mnemonicParsing="false" onAction="#handleVidere" styleClass="buttonVidere" text="Gem &amp; Næste   " />
+               </children>
+               <padding>
+                  <Insets right="20.0" top="8.0" />
+               </padding>
+            </HBox>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="30.0" />
+         </GridPane.margin>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="2">
+         <children>
+            <Label alignment="CENTER" text="Sagsinformation">
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+            </Label>
+            <TextArea fx:id="beskrivelseTxtArea" editable="false" promptText="Beskrivelse" wrapText="true" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <TextArea fx:id="aarsagsfritekstTxtArea" editable="false" promptText="Årsagsfritekst" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <TextArea fx:id="aarsagsdiagnoseTxtArea" editable="false" promptText="Årsagsdiagnose" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <TextArea fx:id="aarsagstilstandTxtArea" editable="false" promptText="Årsagstilstand" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <TextArea fx:id="borgerMaalTxtArea" editable="false" promptText="Borgerens ønsker og mål" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextArea>
+         </children>
+      </VBox>
+   </children>
+</GridPane>

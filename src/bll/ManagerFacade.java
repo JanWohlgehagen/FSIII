@@ -59,4 +59,9 @@ public class ManagerFacade implements IManagerFacade {
         caseManager.deleteCaseOnCitizen(citizenID, caseID);
     }
 
+    @Override
+    public Case createCaseOnCitizen(int citizenID) {
+        return caseManager.createCaseOnCitizen(citizenID);
+    }
+
 }

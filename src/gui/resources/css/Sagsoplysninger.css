@@ -69,3 +69,12 @@
 .text-area:armed{
     -fx-border-color: black;
 }
+
+.tooltip{
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+}
+
+
+
+

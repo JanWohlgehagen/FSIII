@@ -55,4 +55,15 @@ public class DBCaseDAO {
             SQLe.printStackTrace();
         }
     }
+
+    public Case createCaseOnCitizen(int citizenID){
+        try (Connection connection = dbConnecting.getConnection()) {
+            //TODO
+            throw new UnsupportedOperationException();
+
+        } catch (SQLException SQLe) {
+            SQLe.printStackTrace();
+            return null;
+        }
+    }
 }

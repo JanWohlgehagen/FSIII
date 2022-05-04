@@ -24,6 +24,8 @@ public interface IDatabaseFacade {
 
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 
+    public Case createCaseOnCitizen(int citizenID);
+
     //Citizen DAL Functions
 
     public Borger createCitizen(Borger borger);
@@ -33,5 +35,7 @@ public interface IDatabaseFacade {
     public void updateCitizen(Borger borger);
 
     public void deleteCitizen(Borger borger);
+
+
 
 }

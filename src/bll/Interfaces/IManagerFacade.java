@@ -23,6 +23,8 @@ public interface IManagerFacade {
 
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 
+    public Case createCaseOnCitizen(int citizenID);
+
     //CITIZEN
     public List<Borger> getAllCitizen();
 
@@ -31,5 +33,8 @@ public interface IManagerFacade {
     public void updateCitizen(Borger borger);
 
     public void deleteCitizen (Borger borger);
+
+
+
 
 }
