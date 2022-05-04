@@ -30,12 +30,10 @@ public class CaseModel {
         managerFacade.deleteCaseOnCitizen(citizenID, caseID);
     }
 
-    public Case createCaseOnCitizen(int citizenID) {
-       return managerFacade.createCaseOnCitizen(citizenID);
+    public Case createCaseOnCitizen(Case newCase) {
+       return managerFacade.createCaseOnCitizen(newCase);
     }
 
-    public Case createCase(Case newCase) {
-        return managerFacade.createCase(newCase);
-    }
+
 
 }

@@ -82,10 +82,14 @@ public class CreateAndEditCaseController implements Initializable {
         // if statements
         // registrere oprettelsestidspunkt ?
 
-        caseModel.createCaseOnCitizen(caseModel.createCase(
-                new Case(borger.IDProperty().get(), overtilstandTxtField.getText(),
-                beskrivelseTxtArea.getText())).caseIDProperty().get());
+        Case newCase = new Case(borger.IDProperty().get(), beskrivelseTxtArea.getText(), overtilstandTxtField.getText());
+        newCase.setPersonID(dashboardController.getSelectedCitizen().IDProperty().get());
+        newCase.setIsBevilget(false);
+        newCase.setBevillingstekst("");
+        newCase.setPlan("");
+        newCase.setOpfoelgningstag("");
 
+        caseModel.createCaseOnCitizen(newCase);
         Stage stage = (Stage) parentGridPane.getScene().getWindow();
         stage.close();
     }
