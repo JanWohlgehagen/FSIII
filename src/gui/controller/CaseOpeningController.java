@@ -1,17 +1,19 @@
 package gui.controller;
 
 import be.Case;
-import be.Person;
+import be.Funktionstilstand;
+import be.FunktionstilstandsUnderkategori;
 import gui.model.CaseModel;
-import gui.util.CaseOpeningScene;
+import gui.model.CitizenModel;
 import gui.util.CreateAndEditCaseScene;
-import gui.util.DashboardScene;
 import gui.util.ISceneLoader;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,13 +23,17 @@ import java.util.ResourceBundle;
 public class CaseOpeningController implements Initializable {
 
     @FXML
-    private Label sagsansvarligLbl;
+    private GridPane parentGridPane;
     @FXML
     private ComboBox<Case> vaelgSagCbx;
     @FXML
     private TextField overtilstandTxtField;
     @FXML
     private TextField undertilstandTxtField;
+    @FXML
+    private TextField overkategoriTxtField;
+    @FXML
+    private TextField underkategoriTxtField;
     @FXML
     private Label fornavnLbl;
     @FXML
@@ -36,6 +42,8 @@ public class CaseOpeningController implements Initializable {
     private Label alderLbl;
     @FXML
     private Label antalAktiveSagerLbl;
+    @FXML
+    private Label sagsansvarligLbl;
     @FXML
     private Button opretSagBtn;
     @FXML
@@ -56,6 +64,9 @@ public class CaseOpeningController implements Initializable {
     private TextArea borgerMaalTxtArea;
 
     private CaseModel caseModel;
+    private CitizenModel citizenModel;
+    private Funktionstilstand funktionstilstand;
+    private FunktionstilstandsUnderkategori funktionstilstandsUnderkategori;
 
 
     @Override
@@ -65,10 +76,6 @@ public class CaseOpeningController implements Initializable {
 
     public void setCaseModel(CaseModel caseModel){
         this.caseModel = caseModel;
-    }
-
-    public void openCreateEditCaseView(Stage stage) {
-        // ??
     }
 
     public void handleOpretSag(ActionEvent actionEvent) throws IOException {
@@ -89,19 +96,27 @@ public class CaseOpeningController implements Initializable {
     }
 
     public void handleVaelgSag(ActionEvent actionEvent) {
+        //caseModel.getAllCasesOnCitizen(citizenID); // er det ID på citizen den vil have?
     }
 
-    public void handleOverkategori(ActionEvent actionEvent) {
+    public void setUnderkategoriTxtField(StringProperty underkategoriTxtField) {
+        //return this.underkategoriTxtField = funktionstilstandsUnderkategori.getTilstandsklassifikationProperty()
+        /** skal den parses på en eller anden måde, eller skal jeg ændre den fra TextField om til StringProperty? **/
+        //this.underkategoriTxtField = underkategoriTxtField;
     }
 
-    public void handleUnderkategori(ActionEvent actionEvent) {
+    public void setOverkategoriTxtField(TextField overkategoriTxtField) {
+        this.overkategoriTxtField = overkategoriTxtField;
     }
 
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        // gem funktionalitet
+        Stage stage = (Stage) parentGridPane.getScene().getWindow();
+        stage.close();
     }
 
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        //Gem alt +
+        //Gem funktionalitet
         //ISCeneLoader næste scene
     }
 

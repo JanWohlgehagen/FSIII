@@ -33,7 +33,6 @@ public class Borger {
     {
         this.firstName.set(firstName);
         this.lastName.set(lastName);
-
     }
 
 
