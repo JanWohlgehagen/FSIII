@@ -30,7 +30,6 @@ public class CredentialManager {
 
     private boolean checkCredential(String userName, String userPassword){
         credential = databaseFacade.checkCredential(userName);
-        System.out.println(BCrypt.hashpw(userPassword,salt));
         return credential != null && BCrypt.checkpw(userPassword, credential.getPassword());
     }
 
