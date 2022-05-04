@@ -68,6 +68,11 @@ public class DatabaseFacade implements IDatabaseFacade {
         return dbCaseDAO.createCaseOnCitizen(citizenID);
     }
 
+    @Override
+    public Case createCase(Case newCase) {
+        return dbCaseDAO.createCase(newCase);
+    }
+
 
                                 /***************************************************/
                                 /******************** Citizen **********************/
@@ -99,8 +104,5 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbCitizenDAO.deleteCitizen(borger);
 
     }
-
-
-
 
 }

@@ -33,6 +33,7 @@ public class CaseManager {
         databaseFacade.deleteCaseOnCitizen(citizenID, caseID);
     }
 
-
-
+    public Case createCase(Case newCase) {
+        return databaseFacade.createCase(newCase);
+    }
 }

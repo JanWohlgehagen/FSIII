@@ -68,4 +68,15 @@ public class DBCaseDAO {
             return null;
         }
     }
+
+    public Case createCase(Case newCase) {
+        try (Connection connection = dbConnecting.getConnection()) {
+            //TODO
+            throw new UnsupportedOperationException();
+
+        } catch (SQLException SQLe) {
+            SQLe.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -33,4 +33,9 @@ public class CaseModel {
     public Case createCaseOnCitizen(int citizenID) {
        return managerFacade.createCaseOnCitizen(citizenID);
     }
+
+    public Case createCase(Case newCase) {
+        return managerFacade.createCase(newCase);
+    }
+
 }

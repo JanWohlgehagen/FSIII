@@ -2,7 +2,6 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import be.Person;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import javafx.application.Platform;
@@ -56,13 +55,13 @@ public class CreateAndEditCaseController implements Initializable {
 
     private CaseModel caseModel;
     private CitizenModel citizenModel;
-    private Person person;
+    private Borger borger;
     private DashboardController dashboardController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            person = dashboardController.
+            borger = dashboardController.getSelectedCitizen();
         });
 
     }
@@ -83,15 +82,9 @@ public class CreateAndEditCaseController implements Initializable {
         // if statements
         // registrere oprettelsestidspunkt ?
 
-        Borger borger = new Borger(fornavnLbl.getText(), efternavnLbl.getText());
-        Case sag = new Case()
-
-
-                sag.personIDProperty().get(),
-                sag.caseTitleProperty().get(),
-                sag.caseDescriptionProperty().get());
-
-        caseModel.createCaseOnCitizen(sag);
+        caseModel.createCaseOnCitizen(caseModel.createCase(
+                new Case(borger.IDProperty().get(), overtilstandTxtField.getText(),
+                beskrivelseTxtArea.getText())).caseIDProperty().get());
 
         Stage stage = (Stage) parentGridPane.getScene().getWindow();
         stage.close();

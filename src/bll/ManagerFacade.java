@@ -67,6 +67,11 @@ public class ManagerFacade implements IManagerFacade {
         return caseManager.createCaseOnCitizen(citizenID);
     }
 
+    @Override
+    public Case createCase(Case newCase) {
+        return caseManager.createCase(newCase);
+    }
+
                                 /***************************************************/
                                 /******************** Citizen **********************/
                                 /***************************************************/
@@ -95,5 +100,6 @@ public class ManagerFacade implements IManagerFacade {
     public void deleteCitizen(Borger borger) {
         citizenManager.deleteCitizen(borger);
     }
+
 
 }

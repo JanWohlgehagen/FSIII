@@ -36,7 +36,5 @@ public interface IManagerFacade {
 
     public void deleteCitizen (Borger borger);
 
-
-
-
+    public Case createCase(Case newCase);
 }
