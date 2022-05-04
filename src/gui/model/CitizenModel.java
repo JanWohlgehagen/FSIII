@@ -11,12 +11,15 @@ import java.util.List;
 
 public class CitizenModel {
     private ObservableList<Borger> allCitizens = FXCollections.observableArrayList();
+    private ObservableList<Borger> allTemplates = FXCollections.observableArrayList();
 
     private final IManagerFacade managerFacade;
 
     public CitizenModel(ManagerFacade managerFacade) {
         this.managerFacade = managerFacade;
         allCitizens.addAll(managerFacade.getAllCitizen());
+        allTemplates.addAll(managerFacade.getAllTemplates());
+
     }
 
 
@@ -24,9 +27,14 @@ public class CitizenModel {
         return managerFacade.getAllCitizen();
     }
 
+    public List<Borger> getAllTemplates()
+    {
+        return managerFacade.getAllTemplates();
+    }
 
-    public Borger createCitizen(Borger borger) {
-        return managerFacade.createCitizen(borger);
+
+    public void createCitizen(Borger borger) {
+         allCitizens.add(managerFacade.createCitizen(borger));
     }
 
 

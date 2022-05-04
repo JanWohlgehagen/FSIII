@@ -84,6 +84,11 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
+    public List<Borger> getAllTemplates() {
+        return dbCitizenDAO.getAllTemplates();
+    }
+
+    @Override
     public void updateCitizen(Borger borger) {
         dbCitizenDAO.updateCitizen(borger);
 
@@ -94,6 +99,8 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbCitizenDAO.deleteCitizen(borger);
 
     }
+
+
 
 
 }

@@ -28,6 +28,8 @@ public interface IManagerFacade {
     //CITIZEN
     public List<Borger> getAllCitizen();
 
+    public List<Borger> getAllTemplates();
+
     public Borger createCitizen(Borger borger);
 
     public void updateCitizen(Borger borger);

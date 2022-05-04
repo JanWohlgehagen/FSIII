@@ -32,9 +32,12 @@ public interface IDatabaseFacade {
 
     public List<Borger> getAllCitizens();
 
+    public List<Borger> getAllTemplates();
+
     public void updateCitizen(Borger borger);
 
     public void deleteCitizen(Borger borger);
+
 
 
 

@@ -77,6 +77,11 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
+    public List<Borger> getAllTemplates() {
+        return citizenManager.getAllTemplates();
+    }
+
+    @Override
     public Borger createCitizen(Borger borger) {
         return citizenManager.createCitizen(borger);
     }
