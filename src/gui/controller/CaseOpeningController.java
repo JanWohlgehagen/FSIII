@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.Case;
 import be.Person;
+import gui.model.CaseModel;
 import gui.util.CaseOpeningScene;
 import gui.util.CreateAndEditCaseScene;
 import gui.util.DashboardScene;
@@ -51,30 +52,29 @@ public class CaseOpeningController implements Initializable {
     @FXML
     private TextArea borgerMaalTxtArea;
 
-    private Stage primaryStage;
-    CaseOpeningController caseOpeningController;
+    private CaseModel caseModel;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
     }
 
-    public void setPrimaryStage(Stage stage){
-        this.primaryStage = stage;
+    public void setCaseModel(CaseModel caseModel){
+        this.caseModel = caseModel;
     }
 
     public void openCreateEditCaseView(Stage stage) {
 
     }
 
-    public void setCaseOpeningController(CaseOpeningController caseOpeningController){
-        this.caseOpeningController = caseOpeningController;
-    }
 
     public void handleOpretSag(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CreateAndEditCaseController> createAndEditCaseScene = new CreateAndEditCaseScene();
         createAndEditCaseScene.loadNewScene(new Stage());
         CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
+        createAndEditCaseController.setCaseModel(caseModel);
     }
 
     public void handleRedigerSag(ActionEvent actionEvent) throws IOException {

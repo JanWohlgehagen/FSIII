@@ -1,5 +1,6 @@
 package gui.controller;
 
+import gui.model.CaseModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,12 +43,20 @@ public class CreateAndEditCaseController implements Initializable {
     @FXML
     private TextArea borgerMaalTxtArea;
 
+    private CaseModel caseModel;
+    //private Citizen citizen;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
+    public void setCaseModel(CaseModel caseModel){
+        this.caseModel = caseModel;
+    }
+
     public void handleGem(ActionEvent actionEvent) {
+        //caseModel.createCaseOnCitizen(citizen);
     }
 
     public void handleAnnuller(ActionEvent actionEvent) {
