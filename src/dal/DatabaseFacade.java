@@ -1,6 +1,7 @@
 package dal;
 
 
+import be.Borger;
 import be.Case;
 import be.Credential;
 import be.Person;
@@ -15,12 +16,14 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBLoginDAO dbLoginDAO;
     private DBPersonDAO dbPersonDAO;
     private DBCaseDAO dbCaseDAO;
+    private DBCitizenDAO dbCitizenDAO;
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
         dbLoginDAO = new DBLoginDAO(dbConnecting);
         dbPersonDAO = new DBPersonDAO(dbConnecting);
         dbCaseDAO = new DBCaseDAO(dbConnecting);
+        dbCitizenDAO = new DBCitizenDAO(dbConnecting);
 
     }
 
@@ -63,6 +66,33 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public Case createCaseOnCitizen(int citizenID) {
         return dbCaseDAO.createCaseOnCitizen(citizenID);
+    }
+
+
+                                /***************************************************/
+                                /******************** Citizen **********************/
+                                /***************************************************/
+
+    @Override
+    public Borger createCitizen(Borger borger) {
+        return dbCitizenDAO.createCitizen(borger);
+    }
+
+    @Override
+    public List<Borger> getAllCitizens() {
+        return dbCitizenDAO.getAllCitizens();
+    }
+
+    @Override
+    public void updateCitizen(Borger borger) {
+        dbCitizenDAO.updateCitizen(borger);
+
+    }
+
+    @Override
+    public void deleteCitizen(Borger borger) {
+        dbCitizenDAO.deleteCitizen(borger);
+
     }
 
 

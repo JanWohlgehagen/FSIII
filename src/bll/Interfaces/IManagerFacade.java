@@ -1,5 +1,6 @@
 package bll.Interfaces;
 
+import be.Borger;
 import be.Case;
 import be.Person;
 
@@ -13,7 +14,7 @@ public interface IManagerFacade {
 
 
 
-
+    // CASE
     public List<Case> getAllCasesOnCitizen(int id);
 
     public Case getCaseOnCitizen(int citizenID, int caseID);
@@ -23,5 +24,17 @@ public interface IManagerFacade {
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 
     public Case createCaseOnCitizen(int citizenID);
+
+    //CITIZEN
+    public List<Borger> getAllCitizen();
+
+    public Borger createCitizen(Borger borger);
+
+    public void updateCitizen(Borger borger);
+
+    public void deleteCitizen (Borger borger);
+
+
+
 
 }
