@@ -53,8 +53,8 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public void updateCaseOnCitizen(int citizenID, int caseID) {
-        caseManager.updateCaseOnCitizen(citizenID, caseID);
+    public void updateCaseOnCitizen(int citizenID,Case selectCase) {
+        caseManager.updateCaseOnCitizen(citizenID, selectCase);
     }
 
     @Override
