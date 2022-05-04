@@ -38,6 +38,7 @@ CREATE TABLE [Case_Dokumentation]
     [Case_ID] int NOT NULL,
     [Borger_ID] int NOT NULL,
     [ID] int IDENTITY NOT NULL,
+    [Title] NVARCHAR(50) NOT NULL,
     [Timestamp]DATETIME2 NOT NULL,
     [Text] NVARCHAR(500) NULL,
 

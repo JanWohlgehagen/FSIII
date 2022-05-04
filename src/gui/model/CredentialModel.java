@@ -1,11 +1,12 @@
 package gui.model;
 
 import be.Person;
+import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 
 public class CredentialModel {
 
-   private ManagerFacade managerFacade;
+   private IManagerFacade managerFacade;
 
     public CredentialModel(ManagerFacade managerFacade) {
         this.managerFacade = managerFacade;

@@ -3,10 +3,9 @@ package gui.controller;
 import be.Case;
 import be.Person;
 
-import gui.util.CaseOpeningScene;
-
-
+import gui.util.CaseDocumentationScene;
 import gui.util.ISceneLoader;
+import gui.util.PlanlægningScene;
 import gui.util.SagsoplysningScene;
 import gui.util.BestillingsScene;
 
@@ -34,11 +33,7 @@ public class DashboardController implements Initializable {
 
     }
 
-    public void handleButtonSagsåbning(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<CaseOpeningController> caseOpeningScene = new CaseOpeningScene();
-        caseOpeningScene.loadNewScene(new Stage());
-        CaseOpeningController caseOpeningController = caseOpeningScene.getController();
-        caseOpeningController.setCaseOpeningController(caseOpeningController);
+    public void handleButtonSagsåbning(ActionEvent actionEvent) {
     }
 
     public void handleButtonOpfølgning(ActionEvent actionEvent) {
@@ -66,10 +61,25 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void handleButtonPlanlægning(ActionEvent actionEvent) {
+    public void handleButtonPlanlægning(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<PlanlægningController> planlægningScene = new PlanlægningScene();
+        planlægningScene.loadNewScene(new Stage());
+        PlanlægningController planlægningController = planlægningScene.getController();
+        planlægningController.setDashboardController(dashboardController);
     }
 
-    public void handleButtonLevering(ActionEvent actionEvent) {
+    public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
+        if(currentCase == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
+        else {
+            ISceneLoader<CaseDocumentationViewController> caseDocumentationScene = new CaseDocumentationScene();
+            caseDocumentationScene.loadNewScene(new Stage());
+            CaseDocumentationViewController caseDocumentationViewController = caseDocumentationScene.getController();
+            caseDocumentationViewController.setCaseDocumentationViewController(caseDocumentationViewController);
+            caseDocumentationViewController.setCurrentCase(currentCase);
+        }
     }
 
     public void setDashboardController(DashboardController dashboardController){
