@@ -101,4 +101,9 @@ public class Case {
     public void setOpfoelgningstag(String opfoelgningstag) {
         this.Opfoelgningstag.set(opfoelgningstag);
     }
+
+    @Override
+    public String toString() {
+        return caseTitle.get();
+    }
 }
