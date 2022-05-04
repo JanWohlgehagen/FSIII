@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
@@ -88,11 +89,19 @@ public class SagsoplysningController implements Initializable {
         this.sagsoplysningController = sagsoplysningController;
     }
 
-    public void handleSaveAndNextBtn(MouseEvent mouseEvent) {
+    public void generelleInformationerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
         //TODO
     }
 
-    public void handleSaveAndExitBtn(MouseEvent mouseEvent) {
+    public void generelleInformationerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        //TODO
+    }
+
+    public void helbredstilstandHandleSaveAndExitBtn(KeyEvent keyEvent) {
+        //TODO
+    }
+
+    public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
         //TODO
     }
 

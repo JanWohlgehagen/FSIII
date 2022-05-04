@@ -87,7 +87,13 @@
 
 .bottomButton:hover,
 .topButton:hover,
-.middleButton:hover{
+.middleButton:hover,
+.bottomButton:armed,
+.topButton:armed,
+.middleButton:armed,
+.bottomButton:focused,
+.topButton:focused,
+.middleButton:focused{
     -fx-scale-y: 1.2;
     -fx-scale-x: 1.2;
     -fx-border-width: 4;
