@@ -43,7 +43,7 @@ public class DashboardController implements Initializable {
         ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(new Stage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
-        sagsoplysningController.setSagsoplysningsController(sagsoplysningController);
+        sagsoplysningController.setDashboardController(dashboardController);
     }
 
     public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {

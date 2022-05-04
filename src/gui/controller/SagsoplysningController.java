@@ -1,9 +1,8 @@
 package gui.controller;
 
-import be.Funktionstilstand;
-import be.FunktionstilstandsUnderkategori;
-import be.Helbredstilstand;
-import be.HelbredstilstandsUnderkategori;
+import be.*;
+import gui.model.CitizenModel;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -84,11 +83,16 @@ public class SagsoplysningController implements Initializable {
     @FXML
     private ScrollPane scrollPaneHelbredstilstand;
 
-    SagsoplysningController sagsoplysningController;
+    private DashboardController dashboardController;
     private TooltipBank tooltipBank = new TooltipBank();
+    private Borger borger;
+    private CitizenModel citizenModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
+            borger = dashboardController.getSelectedCitizen();
+        });
         int insertionCounter = 0;
 
         // Setting up tooltips for the information buttons in the view that guides the student
@@ -152,8 +156,12 @@ public class SagsoplysningController implements Initializable {
     }
 
 
-    public void setSagsoplysningsController(SagsoplysningController sagsoplysningController){
-        this.sagsoplysningController = sagsoplysningController;
+    public void setDashboardController (DashboardController dashboardController){
+        this.dashboardController = dashboardController;
+    }
+
+    public void setCitizenModel(CitizenModel citizenModel) {
+        this.citizenModel = citizenModel;
     }
 
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
