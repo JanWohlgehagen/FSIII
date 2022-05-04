@@ -5,6 +5,7 @@
 }
 
 .button{
+    -fx-cursor: hand;
     -fill: black;
     -fx-background-color: -fill;
     -fx-border-color: white;
