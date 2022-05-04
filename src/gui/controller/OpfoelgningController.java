@@ -34,8 +34,6 @@ public class OpfoelgningController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
         Platform.runLater(() -> {
             selectCase = new Case(50,"testCase", "det er en test");
             selectCitizen = new Borger("tobias", "rasmussen");
