@@ -4,7 +4,7 @@ package dal;
 import be.Borger;
 import be.Case;
 import be.Credential;
-import be.Person;
+import be.user.User;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public Person getPersonById(int id) {
+    public User getPersonById(int id) {
         return dbPersonDAO.getPersonById(id);
     }
 

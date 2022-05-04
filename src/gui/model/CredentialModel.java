@@ -1,6 +1,6 @@
 package gui.model;
 
-import be.Person;
+import be.user.User;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 
@@ -12,7 +12,7 @@ public class CredentialModel {
         this.managerFacade = managerFacade;
     }
 
-    public Person checkCredential(String userName, String password){
+    public User checkCredential(String userName, String password){
         return managerFacade.loginCredential(userName, password);
     }
 

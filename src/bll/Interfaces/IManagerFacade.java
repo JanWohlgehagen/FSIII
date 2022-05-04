@@ -2,13 +2,13 @@ package bll.Interfaces;
 
 import be.Borger;
 import be.Case;
-import be.Person;
+import be.user.User;
 
 import java.util.List;
 
 public interface IManagerFacade {
 
-    Person loginCredential(String userName, String userPassword);
+    User loginCredential(String userName, String userPassword);
 
     String newHashPassword(String password);
 
