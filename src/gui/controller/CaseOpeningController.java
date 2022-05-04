@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class CaseOpeningController implements Initializable {
 
+    @FXML
+    private Label sagsansvarligLbl;
     @FXML
     private ComboBox<Case> vaelgSagCbx;
     @FXML
@@ -55,7 +58,6 @@ public class CaseOpeningController implements Initializable {
     private CaseModel caseModel;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -66,9 +68,8 @@ public class CaseOpeningController implements Initializable {
     }
 
     public void openCreateEditCaseView(Stage stage) {
-
+        // ??
     }
-
 
     public void handleOpretSag(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CreateAndEditCaseController> createAndEditCaseScene = new CreateAndEditCaseScene();
@@ -87,11 +88,21 @@ public class CaseOpeningController implements Initializable {
         // noget med at se på items i comboboxen og slette selected item?
     }
 
-    public void handleVidere(ActionEvent actionEvent) {
+    public void handleVaelgSag(ActionEvent actionEvent) {
+    }
+
+    public void handleOverkategori(ActionEvent actionEvent) {
+    }
+
+    public void handleUnderkategori(ActionEvent actionEvent) {
+    }
+
+    public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+    }
+
+    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
         //Gem alt +
         //ISCeneLoader næste scene
     }
 
-    public void handleVaelgSag(ActionEvent actionEvent) {
-    }
 }

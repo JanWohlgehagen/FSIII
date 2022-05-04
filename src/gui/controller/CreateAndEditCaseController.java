@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 public class CreateAndEditCaseController implements Initializable {
 
     @FXML
+    private Label sagsansvarligLbl;
+    @FXML
     private TextField overtilstandTxtField;
     @FXML
     private TextField undertilstandTxtField;
@@ -60,5 +62,14 @@ public class CreateAndEditCaseController implements Initializable {
     }
 
     public void handleAnnuller(ActionEvent actionEvent) {
+    }
+
+    public void handleVaelgSag(ActionEvent actionEvent) {
+    }
+
+    public void handleOverkategori(ActionEvent actionEvent) {
+    }
+
+    public void handleUnderkategori(ActionEvent actionEvent) {
     }
 }

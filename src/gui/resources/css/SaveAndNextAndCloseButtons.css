@@ -23,6 +23,7 @@
     -fx-font-size: 14;
     -fx-background-repeat: no-repeat;
     -fx-opacity: 1;
+    -fx-border-color: transparent;
 }
 
 /*Apply this to the hbox that serves as the save and close button*/
@@ -50,6 +51,7 @@
     -fx-background-repeat: no-repeat;
     -fx-opacity: 1;
     -fx-background-position: center;
+    -fx-border-color: transparent;
 }
 
 /*Apply this to the label inside the boxes*/
