@@ -92,6 +92,10 @@ public class SagsoplysningController implements Initializable {
         //TODO
     }
 
+    public void handleSaveAndExitBtn(MouseEvent mouseEvent) {
+        //TODO
+    }
+
 
     private class TooltipBank{
         final private double TOOLTIP_WIDTH = 250.0;
