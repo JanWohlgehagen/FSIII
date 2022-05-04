@@ -6,6 +6,7 @@ import be.Person;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
 import gui.model.CaseModel;
+import gui.model.CitizenModel;
 import gui.util.*;
 
 
@@ -28,6 +29,7 @@ public class DashboardController implements Initializable {
     private Case currentCase;
 
     private CaseModel caseModel;
+    private CitizenModel citizenModel;
 
 
     @Override
@@ -35,6 +37,7 @@ public class DashboardController implements Initializable {
         Platform.runLater(() -> {
             try {
                 caseModel = new CaseModel(new ManagerFacade());
+                citizenModel = new CitizenModel(new ManagerFacade());
 
             } catch (IOException e) {
                 e.printStackTrace();
