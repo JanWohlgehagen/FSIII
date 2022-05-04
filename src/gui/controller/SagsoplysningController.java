@@ -89,11 +89,11 @@ public class SagsoplysningController implements Initializable {
         this.sagsoplysningController = sagsoplysningController;
     }
 
-    public void generelleInformationerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
         //TODO
     }
 
-    public void generelleInformationerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+    public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         //TODO
     }
 
