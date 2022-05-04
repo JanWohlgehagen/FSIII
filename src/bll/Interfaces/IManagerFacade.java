@@ -19,7 +19,7 @@ public interface IManagerFacade {
 
     public Case getCaseOnCitizen(int citizenID, int caseID);
 
-    public void updateCaseOnCitizen(int citizenID, int caseID);
+    public void updateCaseOnCitizen(int citizenID, Case selectCase);
 
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="gui.controller.PlanlægningController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="gui.controller.PlanlaegningController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -31,7 +31,7 @@
       </VBox>
       <VBox alignment="CENTER" GridPane.rowIndex="1">
          <children>
-            <TextArea fx:id="txtAreaPlanlægning" prefHeight="200.0" prefWidth="200.0" promptText="Hvad er planen?">
+            <TextArea fx:id="txtAreaPlanlaegning" prefHeight="200.0" prefWidth="200.0" promptText="Hvad er planen?">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>

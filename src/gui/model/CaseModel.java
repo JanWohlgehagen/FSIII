@@ -22,8 +22,8 @@ public class CaseModel {
         return managerFacade.getCaseOnCitizen(citizenID, caseID);
     }
 
-    public void updateCaseOnCitizen(int citizenID, int caseID){
-        managerFacade.updateCaseOnCitizen(citizenID, caseID);
+    public void updateCaseOnCitizen(int citizenID, Case selectCase ){
+        managerFacade.updateCaseOnCitizen(citizenID, selectCase);
     }
 
     public void deleteCaseOnCitizen(int citizenID, int caseID){

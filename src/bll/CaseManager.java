@@ -25,8 +25,8 @@ public class CaseManager {
         return databaseFacade.getCaseOnCitizen(citizenID, caseID);
     }
 
-    public void updateCaseOnCitizen(int citizenID, int caseID){
-        databaseFacade.updateCaseOnCitizen(citizenID, caseID);
+    public void updateCaseOnCitizen(int citizenID, Case selectCase){
+        databaseFacade.updateCaseOnCitizen(citizenID, selectCase);
     }
 
     public void deleteCaseOnCitizen(int citizenID, int caseID){
