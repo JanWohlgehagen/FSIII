@@ -44,8 +44,8 @@ public class DatabaseFacade implements IDatabaseFacade {
                             /***************************************************/
 
     @Override
-    public List<Case> getAllCasesOnCitizen(int id) {
-        return dbCaseDAO.getAllCasesOnCitizen(id);
+    public List<Case> getAllCasesOnCitizen(int citizenid) {
+        return dbCaseDAO.getAllCasesOnCitizen(citizenid);
     }
 
     @Override
@@ -64,13 +64,8 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public Case createCaseOnCitizen(int citizenID) {
-        return dbCaseDAO.createCaseOnCitizen(citizenID);
-    }
-
-    @Override
-    public Case createCase(Case newCase) {
-        return dbCaseDAO.createCase(newCase);
+    public Case createCaseOnCitizen(Case newCase) {
+        return dbCaseDAO.createCaseOnCitizen(newCase);
     }
 
 

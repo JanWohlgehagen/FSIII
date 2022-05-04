@@ -43,8 +43,8 @@ public class ManagerFacade implements IManagerFacade {
 
 
     @Override
-    public List<Case> getAllCasesOnCitizen(int id) {
-        return caseManager.getAllCasesOnCitizen(id);
+    public List<Case> getAllCasesOnCitizen(int citizenid) {
+        return caseManager.getAllCasesOnCitizen(citizenid);
     }
 
     @Override
@@ -63,13 +63,8 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public Case createCaseOnCitizen(int citizenID) {
-        return caseManager.createCaseOnCitizen(citizenID);
-    }
-
-    @Override
-    public Case createCase(Case newCase) {
-        return caseManager.createCase(newCase);
+    public Case createCaseOnCitizen(Case newCase) {
+        return caseManager.createCaseOnCitizen(newCase);
     }
 
                                 /***************************************************/

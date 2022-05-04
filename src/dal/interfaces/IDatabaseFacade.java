@@ -15,7 +15,7 @@ public interface IDatabaseFacade {
     Credential checkCredential(String userName);
     User getPersonById(int id);
 
-    public List<Case> getAllCasesOnCitizen(int id);
+    public List<Case> getAllCasesOnCitizen(int citizenid);
 
     public Case getCaseOnCitizen(int citizenID, int caseID);
 
@@ -23,7 +23,7 @@ public interface IDatabaseFacade {
 
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 
-    public Case createCaseOnCitizen(int citizenID);
+    public Case createCaseOnCitizen(Case newCase);
 
     //Citizen DAL Functions
 
@@ -37,5 +37,4 @@ public interface IDatabaseFacade {
 
     public void deleteCitizen(Borger borger);
 
-    public Case createCase(Case newCase);
 }
