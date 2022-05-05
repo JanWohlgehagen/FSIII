@@ -2,7 +2,9 @@ package bll.Interfaces;
 
 import be.Borger;
 import be.Case;
+import be.Funktionstilstand;
 import be.user.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
 
@@ -41,4 +43,8 @@ public interface IManagerFacade {
     public void createGenerelleOplysninger(Borger borger);
 
     public Borger getGenerelleOplysninger(Borger borger);
+
+    //FUNKTIONSTILSTAND
+
+    public List<String> getFunktionstilstandsList();
 }
