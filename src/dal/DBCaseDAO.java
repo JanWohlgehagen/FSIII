@@ -23,7 +23,7 @@ public class DBCaseDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("ID");
                 String title = resultSet.getString("Title");
                 String description = resultSet.getString("Description");
@@ -35,9 +35,9 @@ public class DBCaseDAO {
                 Case aCase = new Case(citizenid, title, description);
                 aCase.setCaseID(id);
                 aCase.isBevilgetProperty().set(bevilling);
-                aCase.bevillingstekstProperty().set(bevillings_Tekst);
-                aCase.planProperty().set(plan);
-                aCase.opfoelgningstagProperty().set(opfoelgnings_Tag);
+                aCase.getBevillingstekstProperty().set(bevillings_Tekst);
+                aCase.getPlanProperty().set(plan);
+                aCase.getOpfoelgningstagProperty().set(opfoelgnings_Tag);
                 allCases.add(aCase);
             }
 
@@ -65,14 +65,14 @@ public class DBCaseDAO {
             String sql = "UPDATE [Case] SET Title = (?), Description = (?), Bevilling = (?), Bevillings_Tekst = (?), [Plan] = (?), Opfoelgnings_Tag = (?)" +
                          " WHERE Borger_ID = (?) AND ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, selectCase.caseTitleProperty().get());
-            preparedStatement.setString(2, selectCase.caseDescriptionProperty().get());
+            preparedStatement.setString(1, selectCase.getCaseTitleProperty().get());
+            preparedStatement.setString(2, selectCase.getCaseDescriptionProperty().get());
             preparedStatement.setBoolean(3, selectCase.isBevilgetProperty().get());
-            preparedStatement.setString(4, selectCase.bevillingstekstProperty().get());
-            preparedStatement.setString(5, selectCase.planProperty().get());
-            preparedStatement.setString(6, selectCase.opfoelgningstagProperty().get());
+            preparedStatement.setString(4, selectCase.getBevillingstekstProperty().get());
+            preparedStatement.setString(5, selectCase.getPlanProperty().get());
+            preparedStatement.setString(6, selectCase.getOpfoelgningstagProperty().get());
             preparedStatement.setInt(7, citizenID);
-            preparedStatement.setInt(8, selectCase.caseIDProperty().get());
+            preparedStatement.setInt(8, selectCase.getCaseIDProperty().get());
 
             preparedStatement.executeUpdate();
         } catch (SQLException SQLe) {
@@ -98,19 +98,19 @@ public class DBCaseDAO {
             String sql = "INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag) " +
                          "VALUES ( (?), (?), (?), (?), (?), (?), (?) )";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, newCase.personIDProperty().get());
-            preparedStatement.setString(2, newCase.caseTitleProperty().get());
-            preparedStatement.setString(3, newCase.caseDescriptionProperty().get());
+            preparedStatement.setInt(1, newCase.getCitizenIDProperty().get());
+            preparedStatement.setString(2, newCase.getCaseTitleProperty().get());
+            preparedStatement.setString(3, newCase.getCaseDescriptionProperty().get());
             preparedStatement.setBoolean(4, newCase.isBevilgetProperty().get());
-            preparedStatement.setString(5, newCase.bevillingstekstProperty().get());
-            preparedStatement.setString(6, newCase.planProperty().get());
-            preparedStatement.setString(7, newCase.opfoelgningstagProperty().get());
+            preparedStatement.setString(5, newCase.getBevillingstekstProperty().get());
+            preparedStatement.setString(6, newCase.getPlanProperty().get());
+            preparedStatement.setString(7, newCase.getOpfoelgningstagProperty().get());
 
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
             if (resultSet.next()) {
-                int id = resultSet.getInt("ID");
+                int id = resultSet.getInt(1);
                 newCase.setCaseID(id);
             }
 

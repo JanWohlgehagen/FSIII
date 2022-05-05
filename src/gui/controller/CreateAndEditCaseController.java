@@ -2,11 +2,7 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import be.Funktionstilstand;
-import be.FunktionstilstandsUnderkategori;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import gui.model.CaseModel;
-import gui.model.CitizenModel;
 import gui.model.FunktionstilstandModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -18,12 +14,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CreateAndEditCaseController implements Initializable {
 
+    public TextField txtTitle;
+    public TextField txtOpfoelgningTag;
+    public CheckBox cbBevilget;
     @FXML
     private ComboBox<String> overkategoriCbx;
     @FXML
@@ -62,7 +60,6 @@ public class CreateAndEditCaseController implements Initializable {
     private TextArea borgerMaalTxtArea;
 
     private CaseModel caseModel;
-    private CitizenModel citizenModel;
     private Borger borger;
     private DashboardController dashboardController;
     private FunktionstilstandModel funktionstilstandModel;
@@ -88,34 +85,19 @@ public class CreateAndEditCaseController implements Initializable {
         this.caseModel = caseModel;
     }
 
-    public void setCitizenModel(CitizenModel citizenModel) {
-        this.citizenModel = citizenModel;
-    }
-
     public void handleGem(ActionEvent actionEvent) {
-        // if statements
-        // registrere oprettelsestidspunkt ?
-
-        Case newCase = new Case(borger.IDProperty().get(), beskrivelseTxtArea.getText(), overtilstandTxtField.getText());
-        newCase.setPersonID(dashboardController.getSelectedCitizen().IDProperty().get());
-        newCase.setIsBevilget(false);
+        Case newCase = new Case(2, txtTitle.getText(), beskrivelseTxtArea.getText()); // skal lige rettes til
+        newCase.setIsBevilget(cbBevilget.isSelected());
         newCase.setBevillingstekst("");
         newCase.setPlan("");
         newCase.setOpfoelgningstag("");
 
         caseModel.createCaseOnCitizen(newCase);
-        Stage stage = (Stage) parentGridPane.getScene().getWindow();
-        stage.close();
+        closeStage();
     }
-
-// public Case(int personID, String caseTitle, String caseDescription)
 
     public void handleAnnuller(ActionEvent actionEvent) {
-        Stage stage = (Stage) parentGridPane.getScene().getWindow();
-        stage.close();
-    }
-
-    public void handleVaelgSag(ActionEvent actionEvent) {
+        closeStage();
     }
 
     public String getSelectedFunktionstilstand() {
@@ -123,5 +105,10 @@ public class CreateAndEditCaseController implements Initializable {
     }
 
     public void handleUnderkategori(ActionEvent actionEvent) {
+    }
+
+    private void closeStage(){
+        Stage stage = (Stage) parentGridPane.getScene().getWindow();
+        stage.close();
     }
 }

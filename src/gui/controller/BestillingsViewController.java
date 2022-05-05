@@ -1,7 +1,6 @@
 package gui.controller;
 
 import be.Case;
-import gui.util.BestillingsScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -35,6 +34,6 @@ public class BestillingsViewController {
        {
            checkBoxBevilling.setSelected(true);
        }
-       txtAreaBestillingsText.setText(currentCase.bevillingstekstProperty().get());
+       txtAreaBestillingsText.setText(currentCase.getBevillingstekstProperty().get());
    }
 }

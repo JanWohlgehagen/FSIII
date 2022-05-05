@@ -38,7 +38,7 @@ public class OpfoelgningController implements Initializable {
             selectCase = dashboardController.getSelectedCase();
             selectCitizen = dashboardController.getSelectedCitizen();
 
-            txtAreaOpfoelgning.setText(selectCase.opfoelgningstagProperty().get());
+            txtAreaOpfoelgning.setText(selectCase.getOpfoelgningstagProperty().get());
             setOpfoelgningTag();
         });
 
@@ -53,7 +53,7 @@ public class OpfoelgningController implements Initializable {
     }
 
     private void setOpfoelgningTag(){
-        String opfoelgningstag = selectCase.opfoelgningstagProperty().get();
+        String opfoelgningstag = selectCase.getOpfoelgningstagProperty().get();
         switch (opfoelgningstag){
             case "Afsluttes" -> {
                 checkBoxCloseCase.setSelected(true);
@@ -71,32 +71,32 @@ public class OpfoelgningController implements Initializable {
     }
 
     public void handelVidere(ActionEvent actionEvent) {
-        caseModel.updateCaseOnCitizen(selectCitizen.IDProperty().get(), selectCase);
+        caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
     }
 
     public void handleCBClose(ActionEvent actionEvent) {
-        selectCase.opfoelgningstagProperty().set("Afsluttes");
+        selectCase.getOpfoelgningstagProperty().set("Afsluttes");
         checkBoxRevisitationCase.setSelected(false);
         checkBoxChangeCase.setSelected(false);
         checkBoxContinueCase.setSelected(false);
     }
 
     public void handleCBContinue(ActionEvent actionEvent) {
-        selectCase.opfoelgningstagProperty().set("Fortsættes");
+        selectCase.getOpfoelgningstagProperty().set("Fortsættes");
         checkBoxCloseCase.setSelected(false);
         checkBoxRevisitationCase.setSelected(false);
         checkBoxChangeCase.setSelected(false);
     }
 
     public void handleCBChange(ActionEvent actionEvent) {
-        selectCase.opfoelgningstagProperty().set("Ændres");
+        selectCase.getOpfoelgningstagProperty().set("Ændres");
         checkBoxRevisitationCase.setSelected(false);
         checkBoxContinueCase.setSelected(false);
         checkBoxCloseCase.setSelected(false);
     }
 
     public void handleCBRevisitation(ActionEvent actionEvent) {
-        selectCase.opfoelgningstagProperty().set("Revisitation");
+        selectCase.getOpfoelgningstagProperty().set("Revisitation");
         checkBoxChangeCase.setSelected(false);
         checkBoxContinueCase.setSelected(false);
         checkBoxCloseCase.setSelected(false);

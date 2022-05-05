@@ -39,7 +39,7 @@ public class Borger {
         this.age.set(age);
     }
 
-    public IntegerProperty ageProperty() {
+    public IntegerProperty getAgeProperty() {
         return age;
     }
 
@@ -51,7 +51,7 @@ public class Borger {
         return isTemplate;
     }
 
-    public IntegerProperty IDProperty() {
+    public IntegerProperty getIDProperty() {
         return ID;
     }
 
@@ -59,7 +59,7 @@ public class Borger {
         this.ID.set(ID);
     }
 
-    public StringProperty firstNameProperty() {
+    public StringProperty getFirstNameProperty() {
         return firstName;
     }
 
@@ -68,7 +68,7 @@ public class Borger {
     }
 
 
-    public StringProperty lastNameProperty() {
+    public StringProperty getLastNameProperty() {
         return lastName;
     }
 
@@ -76,7 +76,7 @@ public class Borger {
         this.lastName.set(lastName);
     }
 
-    public StringProperty mestringProperty() {
+    public StringProperty getMestringProperty() {
         return mestring;
     }
 
@@ -84,7 +84,7 @@ public class Borger {
         this.mestring.set(mestring);
     }
 
-    public StringProperty motivationProperty() {
+    public StringProperty getMotivationProperty() {
         return motivation;
     }
 
@@ -92,7 +92,7 @@ public class Borger {
         this.motivation.set(motivation);
     }
 
-    public StringProperty ressourcerProperty() {
+    public StringProperty getRessourcerProperty() {
         return ressourcer;
     }
 
@@ -100,7 +100,7 @@ public class Borger {
         this.ressourcer.set(ressourcer);
     }
 
-    public StringProperty rollerProperty() {
+    public StringProperty getRollerProperty() {
         return roller;
     }
 
@@ -108,7 +108,7 @@ public class Borger {
         this.roller.set(roller);
     }
 
-    public StringProperty vanerProperty() {
+    public StringProperty getVanerProperty() {
         return vaner;
     }
 
@@ -116,7 +116,7 @@ public class Borger {
         this.vaner.set(vaner);
     }
 
-    public StringProperty uddannelseProperty() {
+    public StringProperty getUddannelseProperty() {
         return uddannelse;
     }
 
@@ -124,7 +124,7 @@ public class Borger {
         this.uddannelse.set(uddannelse);
     }
 
-    public StringProperty livshistorieProperty() {
+    public StringProperty getLivshistorieProperty() {
         return livshistorie;
     }
 
@@ -132,7 +132,7 @@ public class Borger {
         this.livshistorie.set(livshistorie);
     }
 
-    public StringProperty netvaerkProperty() {
+    public StringProperty getNetvaerkProperty() {
         return netvaerk;
     }
 
@@ -140,7 +140,7 @@ public class Borger {
         this.netvaerk.set(netvaerk);
     }
 
-    public StringProperty helbredsoplysningerProperty() {
+    public StringProperty getHelbredsoplysningerProperty() {
         return helbredsoplysninger;
     }
 
@@ -148,7 +148,7 @@ public class Borger {
         this.helbredsoplysninger.set(helbredsoplysninger);
     }
 
-    public StringProperty hjaelpemidlerProperty() {
+    public StringProperty getHjaelpemidlerProperty() {
         return hjaelpemidler;
     }
 
@@ -156,7 +156,7 @@ public class Borger {
         this.hjaelpemidler.set(hjaelpemidler);
     }
 
-    public StringProperty boligensIndretningProperty() {
+    public StringProperty getBoligensIndretningProperty() {
         return boligensIndretning;
     }
 

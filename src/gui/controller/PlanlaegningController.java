@@ -29,7 +29,7 @@ public class PlanlaegningController implements Initializable {
             selectCase = dashboardController.getSelectedCase();
             selectCitizen = dashboardController.getSelectedCitizen();
 
-            txtAreaPlanlaegning.setText(selectCase.planProperty().get());
+            txtAreaPlanlaegning.setText(selectCase.getPlanProperty().get());
 
         });
     }
@@ -42,6 +42,6 @@ public class PlanlaegningController implements Initializable {
         this.caseModel = caseModel;
     }
     public void handelVidere(ActionEvent actionEvent) {
-        caseModel.updateCaseOnCitizen(selectCitizen.IDProperty().get(), selectCase);
+        caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
     }
 }

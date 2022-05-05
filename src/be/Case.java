@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Case {
     //Istedet for personID kunne case evt. holde en borger så casen ved hvilken borger den er tilknyttet?
-    private IntegerProperty personID =  new SimpleIntegerProperty();
+    private IntegerProperty citizenID =  new SimpleIntegerProperty();
     private IntegerProperty caseID = new SimpleIntegerProperty();
     private StringProperty caseTitle = new SimpleStringProperty();
     private StringProperty caseDescription= new SimpleStringProperty();
@@ -16,9 +16,9 @@ public class Case {
     private StringProperty Opfoelgningstag= new SimpleStringProperty();
     private ArrayList<CaseDocumentation> listOfDocumentations = new ArrayList<>();
 
-    public Case(int personID, String caseTitle, String caseDescription)
+    public Case(int citizenID, String caseTitle, String caseDescription)
     {
-        this.personID.set(personID);
+        this.citizenID.set(citizenID);
         this.caseTitle.set(caseTitle);
         this.caseDescription.set(caseDescription);
 
@@ -32,16 +32,16 @@ public class Case {
         this.listOfDocumentations = listOfDocumentations;
     }
 
-    public IntegerProperty personIDProperty() {
-        return personID;
+    public IntegerProperty getCitizenIDProperty() {
+        return citizenID;
     }
 
-    public void setPersonID(int personID) {
-        this.personID.set(personID);
+    public void setCitizenID(int citizenID) {
+        this.citizenID.set(citizenID);
     }
 
 
-    public IntegerProperty caseIDProperty() {
+    public IntegerProperty getCaseIDProperty() {
         return caseID;
     }
 
@@ -50,7 +50,7 @@ public class Case {
     }
 
 
-    public StringProperty caseTitleProperty() {
+    public StringProperty getCaseTitleProperty() {
         return caseTitle;
     }
 
@@ -59,7 +59,7 @@ public class Case {
     }
 
 
-    public StringProperty caseDescriptionProperty() {
+    public StringProperty getCaseDescriptionProperty() {
         return caseDescription;
     }
 
@@ -77,7 +77,7 @@ public class Case {
     }
 
 
-    public StringProperty bevillingstekstProperty() {
+    public StringProperty getBevillingstekstProperty() {
         return Bevillingstekst;
     }
 
@@ -85,7 +85,7 @@ public class Case {
         this.Bevillingstekst.set(bevillingstekst);
     }
 
-    public StringProperty planProperty() {
+    public StringProperty getPlanProperty() {
         return plan;
     }
 
@@ -94,7 +94,7 @@ public class Case {
     }
 
 
-    public StringProperty opfoelgningstagProperty() {
+    public StringProperty getOpfoelgningstagProperty() {
         return Opfoelgningstag;
     }
 

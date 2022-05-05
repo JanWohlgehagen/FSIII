@@ -23,7 +23,7 @@ public class DBCitizenDAO {
         {
             String sql = "DELETE FROM TABLE [Borger] WHERE ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.IDProperty().get());
+            preparedStatement.setInt(1, borger.getIDProperty().get());
             preparedStatement.executeQuery();
 
         } catch (SQLServerException throwables) {
@@ -40,9 +40,9 @@ public class DBCitizenDAO {
             String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?) WHERE ID =(?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, borger.firstNameProperty().get());
-            preparedStatement.setString(2, borger.lastNameProperty().get());
-            preparedStatement.setInt(3, borger.IDProperty().get());
+            preparedStatement.setString(1, borger.getFirstNameProperty().get());
+            preparedStatement.setString(2, borger.getLastNameProperty().get());
+            preparedStatement.setInt(3, borger.getIDProperty().get());
 
             preparedStatement.executeQuery();
 
@@ -62,9 +62,9 @@ public class DBCitizenDAO {
         {
             String sql = "INSERT INTO [Borger] VALUES (FirstName, LastName, Age, Template) = (?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, borger.firstNameProperty().get());
-            preparedStatement.setString(2, borger.lastNameProperty().get());
-            preparedStatement.setInt(3, borger.ageProperty().get());
+            preparedStatement.setString(1, borger.getFirstNameProperty().get());
+            preparedStatement.setString(2, borger.getLastNameProperty().get());
+            preparedStatement.setInt(3, borger.getAgeProperty().get());
             preparedStatement.setBoolean(4, borger.isTemplateProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -72,8 +72,6 @@ public class DBCitizenDAO {
                 borger.setID(resultSet.getInt(1));
                 return borger;
             }
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -104,8 +102,6 @@ public class DBCitizenDAO {
 
             }
             return listOfCitizens;
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -138,8 +134,6 @@ public class DBCitizenDAO {
 
             }
             return listOfTemplates;
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

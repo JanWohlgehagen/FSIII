@@ -20,18 +20,18 @@ public class DBGenerelInformationDAO {
             String sql = "UPDATE Generelle_Oplysninger SET Mestring = (?), Motivation = (?), Ressourcer = (?), Roller = (?), Vaner = (?), Uddannelse = (?), Livshistorie = (?), Netvaerk = (?), Helbredsoplysninger = (?), hjaelpemidler = (?), Boligens_Indretning = (?) WHERE Borger_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, borger.mestringProperty().get());
-            preparedStatement.setString(2, borger.motivationProperty().get());
-            preparedStatement.setString(3, borger.ressourcerProperty().get());
-            preparedStatement.setString(4, borger.rollerProperty().get());
-            preparedStatement.setString(5, borger.vanerProperty().get());
-            preparedStatement.setString(6, borger.uddannelseProperty().get());
-            preparedStatement.setString(7, borger.livshistorieProperty().get());
-            preparedStatement.setString(8, borger.netvaerkProperty().get());
-            preparedStatement.setString(9, borger.helbredsoplysningerProperty().get());
-            preparedStatement.setString(10, borger.hjaelpemidlerProperty().get());
-            preparedStatement.setString(11, borger.boligensIndretningProperty().get());
-            preparedStatement.setInt(12, borger.IDProperty().get());
+            preparedStatement.setString(1, borger.getMestringProperty().get());
+            preparedStatement.setString(2, borger.getMotivationProperty().get());
+            preparedStatement.setString(3, borger.getRessourcerProperty().get());
+            preparedStatement.setString(4, borger.getRollerProperty().get());
+            preparedStatement.setString(5, borger.getVanerProperty().get());
+            preparedStatement.setString(6, borger.getUddannelseProperty().get());
+            preparedStatement.setString(7, borger.getLivshistorieProperty().get());
+            preparedStatement.setString(8, borger.getNetvaerkProperty().get());
+            preparedStatement.setString(9, borger.getHelbredsoplysningerProperty().get());
+            preparedStatement.setString(10, borger.getHjaelpemidlerProperty().get());
+            preparedStatement.setString(11, borger.getBoligensIndretningProperty().get());
+            preparedStatement.setInt(12, borger.getIDProperty().get());
 
             preparedStatement.executeQuery();
         } catch (SQLServerException throwables) {
@@ -48,7 +48,7 @@ public class DBGenerelInformationDAO {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "INSERT INTO INSERT INTO Generelle_Oplysninger (Borger_ID) VALUES (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, borger.IDProperty().get());
+            preparedStatement.setInt(1, borger.getIDProperty().get());
             ResultSet resultSet = preparedStatement.executeQuery();
         } catch (SQLServerException throwables) {
             throwables.printStackTrace();
@@ -65,7 +65,7 @@ public class DBGenerelInformationDAO {
             String sql = "SELECT * FROM Generelle_Oplysninger WHERE Borger_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, borger.IDProperty().get());
+            preparedStatement.setInt(1, borger.getIDProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

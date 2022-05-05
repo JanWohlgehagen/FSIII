@@ -70,7 +70,7 @@ public class DashboardController implements Initializable {
         caseOpeningScene.loadNewScene(new Stage());
         CaseOpeningController caseOpeningController = caseOpeningScene.getController();
         caseOpeningController.setCaseModel(caseModel);
-        caseOpeningController.setDashboardController(this);
+        caseOpeningController.setDashboardController(dashboardController);
         caseOpeningController.setFunktionstilstandModel(funktionstilstandModel);
     }
 
