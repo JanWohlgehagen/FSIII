@@ -1,8 +1,10 @@
 package gui.controller;
 
+import be.Borger;
 import be.Case;
 import be.Person;
 
+import be.user.UserType;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
 import gui.model.CaseModel;
@@ -11,10 +13,11 @@ import gui.util.*;
 
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +26,15 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
 
+    @FXML
+    private TextField txtSearchBar;
+    @FXML
+    private  ListView<Borger> lvCitizens;
+    @FXML
+    private  Tab tabTemplates;
+    @FXML
+    private  Tab tabStudents;
+
 
     private DashboardController dashboardController;
     private Person loginPerson;
@@ -30,19 +42,25 @@ public class DashboardController implements Initializable {
 
     private CaseModel caseModel;
     private CitizenModel citizenModel;
+    private ObservableList<Borger> allCitizens;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Platform.runLater(() -> {
             try {
                 caseModel = new CaseModel(new ManagerFacade());
                 citizenModel = new CitizenModel(new ManagerFacade());
 
+                lvCitizens.setItems(citizenModel.getAllCitizen());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+
+
     }
 
     public void handleButtonSagsåbning(ActionEvent actionEvent) throws IOException {
@@ -104,5 +122,22 @@ public class DashboardController implements Initializable {
 
     public void setloginPerson(Person person){
         this.loginPerson = person;
+        if(loginPerson.getUserType().equals(UserType.STUDENT)) {
+            tabStudents.setDisable(true);
+            tabTemplates.setDisable(true);
+        }
+    }
+
+    public void createCitizen(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CreateCitizenViewController> createCitizenSceneLoader = new CreateCitizenScene();
+        createCitizenSceneLoader.loadNewScene(new Stage());
+        CreateCitizenViewController createCitizenViewController = createCitizenSceneLoader.getController();
+        createCitizenViewController.setCreateCitizenViewController(createCitizenViewController);
+        createCitizenViewController.setDashboardController(this);
+    }
+
+    public void updateCitizenList() {
+        lvCitizens.getItems().clear();
+        lvCitizens.setItems(citizenModel.getAllCitizen());
     }
 }

@@ -188,4 +188,9 @@ public class Borger {
         this.helbredstilstand = helbredstilstand;
     }
 
+    @Override
+    public String toString() {
+        return firstName.get() + " " +  lastName.get() + " " + age.get() + "år";
+
+    }
 }

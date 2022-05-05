@@ -1,6 +1,8 @@
 package gui.controller;
 
 import be.Borger;
+import be.Funktionstilstand;
+import be.Helbredstilstand;
 import bll.ManagerFacade;
 import gui.model.CitizenModel;
 import javafx.event.ActionEvent;
@@ -30,6 +32,9 @@ public class CreateCitizenViewController {
 
     private CitizenModel citizenModel;
 
+    private CreateCitizenViewController createCitizenViewController;
+    private DashboardController dashboardController;
+
     public CreateCitizenViewController() throws IOException {
         citizenModel = new CitizenModel(new ManagerFacade());
     }
@@ -46,8 +51,23 @@ public class CreateCitizenViewController {
         String lastName = txtLastName.getText();
         boolean isTemplate= checkButtonTemplate.isSelected();
         int age = Integer.parseInt(txtAge.getText());
-        citizenModel.createCitizen(new Borger(firstName, lastName,isTemplate,age));
+        Borger borger = new Borger(firstName, lastName, isTemplate, age);
+        borger.setHelbredstilstand(new Helbredstilstand());
+        borger.setFunktionstilstand(new Funktionstilstand());
+        citizenModel.createCitizen(borger);
+
+        dashboardController.updateCitizenList();
+
         Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();
         stage.close();
+    }
+
+    public void setCreateCitizenViewController(CreateCitizenViewController createCitizenViewController) {
+        this.createCitizenViewController = createCitizenViewController;
+    }
+
+    public void setDashboardController(DashboardController dashboardController)
+    {
+        this.dashboardController = dashboardController;
     }
 }
