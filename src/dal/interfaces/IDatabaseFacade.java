@@ -3,7 +3,9 @@ package dal.interfaces;
 import be.Borger;
 import be.Case;
 import be.Credential;
+import be.Funktionstilstand;
 import be.user.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
 
@@ -24,6 +26,8 @@ public interface IDatabaseFacade {
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 
     public Case createCaseOnCitizen(Case newCase);
+
+    public List<String> getFunktionstilstand();
 
     //Citizen DAL Functions
 
