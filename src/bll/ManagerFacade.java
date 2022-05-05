@@ -96,5 +96,20 @@ public class ManagerFacade implements IManagerFacade {
         citizenManager.deleteCitizen(borger);
     }
 
+    @Override
+    public void updateGenerelleOplysninger(Borger borger){
+        citizenManager.updateGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public void createGenerelleOplysninger(Borger borger) {
+        citizenManager.createGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public Borger getGenerelleOplysninger(Borger borger) {
+        return citizenManager.getGenerelleOplysninger(borger);
+    }
+
 
 }

@@ -19,7 +19,6 @@ public class CitizenModel {
         this.managerFacade = managerFacade;
         allCitizens.addAll(managerFacade.getAllCitizen());
         allTemplates.addAll(managerFacade.getAllTemplates());
-
     }
 
 
@@ -45,5 +44,9 @@ public class CitizenModel {
 
     public void deleteCitizen(Borger borger) {
         managerFacade.deleteCitizen(borger);
+    }
+
+    public void updateGenerelleOplysninger(Borger borger) {
+        managerFacade.updateGenerelleOplysninger(borger);
     }
 }

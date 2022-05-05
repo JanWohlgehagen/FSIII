@@ -10,10 +10,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -43,7 +43,6 @@ public class SagsoplysningController implements Initializable {
     private TextArea txtAreaHjaelpemidler;
     @FXML
     private TextArea txtAreaBoligensIndretning;
-
 
 
     @FXML
@@ -83,6 +82,9 @@ public class SagsoplysningController implements Initializable {
     @FXML
     private ScrollPane scrollPaneHelbredstilstand;
 
+    @FXML
+    private TabPane tabPaneParent;
+
     private DashboardController dashboardController;
     private TooltipBank tooltipBank = new TooltipBank();
     private Borger borger;
@@ -93,24 +95,75 @@ public class SagsoplysningController implements Initializable {
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
         });
+        setTooltips();
+        populateTxtAreas();
+        populateTilstande();
+    }
+
+
+    public void setDashboardController (DashboardController dashboardController){
+        this.dashboardController = dashboardController;
+    }
+
+    public void setCitizenModel(CitizenModel citizenModel) {
+        this.citizenModel = citizenModel;
+    }
+
+    public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        updateBorgerInformationer();
+        citizenModel.updateGenerelleOplysninger(borger);
+        closeStage();
+    }
+
+    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+        updateBorgerInformationer();
+        citizenModel.updateGenerelleOplysninger(borger);
+    }
+
+    public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        closeStage();
+    }
+
+    public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+        //TODO
+    }
+
+    public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        closeStage();
+    }
+
+    public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+        //TODO
+    }
+
+    private void updateBorgerInformationer(){
+        borger.setMestring(txtAreaMestring.getText());
+        borger.setMotivation(txtAreaMotivaton.getText());
+        borger.setRessourcer(txtAreaRessourcer.getText());
+        borger.setRoller(txtAreaRoller.getText());
+        borger.setVaner(txtAreaVaner.getText());
+        borger.setUddannelse(txtAreaUddOgJob.getText());
+        borger.setLivshistorie(txtAreaLivshistorie.getText());
+        borger.setNetvaerk(txtAreaNetvaerk.getText());
+        borger.setHelbredsoplysninger(txtAreaHelbredsoplysninger.getText());
+        borger.setHjaelpemidler(txtAreaHjaelpemidler.getText());
+        borger.setBoligensIndretning(txtAreaBoligensIndretning.getText());
+    }
+
+    private void closeStage(){
+        Stage stage = (Stage) tabPaneParent.getScene().getWindow();
+        stage.close();
+    }
+
+    private void populateTxtAreas(){
+
+    }
+
+    private void populateTilstande(){
         int insertionCounter = 0;
 
-        // Setting up tooltips for the information buttons in the view that guides the student
-        btnInformationMestring.setTooltip(tooltipBank.getMestring());
-        btnInformationMotivation.setTooltip(tooltipBank.getMotivation());
-        btnInformationRessoucer.setTooltip(tooltipBank.getRessourcer());
-        btnInformationRoller.setTooltip(tooltipBank.getRoller());
-        btnInformationVaner.setTooltip(tooltipBank.getVaner());
-        btnInformationUddOgJob.setTooltip(tooltipBank.getUddannelseOgJob());
-        btnInformationLivshistorie.setTooltip(tooltipBank.getLivshistorie());
-        btnInformationNetvaerk.setTooltip(tooltipBank.getNetvaerk());
-        btnInformationHelbredsoplysninger.setTooltip(tooltipBank.getHelbredsoplysninger());
-        btnInformationHjaelpemidler.setTooltip(tooltipBank.getHjaelpemidler());
-        btnInformationBoligensIndretning.setTooltip(tooltipBank.getBoligensIndretning());
-
-
-        Helbredstilstand helbredstilstand = new Helbredstilstand();
-        Funktionstilstand funktionstilstand = new Funktionstilstand();
+        Helbredstilstand helbredstilstand = new Helbredstilstand(); // skal ændres til borger.getHelbredstilstand();
+        Funktionstilstand funktionstilstand = new Funktionstilstand(); // skal ændres til borger.getFunktionstilstand();
 
         HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandsKort = helbredstilstand.getHelbredsTilstandsKort();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = funktionstilstand.getFunktionsTilstandsKort();
@@ -155,37 +208,19 @@ public class SagsoplysningController implements Initializable {
         }
     }
 
-
-    public void setDashboardController (DashboardController dashboardController){
-        this.dashboardController = dashboardController;
-    }
-
-    public void setCitizenModel(CitizenModel citizenModel) {
-        this.citizenModel = citizenModel;
-    }
-
-    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        //TODO
+    private void setTooltips(){
+        // Setting up tooltips for the information buttons in the view that guides the student
+        btnInformationMestring.setTooltip(tooltipBank.getMestring());
+        btnInformationMotivation.setTooltip(tooltipBank.getMotivation());
+        btnInformationRessoucer.setTooltip(tooltipBank.getRessourcer());
+        btnInformationRoller.setTooltip(tooltipBank.getRoller());
+        btnInformationVaner.setTooltip(tooltipBank.getVaner());
+        btnInformationUddOgJob.setTooltip(tooltipBank.getUddannelseOgJob());
+        btnInformationLivshistorie.setTooltip(tooltipBank.getLivshistorie());
+        btnInformationNetvaerk.setTooltip(tooltipBank.getNetvaerk());
+        btnInformationHelbredsoplysninger.setTooltip(tooltipBank.getHelbredsoplysninger());
+        btnInformationHjaelpemidler.setTooltip(tooltipBank.getHjaelpemidler());
+        btnInformationBoligensIndretning.setTooltip(tooltipBank.getBoligensIndretning());
     }
 
 

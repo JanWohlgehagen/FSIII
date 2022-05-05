@@ -17,6 +17,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBPersonDAO dbPersonDAO;
     private DBCaseDAO dbCaseDAO;
     private DBCitizenDAO dbCitizenDAO;
+    private DBGenerelInformationDAO dbGenerelInformationDAO;
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
@@ -24,6 +25,7 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbPersonDAO = new DBPersonDAO(dbConnecting);
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
+        dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
 
     }
 
@@ -98,6 +100,25 @@ public class DatabaseFacade implements IDatabaseFacade {
     public void deleteCitizen(Borger borger) {
         dbCitizenDAO.deleteCitizen(borger);
 
+    }
+
+                                /***************************************************/
+                                /******************** Citizen **********************/
+                                /***************************************************/
+
+    @Override
+    public void updateGenerelleOplysninger(Borger borger) {
+        dbGenerelInformationDAO.updateGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public void createGenerelleOplysninger(Borger borger) {
+        dbGenerelInformationDAO.createGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public Borger getGenerelleOplysninger(Borger borger) {
+        return dbGenerelInformationDAO.getGenerelleOplysninger(borger);
     }
 
 }
