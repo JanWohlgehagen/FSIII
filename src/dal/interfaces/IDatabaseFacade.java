@@ -3,9 +3,10 @@ package dal.interfaces;
 import be.Borger;
 import be.Case;
 import be.Credential;
-import be.Person;
+import be.Funktionstilstand;
+import be.user.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,17 +15,19 @@ import java.util.List;
 public interface IDatabaseFacade {
 
     Credential checkCredential(String userName);
-    Person getPersonById(int id);
+    User getPersonById(int id);
 
-    public List<Case> getAllCasesOnCitizen(int id);
+    public List<Case> getAllCasesOnCitizen(int citizenid);
 
     public Case getCaseOnCitizen(int citizenID, int caseID);
 
-    public void updateCaseOnCitizen(int citizenID, int caseID);
+    public void updateCaseOnCitizen(int citizenID, Case selectCase);
 
     public void deleteCaseOnCitizen(int citizenID, int caseID);
 
-    public Case createCaseOnCitizen(int citizenID);
+    public Case createCaseOnCitizen(Case newCase);
+
+    public List<String> getFunktionstilstand();
 
     //Citizen DAL Functions
 
@@ -38,7 +41,9 @@ public interface IDatabaseFacade {
 
     public void deleteCitizen(Borger borger);
 
+    public void updateGenerelleOplysninger(Borger borger);
 
+    public void createGenerelleOplysninger(Borger borger);
 
-
+    public Borger getGenerelleOplysninger(Borger borger);
 }

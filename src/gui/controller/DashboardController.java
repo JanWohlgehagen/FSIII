@@ -2,13 +2,13 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import be.Person;
+import be.user.User;
 
 import be.user.UserType;
 import bll.ManagerFacade;
-import dal.DatabaseFacade;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
+import gui.model.FunktionstilstandModel;
 import gui.util.*;
 
 
@@ -37,12 +37,15 @@ public class DashboardController implements Initializable {
 
 
     private DashboardController dashboardController;
-    private Person loginPerson;
-    private Case currentCase;
+    private User loginUser;
 
     private CaseModel caseModel;
     private CitizenModel citizenModel;
     private ObservableList<Borger> allCitizens;
+    private Case selectedCase;
+    private Borger selectCitizen;
+    private FunktionstilstandModel funktionstilstandModel;
+
 
 
     @Override
@@ -52,6 +55,7 @@ public class DashboardController implements Initializable {
             try {
                 caseModel = new CaseModel(new ManagerFacade());
                 citizenModel = new CitizenModel(new ManagerFacade());
+                funktionstilstandModel = new FunktionstilstandModel(new ManagerFacade());
 
                 lvCitizens.setItems(citizenModel.getAllCitizen());
 
@@ -63,25 +67,49 @@ public class DashboardController implements Initializable {
 
     }
 
+    public void setSelectedCase(Case selectionCase){
+        this.selectedCase = selectionCase;
+    }
+
+    public Case getSelectedCase(){
+        return selectedCase;
+    }
+
+    public Borger getSelectedCitizen() {
+        return selectCitizen;
+    }
+
+    public void setSelectedCitizen(Borger selectCitizen) {
+        this.selectCitizen = selectCitizen;
+    }
+
     public void handleButtonSagsåbning(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CaseOpeningController> caseOpeningScene =  new CaseOpeningScene();
         caseOpeningScene.loadNewScene(new Stage());
         CaseOpeningController caseOpeningController = caseOpeningScene.getController();
         caseOpeningController.setCaseModel(caseModel);
+        caseOpeningController.setDashboardController(this);
+        caseOpeningController.setFunktionstilstandModel(funktionstilstandModel);
     }
 
-    public void handleButtonOpfølgning(ActionEvent actionEvent) {
+    public void handleButtonOpfølgning(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<OpfoelgningController> opfoelgningScene = new OpfoelgningScene();
+        opfoelgningScene.loadNewScene(new Stage());
+        OpfoelgningController opfoelgningController = opfoelgningScene.getController();
+        opfoelgningController.setDashboardController(dashboardController);
+        opfoelgningController.setCaseModel(caseModel);
     }
 
     public void handleButtonSagsoplysning(ActionEvent actionEvent) throws IOException {
         ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(new Stage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
-        sagsoplysningController.setSagsoplysningsController(sagsoplysningController);
+        sagsoplysningController.setDashboardController(dashboardController);
+        sagsoplysningController.setCitizenModel(citizenModel);
     }
 
     public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
-        if(currentCase == null)
+        if(selectedCase == null)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
@@ -91,19 +119,20 @@ public class DashboardController implements Initializable {
             bestillingsScene.loadNewScene(new Stage());
             BestillingsViewController bestillingsViewController = bestillingsScene.getController();
             bestillingsViewController.setBestillingsViewController(bestillingsViewController);
-            bestillingsViewController.setCurrentCase(currentCase);
+            bestillingsViewController.setCurrentCase(selectedCase);
         }
     }
 
     public void handleButtonPlanlægning(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<PlanlægningController> planlægningScene = new PlanlægningScene();
-        planlægningScene.loadNewScene(new Stage());
-        PlanlægningController planlægningController = planlægningScene.getController();
-        planlægningController.setDashboardController(dashboardController);
+        ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
+        planlaegningScene.loadNewScene(new Stage());
+        PlanlaegningController planlaegningController = planlaegningScene.getController();
+        planlaegningController.setDashboardController(dashboardController);
+        planlaegningController.setCaseModel(caseModel);
     }
 
     public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
-        if(currentCase == null) {
+        if(selectedCase == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
         }
@@ -112,7 +141,7 @@ public class DashboardController implements Initializable {
             caseDocumentationScene.loadNewScene(new Stage());
             CaseDocumentationViewController caseDocumentationViewController = caseDocumentationScene.getController();
             caseDocumentationViewController.setCaseDocumentationViewController(caseDocumentationViewController);
-            caseDocumentationViewController.setCurrentCase(currentCase);
+            caseDocumentationViewController.setCurrentCase(selectedCase);
         }
     }
 

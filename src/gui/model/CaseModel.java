@@ -22,15 +22,18 @@ public class CaseModel {
         return managerFacade.getCaseOnCitizen(citizenID, caseID);
     }
 
-    public void updateCaseOnCitizen(int citizenID, int caseID){
-        managerFacade.updateCaseOnCitizen(citizenID, caseID);
+    public void updateCaseOnCitizen(int citizenID, Case selectCase ){
+        managerFacade.updateCaseOnCitizen(citizenID, selectCase);
     }
 
     public void deleteCaseOnCitizen(int citizenID, int caseID){
         managerFacade.deleteCaseOnCitizen(citizenID, caseID);
     }
 
-    public Case createCaseOnCitizen(int citizenID) {
-       return managerFacade.createCaseOnCitizen(citizenID);
+    public Case createCaseOnCitizen(Case newCase) {
+       return managerFacade.createCaseOnCitizen(newCase);
     }
+
+
+
 }

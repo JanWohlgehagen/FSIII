@@ -64,6 +64,11 @@
     -fx-font-weight: bold;
 }
 
+.labelTitle{
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+}
+
 .text-area:focused,
 .text-area:selected,
 .text-area:armed{

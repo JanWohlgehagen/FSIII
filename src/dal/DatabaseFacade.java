@@ -4,7 +4,9 @@ package dal;
 import be.Borger;
 import be.Case;
 import be.Credential;
-import be.Person;
+import be.Funktionstilstand;
+import be.user.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
@@ -17,6 +19,8 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBPersonDAO dbPersonDAO;
     private DBCaseDAO dbCaseDAO;
     private DBCitizenDAO dbCitizenDAO;
+    private DBGenerelInformationDAO dbGenerelInformationDAO;
+    private DBFunktionstilstandDAO dbFunktionstilstandDAO;
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
@@ -24,7 +28,9 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbPersonDAO = new DBPersonDAO(dbConnecting);
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
+        dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
 
+        dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
     }
 
     @Override
@@ -33,7 +39,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public Person getPersonById(int id) {
+    public User getPersonById(int id) {
         return dbPersonDAO.getPersonById(id);
     }
 
@@ -44,8 +50,8 @@ public class DatabaseFacade implements IDatabaseFacade {
                             /***************************************************/
 
     @Override
-    public List<Case> getAllCasesOnCitizen(int id) {
-        return dbCaseDAO.getAllCasesOnCitizen(id);
+    public List<Case> getAllCasesOnCitizen(int citizenid) {
+        return dbCaseDAO.getAllCasesOnCitizen(citizenid);
     }
 
     @Override
@@ -54,8 +60,8 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public void updateCaseOnCitizen(int citizenID, int caseID) {
-        dbCaseDAO.updateCaseOnCitizen(citizenID, caseID);
+    public void updateCaseOnCitizen(int citizenID, Case selectCase) {
+        dbCaseDAO.updateCaseOnCitizen(citizenID, selectCase);
     }
 
     @Override
@@ -64,12 +70,17 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public Case createCaseOnCitizen(int citizenID) {
-        return dbCaseDAO.createCaseOnCitizen(citizenID);
+    public Case createCaseOnCitizen(Case newCase) {
+        return dbCaseDAO.createCaseOnCitizen(newCase);
+    }
+
+    @Override
+    public List<String> getFunktionstilstand() {
+        return dbFunktionstilstandDAO.getFunktionstilstandList();
     }
 
 
-                                /***************************************************/
+    /***************************************************/
                                 /******************** Citizen **********************/
                                 /***************************************************/
 
@@ -100,7 +111,23 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     }
 
+                                /***************************************************/
+                                /******************** Citizen **********************/
+                                /***************************************************/
 
+    @Override
+    public void updateGenerelleOplysninger(Borger borger) {
+        dbGenerelInformationDAO.updateGenerelleOplysninger(borger);
+    }
 
+    @Override
+    public void createGenerelleOplysninger(Borger borger) {
+        dbGenerelInformationDAO.createGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public Borger getGenerelleOplysninger(Borger borger) {
+        return dbGenerelInformationDAO.getGenerelleOplysninger(borger);
+    }
 
 }

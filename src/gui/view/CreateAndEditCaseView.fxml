@@ -2,9 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -22,51 +22,56 @@
         <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
     </rowConstraints>
     <children>
-        <VBox spacing="2.0" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="TOP">
-            <GridPane.margin>
-                <Insets left="20.0" right="20.0" top="30.0" />
-            </GridPane.margin>
-            <children>
-                <Label text="Overtilstand:" />
-                <TextField fx:id="overtilstandTxtField" promptText="Overtilstand" />
-                <Label text="Undertilstand:" />
-                <TextField fx:id="undertilstandTxtField" promptText="Undertilstand" />
-                <HBox spacing="10.0">
-                    <children>
-                        <VBox spacing="12.0">
-                            <children>
-                                <Label text="Borger fornavn:" />
-                                <Label text="Borger efternavn:" />
-                                <Label text="Borger alder:" />
-                                <Label text="Aktive sager:" />
-                                <Label text="Sagsansvarlig:" />
-                                <Label text="Andet info?" />
-                                <Label text="Andet info?" />
-                                <Label text="Andet info?" />
-                            </children>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                        </VBox>
-                        <VBox spacing="12.0">
-                            <children>
-                                <Label fx:id="fornavnLbl" text="Fornavn placeholder" />
-                                <Label fx:id="efternavnLbl" text="Efternavn placeholder" />
-                                <Label fx:id="alderLbl" text="Alder placeholder" />
-                                <Label fx:id="antalAktiveSagerLbl" text="Sag antal placeholder" />
-                                <Label text="navn placeholder" />
-                                <Label text="placeholder" />
-                                <Label text="placeholder" />
-                                <Label text="placeholder" />
-                            </children>
-                        </VBox>
-                    </children>
-                    <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="10.0" />
-                    </VBox.margin>
-                </HBox>
-            </children>
-        </VBox>
+      <VBox spacing="2.0" GridPane.rowSpan="2">
+         <children>
+            <Label text="Funktionsevnetilstande:">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="overkategoriCbx" maxWidth="500.0" promptText="Overkategori">
+               <VBox.margin>
+                  <Insets right="20.0" top="3.0" />
+               </VBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="underkategoriCbx" maxWidth="500.0" promptText="Underkategori">
+               <VBox.margin>
+                  <Insets bottom="5.0" right="20.0" top="7.0" />
+               </VBox.margin>
+            </ComboBox>
+            <HBox spacing="10.0">
+               <children>
+                  <VBox spacing="12.0">
+                     <children>
+                        <Label text="Borgers fornavn:" />
+                        <Label text="Borgers efternavn:" />
+                        <Label text="Borgers alder:" />
+                        <Label text="Aktive sager:" />
+                        <Label text="Sagsansvarlig:" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox spacing="12.0">
+                     <children>
+                        <Label fx:id="fornavnLbl" text="Fornavn placeholder" />
+                        <Label fx:id="efternavnLbl" text="Efternavn placeholder" />
+                        <Label fx:id="alderLbl" text="Alder placeholder" />
+                        <Label fx:id="antalAktiveSagerLbl" text="Sag antal placeholder" />
+                        <Label fx:id="sagsansvarligLbl" text="navn placeholder" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </VBox>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
             <children>
                 <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0">
@@ -96,35 +101,95 @@
             <children>
                 <Label alignment="CENTER" text="Sagsinformation">
                     <VBox.margin>
-                        <Insets top="35.0" />
+                        <Insets />
                     </VBox.margin>
                 </Label>
-                <TextArea fx:id="beskrivelseTxtArea" promptText="Beskrivelse" wrapText="true" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Henvisning og beskrivelse:">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </HBox>
+                <TextArea fx:id="beskrivelseTxtArea" promptText="Henvisning og beskrivelse" wrapText="true" VBox.vgrow="ALWAYS">
                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
                     </VBox.margin>
                 </TextArea>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Årsagsfritekst:" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </HBox>
                 <TextArea fx:id="aarsagsfritekstTxtArea" promptText="Årsagsfritekst" wrapText="true">
                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
+                        <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
                     </VBox.margin>
                 </TextArea>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Årsagsdiagnose:" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </HBox>
                 <TextArea fx:id="aarsagsdiagnoseTxtArea" promptText="Årsagsdiagnose" wrapText="true">
                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
+                        <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
                     </VBox.margin>
                 </TextArea>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Årsagstilstand:" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </HBox>
                 <TextArea fx:id="aarsagstilstandTxtArea" promptText="Årsagstilstand" wrapText="true">
                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
+                        <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
                     </VBox.margin>
                 </TextArea>
-                <TextArea fx:id="borgerMaalTxtArea" promptText="Borgerens ønsker og mål" wrapText="true">
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Indsats og borgerens ønsker og mål:" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </HBox>
+                <TextArea fx:id="borgerMaalTxtArea" promptText="Indsats og borgerens ønsker og mål" wrapText="true">
                     <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="2.0" />
                     </VBox.margin>
                 </TextArea>
             </children>
+         <GridPane.margin>
+            <Insets top="20.0" />
+         </GridPane.margin>
         </VBox>
     </children>
 </GridPane>

@@ -37,4 +37,16 @@ public class CitizenManager {
     {
         databaseFacade.deleteCitizen(borger);
     }
+
+    public void updateGenerelleOplysninger(Borger borger) {
+        databaseFacade.updateGenerelleOplysninger(borger);
+    }
+
+    public void createGenerelleOplysninger(Borger borger){
+        databaseFacade.createGenerelleOplysninger(borger);
+    }
+
+    public Borger getGenerelleOplysninger(Borger borger){
+        return databaseFacade.getGenerelleOplysninger(borger);
+    }
 }

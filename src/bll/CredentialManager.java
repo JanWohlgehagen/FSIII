@@ -1,7 +1,7 @@
 package bll;
 
 import be.Credential;
-import be.Person;
+import be.user.User;
 import bll.util.BCrypt;
 import dal.interfaces.IDatabaseFacade;
 import javafx.scene.control.Alert;
@@ -16,7 +16,7 @@ public class CredentialManager {
         this.databaseFacade = databaseFacade;
     }
 
-    public Person loginCredential(String userName, String userPassword){
+    public User loginCredential(String userName, String userPassword){
         if(checkCredential(userName, userPassword)){
             return databaseFacade.getPersonById(credential.getId());
         }else {
@@ -30,7 +30,6 @@ public class CredentialManager {
 
     private boolean checkCredential(String userName, String userPassword){
         credential = databaseFacade.checkCredential(userName);
-        System.out.println(BCrypt.hashpw(userPassword,salt));
         return credential != null && BCrypt.checkpw(userPassword, credential.getPassword());
     }
 

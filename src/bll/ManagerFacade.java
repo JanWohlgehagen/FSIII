@@ -2,8 +2,10 @@ package bll;
 
 import be.Borger;
 import be.Case;
-import be.Person;
+import be.Funktionstilstand;
+import be.user.User;
 import bll.Interfaces.IManagerFacade;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
 
 import java.io.IOException;
@@ -14,11 +16,13 @@ public class ManagerFacade implements IManagerFacade {
     private final CredentialManager credentialManager;
     private final CaseManager caseManager;
     private final CitizenManager citizenManager;
+    private final FunktionstilstandManager funktionstilstandManager;
 
     public ManagerFacade() throws IOException {
         credentialManager = new CredentialManager(new DatabaseFacade());
         caseManager = new CaseManager(new DatabaseFacade());
         citizenManager = new CitizenManager(new DatabaseFacade());
+        funktionstilstandManager = new FunktionstilstandManager(new DatabaseFacade());
     }
 
                             /***************************************************/
@@ -26,7 +30,7 @@ public class ManagerFacade implements IManagerFacade {
                             /***************************************************/
 
     @Override
-    public Person loginCredential(String userName, String userPassword) {
+    public User loginCredential(String userName, String userPassword) {
         return credentialManager.loginCredential(userName, userPassword);
     }
 
@@ -43,8 +47,8 @@ public class ManagerFacade implements IManagerFacade {
 
 
     @Override
-    public List<Case> getAllCasesOnCitizen(int id) {
-        return caseManager.getAllCasesOnCitizen(id);
+    public List<Case> getAllCasesOnCitizen(int citizenid) {
+        return caseManager.getAllCasesOnCitizen(citizenid);
     }
 
     @Override
@@ -53,8 +57,8 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public void updateCaseOnCitizen(int citizenID, int caseID) {
-        caseManager.updateCaseOnCitizen(citizenID, caseID);
+    public void updateCaseOnCitizen(int citizenID,Case selectCase) {
+        caseManager.updateCaseOnCitizen(citizenID, selectCase);
     }
 
     @Override
@@ -63,8 +67,8 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public Case createCaseOnCitizen(int citizenID) {
-        return caseManager.createCaseOnCitizen(citizenID);
+    public Case createCaseOnCitizen(Case newCase) {
+        return caseManager.createCaseOnCitizen(newCase);
     }
 
                                 /***************************************************/
@@ -95,5 +99,24 @@ public class ManagerFacade implements IManagerFacade {
     public void deleteCitizen(Borger borger) {
         citizenManager.deleteCitizen(borger);
     }
+
+    @Override
+    public void updateGenerelleOplysninger(Borger borger){
+        citizenManager.updateGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public void createGenerelleOplysninger(Borger borger) {
+        citizenManager.createGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public Borger getGenerelleOplysninger(Borger borger) {
+        return citizenManager.getGenerelleOplysninger(borger);
+    }
+    public List<String> getFunktionstilstandsList()  {
+        return funktionstilstandManager.getFunktionstilstandsList();
+    }
+
 
 }
