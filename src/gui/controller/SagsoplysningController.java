@@ -4,6 +4,8 @@ import be.*;
 import gui.model.CitizenModel;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,6 +24,17 @@ import java.util.ResourceBundle;
 public class SagsoplysningController implements Initializable {
 
 
+    @FXML
+    private Label lblOverkategoriHelbredstilstand;
+    @FXML
+    private Label lblTilstandsklassifikationHelbredstilstand;
+
+    @FXML
+    private TextArea txtAreaVurderingHelbredstilstand;
+    @FXML
+    private TextArea txtAreaAarsagHelbredstilstand;
+    @FXML
+    private TextArea txtAreaFagligtNotatHelbredstilstand;
     @FXML
     private TextArea txtAreaMestring;
     @FXML
@@ -69,6 +83,11 @@ public class SagsoplysningController implements Initializable {
     private Button btnInformationBoligensIndretning;
 
     @FXML
+    private ComboBox <String> comboBoxForventetTilstandHelbredstilstand;
+    @FXML
+    private ComboBox <String> comboBoxTilstandHelbredstilstand;
+
+    @FXML
     private VBox vBoxLeftHelbredstilstand;
     @FXML
     private VBox vBoxRightHelbredstilstand;
@@ -98,6 +117,16 @@ public class SagsoplysningController implements Initializable {
         setTooltips();
         populateTxtAreas();
         populateTilstande();
+        populateHelbredstilstandsCombobox();
+
+        comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.equals("Ingen aktuelle eller potentielle problemer")){
+                    changeAbilityHelbredstilstandsFields(true);
+                } else changeAbilityHelbredstilstandsFields(false);
+            }
+        });
     }
 
 
@@ -155,8 +184,42 @@ public class SagsoplysningController implements Initializable {
         stage.close();
     }
 
-    private void populateTxtAreas(){
+    private void populateTxtAreasHelbredstilstand(HelbredstilstandsUnderkategori newValue){
+        comboBoxTilstandHelbredstilstand.getSelectionModel().select(newValue.getTilstandProperty().get());
+        comboBoxForventetTilstandHelbredstilstand.getSelectionModel().select(newValue.getForventetTilstandProperty().get());
+        txtAreaVurderingHelbredstilstand.setText(newValue.getVurderingProperty().get());
+        txtAreaAarsagHelbredstilstand.setText(newValue.getAarsagProperty().get());
+        txtAreaFagligtNotatHelbredstilstand.setText(newValue.getFagligNotatProperty().get());
+    }
 
+    private void changeAbilityHelbredstilstandsFields(boolean able){
+        comboBoxForventetTilstandHelbredstilstand.setDisable(able);
+        txtAreaVurderingHelbredstilstand.setDisable(able);
+        txtAreaAarsagHelbredstilstand.setDisable(able);
+        txtAreaFagligtNotatHelbredstilstand.setDisable(able);
+
+        if (able){ // clears the fields if its not a relevant problem
+            comboBoxForventetTilstandHelbredstilstand.getSelectionModel().clearSelection();
+            txtAreaVurderingHelbredstilstand.clear();
+            txtAreaAarsagHelbredstilstand.clear();
+            txtAreaFagligtNotatHelbredstilstand.clear();
+        }
+    }
+
+    private void populateHelbredstilstandsCombobox(){
+        List <String> tilstande = new ArrayList<>();
+        List <String> forventedetilstande = new ArrayList<>();
+
+        tilstande.add("Ingen aktuelle eller potentielle problemer");
+        tilstande.add("Potentielt problem");
+        tilstande.add("Aktuelt problem");
+
+        forventedetilstande.add("Forsvinder");
+        forventedetilstande.add("Mindskes");
+        forventedetilstande.add("Forbliver uændret");
+
+        comboBoxTilstandHelbredstilstand.getItems().addAll(tilstande);
+        comboBoxForventetTilstandHelbredstilstand.getItems().addAll(forventedetilstande);
     }
 
     private void populateTilstande(){
@@ -179,6 +242,17 @@ public class SagsoplysningController implements Initializable {
             tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             tableView.getColumns().add(tableColumn);
             tableView.setMaxWidth(245.0);
+
+            // populates text areas as well as the comboboxes for a given subcategory
+            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HelbredstilstandsUnderkategori>() {
+                @Override
+                public void changed(ObservableValue<? extends HelbredstilstandsUnderkategori> observable, HelbredstilstandsUnderkategori oldValue, HelbredstilstandsUnderkategori newValue) {
+                    if (newValue != null){
+                        populateTxtAreasHelbredstilstand(newValue);
+                    }
+                }
+            });
+
             if(insertionCounter %2 == 0){
                 vBoxLeftHelbredstilstand.getChildren().add(tableView);
             } else {
@@ -199,6 +273,7 @@ public class SagsoplysningController implements Initializable {
             tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             tableView.getColumns().add(tableColumn);
             tableView.setMaxWidth(245.0);
+
             if(insertionCounter %2 == 0){
                 vBoxLeftFunktionstilstand.getChildren().add(tableView);
             } else {

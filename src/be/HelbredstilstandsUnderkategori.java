@@ -9,26 +9,25 @@ public class HelbredstilstandsUnderkategori {
     private StringProperty tilstandsklassifikation = new SimpleStringProperty();
     private StringProperty overkategori = new SimpleStringProperty();
     private StringProperty tilstand = new SimpleStringProperty();
+    private StringProperty forventetTilstand = new SimpleStringProperty();
     private StringProperty vurdering = new SimpleStringProperty();
     private StringProperty aarsag = new SimpleStringProperty();
     private StringProperty fagligNotat = new SimpleStringProperty();
-    private StringProperty udfald = new SimpleStringProperty();
 
-    public HelbredstilstandsUnderkategori(String tilstandsklassifikation, String overkategori, String tilstand, String vurdering, String aarsag, String fagligNotat, String udfald) {
+    public HelbredstilstandsUnderkategori(String tilstandsklassifikation, String overkategori, String tilstand, String forventetTilstand, String vurdering, String aarsag, String fagligNotat) {
         this.setTilstand(tilstand);
+        this.setForventetTilstand(forventetTilstand);
         this.setOverkategori(overkategori);
         this.setTilstandsklassifikation(tilstandsklassifikation);
         this.setVurdering(vurdering);
         this.setAarsag(aarsag);
         this.setFagligNotat(fagligNotat);
-        this.setUdfald(udfald);
     }
 
     // This constructor is for use, if the user chooses that a subcategory is not relevant
-    public HelbredstilstandsUnderkategori(String tilstandsklassifikation, String overkategori, String udfald) {
+    public HelbredstilstandsUnderkategori(String tilstandsklassifikation, String overkategori) {
         this.setOverkategori(overkategori);
         this.setTilstandsklassifikation(tilstandsklassifikation);
-        this.setUdfald(udfald);
     }
 
 
@@ -80,16 +79,17 @@ public class HelbredstilstandsUnderkategori {
         this.fagligNotat.set(fagligNotat);
     }
 
-    public StringProperty getUdfaldProperty() {
-        return udfald;
+    public StringProperty getForventetTilstandProperty() {
+        return forventetTilstand;
     }
 
-    public void setUdfald(String udfald) {
-        this.udfald.set(udfald);
+    public void setForventetTilstand(String forventetTilstand) {
+        this.forventetTilstand.set(forventetTilstand);
     }
 
     @Override
     public String toString(){
         return this.tilstandsklassifikation.get();
     }
+
 }

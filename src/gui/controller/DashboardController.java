@@ -29,7 +29,7 @@ public class DashboardController implements Initializable {
 
     private CaseModel caseModel;
     private CitizenModel citizenModel;
-    private Case selectCase;
+    private Case selectedCase;
     private Borger selectCitizen;
 
 
@@ -47,11 +47,11 @@ public class DashboardController implements Initializable {
     }
 
     public void setSelectedCase(Case selectionCase){
-        this.selectCase = selectionCase;
+        this.selectedCase = selectionCase;
     }
 
     public Case getSelectedCase(){
-        return selectCase;
+        return selectedCase;
     }
 
     public Borger getSelectedCitizen() {
@@ -82,10 +82,11 @@ public class DashboardController implements Initializable {
         sagsoplysningsScene.loadNewScene(new Stage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
+        sagsoplysningController.setCitizenModel(citizenModel);
     }
 
     public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
-        if(selectCase == null)
+        if(selectedCase == null)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
@@ -95,7 +96,7 @@ public class DashboardController implements Initializable {
             bestillingsScene.loadNewScene(new Stage());
             BestillingsViewController bestillingsViewController = bestillingsScene.getController();
             bestillingsViewController.setBestillingsViewController(bestillingsViewController);
-            bestillingsViewController.setCurrentCase(selectCase);
+            bestillingsViewController.setCurrentCase(selectedCase);
         }
     }
 
@@ -108,7 +109,7 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
-        if(selectCase == null) {
+        if(selectedCase == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
         }
@@ -117,7 +118,7 @@ public class DashboardController implements Initializable {
             caseDocumentationScene.loadNewScene(new Stage());
             CaseDocumentationViewController caseDocumentationViewController = caseDocumentationScene.getController();
             caseDocumentationViewController.setCaseDocumentationViewController(caseDocumentationViewController);
-            caseDocumentationViewController.setCurrentCase(selectCase);
+            caseDocumentationViewController.setCurrentCase(selectedCase);
         }
     }
 
