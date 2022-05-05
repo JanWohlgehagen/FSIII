@@ -80,7 +80,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
 
-    /***************************************************/
+                                /***************************************************/
                                 /******************** Citizen **********************/
                                 /***************************************************/
 
@@ -91,6 +91,12 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public List<Borger> getAllCitizens() {
+        List<Borger> allCitizens = dbCitizenDAO.getAllCitizens();
+
+        for(Borger b: allCitizens)
+        {
+            b.setFunktionstilstand(dbFunktionstilstandDAO.);
+        }
         return dbCitizenDAO.getAllCitizens();
     }
 
