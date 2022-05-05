@@ -9,6 +9,7 @@ import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.model.FunktionstilstandModel;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,8 +71,9 @@ public class CreateAndEditCaseController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
+            ObservableList<String> funktionstilstandsList = FXCollections.observableList(funktionstilstandModel.getFunktionstilstandsList());
+            overkategoriCbx.setItems(funktionstilstandsList);
         });
-        overkategoriCbx.setItems((ObservableList<String>) funktionstilstandModel.getFunktionstilstandsList());
     }
 
     public void setDashboardController(DashboardController dashboardController) {

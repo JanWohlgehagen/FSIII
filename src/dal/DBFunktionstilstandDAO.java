@@ -21,10 +21,10 @@ public class DBFunktionstilstandDAO {
             String sql = "SELECT * FROM [FS_Overkategori]";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            ResultSet rs = ps.getResultSet();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String overkategori = rs.getString("Overkategori");
+                String overkategori = rs.getString("Titel");
                 funktionstilstandList.add(overkategori);
             }
         } catch (SQLException throwables) {
