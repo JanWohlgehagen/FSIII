@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -168,5 +169,8 @@ public class DashboardController implements Initializable {
     public void updateCitizenList() {
         lvCitizens.getItems().clear();
         lvCitizens.setItems(citizenModel.getAllCitizen());
+    }
+
+    public void selectBorger(MouseEvent mouseEvent) {
     }
 }

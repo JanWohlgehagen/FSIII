@@ -111,6 +111,7 @@ CREATE TABLE [H_Tilstandsvurdering]
     [Vurdering] VARCHAR(200) NULL,
     [Aarsag] VARCHAR(200) NULL,
     [Faglig_Notat] VARCHAR(200) NULL,
+    [Forventet_Tilstand] VARCHAR(200) NULL,
 
     CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_ID,HS_UK_ID),
     CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_ID,HS_Borger_ID) REFERENCES Helbredstilstand(ID,Borger_ID) ON DELETE CASCADE,
@@ -159,6 +160,8 @@ CREATE TABLE [F_Tilstandsvurdering]
     [Vurdering] VARCHAR(200) NULL,
     [Aarsag] VARCHAR(200) NULL,
     [Faglig_Notat] VARCHAR(200) NULL,
+    [Forvente_Tilstand] INT NULL,
+    [Opfoelgning] NVARCHAR (200) NULL,
 
     CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_ID,FS_UK_ID),
     CONSTRAINT FK_HS_IDFSV FOREIGN KEY (FS_ID, FS_Borger_ID) REFERENCES Funktionstilstand(ID,Borger_ID) ON DELETE CASCADE,
