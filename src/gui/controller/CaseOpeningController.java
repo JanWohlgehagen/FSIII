@@ -79,8 +79,7 @@ public class CaseOpeningController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            borger = new Borger("tobastest", "ramussen", false, 33); // skal lige rettes til !!!!
-            borger.setID(2);
+           borger = dashboardController.getSelectedCitizen();
 
             fornavnLbl.setText(borger.getFirstNameProperty().get());
             efternavnLbl.setText(borger.getLastNameProperty().get());

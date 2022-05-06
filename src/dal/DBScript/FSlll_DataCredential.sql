@@ -14,7 +14,43 @@ INSERT INTO [Credentials] (ID,UserName,Password) VALUES (4,'simon', '$2a$10$fDGJ
 
 INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Rosa', 'Jensen', 63, false)
 INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Jan', 'Olsen', 56, false)
-INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Rosa', 'Jensen', 40, false)
-INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Rosa', 'Jensen', 90, false)
-INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Rosa', 'Jensen', 80, false)
-INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Rosa', 'Jensen', 83, false)
+INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Simon', 'Jensen', 40, false)
+INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Jo', 'Hansen', 90, false)
+INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Bo', 'Rasmussen', 80, false)
+INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Bent', 'Z', 83, false)
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (1, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (1, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (2, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (2, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (3, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (3, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (4, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (4, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (5, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (5, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (6, 'braket Arm1', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+
+INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (6, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')

@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -61,6 +62,12 @@ public class DashboardController implements Initializable {
 
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        });
+
+        lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                selectCitizen = newValue;
             }
         });
 
@@ -168,5 +175,8 @@ public class DashboardController implements Initializable {
     public void updateCitizenList() {
         lvCitizens.getItems().clear();
         lvCitizens.setItems(citizenModel.getAllCitizen());
+    }
+
+    public void selectBorger(MouseEvent mouseEvent) {
     }
 }

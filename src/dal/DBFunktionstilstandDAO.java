@@ -29,11 +29,11 @@ public class DBFunktionstilstandDAO {
         {
             String sql = "SELECT *   FROM [F_Tilstandsvurdering]" +
                     "FULL JOIN [FS_Underkategori] ON F_Tilstandsvurdering.FS_UK_ID= FS_Underkategori.ID " +
-                    "FULL JOIN [FS_Overkategori] on FS_Underkategori.FS_OK_ID = FS_Overkategori.ID" +
-                    "WHERE Borger_ID = (?)";
+                    "FULL JOIN [FS_Overkategori] on FS_Underkategori.FS_OK_ID = FS_Overkategori.ID " +
+                    "WHERE FS_Borger_ID = (?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.IDProperty().get());
+            preparedStatement.setInt(1, borger.getIDProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next())
