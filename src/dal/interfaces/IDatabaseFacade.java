@@ -48,4 +48,8 @@ public interface IDatabaseFacade {
     public void createGenerelleOplysninger(Borger borger);
 
     public Borger getGenerelleOplysninger(Borger borger);
+
+    //Tilstande Functions
+
+    public void setTilstandeOnCitizen(Borger borger);
 }

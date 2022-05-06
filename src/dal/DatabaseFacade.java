@@ -19,6 +19,8 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBGenerelInformationDAO dbGenerelInformationDAO;
     private DBFunktionstilstandDAO dbFunktionstilstandDAO;
     private DBFunktionstilstandsUnderkategoriDAO dbFunktionstilstandsUnderkategoriDAO;
+    private DBHelbredstilstandDAO dbHelbredstilstandDAO;
+
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
@@ -29,6 +31,9 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
         dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
         dbFunktionstilstandsUnderkategoriDAO = new DBFunktionstilstandsUnderkategoriDAO(dbConnecting);
+        dbHelbredstilstandDAO = new DBHelbredstilstandDAO(dbConnecting);
+
+
     }
 
     @Override
@@ -83,7 +88,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
 
-    /***************************************************/
+                                /***************************************************/
                                 /******************** Citizen **********************/
                                 /***************************************************/
 
@@ -94,11 +99,6 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public List<Borger> getAllCitizens() {
-        List<Borger> allCitizens = dbCitizenDAO.getAllCitizens();
-
-        for(Borger b: allCitizens)
-        {
-        }
         return dbCitizenDAO.getAllCitizens();
     }
 
@@ -136,6 +136,13 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public Borger getGenerelleOplysninger(Borger borger) {
         return dbGenerelInformationDAO.getGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public void setTilstandeOnCitizen(Borger borger) {
+        borger.setFunktionstilstand(dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger));
+        borger.setHelbredstilstand(dbHelbredstilstandDAO.getHelbredstilstandOnCitizen(borger));
+
     }
 
 }
