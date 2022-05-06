@@ -139,6 +139,10 @@ public class DatabaseFacade implements IDatabaseFacade {
         return dbGenerelInformationDAO.getGenerelleOplysninger(borger);
     }
 
+
+                                /***************************************************/
+                                /******************** Tilstande ********************/
+                                /***************************************************/
     @Override
     public void setTilstandeOnCitizen(Borger borger) {
         borger.setFunktionstilstand(dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger));
