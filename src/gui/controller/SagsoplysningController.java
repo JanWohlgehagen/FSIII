@@ -188,14 +188,19 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        updateBorgerInformationer();
-        citizenModel.updateGenerelleOplysninger(borger);
+        if (borger != null){ //TODO skal slettes, når borger er implementeret
+            updateBorgerInformationer();
+            citizenModel.updateGenerelleOplysninger(borger);
+        }
         closeStage();
     }
 
-    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        updateBorgerInformationer();
-        citizenModel.updateGenerelleOplysninger(borger);
+    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+        if (borger != null){ //TODO skal slettes, når borger er implementeret
+            updateBorgerInformationer();
+            citizenModel.updateGenerelleOplysninger(borger);
+        }
+        goToNextScene();
     }
 
     public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
@@ -203,8 +208,9 @@ public class SagsoplysningController implements Initializable {
         closeStage();
     }
 
-    public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+    public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         //TODO
+        goToNextScene();
     }
 
     public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
