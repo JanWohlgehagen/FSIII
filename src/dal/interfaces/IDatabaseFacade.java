@@ -29,7 +29,7 @@ public interface IDatabaseFacade {
 
     public List<String> getFunktionstilstand();
 
-    public List<String> getFunktiontilstandsUnderkategori();
+    public List<String> getFunktionstilstandsUnderkategori();
 
     //Citizen DAL Functions
 

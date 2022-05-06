@@ -13,22 +13,22 @@ public class DBFunktionstilstandsUnderkategoriDAO {
     }
 
     public List<String> getFunktionstilstandsUnderkategoriList() {
-        List<String> funktionstilstandList = new ArrayList<>();
+        List<String> funktionstilstandsUnderkategoriList = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [FS_Overkategori]";
+            String sql = "SELECT * FROM [FS_Underkategori]";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String overkategori = rs.getString("Titel");
-                funktionstilstandList.add(overkategori);
+                String underkategori = rs.getString("Titel");
+                funktionstilstandsUnderkategoriList.add(underkategori);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
         }
-        return funktionstilstandList;
+        return funktionstilstandsUnderkategoriList;
     }
 
 
