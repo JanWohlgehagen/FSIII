@@ -2,8 +2,6 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import be.Funktionstilstand;
-import be.FunktionstilstandsUnderkategori;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.model.FunktionstilstandModel;
@@ -12,7 +10,6 @@ import gui.util.CreateAndEditCaseScene;
 import gui.util.ISceneLoader;
 import gui.util.SagsoplysningScene;
 import javafx.application.Platform;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CaseOpeningController implements Initializable {
@@ -100,7 +98,7 @@ public class CaseOpeningController implements Initializable {
                 efternavnLbl.setText(borger.getLastNameProperty().get());
                 alderLbl.setText(String.valueOf(borger.getAgeProperty().get()));
                 antalAktiveSagerLbl.setText("Skal denne være her???");
-                sagsansvarligLbl.setText("Hr/Fru Lærer");
+                sagsansvarligLbl.setText(newValue.getSagsansvarligProperty().get());
                 lblHenvisning.setText(newValue.getHenvisningProperty().get());
                 lblOpfolgningsTag.setText(newValue.getOpfoelgningstagProperty().get());
                 beskrivelseTxtArea.setText(newValue.getCaseDescriptionProperty().get());
@@ -138,18 +136,61 @@ public class CaseOpeningController implements Initializable {
         createAndEditCaseScene.loadNewScene(new Stage());
         CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
         createAndEditCaseController.setDashboardController(dashboardController);
+        createAndEditCaseController.newCaseModeIsOn();
         createAndEditCaseController.setCaseModel(caseModel);
         createAndEditCaseController.setFunktionstilstandModel(funktionstilstandModel);
         createAndEditCaseController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
     }
 
     public void handleRedigerSag(ActionEvent actionEvent) throws IOException {
-        //TODO
+        ISceneLoader<CreateAndEditCaseController> createAndEditCaseScene = new CreateAndEditCaseScene();
+        createAndEditCaseScene.loadNewScene(new Stage());
+        CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
+        createAndEditCaseController.setDashboardController(dashboardController);
+        createAndEditCaseController.setCaseModel(caseModel);
+        createAndEditCaseController.setFunktionstilstandModel(funktionstilstandModel);
+        createAndEditCaseController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
+        if(getSelectedCase() != null){
+            createAndEditCaseController.setEditThisCase(getSelectedCase());
+            createAndEditCaseController.editCaseModeIsOn();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error.. ");
+            alert.setContentText("Der skal vælges en sag, før man kan rediger den");
+            alert.showAndWait();
+        }
     }
 
     public void handleSletSag(ActionEvent actionEvent) {
-        caseModel.deleteCaseOnCitizen(borger.getIDProperty().get(),
-            vaelgSagCbx.getSelectionModel().getSelectedItem().getCaseIDProperty().get());
+        if(displayWarning()){
+            caseModel.deleteCaseOnCitizen(borger.getIDProperty().get(),
+                    getSelectedCase().getCaseIDProperty().get());
+
+            vaelgSagCbx.getItems().clear();
+            overkategoriTxtField.clear();
+            underkategoriTxtField.clear();
+            fornavnLbl.setText("");
+            efternavnLbl.setText("");
+            alderLbl.setText("");
+            antalAktiveSagerLbl.setText("Skal denne være her???");
+            sagsansvarligLbl.setText("");
+            lblHenvisning.setText("");
+            lblOpfolgningsTag.setText("");
+            beskrivelseTxtArea.clear();
+            aarsagsfritekstTxtArea.clear();
+            aarsagsdiagnoseTxtArea.clear();
+            aarsagstilstandTxtArea.clear();
+            borgerMaalTxtArea.clear();
+        }
+    }
+
+    private boolean displayWarning (){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Skal denne Sag( " + getSelectedCase() + " ) slettes");
+        alert.setContentText("Press OK to continue.");
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get() == ButtonType.OK;
     }
 
     public void handleMouseOpdateVaelgSagCbox(MouseEvent mouseEvent) {
@@ -169,11 +210,14 @@ public class CaseOpeningController implements Initializable {
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
         sagsoplysningController.setCitizenModel(citizenModel);
-        getStage().close();
     }
 
     private Stage getStage(){
         return (Stage) parentGridPane.getScene().getWindow();
+    }
+
+    private Case getSelectedCase(){
+        return vaelgSagCbx.getSelectionModel().getSelectedItem();
     }
 
     private void setSelectedCase(){

@@ -20,6 +20,8 @@ public class Case {
     private StringProperty aasagsdiagnose= new SimpleStringProperty();
     private StringProperty aasagstilstand= new SimpleStringProperty();
     private StringProperty borgerensonsker= new SimpleStringProperty();
+
+    private StringProperty sagsansvarlig = new SimpleStringProperty();
     private ArrayList<CaseDocumentation> listOfDocumentations = new ArrayList<>();
 
     public Case(int citizenID, String overkategoriTitle, String underkategoriTitle) {
@@ -57,8 +59,24 @@ public class Case {
         return overkategoriTitle;
     }
 
+    public void setOverkategoriTitle(String overkategoriTitle) {
+        this.overkategoriTitle.set(overkategoriTitle);
+    }
+
     public StringProperty getUnderkategoriTitleProperty() {
         return underkategoriTitle;
+    }
+
+    public void setUnderkategoriTitle(String underkategoriTitle) {
+        this.underkategoriTitle.set(underkategoriTitle);
+    }
+
+    public StringProperty getSagsansvarligProperty() {
+        return sagsansvarlig;
+    }
+
+    public void setSagsansvarlig(String sagsansvarlig) {
+        this.sagsansvarlig.set(sagsansvarlig);
     }
 
     public StringProperty getHenvisningProperty() {

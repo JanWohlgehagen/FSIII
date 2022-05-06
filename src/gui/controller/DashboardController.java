@@ -122,6 +122,7 @@ public class DashboardController implements Initializable {
         caseOpeningController.setDashboardController(dashboardController);
         caseOpeningController.setFunktionstilstandModel(funktionstilstandModel);
         caseOpeningController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
+        caseOpeningController.setCitizenModel(citizenModel);
     }
 
     public void handleButtonOpfølgning(ActionEvent actionEvent) throws IOException {
