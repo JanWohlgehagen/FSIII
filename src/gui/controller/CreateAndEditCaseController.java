@@ -18,9 +18,6 @@ import java.util.ResourceBundle;
 
 public class CreateAndEditCaseController implements Initializable {
 
-    public TextField txtTitle;
-    public TextField txtOpfoelgningTag;
-    public CheckBox cbBevilget;
     public TextField lblSagsansvarlig;
     public TextField lblSagsHenvisning;
     @FXML
@@ -30,25 +27,9 @@ public class CreateAndEditCaseController implements Initializable {
     @FXML
     private GridPane parentGridPane;
     @FXML
-    private TextField overtilstandTxtField;
-    @FXML
-    private TextField undertilstandTxtField;
-    @FXML
-    private Label fornavnLbl;
-    @FXML
-    private Label efternavnLbl;
-    @FXML
-    private Label alderLbl;
-    @FXML
-    private Label antalAktiveSagerLbl;
-    @FXML
-    private Label sagsansvarligLbl;
-
-    @FXML
     private Button annullerBtn;
     @FXML
     private Button gemBtn;
-
     @FXML
     private TextArea beskrivelseTxtArea;
     @FXML
@@ -125,7 +106,7 @@ public class CreateAndEditCaseController implements Initializable {
 
     public void handleGem(ActionEvent actionEvent) {
         if(newCaseMode){
-            Case newCase = new Case(borger.getIDProperty().get(), overtilstandTxtField.getText(), undertilstandTxtField.getText());
+            Case newCase = new Case(borger.getIDProperty().get(), overkategoriCbx.getSelectionModel().getSelectedItem(), underkategoriCbx.getSelectionModel().getSelectedItem());
             newCase.setIsBevilget(false);
             newCase.setHenvisning(lblSagsHenvisning.getText());
             newCase.setSagsansvarlig(lblSagsansvarlig.getText());
