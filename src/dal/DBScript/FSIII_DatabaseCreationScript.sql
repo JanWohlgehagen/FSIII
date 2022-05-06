@@ -11,7 +11,7 @@ GO
 CREATE TABLE [Borger]
 (
     [ID] INT IDENTITY NOT NULL,
-    [FistName] NVARCHAR(50) NULL,
+    [FirstName] NVARCHAR(50) NULL,
     [LastName] NVARCHAR(50) NULL,
     [Age] INT NULL,
     [Template] BIT NULL,

@@ -10,30 +10,37 @@ import javafx.fxml.FXML;
 import java.util.List;
 
 public class CitizenModel {
-    private ObservableList<Borger> allCitizens = FXCollections.observableArrayList();
-    private ObservableList<Borger> allTemplates = FXCollections.observableArrayList();
+    private ObservableList<Borger> allCitizens;
+    private ObservableList<Borger> allTemplates ;
 
     private final IManagerFacade managerFacade;
 
     public CitizenModel(ManagerFacade managerFacade) {
         this.managerFacade = managerFacade;
-        allCitizens.addAll(managerFacade.getAllCitizen());
-        allTemplates.addAll(managerFacade.getAllTemplates());
+        allCitizens = FXCollections.observableList(managerFacade.getAllCitizen());
+        allTemplates = FXCollections.observableList(managerFacade.getAllTemplates());
+
     }
 
 
-    public List<Borger> getAllCitizen() {
-        return managerFacade.getAllCitizen();
+    public ObservableList<Borger> getAllCitizen() {
+        allCitizens = FXCollections.observableList(managerFacade.getAllCitizen());
+        return allCitizens;
     }
 
-    public List<Borger> getAllTemplates()
-    {
-        return managerFacade.getAllTemplates();
+    public ObservableList<Borger> getAllTemplates(){
+        allTemplates = FXCollections.observableList(managerFacade.getAllTemplates());
+        return allTemplates;
     }
 
 
     public void createCitizen(Borger borger) {
-         allCitizens.add(managerFacade.createCitizen(borger));
+        if (borger.isTemplateProperty().get())
+        {
+            allTemplates.add(managerFacade.createCitizen(borger));
+        }
+        else
+        allCitizens.add(managerFacade.createCitizen(borger));
     }
 
 

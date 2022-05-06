@@ -45,7 +45,7 @@ public class DBCitizenDAO {
             preparedStatement.setInt(3, borger.getIDProperty().get());
 
             preparedStatement.executeQuery();
-
+            return;
         } catch (SQLServerException throwables) {
             throwables.printStackTrace();
         } catch (SQLException throwables) {
@@ -60,7 +60,7 @@ public class DBCitizenDAO {
     {
         try(Connection connection = dbConnecting.getConnection())
         {
-            String sql = "INSERT INTO [Borger] VALUES (FirstName, LastName, Age, Template) = (?,?,?,?)";
+            String sql = "INSERT INTO [Borger] (FirstName, LastName, Age, Template) VALUES (?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, borger.getFirstNameProperty().get());
             preparedStatement.setString(2, borger.getLastNameProperty().get());
