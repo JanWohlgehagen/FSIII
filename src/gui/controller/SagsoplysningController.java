@@ -82,6 +82,8 @@ public class SagsoplysningController implements Initializable {
     private TextArea txtAreaFagligtNotatFunktionstilstand;
     @FXML
     private TextField txtOpfoelgningFunktionstilstand;
+    @FXML
+    private TextArea txtAreaHelhedsvurdering;
 
 
     @FXML
@@ -149,11 +151,13 @@ public class SagsoplysningController implements Initializable {
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
         });
-        setTooltips();
+        setGenerelleOplysningerTooltips();
         setFunktionstilstandsTooltips();
         populateTilstande();
         populateHelbredstilstandsCombobox();
         populateFunktionstilstandsCombobox();
+        populateGenerelleOplysninger();
+        populateHelhedsvurdering();
 
         comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -225,12 +229,12 @@ public class SagsoplysningController implements Initializable {
         goToNextScene();
     }
 
-    public void omraadeOgHelbredsvurderingHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+    public void helhedsvurderingHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         //TODO
         closeStage();
     }
 
-    public void omraadeOgHelbredsvurderingHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+    public void helhedsvurderingHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         //TODO
         goToNextScene();
     }
@@ -299,6 +303,26 @@ public class SagsoplysningController implements Initializable {
             txtAreaAarsagFunktionstilstand.clear();
             txtAreaFagligtNotatFunktionstilstand.clear();
             txtOpfoelgningFunktionstilstand.clear();
+        }
+    }
+
+    private void populateHelhedsvurdering() {
+        //TODO
+    }
+
+    private void populateGenerelleOplysninger() {
+        if (borger != null) {
+            txtAreaMestring.setText(borger.getMestringProperty().get());
+            txtAreaMotivaton.setText(borger.getMotivationProperty().get());
+            txtAreaRessourcer.setText(borger.getRessourcerProperty().get());
+            txtAreaRoller.setText(borger.getRollerProperty().get());
+            txtAreaVaner.setText(borger.getVanerProperty().get());
+            txtAreaUddOgJob.setText(borger.getUddannelseProperty().get());
+            txtAreaLivshistorie.setText(borger.getLivshistorieProperty().get());
+            txtAreaNetvaerk.setText(borger.getNetvaerkProperty().get());
+            txtAreaHelbredsoplysninger.setText(borger.getHelbredsoplysningerProperty().get());
+            txtAreaHjaelpemidler.setText(borger.getHjaelpemidlerProperty().get());
+            txtAreaBoligensIndretning.setText(borger.getBoligensIndretningProperty().get());
         }
     }
 
@@ -431,7 +455,7 @@ public class SagsoplysningController implements Initializable {
     }
 
 
-    private void setTooltips(){
+    private void setGenerelleOplysningerTooltips(){
         // Setting up tooltips for the information buttons in the view that guides the student
         btnInformationMestring.setTooltip(tooltipBank.getMestring());
         btnInformationMotivation.setTooltip(tooltipBank.getMotivation());

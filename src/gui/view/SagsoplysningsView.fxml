@@ -470,20 +470,21 @@
             </GridPane>
         </content>
       </Tab>
-      <Tab text="Område &amp; Helbredsvurdering">
+      <Tab text="Helhedsvurdering">
         <content>
             <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints />
                </rowConstraints>
                <children>
-                  <HBox alignment="BOTTOM_RIGHT" spacing="15.0" GridPane.rowIndex="1">
+                  <HBox alignment="BOTTOM_RIGHT" spacing="15.0" GridPane.rowIndex="2">
                      <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#omraadeOgHelbredsvurderingHandleSaveAndExitBtn" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#helhedsvurderingHandleSaveAndExitBtn" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
                            <children>
                               <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
                               <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
@@ -496,7 +497,7 @@
                               <Insets left="5.0" right="5.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#omraadeOgHelbredsvurderingHandleSaveAndNextBtn" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#helhedsvurderingHandleSaveAndNextBtn" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
                            <children>
                               <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
                               <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
@@ -511,6 +512,12 @@
                         </HBox>
                      </children>
                   </HBox>
+                  <Label styleClass="labelTitle" text="Helhedsvurdering" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <TextArea fx:id="txtAreaHelhedsvurdering" prefHeight="200.0" prefWidth="200.0" style="-fx-font-weight: bold; -fx-font-size: 16;" wrapText="true" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" />
+                     </GridPane.margin>
+                  </TextArea>
                </children>
             </GridPane>
         </content>
