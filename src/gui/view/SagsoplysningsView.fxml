@@ -485,19 +485,26 @@
                   <Label styleClass="labelTitle" text="Medicinliste" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <ScrollPane fitToWidth="true" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <content>
-                        <VBox fx:id="vBoxMedicinliste" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                        <VBox>
                            <children>
                               <Button alignment="TOP_RIGHT" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleAddTxtFieldMedicineList" prefHeight="30.0" prefWidth="30.0" styleClass="addMedicineFieldBtn" />
-                              <TextField styleClass="text">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField layoutX="10.0" layoutY="10.0">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </TextField>
+                              <VBox fx:id="vBoxMedicinliste" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                                 <children>
+                                    <TextField styleClass="text">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField layoutX="10.0" layoutY="10.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets top="25.0" />
+                                 </padding>
+                              </VBox>
                            </children>
                            <padding>
                               <Insets bottom="25.0" left="15.0" right="15.0" top="25.0" />

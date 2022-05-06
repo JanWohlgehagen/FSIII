@@ -428,7 +428,10 @@ public class SagsoplysningController implements Initializable {
         btnInformationFunktionstilstandCopy.setTooltip(tooltip);
     }
 
-    private void extractMedicineList() {
+    /*
+    Extracts a list of strings from the textfields in the container where the medicine list is shown
+     */
+    private List<String> extractMedicineList() {
         List <Node> nodeList = vBoxMedicinliste.getChildren();
         List<String> medicineList = new ArrayList<>();
 
@@ -437,6 +440,7 @@ public class SagsoplysningController implements Initializable {
             if (!txtField.getText().isEmpty() || !txtField.getText().isBlank())
                 medicineList.add(txtField.getText());
         }
+        return medicineList;
     }
 
 

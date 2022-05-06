@@ -87,6 +87,12 @@
     -fx-border-radius: 25;
     -fx-border-color: transparent;
     -fx-padding: 1, 1, 1, 1;
+    -fx-cursor: hand;
+}
+
+.addMedicineFieldBtn:hover{
+    -fx-scale-y: 1.2;
+    -fx-scale-x: 1.2;
 }
 
 .text-field{
