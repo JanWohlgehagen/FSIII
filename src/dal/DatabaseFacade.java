@@ -17,10 +17,10 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBPersonDAO dbPersonDAO;
     private DBCaseDAO dbCaseDAO;
     private DBCitizenDAO dbCitizenDAO;
-<<<<<<< Updated upstream
+
+    private DBGenerelInformationDAO dbGenerelInformationDAO;
+
     private DBFunktionstilstandDAO dbFunktionstilstandDAO;
-=======
->>>>>>> Stashed changes
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
@@ -28,11 +28,8 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbPersonDAO = new DBPersonDAO(dbConnecting);
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
-<<<<<<< Updated upstream
+        dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
         dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
-=======
-
->>>>>>> Stashed changes
     }
 
     @Override
@@ -77,7 +74,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
 
-    /***************************************************/
+                                /***************************************************/
                                 /******************** Citizen **********************/
                                 /***************************************************/
 
@@ -88,6 +85,11 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public List<Borger> getAllCitizens() {
+        List<Borger> allCitizens = dbCitizenDAO.getAllCitizens();
+
+        for(Borger b: allCitizens)
+        {
+        }
         return dbCitizenDAO.getAllCitizens();
     }
 
@@ -106,6 +108,25 @@ public class DatabaseFacade implements IDatabaseFacade {
     public void deleteCitizen(Borger borger) {
         dbCitizenDAO.deleteCitizen(borger);
 
+    }
+
+                                /***************************************************/
+                                /******************** Citizen **********************/
+                                /***************************************************/
+
+    @Override
+    public void updateGenerelleOplysninger(Borger borger) {
+        dbGenerelInformationDAO.updateGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public void createGenerelleOplysninger(Borger borger) {
+        dbGenerelInformationDAO.createGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public Borger getGenerelleOplysninger(Borger borger) {
+        return dbGenerelInformationDAO.getGenerelleOplysninger(borger);
     }
 
 }

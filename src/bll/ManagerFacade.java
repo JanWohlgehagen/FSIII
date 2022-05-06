@@ -98,6 +98,19 @@ public class ManagerFacade implements IManagerFacade {
 
 <<<<<<< Updated upstream
     @Override
+    public void updateGenerelleOplysninger(Borger borger){
+        citizenManager.updateGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public void createGenerelleOplysninger(Borger borger) {
+        citizenManager.createGenerelleOplysninger(borger);
+    }
+
+    @Override
+    public Borger getGenerelleOplysninger(Borger borger) {
+        return citizenManager.getGenerelleOplysninger(borger);
+    }
     public List<String> getFunktionstilstandsList()  {
         return funktionstilstandManager.getFunktionstilstandsList();
     }

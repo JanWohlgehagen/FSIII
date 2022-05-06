@@ -4,14 +4,18 @@ import be.*;
 import gui.model.CitizenModel;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +25,21 @@ import java.util.ResourceBundle;
 public class SagsoplysningController implements Initializable {
 
 
+    @FXML
+    private Label lblOverkategoriFunktionstilstand;
+    @FXML
+    private Label lblTilstandsklassifikationFunktionstilstand;
+    @FXML
+    private Label lblOverkategoriHelbredstilstand;
+    @FXML
+    private Label lblTilstandsklassifikationHelbredstilstand;
+
+    @FXML
+    private TextArea txtAreaVurderingHelbredstilstand;
+    @FXML
+    private TextArea txtAreaAarsagHelbredstilstand;
+    @FXML
+    private TextArea txtAreaFagligtNotatHelbredstilstand;
     @FXML
     private TextArea txtAreaMestring;
     @FXML
@@ -43,7 +62,20 @@ public class SagsoplysningController implements Initializable {
     private TextArea txtAreaHjaelpemidler;
     @FXML
     private TextArea txtAreaBoligensIndretning;
-
+    @FXML
+    private TextArea txtAreaUdfoerelseFunktionstilstand;
+    @FXML
+    private TextArea txtAreaBetydningFunktionstilstand;
+    @FXML
+    private TextArea txtAreaOenskerOgMålFunktionstilstand;
+    @FXML
+    private TextArea txtAreaVurderingFunktionstilstand;
+    @FXML
+    private TextArea txtAreaAarsagFunktionstilstand;
+    @FXML
+    private TextArea txtAreaFagligtNotatFunktionstilstand;
+    @FXML
+    private TextField txtOpfoelgningFunktionstilstand;
 
 
     @FXML
@@ -68,6 +100,19 @@ public class SagsoplysningController implements Initializable {
     private Button btnInformationHjaelpemidler;
     @FXML
     private Button btnInformationBoligensIndretning;
+    @FXML
+    private Button btnInformationFunktionstilstandCopy;
+    @FXML
+    private Button btnInformationFunktionstilstand;
+
+    @FXML
+    private ComboBox <String> comboBoxForventetTilstandHelbredstilstand;
+    @FXML
+    private ComboBox <String> comboBoxTilstandHelbredstilstand;
+    @FXML
+    private ComboBox <Integer> comboBoxForventetTilstandFunktionstilstand;
+    @FXML
+    private ComboBox <Integer> comboBoxTilstandFunktionstilstand;
 
     @FXML
     private VBox vBoxLeftHelbredstilstand;
@@ -83,6 +128,9 @@ public class SagsoplysningController implements Initializable {
     @FXML
     private ScrollPane scrollPaneHelbredstilstand;
 
+    @FXML
+    private TabPane tabPaneParent;
+
     private DashboardController dashboardController;
     private TooltipBank tooltipBank = new TooltipBank();
     private Borger borger;
@@ -93,24 +141,160 @@ public class SagsoplysningController implements Initializable {
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
         });
+        setTooltips();
+        setFunktionstilstandsTooltips();
+        populateTilstande();
+        populateHelbredstilstandsCombobox();
+        populateFunktionstilstandsCombobox();
+
+        comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
+                    changeAbilityHelbredstilstandsFields(true);
+                } else changeAbilityHelbredstilstandsFields(false);
+            }
+        });
+
+
+        comboBoxTilstandFunktionstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Integer>() {
+            @Override
+            public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
+                if (newValue == 9){
+                    changeAbilityFunktionstilstandsFields(true);
+                } else changeAbilityFunktionstilstandsFields(false);
+            }
+        });
+    }
+
+    public void setDashboardController (DashboardController dashboardController){
+        this.dashboardController = dashboardController;
+    }
+
+    public void setCitizenModel(CitizenModel citizenModel) {
+        this.citizenModel = citizenModel;
+    }
+
+    public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        updateBorgerInformationer();
+        citizenModel.updateGenerelleOplysninger(borger);
+        closeStage();
+    }
+
+    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+        updateBorgerInformationer();
+        citizenModel.updateGenerelleOplysninger(borger);
+    }
+
+    public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        closeStage();
+    }
+
+    public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+        //TODO
+    }
+
+    public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        closeStage();
+    }
+
+    public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+        //TODO
+    }
+
+    private void updateBorgerInformationer(){
+        borger.setMestring(txtAreaMestring.getText());
+        borger.setMotivation(txtAreaMotivaton.getText());
+        borger.setRessourcer(txtAreaRessourcer.getText());
+        borger.setRoller(txtAreaRoller.getText());
+        borger.setVaner(txtAreaVaner.getText());
+        borger.setUddannelse(txtAreaUddOgJob.getText());
+        borger.setLivshistorie(txtAreaLivshistorie.getText());
+        borger.setNetvaerk(txtAreaNetvaerk.getText());
+        borger.setHelbredsoplysninger(txtAreaHelbredsoplysninger.getText());
+        borger.setHjaelpemidler(txtAreaHjaelpemidler.getText());
+        borger.setBoligensIndretning(txtAreaBoligensIndretning.getText());
+    }
+
+    private void closeStage(){
+        Stage stage = (Stage) tabPaneParent.getScene().getWindow();
+        stage.close();
+    }
+
+    private void changeAbilityHelbredstilstandsFields(boolean able){
+        comboBoxForventetTilstandHelbredstilstand.setDisable(able);
+        txtAreaVurderingHelbredstilstand.setDisable(able);
+        txtAreaAarsagHelbredstilstand.setDisable(able);
+        txtAreaFagligtNotatHelbredstilstand.setDisable(able);
+
+        if (able){ // clears the fields if its not a relevant problem
+            comboBoxForventetTilstandHelbredstilstand.getSelectionModel().clearSelection();
+            txtAreaVurderingHelbredstilstand.clear();
+            txtAreaAarsagHelbredstilstand.clear();
+            txtAreaFagligtNotatHelbredstilstand.clear();
+        }
+    }
+
+    private void changeAbilityFunktionstilstandsFields(boolean able){
+        comboBoxForventetTilstandFunktionstilstand.setDisable(able);
+        txtAreaUdfoerelseFunktionstilstand.setDisable(able);
+        txtAreaBetydningFunktionstilstand.setDisable(able);
+        txtAreaOenskerOgMålFunktionstilstand.setDisable(able);
+        txtAreaVurderingFunktionstilstand.setDisable(able);
+        txtAreaAarsagFunktionstilstand.setDisable(able);
+        txtAreaFagligtNotatFunktionstilstand.setDisable(able);
+        txtOpfoelgningFunktionstilstand.setDisable(able);
+
+        if (able){
+            comboBoxForventetTilstandFunktionstilstand.getSelectionModel().clearSelection();
+            txtAreaUdfoerelseFunktionstilstand.clear();
+            txtAreaBetydningFunktionstilstand.clear();
+            txtAreaOenskerOgMålFunktionstilstand.clear();
+            txtAreaVurderingFunktionstilstand.clear();
+            txtAreaAarsagFunktionstilstand.clear();
+            txtAreaFagligtNotatFunktionstilstand.clear();
+            txtOpfoelgningFunktionstilstand.clear();
+        }
+    }
+
+    private void populateHelbredstilstandsCombobox(){
+        List <String> tilstande = new ArrayList<>();
+        List <String> forventedetilstande = new ArrayList<>();
+
+        tilstande.add("Ingen aktuelle eller potentielle problemer");
+        tilstande.add("Potentielt problem");
+        tilstande.add("Aktuelt problem");
+
+        forventedetilstande.add("Forsvinder");
+        forventedetilstande.add("Mindskes");
+        forventedetilstande.add("Forbliver uændret");
+
+        comboBoxTilstandHelbredstilstand.getItems().addAll(tilstande);
+        comboBoxForventetTilstandHelbredstilstand.getItems().addAll(forventedetilstande);
+    }
+
+    private void populateFunktionstilstandsCombobox(){
+        List <Integer> niveauer = new ArrayList<>();
+        niveauer.add(0);
+        niveauer.add(1);
+        niveauer.add(2);
+        niveauer.add(3);
+        niveauer.add(4);
+        niveauer.add(9);
+
+        comboBoxForventetTilstandFunktionstilstand.getItems().addAll(niveauer);
+        comboBoxTilstandFunktionstilstand.getItems().addAll(niveauer);
+    }
+
+    private void populateTilstande(){
+        if (borger == null){
+            //TODO skal slettes, når borgeren kommer ind fra dashboard
+            return;
+        }
         int insertionCounter = 0;
 
-        // Setting up tooltips for the information buttons in the view that guides the student
-        btnInformationMestring.setTooltip(tooltipBank.getMestring());
-        btnInformationMotivation.setTooltip(tooltipBank.getMotivation());
-        btnInformationRessoucer.setTooltip(tooltipBank.getRessourcer());
-        btnInformationRoller.setTooltip(tooltipBank.getRoller());
-        btnInformationVaner.setTooltip(tooltipBank.getVaner());
-        btnInformationUddOgJob.setTooltip(tooltipBank.getUddannelseOgJob());
-        btnInformationLivshistorie.setTooltip(tooltipBank.getLivshistorie());
-        btnInformationNetvaerk.setTooltip(tooltipBank.getNetvaerk());
-        btnInformationHelbredsoplysninger.setTooltip(tooltipBank.getHelbredsoplysninger());
-        btnInformationHjaelpemidler.setTooltip(tooltipBank.getHjaelpemidler());
-        btnInformationBoligensIndretning.setTooltip(tooltipBank.getBoligensIndretning());
-
-
-        Helbredstilstand helbredstilstand = new Helbredstilstand();
-        Funktionstilstand funktionstilstand = new Funktionstilstand();
+        Helbredstilstand helbredstilstand = borger.getHelbredstilstand();
+        Funktionstilstand funktionstilstand = borger.getFunktionstilstand();
 
         HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandsKort = helbredstilstand.getHelbredsTilstandsKort();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = funktionstilstand.getFunktionsTilstandsKort();
@@ -126,6 +310,17 @@ public class SagsoplysningController implements Initializable {
             tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             tableView.getColumns().add(tableColumn);
             tableView.setMaxWidth(245.0);
+
+            // populates text areas as well as the comboboxes for a given subcategory
+            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HelbredstilstandsUnderkategori>() {
+                @Override
+                public void changed(ObservableValue<? extends HelbredstilstandsUnderkategori> observable, HelbredstilstandsUnderkategori oldValue, HelbredstilstandsUnderkategori newValue) {
+                    if (newValue != null){
+                        populateTxtAreasHelbredstilstand(newValue);
+                    }
+                }
+            });
+
             if(insertionCounter %2 == 0){
                 vBoxLeftHelbredstilstand.getChildren().add(tableView);
             } else {
@@ -146,6 +341,17 @@ public class SagsoplysningController implements Initializable {
             tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             tableView.getColumns().add(tableColumn);
             tableView.setMaxWidth(245.0);
+
+            // populates text areas as well as the comboboxes for a given subcategory
+            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<FunktionstilstandsUnderkategori>() {
+                @Override
+                public void changed(ObservableValue<? extends FunktionstilstandsUnderkategori> observable, FunktionstilstandsUnderkategori oldValue, FunktionstilstandsUnderkategori newValue) {
+                    if (newValue != null){
+                        populateTxtAreasFunktionstilstand(newValue);
+                    }
+                }
+            });
+
             if(insertionCounter %2 == 0){
                 vBoxLeftFunktionstilstand.getChildren().add(tableView);
             } else {
@@ -155,37 +361,54 @@ public class SagsoplysningController implements Initializable {
         }
     }
 
-
-    public void setDashboardController (DashboardController dashboardController){
-        this.dashboardController = dashboardController;
+    private void populateTxtAreasHelbredstilstand(HelbredstilstandsUnderkategori newValue){
+        comboBoxTilstandHelbredstilstand.getSelectionModel().select(newValue.getTilstandProperty().get());
+        comboBoxForventetTilstandHelbredstilstand.getSelectionModel().select(newValue.getForventetTilstandProperty().get());
+        txtAreaVurderingHelbredstilstand.setText(newValue.getVurderingProperty().get());
+        txtAreaAarsagHelbredstilstand.setText(newValue.getAarsagProperty().get());
+        txtAreaFagligtNotatHelbredstilstand.setText(newValue.getFagligNotatProperty().get());
+        lblOverkategoriHelbredstilstand.setText(newValue.getOverkategoriProperty().get());
+        lblTilstandsklassifikationHelbredstilstand.setText(newValue.getTilstandsklassifikationProperty().get());
     }
 
-    public void setCitizenModel(CitizenModel citizenModel) {
-        this.citizenModel = citizenModel;
+    private void populateTxtAreasFunktionstilstand(FunktionstilstandsUnderkategori newValue) {
+        comboBoxTilstandFunktionstilstand.getSelectionModel().select(Integer.valueOf(newValue.getNiveauProperty().get()));
+        comboBoxForventetTilstandFunktionstilstand.getSelectionModel().select(Integer.valueOf(newValue.getForventetTilstandProperty().get()));
+        txtAreaUdfoerelseFunktionstilstand.setText(newValue.getUdførelseProperty().get());
+        txtAreaBetydningFunktionstilstand.setText(newValue.getBetydningProperty().get());
+        txtAreaOenskerOgMålFunktionstilstand.setText(newValue.getOenskerOgMaalProperty().get());
+        txtAreaVurderingFunktionstilstand.setText(newValue.getVurderingProperty().get());
+        txtAreaAarsagFunktionstilstand.setText(newValue.getAarsagProperty().get());
+        txtAreaFagligtNotatFunktionstilstand.setText(newValue.getFagligNotatProperty().get());
+        txtOpfoelgningFunktionstilstand.setText(newValue.getOpfølgningProperty().get());
     }
 
-    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        //TODO
+
+    private void setTooltips(){
+        // Setting up tooltips for the information buttons in the view that guides the student
+        btnInformationMestring.setTooltip(tooltipBank.getMestring());
+        btnInformationMotivation.setTooltip(tooltipBank.getMotivation());
+        btnInformationRessoucer.setTooltip(tooltipBank.getRessourcer());
+        btnInformationRoller.setTooltip(tooltipBank.getRoller());
+        btnInformationVaner.setTooltip(tooltipBank.getVaner());
+        btnInformationUddOgJob.setTooltip(tooltipBank.getUddannelseOgJob());
+        btnInformationLivshistorie.setTooltip(tooltipBank.getLivshistorie());
+        btnInformationNetvaerk.setTooltip(tooltipBank.getNetvaerk());
+        btnInformationHelbredsoplysninger.setTooltip(tooltipBank.getHelbredsoplysninger());
+        btnInformationHjaelpemidler.setTooltip(tooltipBank.getHjaelpemidler());
+        btnInformationBoligensIndretning.setTooltip(tooltipBank.getBoligensIndretning());
     }
 
-    public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
-    }
-
-    public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        //TODO
+    private void setFunktionstilstandsTooltips() {
+        Image image = new Image("gui/resources/images/FunktionstilstandsNiveau.PNG");
+        ImageView imageView = new ImageView(image);
+        Tooltip tooltip = new Tooltip();
+        tooltip.setGraphic(imageView);
+        tooltip.setShowDuration(Duration.INDEFINITE);
+        tooltip.setShowDelay(Duration.millis(0));
+        tooltip.setHideDelay(Duration.seconds(2));
+        btnInformationFunktionstilstand.setTooltip(tooltip);
+        btnInformationFunktionstilstandCopy.setTooltip(tooltip);
     }
 
 

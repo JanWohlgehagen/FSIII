@@ -37,4 +37,9 @@ public interface IDatabaseFacade {
 
     public void deleteCitizen(Borger borger);
 
+    public void updateGenerelleOplysninger(Borger borger);
+
+    public void createGenerelleOplysninger(Borger borger);
+
+    public Borger getGenerelleOplysninger(Borger borger);
 }
