@@ -54,7 +54,7 @@ public class DBHelbredstilstandDAO {
                     "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.ID " +
                     "WHERE HS_Borger_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.IDProperty().get());
+            preparedStatement.setInt(1, borger.getIDProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
