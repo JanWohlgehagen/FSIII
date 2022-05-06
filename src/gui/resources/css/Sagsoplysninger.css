@@ -80,6 +80,20 @@
     -fx-font-weight: bold;
 }
 
+.addMedicineFieldBtn{
+    -fx-background-image: url("../images/addMedicine.png");
+    -fx-background-color: transparent;
+    -fx-background-size: 100% 100%;
+    -fx-border-radius: 25;
+    -fx-border-color: transparent;
+    -fx-padding: 1, 1, 1, 1;
+}
+
+.text-field{
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-alignment: center;
+}
 
 
 

@@ -7,8 +7,10 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -122,6 +124,8 @@ public class SagsoplysningController implements Initializable {
     private VBox vBoxLeftFunktionstilstand;
     @FXML
     private VBox vBoxRightFunktionstilstand;
+    @FXML
+    private VBox vBoxMedicinliste;
 
     @FXML
     private ScrollPane scrollPaneFunktionstilstand;
@@ -200,6 +204,19 @@ public class SagsoplysningController implements Initializable {
 
     public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
         //TODO
+    }
+
+    public void handleAddTxtFieldMedicineList(ActionEvent actionEvent) {
+        vBoxMedicinliste.getChildren().add(new TextField());
+    }
+
+    public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        extractMedicineList();
+        closeStage();
+    }
+
+    public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+        extractMedicineList();
     }
 
     private void updateBorgerInformationer(){
@@ -409,6 +426,17 @@ public class SagsoplysningController implements Initializable {
         tooltip.setHideDelay(Duration.seconds(2));
         btnInformationFunktionstilstand.setTooltip(tooltip);
         btnInformationFunktionstilstandCopy.setTooltip(tooltip);
+    }
+
+    private void extractMedicineList() {
+        List <Node> nodeList = vBoxMedicinliste.getChildren();
+        List<String> medicineList = new ArrayList<>();
+
+        for (Node node: nodeList) {
+            TextField txtField = (TextField) node;
+            if (!txtField.getText().isEmpty() || !txtField.getText().isBlank())
+                medicineList.add(txtField.getText());
+        }
     }
 
 
