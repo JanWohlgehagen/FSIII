@@ -149,9 +149,9 @@ public class DashboardController implements Initializable {
         this.dashboardController = dashboardController;
     }
 
-    public void setloginPerson(Person person){
-        this.loginPerson = person;
-        if(loginPerson.getUserType().equals(UserType.STUDENT)) {
+    public void setloginPerson(User user){
+        this.loginUser = user;
+        if(user.getUserType().equals(UserType.STUDENT)) {
             tabStudents.setDisable(true);
             tabTemplates.setDisable(true);
         }
