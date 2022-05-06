@@ -7,6 +7,7 @@ import be.FunktionstilstandsUnderkategori;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.model.FunktionstilstandModel;
+import gui.model.FunktionstilstandsUnderkategoriModel;
 import gui.util.CreateAndEditCaseScene;
 import gui.util.ISceneLoader;
 import gui.util.SagsoplysningScene;
@@ -72,7 +73,7 @@ public class CaseOpeningController implements Initializable {
     private CitizenModel citizenModel;
     private Funktionstilstand funktionstilstand;
     private FunktionstilstandModel funktionstilstandModel;
-    private FunktionstilstandsUnderkategori funktionstilstandsUnderkategori;
+    private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
     private DashboardController dashboardController;
 
 
@@ -106,6 +107,10 @@ public class CaseOpeningController implements Initializable {
         this.funktionstilstandModel = funktionstilstandModel;
     }
 
+    public void setFunktionstilstandsUnderkategoriModel(FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel) {
+        this.funktionstilstandsUnderkategoriModel = funktionstilstandsUnderkategoriModel;
+    }
+
     public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
@@ -117,6 +122,7 @@ public class CaseOpeningController implements Initializable {
         createAndEditCaseController.setDashboardController(dashboardController);
         createAndEditCaseController.setCaseModel(caseModel);
         createAndEditCaseController.setFunktionstilstandModel(funktionstilstandModel);
+        createAndEditCaseController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
     }
 
     public void handleRedigerSag(ActionEvent actionEvent) throws IOException {

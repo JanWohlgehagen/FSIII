@@ -1,10 +1,7 @@
 package dal;
 
 
-import be.Borger;
-import be.Case;
-import be.Credential;
-import be.Funktionstilstand;
+import be.*;
 import be.user.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
@@ -21,6 +18,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBCitizenDAO dbCitizenDAO;
     private DBGenerelInformationDAO dbGenerelInformationDAO;
     private DBFunktionstilstandDAO dbFunktionstilstandDAO;
+    private DBFunktionstilstandsUnderkategoriDAO dbFunktionstilstandsUnderkategoriDAO;
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
@@ -29,8 +27,8 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
         dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
-
         dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
+        dbFunktionstilstandsUnderkategoriDAO = new DBFunktionstilstandsUnderkategoriDAO(dbConnecting);
     }
 
     @Override
@@ -79,8 +77,13 @@ public class DatabaseFacade implements IDatabaseFacade {
         return dbFunktionstilstandDAO.getFunktionstilstandList();
     }
 
+    @Override
+    public List<String> getFunktiontilstandsUnderkategori() {
+        return dbFunktionstilstandsUnderkategoriDAO.getFunktionstilstandsUnderkategoriList();
+    }
 
-                                /***************************************************/
+
+    /***************************************************/
                                 /******************** Citizen **********************/
                                 /***************************************************/
 

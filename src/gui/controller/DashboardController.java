@@ -9,6 +9,7 @@ import bll.ManagerFacade;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.model.FunktionstilstandModel;
+import gui.model.FunktionstilstandsUnderkategoriModel;
 import gui.util.*;
 
 
@@ -46,6 +47,7 @@ public class DashboardController implements Initializable {
     private Case selectedCase;
     private Borger selectCitizen;
     private FunktionstilstandModel funktionstilstandModel;
+    private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
 
 
 
@@ -57,6 +59,7 @@ public class DashboardController implements Initializable {
                 caseModel = new CaseModel(new ManagerFacade());
                 citizenModel = new CitizenModel(new ManagerFacade());
                 funktionstilstandModel = new FunktionstilstandModel(new ManagerFacade());
+                funktionstilstandsUnderkategoriModel = new FunktionstilstandsUnderkategoriModel(new ManagerFacade());
 
                 lvCitizens.setItems(citizenModel.getAllCitizen());
 
@@ -97,6 +100,7 @@ public class DashboardController implements Initializable {
         caseOpeningController.setCaseModel(caseModel);
         caseOpeningController.setDashboardController(dashboardController);
         caseOpeningController.setFunktionstilstandModel(funktionstilstandModel);
+        caseOpeningController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
     }
 
     public void handleButtonOpfølgning(ActionEvent actionEvent) throws IOException {
