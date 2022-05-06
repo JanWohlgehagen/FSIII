@@ -24,17 +24,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CaseOpeningController implements Initializable {
-
-
-
     @FXML
     private GridPane parentGridPane;
     @FXML
     private ComboBox<Case> vaelgSagCbx;
-    @FXML
-    private TextField overtilstandTxtField;
-    @FXML
-    private TextField undertilstandTxtField;
     @FXML
     private TextField overkategoriTxtField;
     @FXML
