@@ -28,6 +28,19 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
 
     @FXML
+    private Button btnUdorelseLevering;
+    @FXML
+    private Button btnOpfolgning;
+    @FXML
+    private Button btnSagsaabning;
+    @FXML
+    private Button btnSagsOplysning;
+    @FXML
+    private Button btnAfgorelseBestilling;
+    @FXML
+    private Button btnPlanlaegning;
+
+    @FXML
     private TextField txtSearchBar;
     @FXML
     private  ListView<Borger> lvCitizens;
@@ -68,6 +81,14 @@ public class DashboardController implements Initializable {
         lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){
                 selectCitizen = newValue;
+            }
+            if(newValue != null && oldValue == null){
+                btnSagsaabning.setDisable(false);
+                btnSagsOplysning.setDisable(false);
+                btnAfgorelseBestilling.setDisable(false);
+                btnPlanlaegning.setDisable(false);
+                btnOpfolgning.setDisable(false);
+                btnUdorelseLevering.setDisable(false);
             }
         });
 
