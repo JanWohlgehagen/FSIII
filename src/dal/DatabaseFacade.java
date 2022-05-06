@@ -83,9 +83,10 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public List<String> getFunktiontilstandsUnderkategori() {
+    public List<String> getFunktionstilstandsUnderkategori() {
         return dbFunktionstilstandsUnderkategoriDAO.getFunktionstilstandsUnderkategoriList();
     }
+
 
 
                                 /***************************************************/
