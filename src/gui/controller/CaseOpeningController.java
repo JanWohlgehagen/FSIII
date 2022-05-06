@@ -5,7 +5,6 @@ import be.Funktionstilstand;
 import be.FunktionstilstandsUnderkategori;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
-import gui.model.FunktionstilstandModel;
 import gui.util.CreateAndEditCaseScene;
 import gui.util.ISceneLoader;
 import javafx.beans.property.StringProperty;
@@ -68,34 +67,22 @@ public class CaseOpeningController implements Initializable {
     private CitizenModel citizenModel;
     private Funktionstilstand funktionstilstand;
     private FunktionstilstandsUnderkategori funktionstilstandsUnderkategori;
-    private DashboardController dashboardController;
-    private FunktionstilstandModel funktionstilstandModel;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        
     }
 
     public void setCaseModel(CaseModel caseModel){
         this.caseModel = caseModel;
     }
 
-    public void setFunktionstilstandModel(FunktionstilstandModel funktionstilstandModel) {
-        this.funktionstilstandModel = funktionstilstandModel;
-    }
-
-    public void setDashboardController(DashboardController dashboardController) {
-        this.dashboardController = dashboardController;
-    }
-
     public void handleOpretSag(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CreateAndEditCaseController> createAndEditCaseScene = new CreateAndEditCaseScene();
         createAndEditCaseScene.loadNewScene(new Stage());
         CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
-        createAndEditCaseController.setDashboardController(dashboardController);
         createAndEditCaseController.setCaseModel(caseModel);
-        createAndEditCaseController.setFunktionstilstandModel(funktionstilstandModel);
     }
 
     public void handleRedigerSag(ActionEvent actionEvent) throws IOException {

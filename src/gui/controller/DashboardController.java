@@ -7,7 +7,6 @@ import be.user.User;
 import bll.ManagerFacade;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
-import gui.model.FunktionstilstandModel;
 import gui.util.*;
 
 
@@ -32,8 +31,6 @@ public class DashboardController implements Initializable {
     private CitizenModel citizenModel;
     private Case selectCase;
     private Borger selectCitizen;
-    private FunktionstilstandModel funktionstilstandModel;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,7 +38,10 @@ public class DashboardController implements Initializable {
             try {
                 caseModel = new CaseModel(new ManagerFacade());
                 citizenModel = new CitizenModel(new ManagerFacade());
+<<<<<<< Updated upstream
                 funktionstilstandModel = new FunktionstilstandModel(new ManagerFacade());
+=======
+>>>>>>> Stashed changes
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -70,8 +70,6 @@ public class DashboardController implements Initializable {
         caseOpeningScene.loadNewScene(new Stage());
         CaseOpeningController caseOpeningController = caseOpeningScene.getController();
         caseOpeningController.setCaseModel(caseModel);
-        caseOpeningController.setDashboardController(this);
-        caseOpeningController.setFunktionstilstandModel(funktionstilstandModel);
     }
 
     public void handleButtonOpfølgning(ActionEvent actionEvent) throws IOException {

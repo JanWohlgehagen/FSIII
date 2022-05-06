@@ -4,9 +4,7 @@ package dal;
 import be.Borger;
 import be.Case;
 import be.Credential;
-import be.Funktionstilstand;
 import be.user.User;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
@@ -19,7 +17,10 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBPersonDAO dbPersonDAO;
     private DBCaseDAO dbCaseDAO;
     private DBCitizenDAO dbCitizenDAO;
+<<<<<<< Updated upstream
     private DBFunktionstilstandDAO dbFunktionstilstandDAO;
+=======
+>>>>>>> Stashed changes
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
@@ -27,7 +28,11 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbPersonDAO = new DBPersonDAO(dbConnecting);
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
+<<<<<<< Updated upstream
         dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
+=======
+
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -69,11 +74,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public Case createCaseOnCitizen(Case newCase) {
         return dbCaseDAO.createCaseOnCitizen(newCase);
-    }
-
-    @Override
-    public List<String> getFunktionstilstand() {
-        return dbFunktionstilstandDAO.getFunktionstilstandList();
     }
 
 

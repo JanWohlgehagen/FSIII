@@ -29,12 +29,12 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <ComboBox fx:id="overkategoriCbx" maxWidth="500.0" promptText="Overkategori">
+            <ComboBox fx:id="overkategoriCbx" maxWidth="500.0" onAction="#handleOverkategori" promptText="Overkategori">
                <VBox.margin>
                   <Insets right="20.0" top="3.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox fx:id="underkategoriCbx" maxWidth="500.0" promptText="Underkategori">
+            <ComboBox fx:id="underkategoriCbx" maxWidth="500.0" onAction="#handleUnderkategori" promptText="Underkategori">
                <VBox.margin>
                   <Insets bottom="5.0" right="20.0" top="7.0" />
                </VBox.margin>

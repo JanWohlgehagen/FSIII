@@ -2,9 +2,7 @@ package bll.Interfaces;
 
 import be.Borger;
 import be.Case;
-import be.Funktionstilstand;
 import be.user.User;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
 
@@ -37,8 +35,11 @@ public interface IManagerFacade {
     public void updateCitizen(Borger borger);
 
     public void deleteCitizen (Borger borger);
+<<<<<<< Updated upstream
 
     //FUNKTIONSTILSTAND
 
     public List<String> getFunktionstilstandsList();
+=======
+>>>>>>> Stashed changes
 }

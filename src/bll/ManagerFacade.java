@@ -2,10 +2,8 @@ package bll;
 
 import be.Borger;
 import be.Case;
-import be.Funktionstilstand;
 import be.user.User;
 import bll.Interfaces.IManagerFacade;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
 
 import java.io.IOException;
@@ -16,13 +14,11 @@ public class ManagerFacade implements IManagerFacade {
     private final CredentialManager credentialManager;
     private final CaseManager caseManager;
     private final CitizenManager citizenManager;
-    private final FunktionstilstandManager funktionstilstandManager;
 
     public ManagerFacade() throws IOException {
         credentialManager = new CredentialManager(new DatabaseFacade());
         caseManager = new CaseManager(new DatabaseFacade());
         citizenManager = new CitizenManager(new DatabaseFacade());
-        funktionstilstandManager = new FunktionstilstandManager(new DatabaseFacade());
     }
 
                             /***************************************************/
@@ -100,10 +96,13 @@ public class ManagerFacade implements IManagerFacade {
         citizenManager.deleteCitizen(borger);
     }
 
+<<<<<<< Updated upstream
     @Override
     public List<String> getFunktionstilstandsList()  {
         return funktionstilstandManager.getFunktionstilstandsList();
     }
 
+=======
+>>>>>>> Stashed changes
 
 }
