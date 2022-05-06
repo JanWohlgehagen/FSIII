@@ -34,14 +34,12 @@ public class DBGenerelInformationDAO {
             preparedStatement.setInt(12, borger.getIDProperty().get());
 
             preparedStatement.executeQuery();
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke lave borgeren, tjek din forbindelse.", ButtonType.OK);
+            alert.setTitle("FSIII");
+            alert.show();
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke lave borgeren, tjek din forbindelse.", ButtonType.OK);
-        alert.setTitle("FSIII");
-        alert.show();
     }
 
     public void createGenerelleOplysninger(Borger borger) {
@@ -50,14 +48,12 @@ public class DBGenerelInformationDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, borger.getIDProperty().get());
             ResultSet resultSet = preparedStatement.executeQuery();
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke lave borgeren, tjek din forbindelse.", ButtonType.OK);
+            alert.setTitle("FSIII");
+            alert.show();
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke lave borgeren, tjek din forbindelse.", ButtonType.OK);
-        alert.setTitle("FSIII");
-        alert.show();
     }
 
     public Borger getGenerelleOplysninger(Borger borger) {
@@ -83,15 +79,13 @@ public class DBGenerelInformationDAO {
             }
             return borger;
 
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke lave borgeren, tjek din forbindelse.", ButtonType.OK);
+            alert.setTitle("FSIII");
+            alert.show();
+            return null;
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke lave borgeren, tjek din forbindelse.", ButtonType.OK);
-        alert.setTitle("FSIII");
-        alert.show();
-        return null;
     }
 }
 

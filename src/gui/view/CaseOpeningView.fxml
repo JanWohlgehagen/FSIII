@@ -58,6 +58,8 @@
                         <Label text="Borgers alder:" />
                         <Label text="Aktive sager:" />
                         <Label text="Sagsansvarlig:" />
+                        <Label layoutX="10.0" layoutY="142.0" text="Sagshenvisning:" />
+                        <Label layoutX="10.0" layoutY="175.0" text="Opfølgning Tag:" />
                      </children>
                      <HBox.margin>
                         <Insets />
@@ -70,6 +72,8 @@
                         <Label fx:id="alderLbl" text="Alder placeholder" />
                         <Label fx:id="antalAktiveSagerLbl" text="Sag antal placeholder" />
                         <Label fx:id="sagsansvarligLbl" text="navn placeholder" />
+                        <Label fx:id="lblHenvisning" layoutX="10.0" layoutY="142.0" text="navn placeholder" />
+                        <Label fx:id="lblOpfolgningsTag" layoutX="10.0" layoutY="175.0" text="Tag placeholder" />
                      </children>
                   </VBox>
                </children>
@@ -114,7 +118,7 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Henvisning og beskrivelse:">
+                  <Label text="Beskrivelse:">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>

@@ -67,6 +67,7 @@ CREATE TABLE [Generelle_Oplysninger]
     [Livshistorie] NVARCHAR(200) NULL,
     [Netvaerk] NVARCHAR(200) NULL,
     [Helbredsoplysninger] NVARCHAR(200) NULL,
+    [Helhedsvurdering] NVARCHAR(250) NULL,
     [hjaelpemidler] NVARCHAR(200) NULL,
     [Boligens_Indretning] NVARCHAR(200) NULL,
 

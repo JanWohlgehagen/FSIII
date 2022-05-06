@@ -27,6 +27,8 @@ import java.util.ResourceBundle;
 
 public class CaseOpeningController implements Initializable {
 
+
+
     @FXML
     private GridPane parentGridPane;
     @FXML
@@ -50,6 +52,10 @@ public class CaseOpeningController implements Initializable {
     @FXML
     private Label sagsansvarligLbl;
     @FXML
+    private Label lblHenvisning;
+    @FXML
+    private Label lblOpfolgningsTag;
+    @FXML
     private Button opretSagBtn;
     @FXML
     private Button redigerSagBtn;
@@ -71,7 +77,6 @@ public class CaseOpeningController implements Initializable {
     private Borger borger;
     private CaseModel caseModel;
     private CitizenModel citizenModel;
-    private Funktionstilstand funktionstilstand;
     private FunktionstilstandModel funktionstilstandModel;
     private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
     private DashboardController dashboardController;
@@ -89,7 +94,20 @@ public class CaseOpeningController implements Initializable {
 
         vaelgSagCbx.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){
+                overkategoriTxtField.setText(newValue.getOverkategoriTitleProperty().get());
+                underkategoriTxtField.setText(newValue.getUnderkategoriTitleProperty().get());
+                fornavnLbl.setText(borger.getFirstNameProperty().get());
+                efternavnLbl.setText(borger.getLastNameProperty().get());
+                alderLbl.setText(String.valueOf(borger.getAgeProperty().get()));
+                antalAktiveSagerLbl.setText("Skal denne være her???");
+                sagsansvarligLbl.setText("Hr/Fru Lærer");
+                lblHenvisning.setText(newValue.getHenvisningProperty().get());
+                lblOpfolgningsTag.setText(newValue.getOpfoelgningstagProperty().get());
                 beskrivelseTxtArea.setText(newValue.getCaseDescriptionProperty().get());
+                aarsagsfritekstTxtArea.setText(newValue.getAasagsfritekstProperty().get());
+                aarsagsdiagnoseTxtArea.setText(newValue.getAasagsdiagnoseProperty().get());
+                aarsagstilstandTxtArea.setText(newValue.getAasagstilstandProperty().get());
+                borgerMaalTxtArea.setText(newValue.getBorgerensonskerProperty().get());
             }
         });
 
@@ -103,16 +121,16 @@ public class CaseOpeningController implements Initializable {
         this.citizenModel = citizenModel;
     }
 
+    public void setDashboardController(DashboardController dashboardController) {
+        this.dashboardController = dashboardController;
+    }
+
     public void setFunktionstilstandModel(FunktionstilstandModel funktionstilstandModel) {
         this.funktionstilstandModel = funktionstilstandModel;
     }
 
     public void setFunktionstilstandsUnderkategoriModel(FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel) {
         this.funktionstilstandsUnderkategoriModel = funktionstilstandsUnderkategoriModel;
-    }
-
-    public void setDashboardController(DashboardController dashboardController) {
-        this.dashboardController = dashboardController;
     }
 
     public void handleOpretSag(ActionEvent actionEvent) throws IOException {
@@ -139,40 +157,26 @@ public class CaseOpeningController implements Initializable {
         vaelgSagCbx.getItems().addAll(caseModel.getAllCasesOnCitizen(borger.getIDProperty().get()));
     }
 
-    public void setUnderkategoriTxtField(StringProperty underkategoriTxtField) {
-        //return this.underkategoriTxtField = funktionstilstandsUnderkategori.getTilstandsklassifikationProperty()
-        /** skal den parses på en eller anden måde, eller skal jeg ændre den fra TextField om til StringProperty? **/
-        //this.underkategoriTxtField = underkategoriTxtField;
-    }
-
-    public void setOverkategoriTxtField(TextField overkategoriTxtField) {
-        this.overkategoriTxtField = overkategoriTxtField;
-    }
-
-    public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) throws IOException {
-        ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
-        sagsoplysningsScene.loadNewScene(new Stage());
-        SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
-        sagsoplysningController.setDashboardController(dashboardController);
-        sagsoplysningController.setCitizenModel(citizenModel);
-        closeStage();
-    }
-
     public void handleMouseDashboardScene(MouseEvent mouseEvent) {
-        closeStage();
+        setSelectedCase();
+        getStage().close();
     }
 
     public void handleMouseSagsoplysningsScene(MouseEvent mouseEvent) throws IOException {
+        setSelectedCase();
         ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
-        sagsoplysningsScene.loadNewScene(new Stage());
+        sagsoplysningsScene.loadNewScene(getStage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
         sagsoplysningController.setCitizenModel(citizenModel);
-        closeStage();
+        getStage().close();
     }
 
-    private void closeStage(){
-        Stage stage = (Stage) parentGridPane.getScene().getWindow();
-        stage.close();
+    private Stage getStage(){
+        return (Stage) parentGridPane.getScene().getWindow();
+    }
+
+    private void setSelectedCase(){
+        dashboardController.setSelectedCase(vaelgSagCbx.getSelectionModel().getSelectedItem());
     }
 }

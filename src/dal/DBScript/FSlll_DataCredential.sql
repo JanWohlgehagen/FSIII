@@ -19,38 +19,38 @@ INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Jo', 'Hansen', 
 INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Bo', 'Rasmussen', 80, 0)
 INSERT INTO Borger (FirstName, LastName, Age, Template) VALUES ('Bent', 'Z', 83, 0)
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (1, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (1, 'Egenomsorg', 'Spise', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (1, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (1, 'Smerter og sanseindtryk', 'Problemer med sygdomsindsigt', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan','Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (2, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (2, 'Egenomsorg', 'Spise', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan','Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (2, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (2, 'Smerter og sanseindtryk', 'Problemer med sygdomsindsigt', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan','Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (3, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (3, 'Egenomsorg', 'Spise', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan','Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (3, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (3, 'Smerter og sanseindtryk', 'Problemer med sygdomsindsigt', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (4, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (4, 'Egenomsorg', 'Spise', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (4, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (4, 'Smerter og sanseindtryk', 'Problemer med sygdomsindsigt', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan','Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (5, 'braket Arm', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (5, 'Egenomsorg', 'Spise', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (5, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (5, 'Smerter og sanseindtryk', 'Problemer med sygdomsindsigt', 'Der er ikke en plan',  'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (6, 'braket Arm1', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (6, 'Egenomsorg', 'Spise',  'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
 
-INSERT INTO [Case] (Borger_ID, Title, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
-VALUES (6, 'braket ben', 'Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')
+INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning, Description, Aasagsfritekst, Aasagsdiagnose, Aasagstilstand, Borgerensonsker, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag)
+VALUES (6, 'Smerter og sanseindtryk', 'Problemer med sygdomsindsigt', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan', 'Der er ikke en plan','Der er ikke en plan','Det ved ikke', 0,'test', 'Der er ikke en plan', 'Fortsættes')

@@ -17,6 +17,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateAndEditCaseController implements Initializable {
@@ -66,15 +68,22 @@ public class CreateAndEditCaseController implements Initializable {
     private DashboardController dashboardController;
     private FunktionstilstandModel funktionstilstandModel;
     private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
+   // private List<String> funktionstilstandsUnderkategoriList;
+    //private List<String> funktionstilstandsList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //funktionstilstandsUnderkategoriList = new ArrayList<>();
+        //funktionstilstandsList = new ArrayList<>();
+
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
-            ObservableList<String> funktionstilstandsList = FXCollections.observableList(funktionstilstandModel.getFunktionstilstandsList());
-            overkategoriCbx.setItems(funktionstilstandsList);
-            ObservableList<String> funktionstilstandsUnderkategoriList = FXCollections.observableList(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
-            underkategoriCbx.setItems(funktionstilstandsUnderkategoriList);
+
+            overkategoriCbx.getItems().addAll(funktionstilstandModel.getFunktionstilstandsList());
+            underkategoriCbx.getItems().addAll(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
+
+            //funktionstilstandsList.addAll();
+            //funktionstilstandsUnderkategoriList.addAll();
         });
     }
 
@@ -95,7 +104,7 @@ public class CreateAndEditCaseController implements Initializable {
     }
 
     public void handleGem(ActionEvent actionEvent) {
-        Case newCase = new Case(2, txtTitle.getText(), beskrivelseTxtArea.getText()); // skal lige rettes til
+        Case newCase = new Case(borger.getIDProperty().get(), txtTitle.getText(), beskrivelseTxtArea.getText());
         newCase.setIsBevilget(cbBevilget.isSelected());
         newCase.setBevillingstekst("");
         newCase.setPlan("");

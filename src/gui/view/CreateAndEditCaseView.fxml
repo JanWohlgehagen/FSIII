@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -26,8 +25,7 @@
     <children>
       <VBox spacing="2.0" GridPane.rowSpan="2">
          <children>
-            <Label text="Label" />
-            <Label text="Funktionsevnetilstande:">
+            <Label text="Funktionsevne- / Helbredstilstande:">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -44,29 +42,22 @@
             </ComboBox>
             <HBox spacing="10.0">
                <children>
-                  <VBox spacing="12.0">
+                  <VBox prefHeight="87.0" prefWidth="119.0" spacing="12.0">
                      <children>
-                        <Label text="Title" />
-                        <Label text="Opfølgning Tag">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin></Label>
-                        <Label prefHeight="21.0" prefWidth="63.0" text="Bevilget">
+                        <Label prefHeight="21.0" prefWidth="100.0" text="Henvisning:">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label text="Aktive sager:" />
+                        <Label prefHeight="21.0" prefWidth="159.0" text="Aktive sager:" />
                         <Label text="Sagsansvarlig:" />
                      </children>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </VBox>
-                  <VBox spacing="12.0">
+                  <VBox prefHeight="87.0" prefWidth="90.0" spacing="12.0">
                      <children>
-                        <TextField fx:id="txtTitle" />
-                        <TextField fx:id="txtOpfoelgningTag" layoutX="10.0" layoutY="47.0" />
                         <CheckBox fx:id="cbBevilget" mnemonicParsing="false" />
                      </children>
                   </VBox>
