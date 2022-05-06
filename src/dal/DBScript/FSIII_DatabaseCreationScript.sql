@@ -166,7 +166,7 @@ CREATE TABLE [F_Tilstandsvurdering]
     [Vurdering] VARCHAR(200) NULL,
     [Aarsag] VARCHAR(200) NULL,
     [Faglig_Notat] VARCHAR(200) NULL,
-    [Forvente_Tilstand] INT NULL,
+    [Forventet_Tilstand] INT NULL,
     [Opfoelgning] NVARCHAR (200) NULL,
 
     CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_ID,FS_UK_ID),
