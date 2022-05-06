@@ -483,7 +483,7 @@
                </rowConstraints>
                <children>
                   <Label styleClass="labelTitle" text="Medicinliste" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <ScrollPane fitToWidth="true" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <ScrollPane fitToWidth="true" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" GridPane.rowIndex="1">
                      <content>
                         <VBox>
                            <children>
