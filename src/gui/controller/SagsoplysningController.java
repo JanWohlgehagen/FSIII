@@ -2,6 +2,8 @@ package gui.controller;
 
 import be.*;
 import gui.model.CitizenModel;
+import gui.util.BestillingsScene;
+import gui.util.ISceneLoader;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
@@ -18,6 +20,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -191,6 +195,7 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        //TODO
         closeStage();
     }
 
@@ -199,24 +204,47 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        //TODO
         closeStage();
     }
 
-    public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) {
+    public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         //TODO
+        goToNextScene();
+    }
+
+    public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        extractMedicineList();
+        //TODO
+        closeStage();
+    }
+
+    public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+        extractMedicineList();
+        //TODO
+        goToNextScene();
+    }
+
+    public void omraadeOgHelbredsvurderingHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        //TODO
+        closeStage();
+    }
+
+    public void omraadeOgHelbredsvurderingHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+        //TODO
+        goToNextScene();
     }
 
     public void handleAddTxtFieldMedicineList(ActionEvent actionEvent) {
         vBoxMedicinliste.getChildren().add(new TextField());
     }
 
-    public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        extractMedicineList();
-        closeStage();
-    }
-
-    public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) {
-        extractMedicineList();
+    private void goToNextScene() throws IOException {
+        ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
+        bestillingsScene.loadNewScene((Stage) tabPaneParent.getScene().getWindow());
+        BestillingsViewController bestillingsViewController = bestillingsScene.getController();
+        bestillingsViewController.setBestillingsViewController(bestillingsViewController);
+        bestillingsViewController.setDashboardController(dashboardController);
     }
 
     private void updateBorgerInformationer(){
@@ -398,6 +426,8 @@ public class SagsoplysningController implements Initializable {
         txtAreaAarsagFunktionstilstand.setText(newValue.getAarsagProperty().get());
         txtAreaFagligtNotatFunktionstilstand.setText(newValue.getFagligNotatProperty().get());
         txtOpfoelgningFunktionstilstand.setText(newValue.getOpfølgningProperty().get());
+        lblOverkategoriFunktionstilstand.setText(newValue.getOverKategoriProperty().get());
+        lblTilstandsklassifikationFunktionstilstand.setText(newValue.getTilstandsklassifikationProperty().get());
     }
 
 

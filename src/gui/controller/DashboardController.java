@@ -116,18 +116,21 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
+        /*
         if(selectedCase == null)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
         }
         else {
+
+         */
             ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
             bestillingsScene.loadNewScene(new Stage());
             BestillingsViewController bestillingsViewController = bestillingsScene.getController();
             bestillingsViewController.setBestillingsViewController(bestillingsViewController);
-            bestillingsViewController.setCurrentCase(selectedCase);
-        }
+            bestillingsViewController.setDashboardController(dashboardController);
+        //}
     }
 
     public void handleButtonPlanlægning(ActionEvent actionEvent) throws IOException {

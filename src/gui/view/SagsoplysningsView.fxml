@@ -470,6 +470,51 @@
             </GridPane>
         </content>
       </Tab>
+      <Tab text="Område &amp; Helbredsvurdering">
+        <content>
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
+               </rowConstraints>
+               <children>
+                  <HBox alignment="BOTTOM_RIGHT" spacing="15.0" GridPane.rowIndex="1">
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#omraadeOgHelbredsvurderingHandleSaveAndExitBtn" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
+                              <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#omraadeOgHelbredsvurderingHandleSaveAndNextBtn" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
+                              <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+        </content>
+      </Tab>
       <Tab text="Medicinliste">
         <content>
             <GridPane>
@@ -512,7 +557,7 @@
                         </VBox>
                      </content>
                      <GridPane.margin>
-                        <Insets bottom="25.0" left="150.0" right="150.0" />
+                        <Insets bottom="25.0" left="125.0" right="125.0" />
                      </GridPane.margin>
                   </ScrollPane>
                   <HBox alignment="BOTTOM_RIGHT" spacing="15.0" GridPane.rowIndex="2">
@@ -546,18 +591,6 @@
                      </children>
                   </HBox>
                </children>
-            </GridPane>
-        </content>
-      </Tab>
-      <Tab text="Område &amp; Helbredsvurdering">
-        <content>
-            <GridPane>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
             </GridPane>
         </content>
       </Tab>
