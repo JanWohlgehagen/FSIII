@@ -49,13 +49,14 @@ public class DBFunktionstilstandDAO {
                 int UKID = resultSet.getInt(3);
                 if(UKID ==1)
                 {
-                    OKListe1.
+
                 }
 
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return null;
     }
 
 

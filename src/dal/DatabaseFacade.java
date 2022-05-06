@@ -95,7 +95,6 @@ public class DatabaseFacade implements IDatabaseFacade {
 
         for(Borger b: allCitizens)
         {
-            b.setFunktionstilstand(dbFunktionstilstandDAO.);
         }
         return dbCitizenDAO.getAllCitizens();
     }
