@@ -29,6 +29,8 @@ public interface IDatabaseFacade {
 
     public List<String> getFunktionstilstand();
 
+    public List<String> getFunktiontilstandsUnderkategori();
+
     //Citizen DAL Functions
 
     public Borger createCitizen(Borger borger);

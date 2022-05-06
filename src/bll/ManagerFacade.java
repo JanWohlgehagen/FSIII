@@ -17,12 +17,14 @@ public class ManagerFacade implements IManagerFacade {
     private final CaseManager caseManager;
     private final CitizenManager citizenManager;
     private final FunktionstilstandManager funktionstilstandManager;
+    private final FunktionstilstandsUnderkategoriManager funktionstilstandsUnderkategoriManager;
 
     public ManagerFacade() throws IOException {
         credentialManager = new CredentialManager(new DatabaseFacade());
         caseManager = new CaseManager(new DatabaseFacade());
         citizenManager = new CitizenManager(new DatabaseFacade());
         funktionstilstandManager = new FunktionstilstandManager(new DatabaseFacade());
+        funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(new DatabaseFacade());
     }
 
                             /***************************************************/
@@ -116,6 +118,11 @@ public class ManagerFacade implements IManagerFacade {
     }
     public List<String> getFunktionstilstandsList()  {
         return funktionstilstandManager.getFunktionstilstandsList();
+    }
+
+    @Override
+    public List<String> getFunktionstilstandsUnderkategoriList() {
+        return funktionstilstandsUnderkategoriManager.getFunktionstilstandsUnderkategoriList();
     }
 
 

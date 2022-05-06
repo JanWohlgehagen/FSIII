@@ -47,4 +47,6 @@ public interface IManagerFacade {
     //FUNKTIONSTILSTAND
 
     public List<String> getFunktionstilstandsList();
+
+    public List<String> getFunktionstilstandsUnderkategoriList();
 }

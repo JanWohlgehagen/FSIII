@@ -2,8 +2,10 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
+import bll.FunktionstilstandsUnderkategoriManager;
 import gui.model.CaseModel;
 import gui.model.FunktionstilstandModel;
+import gui.model.FunktionstilstandsUnderkategoriModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,6 +65,7 @@ public class CreateAndEditCaseController implements Initializable {
     private Borger borger;
     private DashboardController dashboardController;
     private FunktionstilstandModel funktionstilstandModel;
+    private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,6 +73,8 @@ public class CreateAndEditCaseController implements Initializable {
             borger = dashboardController.getSelectedCitizen();
             ObservableList<String> funktionstilstandsList = FXCollections.observableList(funktionstilstandModel.getFunktionstilstandsList());
             overkategoriCbx.setItems(funktionstilstandsList);
+            ObservableList<String> funktionstilstandsUnderkategoriList = FXCollections.observableList(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
+            underkategoriCbx.setItems(funktionstilstandsUnderkategoriList);
         });
     }
 
@@ -79,6 +84,10 @@ public class CreateAndEditCaseController implements Initializable {
 
     public void setFunktionstilstandModel(FunktionstilstandModel funktionstilstandModel) {
         this.funktionstilstandModel = funktionstilstandModel;
+    }
+
+    public void setFunktionstilstandsUnderkategoriModel(FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel) {
+        this.funktionstilstandsUnderkategoriModel =funktionstilstandsUnderkategoriModel;
     }
 
     public void setCaseModel(CaseModel caseModel){
