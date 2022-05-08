@@ -85,7 +85,7 @@ public class DBHelbredstilstandDAO {
 
 
 
-        public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger) {
+    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger) {
         Helbredstilstand helbredstilstand = new Helbredstilstand();
         List<HelbredstilstandsUnderkategori> OKListe1 = new ArrayList<>();
         List<HelbredstilstandsUnderkategori> OKListe2 = new ArrayList<>();
@@ -397,9 +397,6 @@ public class DBHelbredstilstandDAO {
             throwables.printStackTrace();
             return null;
         }
-
-
-
     }
 }
 

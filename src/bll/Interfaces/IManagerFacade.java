@@ -55,4 +55,7 @@ public interface IManagerFacade {
     //HELBREDSTILSTAND
 
     public Helbredstilstand getEmptyHelbredsTilstand();
+    public void updateHelbredstilstand(Borger borger);
+
+    public void deleteHelbredstilstand (Borger borger);
 }

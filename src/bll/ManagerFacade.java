@@ -117,6 +117,10 @@ public class ManagerFacade implements IManagerFacade {
         return citizenManager.getGenerelleOplysninger(borger);
     }
 
+                                /***************************************************/
+                                /******************* Tilstande *********************/
+                                /***************************************************/
+
     @Override
     public void createEmptyTilstande(Borger borger) {
         citizenManager.createEmptyTilstande(borger);
@@ -139,6 +143,16 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public Helbredstilstand getEmptyHelbredsTilstand() {
         return helbredstilstandManager.getEmptyHelbredstilstand();
+    }
+
+    @Override
+    public void updateHelbredstilstand(Borger borger) {
+        helbredstilstandManager.updateHelbredstilstand(borger);
+    }
+
+    @Override
+    public void deleteHelbredstilstand(Borger borger) {
+        helbredstilstandManager.deleteHelbredstilstand(borger);
     }
 
 
