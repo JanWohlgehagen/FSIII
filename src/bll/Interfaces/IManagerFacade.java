@@ -1,8 +1,6 @@
 package bll.Interfaces;
 
-import be.Borger;
-import be.Case;
-import be.Funktionstilstand;
+import be.*;
 import be.user.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
@@ -44,9 +42,17 @@ public interface IManagerFacade {
 
     public Borger getGenerelleOplysninger(Borger borger);
 
+    public void createEmptyTilstande(Borger borger);
+
     //FUNKTIONSTILSTAND
 
     public List<String> getFunktionstilstandsList();
 
     public List<String> getFunktionstilstandsUnderkategoriList();
+
+    public Funktionstilstand getEmptyFunktionsTilstand();
+
+    //HELBREDSTILSTAND
+
+    public Helbredstilstand getEmptyHelbredsTilstand();
 }

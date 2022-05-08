@@ -1,9 +1,6 @@
 package dal.interfaces;
 
-import be.Borger;
-import be.Case;
-import be.Credential;
-import be.Funktionstilstand;
+import be.*;
 import be.user.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
@@ -51,5 +48,22 @@ public interface IDatabaseFacade {
 
     //Tilstande Functions
 
-    public void setTilstandeOnCitizen(Borger borger);
+    public void getTilstandeOnCitizen(Borger borger);
+
+    public void createEmptyFunktionstilstand (Borger borger);
+
+    public void updateFunktiontilstand(Borger borger);
+
+    public void deleteFunktionstilstandOnCitizen(Borger borger);
+
+
+    public void createEmptyHelbredstilstand (Borger borger);
+
+    public void updateHelbredstilstand(Borger borger);
+
+    public void deleteHelbredstilstandOnCitizen(Borger borger);
+
+    public Funktionstilstand getEmptyFunktionsTilstand();
+
+    public Helbredstilstand getEmptyHelbredsTilstand();
 }

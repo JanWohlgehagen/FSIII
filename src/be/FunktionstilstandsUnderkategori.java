@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 public class FunktionstilstandsUnderkategori {
 
-
+    private IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty overKategori = new SimpleStringProperty();
 
     // The citizen's own input
@@ -25,8 +25,16 @@ public class FunktionstilstandsUnderkategori {
     private IntegerProperty niveau = new SimpleIntegerProperty();
     private IntegerProperty forventetTilstand = new SimpleIntegerProperty();
 
-    public FunktionstilstandsUnderkategori(String udførelse, String betydning, String oenskerOgMaal, String tilstandsklassifikation, String vurdering,
+    public FunktionstilstandsUnderkategori(int id, String tilstandsklassifikation, String overKategori)
+    {
+        this.id.set(id);
+        this.tilstandsklassifikation.set(tilstandsklassifikation);
+        this.overKategori.set(overKategori);
+
+    }
+    public FunktionstilstandsUnderkategori(int id,String udførelse, String betydning, String oenskerOgMaal, String tilstandsklassifikation, String vurdering,
                                            String aarsag, String fagligNotat, String opfølgning, String overKategori, int niveau, int forventetTilstand) {
+        this.id.set(id);
         this.udførelse.set(udførelse);
         this.betydning.set(betydning);
         this.oenskerOgMaal.set(oenskerOgMaal);
@@ -45,6 +53,14 @@ public class FunktionstilstandsUnderkategori {
         this.tilstandsklassifikation.set(tilstandsklassifikation);
         this.niveau.set(niveau);
         this.setOverKategori(overKategori);
+    }
+
+    public IntegerProperty getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
     }
 
     public StringProperty getUdførelseProperty() {

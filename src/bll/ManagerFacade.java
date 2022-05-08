@@ -1,8 +1,6 @@
 package bll;
 
-import be.Borger;
-import be.Case;
-import be.Funktionstilstand;
+import be.*;
 import be.user.User;
 import bll.Interfaces.IManagerFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -18,6 +16,7 @@ public class ManagerFacade implements IManagerFacade {
     private final CitizenManager citizenManager;
     private final FunktionstilstandManager funktionstilstandManager;
     private final FunktionstilstandsUnderkategoriManager funktionstilstandsUnderkategoriManager;
+    private final HelbredstilstandManager helbredstilstandManager;
 
     public ManagerFacade() throws IOException {
         credentialManager = new CredentialManager(new DatabaseFacade());
@@ -25,6 +24,7 @@ public class ManagerFacade implements IManagerFacade {
         citizenManager = new CitizenManager(new DatabaseFacade());
         funktionstilstandManager = new FunktionstilstandManager(new DatabaseFacade());
         funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(new DatabaseFacade());
+        helbredstilstandManager = new HelbredstilstandManager(new DatabaseFacade());
     }
 
                             /***************************************************/
@@ -116,6 +116,12 @@ public class ManagerFacade implements IManagerFacade {
     public Borger getGenerelleOplysninger(Borger borger) {
         return citizenManager.getGenerelleOplysninger(borger);
     }
+
+    @Override
+    public void createEmptyTilstande(Borger borger) {
+        citizenManager.createEmptyTilstande(borger);
+    }
+
     public List<String> getFunktionstilstandsList()  {
         return funktionstilstandManager.getFunktionstilstandsList();
     }
@@ -123,6 +129,16 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public List<String> getFunktionstilstandsUnderkategoriList() {
         return funktionstilstandsUnderkategoriManager.getFunktionstilstandsUnderkategoriList();
+    }
+
+    @Override
+    public Funktionstilstand getEmptyFunktionsTilstand() {
+        return funktionstilstandsUnderkategoriManager.getFunktionsTilstandUnderkategorier();
+    }
+
+    @Override
+    public Helbredstilstand getEmptyHelbredsTilstand() {
+        return helbredstilstandManager.getEmptyHelbredstilstand();
     }
 
 

@@ -1,11 +1,14 @@
 package be;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class HelbredstilstandsUnderkategori {
 
     //tilstandsklassifikation is essentially the title (or category)
+    private IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty tilstandsklassifikation = new SimpleStringProperty();
     private StringProperty overkategori = new SimpleStringProperty();
     private StringProperty tilstand = new SimpleStringProperty();
@@ -14,7 +17,16 @@ public class HelbredstilstandsUnderkategori {
     private StringProperty aarsag = new SimpleStringProperty();
     private StringProperty fagligNotat = new SimpleStringProperty();
 
-    public HelbredstilstandsUnderkategori(String tilstandsklassifikation, String overkategori, String tilstand, String forventetTilstand, String vurdering, String aarsag, String fagligNotat) {
+    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori)
+    {
+        this.id.set(ID);
+        this.tilstandsklassifikation.set(tilstandsklassifikation);
+        this.overkategori.set(overkategori);
+
+    }
+
+    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori, String tilstand, String forventetTilstand, String vurdering, String aarsag, String fagligNotat) {
+        this.id.set(ID);
         this.setTilstand(tilstand);
         this.setForventetTilstand(forventetTilstand);
         this.setOverkategori(overkategori);
@@ -30,6 +42,13 @@ public class HelbredstilstandsUnderkategori {
         this.setTilstandsklassifikation(tilstandsklassifikation);
     }
 
+    public IntegerProperty getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
+    }
 
     public StringProperty getTilstandProperty() {
         return tilstand;

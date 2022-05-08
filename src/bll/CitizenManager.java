@@ -49,4 +49,10 @@ public class CitizenManager {
     public Borger getGenerelleOplysninger(Borger borger){
         return databaseFacade.getGenerelleOplysninger(borger);
     }
+
+    public void createEmptyTilstande(Borger borger)
+    {
+        databaseFacade.createEmptyHelbredstilstand(borger);
+        databaseFacade.createEmptyFunktionstilstand(borger);
+    }
 }

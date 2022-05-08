@@ -5,9 +5,6 @@ import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-
-import java.util.List;
 
 public class CitizenModel {
     private ObservableList<Borger> allCitizens;
@@ -35,12 +32,18 @@ public class CitizenModel {
 
 
     public void createCitizen(Borger borger) {
+
+        borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
+        borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
         if (borger.isTemplateProperty().get())
         {
             allTemplates.add(managerFacade.createCitizen(borger));
+
+            managerFacade.createEmptyTilstande(borger);
         }
         else
         allCitizens.add(managerFacade.createCitizen(borger));
+        managerFacade.createEmptyTilstande(borger);
     }
 
 
@@ -56,4 +59,5 @@ public class CitizenModel {
     public void updateGenerelleOplysninger(Borger borger) {
         managerFacade.updateGenerelleOplysninger(borger);
     }
+
 }

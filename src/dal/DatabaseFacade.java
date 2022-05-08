@@ -3,7 +3,6 @@ package dal;
 
 import be.*;
 import be.user.User;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
@@ -144,10 +143,58 @@ public class DatabaseFacade implements IDatabaseFacade {
                                 /******************** Tilstande ********************/
                                 /***************************************************/
     @Override
-    public void setTilstandeOnCitizen(Borger borger) {
+    public void getTilstandeOnCitizen(Borger borger) {
         borger.setFunktionstilstand(dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger));
         borger.setHelbredstilstand(dbHelbredstilstandDAO.getHelbredstilstandOnCitizen(borger));
 
+    }
+
+    @Override
+    public void createEmptyFunktionstilstand(Borger borger) {
+        dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger);
+
+    }
+
+    @Override
+    public void updateFunktiontilstand(Borger borger) {
+        dbFunktionstilstandDAO.updateFunktionstilstand(borger);
+
+    }
+
+    @Override
+    public void deleteFunktionstilstandOnCitizen(Borger borger) {
+        dbFunktionstilstandDAO.deleteFunktionstilstandOnCitizen(borger);
+
+    }
+
+    @Override
+    public void createEmptyHelbredstilstand(Borger borger) {
+        dbHelbredstilstandDAO.createEmptyHelbredstilstandOnCitizen(borger);
+    }
+
+    @Override
+    public void updateHelbredstilstand(Borger borger) {
+        dbHelbredstilstandDAO.updateHelbredstilstand(borger);
+
+    }
+
+    @Override
+    public void deleteHelbredstilstandOnCitizen(Borger borger) {
+        dbHelbredstilstandDAO.deleteHelbredstilstand(borger);
+
+    }
+
+                                            /***************************************************/
+                                            /*************** Tilstandskategorier ***************/
+                                            /***************************************************/
+    @Override
+    public Funktionstilstand getEmptyFunktionsTilstand() {
+        return dbFunktionstilstandsUnderkategoriDAO.getEmptyFunktionstilstands();
+    }
+
+    @Override
+    public Helbredstilstand getEmptyHelbredsTilstand() {
+        return dbHelbredstilstandDAO.getEmptyHelbredstilstand();
     }
 
 }

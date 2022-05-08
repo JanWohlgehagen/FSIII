@@ -1,6 +1,6 @@
 package bll;
 
-import be.FunktionstilstandsUnderkategori;
+import be.Funktionstilstand;
 import dal.interfaces.IDatabaseFacade;
 
 import java.util.List;
@@ -15,6 +15,11 @@ public class FunktionstilstandsUnderkategoriManager {
 
     public List<String> getFunktionstilstandsUnderkategoriList() {
         return databaseFacade.getFunktionstilstandsUnderkategori();
+    }
+
+    public Funktionstilstand getFunktionsTilstandUnderkategorier()
+    {
+        return databaseFacade.getEmptyFunktionsTilstand();
     }
 
 }

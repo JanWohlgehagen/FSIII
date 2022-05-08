@@ -109,18 +109,17 @@ CREATE TABLE [HS_Underkategori]
 
 CREATE TABLE [H_Tilstandsvurdering]
 (
-    [HS_ID] INT NOT NULL,
     [HS_Borger_ID] INT NOT NULL,
     [HS_UK_ID] INT NOT NULL,
-    [Udfald] NVARCHAR(50) NULL,
+
     [Tilstand] VARCHAR(200) NULL,
     [Vurdering] VARCHAR(200) NULL,
     [Aarsag] VARCHAR(200) NULL,
     [Faglig_Notat] VARCHAR(200) NULL,
     [Forventet_Tilstand] VARCHAR(200) NULL,
 
-    CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_ID,HS_UK_ID),
-    CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_ID,HS_Borger_ID) REFERENCES Helbredstilstand(ID,Borger_ID) ON DELETE CASCADE,
+    CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_UK_ID,HS_Borger_ID),
+    CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_Borger_ID) REFERENCES Helbredstilstand(ID,Borger_ID) ON DELETE CASCADE,
     CONSTRAINT FK_HS_UK_IDHSV FOREIGN KEY (HS_UK_ID) REFERENCES HS_Underkategori(ID)
 )
 
@@ -156,7 +155,6 @@ CREATE TABLE [FS_Underkategori]
 
 CREATE TABLE [F_Tilstandsvurdering]
 (
-    [FS_ID] INT NOT NULL,
     [FS_Borger_ID] INT NOT NULL,
     [FS_UK_ID] INT NOT NULL,
     [Udfoerelse] VARCHAR(200) NULL,
@@ -166,11 +164,11 @@ CREATE TABLE [F_Tilstandsvurdering]
     [Vurdering] VARCHAR(200) NULL,
     [Aarsag] VARCHAR(200) NULL,
     [Faglig_Notat] VARCHAR(200) NULL,
-    [Forvente_Tilstand] INT NULL,
+    [Forventet_Tilstand] INT NULL,
     [Opfoelgning] NVARCHAR (200) NULL,
 
-    CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_ID,FS_UK_ID),
-    CONSTRAINT FK_HS_IDFSV FOREIGN KEY (FS_ID, FS_Borger_ID) REFERENCES Funktionstilstand(ID,Borger_ID) ON DELETE CASCADE,
+    CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_UK_ID, FS_Borger_ID),
+    CONSTRAINT FK_HS_IDFSV FOREIGN KEY (FS_Borger_ID) REFERENCES Funktionstilstand(Borger_ID) ON DELETE CASCADE,
     CONSTRAINT FK_UK_IDFSV FOREIGN KEY (FS_UK_ID) REFERENCES FS_Underkategori(ID)
 )
 

@@ -52,7 +52,6 @@ public class CreateCitizenViewController {
         boolean isTemplate= checkButtonTemplate.isSelected();
         int age = Integer.parseInt(txtAge.getText());
         Borger borger = new Borger(firstName, lastName, isTemplate, age);
-        borger.setHelbredstilstand(new Helbredstilstand());
         borger.setFunktionstilstand(new Funktionstilstand());
         citizenModel.createCitizen(borger);
 
