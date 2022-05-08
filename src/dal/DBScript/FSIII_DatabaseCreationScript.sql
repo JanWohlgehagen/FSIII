@@ -32,6 +32,7 @@ CREATE TABLE [Case]
     [Aasagsdiagnose] NVARCHAR(250) NULL,
     [Aasagstilstand] NVARCHAR(250) NULL,
     [Borgerensonsker] NVARCHAR(250) NULL,
+    [SagsAnsvarlig] NVARCHAR(100) NULL,
     [Bevilling] BIT NULL,
     [Bevillings_Tekst] NVARCHAR (350) NULL,
     [Plan] NVARCHAR(150) NULL,
@@ -67,6 +68,7 @@ CREATE TABLE [Generelle_Oplysninger]
     [Livshistorie] NVARCHAR(200) NULL,
     [Netvaerk] NVARCHAR(200) NULL,
     [Helbredsoplysninger] NVARCHAR(200) NULL,
+    [Helhedsvurdering] NVARCHAR(250) NULL,
     [hjaelpemidler] NVARCHAR(200) NULL,
     [Boligens_Indretning] NVARCHAR(200) NULL,
 

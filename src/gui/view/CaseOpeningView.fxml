@@ -49,34 +49,37 @@
                </VBox.margin>
             </Label>
             <TextField fx:id="underkategoriTxtField" editable="false" promptText="Underkategori" />
-            <HBox spacing="10.0">
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <VBox spacing="12.0">
-                     <children>
-                        <Label text="Borgers fornavn:" />
-                        <Label text="Borgers efternavn:" />
-                        <Label text="Borgers alder:" />
-                        <Label text="Aktive sager:" />
-                        <Label text="Sagsansvarlig:" />
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox spacing="12.0">
-                     <children>
-                        <Label fx:id="fornavnLbl" text="Fornavn placeholder" />
-                        <Label fx:id="efternavnLbl" text="Efternavn placeholder" />
-                        <Label fx:id="alderLbl" text="Alder placeholder" />
-                        <Label fx:id="antalAktiveSagerLbl" text="Sag antal placeholder" />
-                        <Label fx:id="sagsansvarligLbl" text="navn placeholder" />
-                     </children>
-                  </VBox>
+                  <Label text="Borgers fornavn:" />
+                  <Label text="Borgers efternavn:" GridPane.rowIndex="1" />
+                  <Label text="Borgers alder:" GridPane.rowIndex="2" />
+                  <Label fx:id="fornavnLbl" text="Fornavn placeholder" GridPane.columnIndex="1" />
+                  <Label fx:id="efternavnLbl" text="Efternavn placeholder" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="alderLbl" text="Alder placeholder" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Aktive sager:" GridPane.rowIndex="3" />
+                  <Label fx:id="antalAktiveSagerLbl" text="Sag antal placeholder" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Sagsansvarlig:" GridPane.rowIndex="4" />
+                  <Label fx:id="sagsansvarligLbl" text="navn placeholder" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Sagshenvisning:" GridPane.rowIndex="5" />
+                  <Label fx:id="lblHenvisning" text="navn placeholder" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="Opfølgning Tag:" GridPane.rowIndex="6" />
+                  <Label fx:id="lblOpfolgningsTag" text="Tag placeholder" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="10.0" />
-               </VBox.margin>
-            </HBox>
+            </GridPane>
          </children>
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
@@ -114,7 +117,7 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Henvisning og beskrivelse:">
+                  <Label text="Beskrivelse:">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>

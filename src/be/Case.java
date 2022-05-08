@@ -8,20 +8,26 @@ public class Case {
     //Istedet for personID kunne case evt. holde en borger så casen ved hvilken borger den er tilknyttet?
     private IntegerProperty citizenID =  new SimpleIntegerProperty();
     private IntegerProperty caseID = new SimpleIntegerProperty();
-    private StringProperty caseTitle = new SimpleStringProperty();
+    private StringProperty overkategoriTitle = new SimpleStringProperty();
+    private StringProperty underkategoriTitle = new SimpleStringProperty();
     private StringProperty caseDescription= new SimpleStringProperty();
     private BooleanProperty isBevilget = new SimpleBooleanProperty();
     private StringProperty Bevillingstekst= new SimpleStringProperty();
     private StringProperty plan= new SimpleStringProperty();
-    private StringProperty Opfoelgningstag= new SimpleStringProperty();
+    private StringProperty opfoelgningstag = new SimpleStringProperty();
+    private StringProperty henvisning= new SimpleStringProperty();
+    private StringProperty aasagsfritekst= new SimpleStringProperty();
+    private StringProperty aasagsdiagnose= new SimpleStringProperty();
+    private StringProperty aasagstilstand= new SimpleStringProperty();
+    private StringProperty borgerensonsker= new SimpleStringProperty();
+
+    private StringProperty sagsansvarlig = new SimpleStringProperty();
     private ArrayList<CaseDocumentation> listOfDocumentations = new ArrayList<>();
 
-    public Case(int citizenID, String caseTitle, String caseDescription)
-    {
+    public Case(int citizenID, String overkategoriTitle, String underkategoriTitle) {
         this.citizenID.set(citizenID);
-        this.caseTitle.set(caseTitle);
-        this.caseDescription.set(caseDescription);
-
+        this.overkategoriTitle.set(overkategoriTitle);
+        this.underkategoriTitle.set(underkategoriTitle);
     }
 
     public ArrayList<CaseDocumentation> getListOfDocumentations() {
@@ -49,15 +55,69 @@ public class Case {
         this.caseID.set(caseID);
     }
 
-
-    public StringProperty getCaseTitleProperty() {
-        return caseTitle;
+    public StringProperty getOverkategoriTitleProperty() {
+        return overkategoriTitle;
     }
 
-    public void setCaseTitle(String caseTitle) {
-        this.caseTitle.set(caseTitle);
+    public void setOverkategoriTitle(String overkategoriTitle) {
+        this.overkategoriTitle.set(overkategoriTitle);
     }
 
+    public StringProperty getUnderkategoriTitleProperty() {
+        return underkategoriTitle;
+    }
+
+    public void setUnderkategoriTitle(String underkategoriTitle) {
+        this.underkategoriTitle.set(underkategoriTitle);
+    }
+
+    public StringProperty getSagsansvarligProperty() {
+        return sagsansvarlig;
+    }
+
+    public void setSagsansvarlig(String sagsansvarlig) {
+        this.sagsansvarlig.set(sagsansvarlig);
+    }
+
+    public StringProperty getHenvisningProperty() {
+        return henvisning;
+    }
+
+    public void setHenvisning(String henvisning) {
+        this.henvisning.set(henvisning);
+    }
+
+    public StringProperty getAasagsfritekstProperty() {
+        return aasagsfritekst;
+    }
+
+    public void setAasagsfritekst(String aasagsfritekst) {
+        this.aasagsfritekst.set(aasagsfritekst);
+    }
+
+    public StringProperty getAasagsdiagnoseProperty() {
+        return aasagsdiagnose;
+    }
+
+    public void setAasagsdiagnose(String aasagsdiagnose) {
+        this.aasagsdiagnose.set(aasagsdiagnose);
+    }
+
+    public StringProperty getAasagstilstandProperty() {
+        return aasagstilstand;
+    }
+
+    public void setAasagstilstand(String aasagstilstand) {
+        this.aasagstilstand.set(aasagstilstand);
+    }
+
+    public StringProperty getBorgerensonskerProperty() {
+        return borgerensonsker;
+    }
+
+    public void setBorgerensonsker(String borgerensonsker) {
+        this.borgerensonsker.set(borgerensonsker);
+    }
 
     public StringProperty getCaseDescriptionProperty() {
         return caseDescription;
@@ -95,15 +155,15 @@ public class Case {
 
 
     public StringProperty getOpfoelgningstagProperty() {
-        return Opfoelgningstag;
+        return opfoelgningstag;
     }
 
     public void setOpfoelgningstag(String opfoelgningstag) {
-        this.Opfoelgningstag.set(opfoelgningstag);
+        this.opfoelgningstag.set(opfoelgningstag);
     }
 
     @Override
     public String toString() {
-        return caseTitle.get();
+        return this.overkategoriTitle.get() + " -> " + this.underkategoriTitle.get();
     }
 }

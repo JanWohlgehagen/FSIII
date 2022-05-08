@@ -2,13 +2,10 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import bll.FunktionstilstandsUnderkategoriManager;
 import gui.model.CaseModel;
 import gui.model.FunktionstilstandModel;
 import gui.model.FunktionstilstandsUnderkategoriModel;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,9 +18,8 @@ import java.util.ResourceBundle;
 
 public class CreateAndEditCaseController implements Initializable {
 
-    public TextField txtTitle;
-    public TextField txtOpfoelgningTag;
-    public CheckBox cbBevilget;
+    public TextField lblSagsansvarlig;
+    public TextField lblSagsHenvisning;
     @FXML
     private ComboBox<String> overkategoriCbx;
     @FXML
@@ -31,25 +27,9 @@ public class CreateAndEditCaseController implements Initializable {
     @FXML
     private GridPane parentGridPane;
     @FXML
-    private TextField overtilstandTxtField;
-    @FXML
-    private TextField undertilstandTxtField;
-    @FXML
-    private Label fornavnLbl;
-    @FXML
-    private Label efternavnLbl;
-    @FXML
-    private Label alderLbl;
-    @FXML
-    private Label antalAktiveSagerLbl;
-    @FXML
-    private Label sagsansvarligLbl;
-
-    @FXML
     private Button annullerBtn;
     @FXML
     private Button gemBtn;
-
     @FXML
     private TextArea beskrivelseTxtArea;
     @FXML
@@ -61,21 +41,51 @@ public class CreateAndEditCaseController implements Initializable {
     @FXML
     private TextArea borgerMaalTxtArea;
 
+    private boolean newCaseMode;
+    private boolean editCaseMode;
+
     private CaseModel caseModel;
     private Borger borger;
+
+    private Case editThisCase;
     private DashboardController dashboardController;
     private FunktionstilstandModel funktionstilstandModel;
     private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
-            ObservableList<String> funktionstilstandsList = FXCollections.observableList(funktionstilstandModel.getFunktionstilstandsList());
-            overkategoriCbx.setItems(funktionstilstandsList);
-            ObservableList<String> funktionstilstandsUnderkategoriList = FXCollections.observableList(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
-            underkategoriCbx.setItems(funktionstilstandsUnderkategoriList);
+
+            overkategoriCbx.getItems().addAll(funktionstilstandModel.getFunktionstilstandsList());
+            underkategoriCbx.getItems().addAll(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
+
+            if(editCaseMode) {
+                overkategoriCbx.setPromptText(editThisCase.getOverkategoriTitleProperty().get());
+                underkategoriCbx.setPromptText(editThisCase.getUnderkategoriTitleProperty().get());
+                lblSagsansvarlig.setText(editThisCase.getSagsansvarligProperty().get());
+                lblSagsHenvisning.setText(editThisCase.getHenvisningProperty().get());
+                beskrivelseTxtArea.setText(editThisCase.getCaseDescriptionProperty().get());
+                aarsagsfritekstTxtArea.setText(editThisCase.getAasagsfritekstProperty().get());
+                aarsagsdiagnoseTxtArea.setText(editThisCase.getAasagsdiagnoseProperty().get());
+                aarsagstilstandTxtArea.setText(editThisCase.getAasagstilstandProperty().get());
+                borgerMaalTxtArea.setText(editThisCase.getBorgerensonskerProperty().get());
+
+            }
         });
+    }
+
+    public void newCaseModeIsOn(){
+        this.newCaseMode = true;
+    }
+
+    public void editCaseModeIsOn(){
+        this.editCaseMode = true;
+    }
+
+    public void setEditThisCase(Case editThisCase){
+        this.editThisCase = editThisCase;
     }
 
     public void setDashboardController(DashboardController dashboardController) {
@@ -95,25 +105,49 @@ public class CreateAndEditCaseController implements Initializable {
     }
 
     public void handleGem(ActionEvent actionEvent) {
-        Case newCase = new Case(2, txtTitle.getText(), beskrivelseTxtArea.getText()); // skal lige rettes til
-        newCase.setIsBevilget(cbBevilget.isSelected());
-        newCase.setBevillingstekst("");
-        newCase.setPlan("");
-        newCase.setOpfoelgningstag("");
+        if(newCaseMode){
+            Case newCase = new Case(borger.getIDProperty().get(), overkategoriCbx.getSelectionModel().getSelectedItem(), underkategoriCbx.getSelectionModel().getSelectedItem());
+            newCase.setIsBevilget(false);
+            newCase.setHenvisning(lblSagsHenvisning.getText());
+            newCase.setSagsansvarlig(lblSagsansvarlig.getText());
+            newCase.setCaseDescription(beskrivelseTxtArea.getText());
+            newCase.setAasagsfritekst(aarsagsfritekstTxtArea.getText());
+            newCase.setAasagsdiagnose(aarsagsdiagnoseTxtArea.getText());
+            newCase.setAasagstilstand(aarsagstilstandTxtArea.getText());
+            newCase.setBorgerensonsker(borgerMaalTxtArea.getText());
+            newCase.setBevillingstekst("");
+            newCase.setPlan("");
+            newCase.setOpfoelgningstag("");
 
-        caseModel.createCaseOnCitizen(newCase);
-        closeStage();
+            caseModel.createCaseOnCitizen(newCase);
+            closeStage();
+        } else if (editCaseMode) {
+            if(overkategoriCbx.getSelectionModel().getSelectedItem() != null){
+                editThisCase.setOverkategoriTitle(overkategoriCbx.getSelectionModel().getSelectedItem());
+            }
+            if(underkategoriCbx.getSelectionModel().getSelectedItem() != null){
+                editThisCase.setUnderkategoriTitle(underkategoriCbx.getSelectionModel().getSelectedItem());
+            }
+            editThisCase.setSagsansvarlig(lblSagsansvarlig.getText());
+            editThisCase.setHenvisning(lblSagsHenvisning.getText());
+            editThisCase.setCaseDescription(beskrivelseTxtArea.getText());
+            editThisCase.setAasagsfritekst(aarsagsfritekstTxtArea.getText());
+            editThisCase.setAasagsdiagnose(aarsagsdiagnoseTxtArea.getText());
+            editThisCase.setAasagstilstand(aarsagstilstandTxtArea.getText());
+            editThisCase.setBorgerensonsker(borgerMaalTxtArea.getText());
+
+            caseModel.updateCaseOnCitizen(borger.getIDProperty().get(), editThisCase);
+            closeStage();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error.. ");
+            alert.setContentText("Der er noget galt, men sag den der var opret/vælget");
+            alert.showAndWait();
+        }
     }
 
     public void handleAnnuller(ActionEvent actionEvent) {
         closeStage();
-    }
-
-    public String getSelectedFunktionstilstand() {
-        return overkategoriCbx.getSelectionModel().getSelectedItem();
-    }
-
-    public void handleUnderkategori(ActionEvent actionEvent) {
     }
 
     private void closeStage(){
