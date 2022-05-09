@@ -122,8 +122,8 @@ public class DBHelbredstilstandDAO {
                 String underKategoriTitel = resultSet.getString(10);
 
                 //Overkategori
-                String overKategoriTitel = resultSet.getString(13);
-                int OKID = resultSet.getInt(12);
+                String overKategoriTitel = resultSet.getString(12);
+                int OKID = resultSet.getInt(11);
 
                 int UKID = resultSet.getInt(3);
                 if (OKID == 1) {

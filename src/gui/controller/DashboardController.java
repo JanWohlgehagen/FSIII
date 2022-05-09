@@ -136,6 +136,7 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonSagsoplysning(ActionEvent actionEvent) throws IOException {
+        citizenModel.getTilstande(selectCitizen);
         ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(new Stage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();

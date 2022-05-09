@@ -65,4 +65,7 @@ public class CitizenModel {
         managerFacade.updateSagsoplysninger(borger);
     }
 
+    public void getTilstande(Borger borger) {
+        managerFacade.getTilstande(borger);
+    }
 }

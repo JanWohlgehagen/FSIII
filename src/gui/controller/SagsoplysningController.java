@@ -150,14 +150,14 @@ public class SagsoplysningController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
+            setGenerelleOplysningerTooltips();
+            setFunktionstilstandsTooltips();
+            populateTilstande();
+            populateHelbredstilstandsCombobox();
+            populateFunktionstilstandsCombobox();
+            populateGenerelleOplysninger();
+            populateHelhedsvurdering();
         });
-        setGenerelleOplysningerTooltips();
-        setFunktionstilstandsTooltips();
-        populateTilstande();
-        populateHelbredstilstandsCombobox();
-        populateFunktionstilstandsCombobox();
-        populateGenerelleOplysninger();
-        populateHelhedsvurdering();
 
         comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -188,18 +188,14 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        if (borger != null){ //TODO skal slettes, når borger er implementeret
-            updateBorgerInformationer();
-            citizenModel.updateSagsoplysninger(borger);
-        }
+        updateBorgerInformationer();
+        citizenModel.updateSagsoplysninger(borger);
         closeStage();
     }
 
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        if (borger != null){ //TODO skal slettes, når borger er implementeret
-            updateBorgerInformationer();
-            citizenModel.updateSagsoplysninger(borger);
-        }
+        updateBorgerInformationer();
+        citizenModel.updateSagsoplysninger(borger);
         goToNextScene();
     }
 
@@ -317,7 +313,6 @@ public class SagsoplysningController implements Initializable {
     }
 
     private void populateGenerelleOplysninger() {
-        if (borger != null) {
             txtAreaMestring.setText(borger.getMestringProperty().get());
             txtAreaMotivaton.setText(borger.getMotivationProperty().get());
             txtAreaRessourcer.setText(borger.getRessourcerProperty().get());
@@ -329,7 +324,6 @@ public class SagsoplysningController implements Initializable {
             txtAreaHelbredsoplysninger.setText(borger.getHelbredsoplysningerProperty().get());
             txtAreaHjaelpemidler.setText(borger.getHjaelpemidlerProperty().get());
             txtAreaBoligensIndretning.setText(borger.getBoligensIndretningProperty().get());
-        }
     }
 
     private void populateHelbredstilstandsCombobox(){
@@ -362,10 +356,6 @@ public class SagsoplysningController implements Initializable {
     }
 
     private void populateTilstande(){
-        if (borger == null){
-            //TODO skal slettes, når borgeren kommer ind fra dashboard
-            return;
-        }
         int insertionCounter = 0;
 
         Helbredstilstand helbredstilstand = borger.getHelbredstilstand();

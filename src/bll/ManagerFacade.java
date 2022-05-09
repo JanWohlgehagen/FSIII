@@ -172,5 +172,10 @@ public class ManagerFacade implements IManagerFacade {
         return helbredstilstandsUnderkategoriManager.getHelbredstilstandsUnderkategoriList();
     }
 
+    @Override
+    public void getTilstande(Borger borger) {
+        citizenManager.getTilstande(borger);
+    }
+
 
 }
