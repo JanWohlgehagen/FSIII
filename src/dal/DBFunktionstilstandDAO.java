@@ -17,19 +17,15 @@ public class DBFunktionstilstandDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void createEmptyFunktionstilstand(Borger borger)
-    {
+    public void createEmptyFunktionstilstand(Borger borger) {
         String sql = "INSERT INTO [F_Tilstandsvurdering (FS_Borger_ID, FS_UK_ID, Udfoerelse, Betydning, Borger_Maal, Niveau, Vurdering, Aarsag," +
                 " Faglig_Notat, Forvente_Tilstand, opfoelgning) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-        try(Connection connection = dbConnecting.getConnection())
-        {
-            for(String key :borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
-            {
-                for(FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key))
-                {
+        try (Connection connection = dbConnecting.getConnection()) {
+            for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
+                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1,borger.getIDProperty().get());
-                    preparedStatement.setInt(2,funktionstilstandsUnderkategori.getId().get());
+                    preparedStatement.setInt(1, borger.getIDProperty().get());
+                    preparedStatement.setInt(2, funktionstilstandsUnderkategori.getId().get());
 
                     preparedStatement.executeQuery();
 
@@ -42,28 +38,24 @@ public class DBFunktionstilstandDAO {
         }
     }
 
-    public void updateFunktionstilstand(Borger borger)
-    {
+    public void updateFunktionstilstand(Borger borger) {
         String sql = "UPDATE [F_Tilstandsvurdering (FS_Borger_ID, FS_UK_ID, Udfoerelse, Betydning, Borger_Maal, Niveau, Vurdering, Aarsag," +
                 " Faglig_Notat, Forvente_Tilstand, opfoelgning) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" +
                 "WHERE FS_Borger_ID = (?) AND FS_UK_ID = (?)";
-        try(Connection connection = dbConnecting.getConnection())
-        {
-            for(String key :borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
-            {
-                for(FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key))
-                {
+        try (Connection connection = dbConnecting.getConnection()) {
+            for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
+                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1,borger.getIDProperty().get());
-                    preparedStatement.setInt(2,funktionstilstandsUnderkategori.getId().get());
-                    preparedStatement.setString(3,funktionstilstandsUnderkategori.getUdførelseProperty().get());
-                    preparedStatement.setString(4,funktionstilstandsUnderkategori.getBetydningProperty().get());
-                    preparedStatement.setInt(5,funktionstilstandsUnderkategori.getNiveauProperty().get());
-                    preparedStatement.setString(6,funktionstilstandsUnderkategori.getVurderingProperty().get());
-                    preparedStatement.setString(7,funktionstilstandsUnderkategori.getAarsagProperty().get());
-                    preparedStatement.setString(8,funktionstilstandsUnderkategori.getFagligNotatProperty().get());
-                    preparedStatement.setInt(9,funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
-                    preparedStatement.setString(10,funktionstilstandsUnderkategori.getOpfølgningProperty().get());
+                    preparedStatement.setInt(1, borger.getIDProperty().get());
+                    preparedStatement.setInt(2, funktionstilstandsUnderkategori.getId().get());
+                    preparedStatement.setString(3, funktionstilstandsUnderkategori.getUdførelseProperty().get());
+                    preparedStatement.setString(4, funktionstilstandsUnderkategori.getBetydningProperty().get());
+                    preparedStatement.setInt(5, funktionstilstandsUnderkategori.getNiveauProperty().get());
+                    preparedStatement.setString(6, funktionstilstandsUnderkategori.getVurderingProperty().get());
+                    preparedStatement.setString(7, funktionstilstandsUnderkategori.getAarsagProperty().get());
+                    preparedStatement.setString(8, funktionstilstandsUnderkategori.getFagligNotatProperty().get());
+                    preparedStatement.setInt(9, funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
+                    preparedStatement.setString(10, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
 
                     preparedStatement.setInt(11, borger.getIDProperty().get());
                     preparedStatement.setInt(12, funktionstilstandsUnderkategori.getId().get());
@@ -79,11 +71,9 @@ public class DBFunktionstilstandDAO {
         }
     }
 
-    public void deleteFunktionstilstandOnCitizen (Borger borger)
-    {
+    public void deleteFunktionstilstandOnCitizen(Borger borger) {
         String sql = "DELETE FROM [F_Tilstandsvurdering] WHERE FS_Borger_ID = (?)";
-        try(Connection connection = dbConnecting.getConnection())
-        {
+        try (Connection connection = dbConnecting.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, borger.getIDProperty().get());
 
@@ -92,8 +82,6 @@ public class DBFunktionstilstandDAO {
             throwables.printStackTrace();
         }
     }
-
-
 
 
     public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger) {
@@ -144,19 +132,19 @@ public class DBFunktionstilstandDAO {
                     OKListe1.add(funktionstilstandsUnderkategori);
                 } else if (UKID == 2) {
                     OkTitel2 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id,udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
+                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
                     OKListe2.add(funktionstilstandsUnderkategori);
                 } else if (UKID == 3) {
                     OkTitel3 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id,udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
+                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
                     OKListe3.add(funktionstilstandsUnderkategori);
                 } else if (UKID == 4) {
                     OkTitel4 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id,udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
+                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
                     OKListe4.add(funktionstilstandsUnderkategori);
                 } else if (UKID == 5) {
                     OkTitel5 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id,udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
+                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
                     OKListe5.add(funktionstilstandsUnderkategori);
                 }
 
@@ -207,40 +195,3 @@ public class DBFunktionstilstandDAO {
     }
 }
 
-
-
-/**
- * public List<Case> getAllCasesOnCitizen(int citizenid){
- * List<Case> allCases = new ArrayList<>();
- * try (Connection connection = dbConnecting.getConnection()) {
- * String sql = "SELECT * FROM [Case] WHERE Borger_ID = (?)";
- * PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
- * preparedStatement.setInt(1,citizenid);
- * <p>
- * ResultSet resultSet = preparedStatement.executeQuery();
- * <p>
- * if (resultSet.next()) {
- * int id = resultSet.getInt("ID");
- * String title = resultSet.getString("Title");
- * String description = resultSet.getString("Description");
- * boolean bevilling = resultSet.getBoolean("Bevilling");
- * String bevillings_Tekst = resultSet.getString("Bevillings_Tekst");
- * String plan = resultSet.getString("Plan");
- * String opfoelgnings_Tag = resultSet.getString("Opfoelgnings_Tag");
- * <p>
- * Case aCase = new Case(citizenid, title, description);
- * aCase.setCaseID(id);
- * aCase.isBevilgetProperty().set(bevilling);
- * aCase.bevillingstekstProperty().set(bevillings_Tekst);
- * aCase.planProperty().set(plan);
- * aCase.opfoelgningstagProperty().set(opfoelgnings_Tag);
- * allCases.add(aCase);
- * }
- * <p>
- * } catch (SQLException SQLe) {
- * SQLe.printStackTrace();
- * return null;
- * }
- * return allCases;
- * }
- */

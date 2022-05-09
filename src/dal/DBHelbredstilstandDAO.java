@@ -142,57 +142,57 @@ public class DBHelbredstilstandDAO {
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe1.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 2) {
+                else if (UKID == 2) {
                     OkTitel2= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe2.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 3) {
+                else if (UKID == 3) {
                     OkTitel3= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe3.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 4) {
+                else if (UKID == 4) {
                     OkTitel4= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe4.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 5) {
+                else if (UKID == 5) {
                     OkTitel5= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe5.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 6) {
+                else if (UKID == 6) {
                     OkTitel6= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe6.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 7) {
+                else if (UKID == 7) {
                     OkTitel7= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe7.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 8) {
+                else if (UKID == 8) {
                     OkTitel8= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe8.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 9) {
+                else if (UKID == 9) {
                     OkTitel9= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe9.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 10) {
+                else if (UKID == 10) {
                     OkTitel10= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe10.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 11) {
+                else if (UKID == 11) {
                     OkTitel11= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe11.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 12) {
+                else if (UKID == 12) {
                     OkTitel12= overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe12.add(helbredstilstandsUnderkategori);
