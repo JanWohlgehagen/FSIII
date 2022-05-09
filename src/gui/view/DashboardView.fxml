@@ -128,6 +128,38 @@
          </tabs>
       </TabPane>
       <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowSpan="3" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <VBox prefHeight="182.0" prefWidth="78.0">
+               <children>
+                  <Label text="Navn">
+                     <VBox.margin>
+                        <Insets left="6.0" top="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Alder">
+                     <VBox.margin>
+                        <Insets left="6.0" top="6.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="182.0" prefWidth="192.0">
+               <children>
+                  <Label fx:id="lblName">
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lblAge">
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
    <stylesheets>
       <URL value="@../resources/css/CommonTheme.css" />

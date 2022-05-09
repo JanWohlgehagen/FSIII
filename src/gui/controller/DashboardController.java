@@ -47,6 +47,11 @@ public class DashboardController implements Initializable {
     @FXML
     private  Tab tabStudents;
 
+    @FXML
+    private Label lblName;
+    @FXML
+    private Label lblAge;
+
 
     private DashboardController dashboardController;
     private User loginUser;
@@ -84,6 +89,8 @@ public class DashboardController implements Initializable {
         lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){
                 selectCitizen = newValue;
+                lblAge.setText(selectCitizen.getAgeProperty().get() + " år");
+                lblName.setText(selectCitizen.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
             }
             if(newValue != null && oldValue == null){
                 btnSagsaabning.setDisable(false);
