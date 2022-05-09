@@ -56,8 +56,8 @@ public class CitizenModel {
         managerFacade.deleteCitizen(borger);
     }
 
-    public void updateGenerelleOplysninger(Borger borger) {
-        managerFacade.updateGenerelleOplysninger(borger);
+    public void updateSagsoplysninger(Borger borger) {
+        managerFacade.updateSagsoplysninger(borger);
     }
 
 }
