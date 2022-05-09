@@ -425,9 +425,8 @@ public class SagsoplysningController implements Initializable {
 
             // populates text areas as well as the comboboxes for a given subcategory
             tableView.setOnMouseClicked(event -> {
-                if(oldValueOfHelbredstilstandsUnderkategori != null){
-                    updateHelbredstilstandsUnderkategori();
-                }
+
+                updateHelbredstilstandsUnderkategori();
 
                 oldValueOfHelbredstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
                 populateTxtAreasHelbredstilstand(tableView.getSelectionModel().getSelectedItem());
@@ -456,9 +455,8 @@ public class SagsoplysningController implements Initializable {
 
             // populates text areas as well as the comboboxes for a given subcategory
             tableView.setOnMouseClicked(event -> {
-                if(oldValueOfFunktionstilstandsUnderkategori != null){
-                    updateFunktionstilstandsUnderkategori();
-                }
+
+                updateFunktionstilstandsUnderkategori();
 
                 oldValueOfFunktionstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
                 populateTxtAreasFunktionstilstand(tableView.getSelectionModel().getSelectedItem());
@@ -474,23 +472,27 @@ public class SagsoplysningController implements Initializable {
     }
 
     private void updateFunktionstilstandsUnderkategori(){
-        oldValueOfFunktionstilstandsUnderkategori.setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
-        oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
-        oldValueOfFunktionstilstandsUnderkategori.setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());
-        oldValueOfFunktionstilstandsUnderkategori.setBetydning(txtAreaBetydningFunktionstilstand.getText());
-        oldValueOfFunktionstilstandsUnderkategori.setOenskerOgMaal(txtAreaOenskerOgMålFunktionstilstand.getText());
-        oldValueOfFunktionstilstandsUnderkategori.setVurdering(txtAreaVurderingFunktionstilstand.getText());
-        oldValueOfFunktionstilstandsUnderkategori.setAarsag(txtAreaAarsagFunktionstilstand.getText());
-        oldValueOfFunktionstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatFunktionstilstand.getText());
-        oldValueOfFunktionstilstandsUnderkategori.setOpfølgning(txtOpfoelgningFunktionstilstand.getText());
+        if(oldValueOfFunktionstilstandsUnderkategori != null) {
+            oldValueOfFunktionstilstandsUnderkategori.setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+            oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+            oldValueOfFunktionstilstandsUnderkategori.setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setBetydning(txtAreaBetydningFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setOenskerOgMaal(txtAreaOenskerOgMålFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setVurdering(txtAreaVurderingFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setAarsag(txtAreaAarsagFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setOpfølgning(txtOpfoelgningFunktionstilstand.getText());
+        }
     }
 
     private void updateHelbredstilstandsUnderkategori(){
-        oldValueOfHelbredstilstandsUnderkategori.setVurdering(txtAreaVurderingHelbredstilstand.getText());
-        oldValueOfHelbredstilstandsUnderkategori.setAarsag(txtAreaAarsagHelbredstilstand.getText());
-        oldValueOfHelbredstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatHelbredstilstand.getText());
-        oldValueOfHelbredstilstandsUnderkategori.setTilstand(comboBoxTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
-        oldValueOfHelbredstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+        if(oldValueOfHelbredstilstandsUnderkategori != null) {
+            oldValueOfHelbredstilstandsUnderkategori.setVurdering(txtAreaVurderingHelbredstilstand.getText());
+            oldValueOfHelbredstilstandsUnderkategori.setAarsag(txtAreaAarsagHelbredstilstand.getText());
+            oldValueOfHelbredstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatHelbredstilstand.getText());
+            oldValueOfHelbredstilstandsUnderkategori.setTilstand(comboBoxTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+            oldValueOfHelbredstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+        }
     }
 
     private void populateTxtAreasHelbredstilstand(HelbredstilstandsUnderkategori newValue){

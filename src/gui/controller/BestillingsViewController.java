@@ -24,6 +24,14 @@ public class BestillingsViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
+            currentCase = dashBoardController.getSelectedCase();
+
+            if (currentCase.isBevilgetProperty().get()) {
+                checkBoxBevilling.setSelected(true);
+            }
+            txtAreaBestillingsText.setText(currentCase.getBevillingstekstProperty().get());
+        });
     }
 
     public void btnNext(ActionEvent actionEvent) {
@@ -37,11 +45,5 @@ public class BestillingsViewController implements Initializable {
 
     public void setDashboardController(DashboardController dashboardController) {
         this.dashBoardController = dashboardController;
-        currentCase = dashBoardController.getSelectedCase();
-
-        if (currentCase.isBevilgetProperty().get()) {
-            checkBoxBevilling.setSelected(true);
-        }
-        txtAreaBestillingsText.setText(currentCase.getBevillingstekstProperty().get());
     }
 }
