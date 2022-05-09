@@ -7,6 +7,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DBFunktionstilstandDAO {
@@ -85,16 +86,8 @@ public class DBFunktionstilstandDAO {
 
     public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger) {
         Funktionstilstand funktionstilstand = new Funktionstilstand();
-        List<FunktionstilstandsUnderkategori> OKListe1 = new ArrayList<>();
-        List<FunktionstilstandsUnderkategori> OKListe2 = new ArrayList<>();
-        List<FunktionstilstandsUnderkategori> OKListe3 = new ArrayList<>();
-        List<FunktionstilstandsUnderkategori> OKListe4 = new ArrayList<>();
-        List<FunktionstilstandsUnderkategori> OKListe5 = new ArrayList<>();
-        String OkTitel1 = "";
-        String OkTitel2 = "";
-        String OkTitel3 = "";
-        String OkTitel4 = "";
-        String OkTitel5 = "";
+        List<FunktionstilstandsUnderkategori> allFunktionstilstande = new ArrayList<>();
+        HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT *   FROM [F_Tilstandsvurdering]" +
                     "FULL JOIN [FS_Underkategori] ON F_Tilstandsvurdering.FS_UK_ID= FS_Underkategori.ID " +
@@ -124,47 +117,18 @@ public class DBFunktionstilstandDAO {
                 //Overkategori
                 String overKategoriTitel = resultSet.getString(16);
                 int OKID = resultSet.getInt(15);
+                FunktionstilstandsUnderkategori f = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
+                allFunktionstilstande.add(f);
+            }
 
-                int UKID = resultSet.getInt(3);
-                if (OKID == 1) {
-                    OkTitel1 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
-                    OKListe1.add(funktionstilstandsUnderkategori);
-                } else if (OKID == 2) {
-                    OkTitel2 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
-                    OKListe2.add(funktionstilstandsUnderkategori);
-                } else if (OKID == 3) {
-                    OkTitel3 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
-                    OKListe3.add(funktionstilstandsUnderkategori);
-                } else if (OKID == 4) {
-                    OkTitel4 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
-                    OKListe4.add(funktionstilstandsUnderkategori);
-                } else if (OKID == 5) {
-                    OkTitel5 = overKategoriTitel;
-                    FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
-                    OKListe5.add(funktionstilstandsUnderkategori);
+            for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
+                if (!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())) {
+                    funktionstilstandeHP.put(f.getOverKategoriProperty().get(), new ArrayList<FunktionstilstandsUnderkategori>());
                 }
-            }
-            if (!OKListe1.isEmpty()) {
-                funktionstilstand.addCategoryField(OkTitel1, OKListe1);
-            }
-            if (!OKListe2.isEmpty()) {
-                funktionstilstand.addCategoryField(OkTitel2, OKListe2);
-            }
-            if (!OKListe3.isEmpty()) {
-                funktionstilstand.addCategoryField(OkTitel3, OKListe3);
-            }
-            if (!OKListe4.isEmpty()) {
-                funktionstilstand.addCategoryField(OkTitel4, OKListe4);
-            }
-            if (!OKListe5.isEmpty()) {
-                funktionstilstand.addCategoryField(OkTitel5, OKListe5);
+                funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
             }
 
-
+            funktionstilstand.setFunktionsTilstande(funktionstilstandeHP);
             return funktionstilstand;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -16,4 +16,8 @@ public class Funktionstilstand {
     public HashMap<String, List <FunktionstilstandsUnderkategori>> getFunktionsTilstandsKort(){
         return tilstandsKortet;
     }
+
+    public void setFunktionsTilstande(HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP) {
+        this.tilstandsKortet = funktionstilstandeHP;
+    }
 }
