@@ -42,10 +42,10 @@ public class DBCitizenDAO {
 
             preparedStatement.setString(1, borger.getFirstNameProperty().get());
             preparedStatement.setString(2, borger.getLastNameProperty().get());
-            preparedStatement.setInt(3, borger.getIDProperty().get());
-            preparedStatement.setString(4, borger.getHelhedsvurderingProperty().get());
+            preparedStatement.setString(3, borger.getHelhedsvurderingProperty().get());
+            preparedStatement.setInt(4, borger.getIDProperty().get());
 
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
             return;
         } catch (SQLServerException throwables) {
             throwables.printStackTrace();

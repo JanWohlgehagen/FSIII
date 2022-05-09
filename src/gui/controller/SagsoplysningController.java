@@ -163,9 +163,11 @@ public class SagsoplysningController implements Initializable {
         comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (newValue.equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
-                    changeAbilityHelbredstilstandsFields(true);
-                } else changeAbilityHelbredstilstandsFields(false);
+                if (newValue != null){
+                    if (newValue.equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
+                        changeAbilityHelbredstilstandsFields(true);
+                    } else changeAbilityHelbredstilstandsFields(false);
+                }
             }
         });
 
@@ -190,60 +192,79 @@ public class SagsoplysningController implements Initializable {
 
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         updateBorgerInformationer();
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         closeStage();
     }
 
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         updateBorgerInformationer();
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         closeStage();
     }
 
     public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         closeStage();
     }
 
     public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         extractMedicineList();
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         closeStage();
     }
 
     public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         extractMedicineList();
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void helhedsvurderingHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         closeStage();
     }
 
     public void helhedsvurderingHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        citizenModel.updateSagsoplysninger(borger);
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void handleAddTxtFieldMedicineList(ActionEvent actionEvent) {
         vBoxMedicinliste.getChildren().add(new TextField());
+    }
+
+    private void updateBorger(Borger borger){
+        //Update generelle oplysninger on citizen object
+        borger.setMestring(txtAreaMestring.getText());
+        borger.setMotivation(txtAreaMotivaton.getText());
+        borger.setRessourcer(txtAreaRessourcer.getText());
+        borger.setRoller(txtAreaRoller.getText());
+        borger.setVaner(txtAreaVaner.getText());
+        borger.setUddannelse(txtAreaUddOgJob.getText());
+        borger.setLivshistorie(txtAreaLivshistorie.getText());
+        borger.setNetvaerk(txtAreaNetvaerk.getText());
+        borger.setHelbredsoplysninger(txtAreaHelbredsoplysninger.getText());
+        borger.setHjaelpemidler(txtAreaHjaelpemidler.getText());
+        borger.setBoligensIndretning(txtAreaBoligensIndretning.getText());
+
+        //Update generelle helhedsvurdering
+        borger.setHelhedsvurdering(txtAreaHelhedsvurdering.getText());
+        citizenModel.updateSagsoplysninger(borger);
     }
 
     private void goToNextScene() throws IOException {
@@ -385,6 +406,14 @@ public class SagsoplysningController implements Initializable {
                         populateTxtAreasHelbredstilstand(newValue);
                     }
                 }
+            });
+
+            tableView.setOnMouseClicked(event -> {
+                tableView.getSelectionModel().getSelectedItem().setTilstand(comboBoxTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+                tableView.getSelectionModel().getSelectedItem().setForventetTilstand(comboBoxForventetTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+                tableView.getSelectionModel().getSelectedItem().setVurdering(txtAreaVurderingHelbredstilstand.getText());
+                tableView.getSelectionModel().getSelectedItem().setAarsag(txtAreaVurderingHelbredstilstand.getText());
+                tableView.getSelectionModel().getSelectedItem().setFagligNotat(txtAreaFagligtNotatHelbredstilstand.getText());
             });
 
             if(insertionCounter %2 == 0){

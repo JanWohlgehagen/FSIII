@@ -38,8 +38,8 @@ public class DBFunktionstilstandDAO {
     }
 
     public void updateFunktionstilstand(Borger borger) {
-        String sql = "UPDATE [F_Tilstandsvurdering] SET FS_Borger_ID = (?), FS_UK_ID = (?), Udfoerelse = (?), Betydning = (?), Borger_Maal = (?), Niveau = (?), Vurdering = (?), Aarsag = (?)," +
-                " Faglig_Notat = (?), Forventet_Tilstand = (?), opfoelgning = (?)" +
+        String sql = "UPDATE [F_Tilstandsvurdering] SET FS_Borger_ID = (?), FS_UK_ID = (?), Udfoerelse = (?), Betydning = (?), Borger_Maal = (?), Niveau = (?)," +
+                " Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?), opfoelgning = (?)" +
                 "WHERE FS_Borger_ID = (?) AND FS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
@@ -49,17 +49,18 @@ public class DBFunktionstilstandDAO {
                     preparedStatement.setInt(2, funktionstilstandsUnderkategori.getId().get());
                     preparedStatement.setString(3, funktionstilstandsUnderkategori.getUdførelseProperty().get());
                     preparedStatement.setString(4, funktionstilstandsUnderkategori.getBetydningProperty().get());
-                    preparedStatement.setInt(5, funktionstilstandsUnderkategori.getNiveauProperty().get());
-                    preparedStatement.setString(6, funktionstilstandsUnderkategori.getVurderingProperty().get());
-                    preparedStatement.setString(7, funktionstilstandsUnderkategori.getAarsagProperty().get());
-                    preparedStatement.setString(8, funktionstilstandsUnderkategori.getFagligNotatProperty().get());
-                    preparedStatement.setInt(9, funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
-                    preparedStatement.setString(10, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
+                    preparedStatement.setString(5, funktionstilstandsUnderkategori.getOenskerOgMaalProperty().get());
+                    preparedStatement.setInt(6, funktionstilstandsUnderkategori.getNiveauProperty().get());
+                    preparedStatement.setString(7, funktionstilstandsUnderkategori.getVurderingProperty().get());
+                    preparedStatement.setString(8, funktionstilstandsUnderkategori.getAarsagProperty().get());
+                    preparedStatement.setString(9, funktionstilstandsUnderkategori.getFagligNotatProperty().get());
+                    preparedStatement.setInt(10, funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
+                    preparedStatement.setString(11, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
 
-                    preparedStatement.setInt(11, borger.getIDProperty().get());
-                    preparedStatement.setInt(12, funktionstilstandsUnderkategori.getId().get());
+                    preparedStatement.setInt(12, borger.getIDProperty().get());
+                    preparedStatement.setInt(13, funktionstilstandsUnderkategori.getId().get());
 
-                    preparedStatement.executeQuery();
+                    preparedStatement.execute();
 
                 }
             }

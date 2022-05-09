@@ -68,4 +68,8 @@ public class CitizenModel {
     public void getTilstande(Borger borger) {
         managerFacade.getTilstande(borger);
     }
+
+    public void getGenerelleOplysninger(Borger borger) {
+        managerFacade.getGenerelleOplysninger(borger);
+    }
 }

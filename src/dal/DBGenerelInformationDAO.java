@@ -33,10 +33,10 @@ public class DBGenerelInformationDAO {
             preparedStatement.setString(11, borger.getBoligensIndretningProperty().get());
             preparedStatement.setInt(12, borger.getIDProperty().get());
 
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke lave borgeren, tjek din forbindelse.", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke opdatere generelle oplysninger.", ButtonType.OK);
             alert.setTitle("FSIII");
             alert.show();
         }
@@ -50,7 +50,7 @@ public class DBGenerelInformationDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke lave borgeren, tjek din forbindelse.", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke oprette generelle oplysninger.", ButtonType.OK);
             alert.setTitle("FSIII");
             alert.show();
         }
