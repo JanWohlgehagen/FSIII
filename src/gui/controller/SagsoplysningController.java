@@ -175,9 +175,11 @@ public class SagsoplysningController implements Initializable {
         comboBoxTilstandFunktionstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Integer>() {
             @Override
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
-                if (newValue == 9){
-                    changeAbilityFunktionstilstandsFields(true);
-                } else changeAbilityFunktionstilstandsFields(false);
+                if (newValue != null) {
+                    if (newValue == 9) {
+                        changeAbilityFunktionstilstandsFields(true);
+                    } else changeAbilityFunktionstilstandsFields(false);
+                }
             }
         });
     }
@@ -445,6 +447,18 @@ public class SagsoplysningController implements Initializable {
                         populateTxtAreasFunktionstilstand(newValue);
                     }
                 }
+            });
+
+            tableView.setOnMouseClicked(event -> {
+                tableView.getSelectionModel().getSelectedItem().setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+                tableView.getSelectionModel().getSelectedItem().setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+                tableView.getSelectionModel().getSelectedItem().setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());
+                tableView.getSelectionModel().getSelectedItem().setBetydning(txtAreaBetydningFunktionstilstand.getText());
+                tableView.getSelectionModel().getSelectedItem().setOenskerOgMaal(txtAreaOenskerOgMålFunktionstilstand.getText());
+                tableView.getSelectionModel().getSelectedItem().setVurdering(txtAreaVurderingFunktionstilstand.getText());
+                tableView.getSelectionModel().getSelectedItem().setAarsag(txtAreaAarsagFunktionstilstand.getText());
+                tableView.getSelectionModel().getSelectedItem().setFagligNotat(txtAreaFagligtNotatFunktionstilstand.getText());
+                tableView.getSelectionModel().getSelectedItem().setOpfølgning(txtOpfoelgningFunktionstilstand.getText());
             });
 
             if(insertionCounter %2 == 0){
