@@ -105,6 +105,7 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public void updateSagsoplysninger(Borger borger){
         citizenManager.updateGenerelleOplysninger(borger);
+        citizenManager.updateCitizen(borger);
         helbredstilstandManager.updateHelbredstilstand(borger);
         funktionstilstandManager.updateFunktionstilstand(borger);
     }

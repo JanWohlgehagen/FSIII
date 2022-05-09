@@ -37,12 +37,13 @@ public class DBCitizenDAO {
     {
         try(Connection connection = dbConnecting.getConnection())
         {
-            String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?) WHERE ID =(?)";
+            String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?), Helhedsvurdering = (?) WHERE ID =(?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, borger.getFirstNameProperty().get());
             preparedStatement.setString(2, borger.getLastNameProperty().get());
             preparedStatement.setInt(3, borger.getIDProperty().get());
+            preparedStatement.setString(4, borger.getHelhedsvurderingProperty().get());
 
             preparedStatement.executeQuery();
             return;
@@ -96,8 +97,10 @@ public class DBCitizenDAO {
                 String lastName =resultSet.getString(3);
                 int age = resultSet.getInt(4);
                 boolean isTemplate = resultSet.getBoolean(5);
+                String helhedsvurdering = resultSet.getString(6);
                 Borger borger = new Borger(firsteName, lastName, isTemplate, age);
                 borger.setID(ID);
+                borger.setHelhedsvurdering(helhedsvurdering);
                 listOfCitizens.add(borger);
 
             }

@@ -23,6 +23,7 @@ public class Borger {
     private StringProperty helbredsoplysninger = new SimpleStringProperty();
     private StringProperty hjaelpemidler= new SimpleStringProperty();
     private StringProperty boligensIndretning = new SimpleStringProperty();
+    private StringProperty heldhedsVurdering = new SimpleStringProperty();
 
     private ArrayList<Case> listOfCases= new ArrayList<>();
     private Funktionstilstand funktionstilstand;
@@ -162,6 +163,13 @@ public class Borger {
 
     public void setBoligensIndretning(String boligensIndretning) {
         this.boligensIndretning.set(boligensIndretning);
+    }
+    public StringProperty getHelhedsvurderingProperty() {
+        return heldhedsVurdering;
+    }
+
+    public void setHelhedsvurdering(String helhedsvurdering) {
+        this.heldhedsVurdering.set(helhedsvurdering);
     }
 
     public ArrayList<Case> getListOfCases() {
