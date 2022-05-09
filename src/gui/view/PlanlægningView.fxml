@@ -6,11 +6,12 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="gui.controller.PlanlaegningController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.PlanlaegningController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -37,18 +38,49 @@
                </VBox.margin>
             </TextArea>
          </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
       </VBox>
       <VBox alignment="BOTTOM_RIGHT" GridPane.rowIndex="2">
-         <children>
-            <Button mnemonicParsing="false" onAction="#handelVidere" text="Videre">
-               <VBox.margin>
-                  <Insets bottom="20.0" right="20.0" />
-               </VBox.margin>
-            </Button>
-         </children>
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
+         <children>
+            <HBox alignment="BOTTOM_RIGHT" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseGemOgLukScene" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseGemOgNæsteScene" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" right="10.0" />
+               </padding>
+            </HBox>
+         </children>
       </VBox>
    </children>
 </GridPane>

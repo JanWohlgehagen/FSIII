@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -70,10 +71,6 @@ public class OpfoelgningController implements Initializable {
         }
     }
 
-    public void handelVidere(ActionEvent actionEvent) {
-        caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
-    }
-
     public void handleCBClose(ActionEvent actionEvent) {
         selectCase.getOpfoelgningstagProperty().set("Afsluttes");
         checkBoxRevisitationCase.setSelected(false);
@@ -100,5 +97,12 @@ public class OpfoelgningController implements Initializable {
         checkBoxChangeCase.setSelected(false);
         checkBoxContinueCase.setSelected(false);
         checkBoxCloseCase.setSelected(false);
+    }
+
+    public void handleMouseGemOgLukScene(MouseEvent mouseEvent) {
+    }
+
+    public void handleMouseGemOgNæsteScene(MouseEvent mouseEvent) {
+        caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
     }
 }

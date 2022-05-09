@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="parentPaneGridPane" prefHeight="171.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CreateCitizenViewController">
+<GridPane fx:id="parentPaneGridPane" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CreateCitizenViewController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="0.0" prefWidth="400.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="167.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <VBox prefHeight="126.0" prefWidth="380.0">
@@ -30,21 +30,27 @@
             <TextField fx:id="txtAge" layoutX="10.0" layoutY="69.0" prefHeight="25.0" prefWidth="380.0" />
          </children>
          <GridPane.margin>
-            <Insets left="10.0" right="10.0" top="10.0" />
+            <Insets />
          </GridPane.margin>
       </VBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="386.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="386.0" spacing="10.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets right="10.0" top="5.0" />
+            <Insets />
          </GridPane.margin>
          <children>
             <CheckBox fx:id="checkButtonTemplate" mnemonicParsing="false" text="Template">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </CheckBox>
             <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnSave" text="Gem" textAlignment="JUSTIFY" />
          </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
       </HBox>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </GridPane>
