@@ -157,11 +157,6 @@ public class SagsoplysningController implements Initializable {
             populateFunktionstilstandsCombobox();
             populateGenerelleOplysninger();
             populateHelhedsvurdering();
-            for (String f: borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet() ) {
-                System.out.println(borger.getFunktionstilstand().getFunktionsTilstandsKort().get(f));
-
-            }
-
         });
 
         comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {

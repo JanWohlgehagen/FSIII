@@ -119,11 +119,6 @@ public class DBFunktionstilstandDAO {
                 FunktionstilstandsUnderkategori f = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
                 allFunktionstilstande.add(f);
             }
-            System.out.println(allFunktionstilstande);
-
-            System.out.println(allFunktionstilstande.size());
-
-
 
             for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
                 if (!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())) {
@@ -133,8 +128,6 @@ public class DBFunktionstilstandDAO {
             }
 
             funktionstilstand.setFunktionsTilstande(funktionstilstandeHP);
-            System.out.println("_____________________________________________");
-            System.out.println(funktionstilstandeHP.keySet());
             return funktionstilstand;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
