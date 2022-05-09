@@ -18,7 +18,6 @@ INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES ('Spise',
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES ('Drikke',1)
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES ('Varetage egen sundhed',1)
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES (N'Fødeindtagelse', 1)
-
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES (N'Udføre daglige rutiner', 2)
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES ('Skaffe sig varer og tjenesteydelser', 2)
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES ('Lave mad', 2)
@@ -42,6 +41,7 @@ INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES ('Energi 
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES ('Hukommelse', 4)
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES (N'Følelsesfunktioner', 4)
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES ('Overordnede kognitive funktioner', 4)
+
 INSERT INTO FS_Underkategori (FS_Underkategori_Title, FS_OK_ID) VALUES (N'Have lønnet beskæftigelse', 5)
 
 
