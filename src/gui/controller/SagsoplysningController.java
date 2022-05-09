@@ -236,12 +236,12 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void helhedsvurderingHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
+        citizenModel.updateSagsoplysninger(borger);
         closeStage();
     }
 
     public void helhedsvurderingHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        //TODO
+        citizenModel.updateSagsoplysninger(borger);
         goToNextScene();
     }
 
