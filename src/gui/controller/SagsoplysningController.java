@@ -145,6 +145,8 @@ public class SagsoplysningController implements Initializable {
     private TooltipBank tooltipBank = new TooltipBank();
     private Borger borger;
     private CitizenModel citizenModel;
+    private HelbredstilstandsUnderkategori oldValueOfHelbredstilstandsUnderkategori;
+    private FunktionstilstandsUnderkategori oldValueOfFunktionstilstandsUnderkategori;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -192,61 +194,83 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         updateBorgerInformationer();
         updateBorger(borger);
         closeStage();
     }
 
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         updateBorgerInformationer();
         updateBorger(borger);
         goToNextScene();
     }
 
     public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         updateBorger(borger);
         closeStage();
     }
 
     public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         updateBorger(borger);
         goToNextScene();
     }
 
     public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         updateBorger(borger);
         closeStage();
     }
 
     public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+        updateFunktionstilstandsUnderkategori();
+        updateHelbredstilstandsUnderkategori();
         updateBorger(borger);
         goToNextScene();
     }
 
     public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         extractMedicineList();
         updateBorger(borger);
         closeStage();
     }
 
     public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         extractMedicineList();
         updateBorger(borger);
         goToNextScene();
     }
 
     public void helhedsvurderingHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         updateBorger(borger);
         closeStage();
     }
 
     public void helhedsvurderingHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
         updateBorger(borger);
         goToNextScene();
     }
 
     public void handleAddTxtFieldMedicineList(ActionEvent actionEvent) {
         vBoxMedicinliste.getChildren().add(new TextField());
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
     }
 
     private void updateBorger(Borger borger){
@@ -400,21 +424,13 @@ public class SagsoplysningController implements Initializable {
             tableView.setMaxWidth(245.0);
 
             // populates text areas as well as the comboboxes for a given subcategory
-            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HelbredstilstandsUnderkategori>() {
-                @Override
-                public void changed(ObservableValue<? extends HelbredstilstandsUnderkategori> observable, HelbredstilstandsUnderkategori oldValue, HelbredstilstandsUnderkategori newValue) {
-                    if (newValue != null){
-                        populateTxtAreasHelbredstilstand(newValue);
-                    }
-                }
-            });
-
             tableView.setOnMouseClicked(event -> {
-                tableView.getSelectionModel().getSelectedItem().setTilstand(comboBoxTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
-                tableView.getSelectionModel().getSelectedItem().setForventetTilstand(comboBoxForventetTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
-                tableView.getSelectionModel().getSelectedItem().setVurdering(txtAreaVurderingHelbredstilstand.getText());
-                tableView.getSelectionModel().getSelectedItem().setAarsag(txtAreaVurderingHelbredstilstand.getText());
-                tableView.getSelectionModel().getSelectedItem().setFagligNotat(txtAreaFagligtNotatHelbredstilstand.getText());
+                if(oldValueOfHelbredstilstandsUnderkategori != null){
+                    updateHelbredstilstandsUnderkategori();
+                }
+
+                oldValueOfHelbredstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
+                populateTxtAreasHelbredstilstand(tableView.getSelectionModel().getSelectedItem());
             });
 
             if(insertionCounter %2 == 0){
@@ -439,25 +455,13 @@ public class SagsoplysningController implements Initializable {
             tableView.setMaxWidth(245.0);
 
             // populates text areas as well as the comboboxes for a given subcategory
-            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<FunktionstilstandsUnderkategori>() {
-                @Override
-                public void changed(ObservableValue<? extends FunktionstilstandsUnderkategori> observable, FunktionstilstandsUnderkategori oldValue, FunktionstilstandsUnderkategori newValue) {
-                    if (newValue != null){
-                        populateTxtAreasFunktionstilstand(newValue);
-                    }
-                }
-            });
-
             tableView.setOnMouseClicked(event -> {
-                tableView.getSelectionModel().getSelectedItem().setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
-                tableView.getSelectionModel().getSelectedItem().setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
-                tableView.getSelectionModel().getSelectedItem().setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());
-                tableView.getSelectionModel().getSelectedItem().setBetydning(txtAreaBetydningFunktionstilstand.getText());
-                tableView.getSelectionModel().getSelectedItem().setOenskerOgMaal(txtAreaOenskerOgMålFunktionstilstand.getText());
-                tableView.getSelectionModel().getSelectedItem().setVurdering(txtAreaVurderingFunktionstilstand.getText());
-                tableView.getSelectionModel().getSelectedItem().setAarsag(txtAreaAarsagFunktionstilstand.getText());
-                tableView.getSelectionModel().getSelectedItem().setFagligNotat(txtAreaFagligtNotatFunktionstilstand.getText());
-                tableView.getSelectionModel().getSelectedItem().setOpfølgning(txtOpfoelgningFunktionstilstand.getText());
+                if(oldValueOfFunktionstilstandsUnderkategori != null){
+                    updateFunktionstilstandsUnderkategori();
+                }
+
+                oldValueOfFunktionstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
+                populateTxtAreasFunktionstilstand(tableView.getSelectionModel().getSelectedItem());
             });
 
             if(insertionCounter %2 == 0){
@@ -467,6 +471,26 @@ public class SagsoplysningController implements Initializable {
             }
             insertionCounter ++;
         }
+    }
+
+    private void updateFunktionstilstandsUnderkategori(){
+        oldValueOfFunktionstilstandsUnderkategori.setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+        oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+        oldValueOfFunktionstilstandsUnderkategori.setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());
+        oldValueOfFunktionstilstandsUnderkategori.setBetydning(txtAreaBetydningFunktionstilstand.getText());
+        oldValueOfFunktionstilstandsUnderkategori.setOenskerOgMaal(txtAreaOenskerOgMålFunktionstilstand.getText());
+        oldValueOfFunktionstilstandsUnderkategori.setVurdering(txtAreaVurderingFunktionstilstand.getText());
+        oldValueOfFunktionstilstandsUnderkategori.setAarsag(txtAreaAarsagFunktionstilstand.getText());
+        oldValueOfFunktionstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatFunktionstilstand.getText());
+        oldValueOfFunktionstilstandsUnderkategori.setOpfølgning(txtOpfoelgningFunktionstilstand.getText());
+    }
+
+    private void updateHelbredstilstandsUnderkategori(){
+        oldValueOfHelbredstilstandsUnderkategori.setVurdering(txtAreaVurderingHelbredstilstand.getText());
+        oldValueOfHelbredstilstandsUnderkategori.setAarsag(txtAreaAarsagHelbredstilstand.getText());
+        oldValueOfHelbredstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatHelbredstilstand.getText());
+        oldValueOfHelbredstilstandsUnderkategori.setTilstand(comboBoxTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+        oldValueOfHelbredstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
     }
 
     private void populateTxtAreasHelbredstilstand(HelbredstilstandsUnderkategori newValue){

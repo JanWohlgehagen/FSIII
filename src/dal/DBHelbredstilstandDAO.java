@@ -50,7 +50,6 @@ public class DBHelbredstilstandDAO {
 
                     preparedStatement.setInt(8, borger.getIDProperty().get());
                     preparedStatement.setInt(9, helbredstilstandsUnderkategori.getId().get());
-
                     preparedStatement.execute();
 
                 }

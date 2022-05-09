@@ -24,7 +24,7 @@ public class DBCaseDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("ID");
+                int id = resultSet.getInt("Case_ID");
                 String overkategoriTitle = resultSet.getString("OverkategoriTitle");
                 String underkategoriTitle = resultSet.getString("UnderkategoriTitle");
                 String henvisning = resultSet.getString("Henvisning");
