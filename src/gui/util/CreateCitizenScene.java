@@ -1,6 +1,5 @@
 package gui.util;
 
-import gui.controller.CaseDocumentationViewController;
 import gui.controller.CreateCitizenViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

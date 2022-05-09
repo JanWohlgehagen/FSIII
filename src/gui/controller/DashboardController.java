@@ -16,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -121,6 +120,10 @@ public class DashboardController implements Initializable {
         this.selectCitizen = selectCitizen;
     }
 
+    public CaseModel getCaseModel(){
+        return caseModel;
+    }
+
     public void handleButtonSagsåbning(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CaseOpeningController> caseOpeningScene =  new CaseOpeningScene();
         caseOpeningScene.loadNewScene(new Stage());
@@ -161,12 +164,11 @@ public class DashboardController implements Initializable {
         //}
     }
 
-    public void handleButtonPlanlægning(ActionEvent actionEvent) throws IOException {
+    public void handleButtonPlanlaegning(ActionEvent actionEvent) throws IOException {
         ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
         planlaegningScene.loadNewScene(new Stage());
         PlanlaegningController planlaegningController = planlaegningScene.getController();
         planlaegningController.setDashboardController(dashboardController);
-        planlaegningController.setCaseModel(caseModel);
     }
 
     public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
@@ -175,11 +177,11 @@ public class DashboardController implements Initializable {
             alert.show();
         }
         else {
-            ISceneLoader<CaseDocumentationViewController> caseDocumentationScene = new CaseDocumentationScene();
+            ISceneLoader<UdfoerelseIOgLeveringController> caseDocumentationScene = new CaseDocumentationScene();
             caseDocumentationScene.loadNewScene(new Stage());
-            CaseDocumentationViewController caseDocumentationViewController = caseDocumentationScene.getController();
-            caseDocumentationViewController.setCaseDocumentationViewController(caseDocumentationViewController);
-            caseDocumentationViewController.setCurrentCase(selectedCase);
+            UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
+            udfoerelseIOgLeveringController.setCaseDocumentationViewController(udfoerelseIOgLeveringController);
+            udfoerelseIOgLeveringController.setCurrentCase(selectedCase);
         }
     }
 

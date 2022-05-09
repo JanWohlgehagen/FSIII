@@ -50,7 +50,7 @@
                   <Font name="Cambria Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonPlanlægning" prefHeight="115.0" prefWidth="115.0" styleClass="bottomButton" text="4. Planlægning" textAlignment="CENTER" translateX="125.0" translateY="120.0" wrapText="true">
+            <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonPlanlaegning" prefHeight="115.0" prefWidth="115.0" styleClass="bottomButton" text="4. Planlægning" textAlignment="CENTER" translateX="125.0" translateY="120.0" wrapText="true">
                <font>
                   <Font name="Cambria Bold" size="16.0" />
                </font>

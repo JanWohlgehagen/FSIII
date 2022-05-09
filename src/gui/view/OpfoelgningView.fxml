@@ -12,38 +12,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.OpfoelgningController">
+<GridPane alignment="CENTER" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.OpfoelgningController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+        <RowConstraints vgrow="SOMETIMES" />
+        <RowConstraints vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <VBox alignment="CENTER">
-            <children>
-                <Label alignment="CENTER" text="Opfølgning">
-                    <font>
-                        <Font size="40.0" />
-                    </font>
-                </Label>
-            </children>
-        </VBox>
-        <VBox alignment="CENTER" GridPane.rowIndex="2">
-            <children>
-                <TextArea fx:id="txtAreaOpfoelgning" prefHeight="200.0" prefWidth="200.0" promptText="Tanker?">
-                    <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                    </VBox.margin>
-                </TextArea>
-            </children>
-         <padding>
-            <Insets left="10.0" right="10.0" />
-         </padding>
-        </VBox>
+          <Label alignment="CENTER" styleClass="labelTitle" text="Opfølgning">
+              <font>
+                  <Font size="40.0" />
+              </font>
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
+          </Label>
         <VBox alignment="BOTTOM_RIGHT" GridPane.rowIndex="3">
             <children>
             <HBox alignment="BOTTOM_RIGHT" spacing="15.0">
@@ -75,8 +62,11 @@
                      </padding>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <padding>
-                  <Insets bottom="10.0" right="10.0" />
+                  <Insets top="15.0" />
                </padding>
             </HBox>
             </children>
@@ -104,5 +94,9 @@
             <CheckBox fx:id="checkBoxRevisitationCase" mnemonicParsing="false" onAction="#handleCBRevisitation" text="Revisitation" />
          </children>
       </HBox>
+          <TextArea fx:id="txtAreaOpfoelgning" promptText="Tanker?" GridPane.rowIndex="2" />
     </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </GridPane>

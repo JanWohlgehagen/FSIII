@@ -7,10 +7,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-import javax.swing.*;
-
-public class CaseDocumentationViewController {
+public class UdfoerelseIOgLeveringController {
+    @FXML
+    private GridPane parentPane;
     @FXML
     private ScrollPane scrollpaneDocumentations;
     @FXML
@@ -18,15 +20,15 @@ public class CaseDocumentationViewController {
     @FXML
     private TextArea txtAreaDok;
 
-    private CaseDocumentationViewController caseDocumentationViewController;
+    private UdfoerelseIOgLeveringController udfoerelseIOgLeveringController;
     private Case currentCase;
 
     public void btnNewDocumentation(ActionEvent actionEvent) {
         /// TODO: 09/05/2022
     }
 
-    public void setCaseDocumentationViewController(CaseDocumentationViewController caseDocumentationViewController) {
-        this.caseDocumentationViewController = caseDocumentationViewController;
+    public void setCaseDocumentationViewController(UdfoerelseIOgLeveringController udfoerelseIOgLeveringController) {
+        this.udfoerelseIOgLeveringController = udfoerelseIOgLeveringController;
     }
     public void setCurrentCase(Case currentCase)
     {
@@ -34,10 +36,15 @@ public class CaseDocumentationViewController {
     }
 
     public void handleMouseSaveAndClose(MouseEvent mouseEvent) {
-        /// TODO: 09/05/2022
+        // TODO: 5/9/2022  
+        getStage().close();
     }
 
     public void handleMouseSaveAndNextScene(MouseEvent mouseEvent) {
         /// TODO: 09/05/2022
+    }
+
+    private Stage getStage(){
+        return (Stage) parentPane.getScene().getWindow();
     }
 }
