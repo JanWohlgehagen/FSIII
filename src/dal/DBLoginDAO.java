@@ -22,7 +22,7 @@ public class DBLoginDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                int id = resultSet.getInt("ID");
+                int id = resultSet.getInt("Person_ID");
                 String userPassword = resultSet.getString("Password");
                 return new Credential(id,userName,userPassword);
             }

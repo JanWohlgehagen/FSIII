@@ -90,7 +90,7 @@ public class DBCaseDAO {
                     "[Plan] = (?), " +
                     "Opfoelgnings_Tag = (?), " +
                     "SagsAnsvarlig = (?)" +
-                         " WHERE Borger_ID = (?) AND ID = (?)";
+                         " WHERE Borger_ID = (?) AND Case_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, selectCase.getOverkategoriTitleProperty().get());
             preparedStatement.setString(2, selectCase.getUnderkategoriTitleProperty().get());
@@ -116,7 +116,7 @@ public class DBCaseDAO {
 
     public void deleteCaseOnCitizen(int citizenID, int caseID){
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "DELETE [Case] WHERE Borger_ID = (?) AND ID = (?)";
+            String sql = "DELETE [Case] WHERE Borger_ID = (?) AND Case_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, citizenID);
             preparedStatement.setInt(2, caseID);

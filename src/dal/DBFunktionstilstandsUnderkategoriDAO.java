@@ -25,7 +25,7 @@ public class DBFunktionstilstandsUnderkategoriDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String underkategori = rs.getString("Titel");
+                String underkategori = rs.getString("FS_Underkategori_Title");
                 funktionstilstandsUnderkategoriList.add(underkategori);
             }
         } catch (SQLException throwables) {
@@ -41,16 +41,16 @@ public class DBFunktionstilstandsUnderkategoriDAO {
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
 
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT FS_Underkategori.ID, FS_Underkategori.Titel, FS_Overkategori.Titel FROM [FS_Underkategori]" +
-                    "FULL JOIN [FS_Overkategori] ON FS_Underkategori.FS_OK_ID = FS_Overkategori.ID";
+            String sql = "SELECT FS_Underkategori.FS_Underkategori_ID, FS_Underkategori.FS_Underkategori_Title, FS_Overkategori.FS_Overkategori_Titel FROM [FS_Underkategori]" +
+                    "FULL JOIN [FS_Overkategori] ON FS_Underkategori.FS_OK_ID = FS_Overkategori.FS_Overkategori_ID";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int UKID = rs.getInt(1);
-                String tilstandsKlassifikation = rs.getString(2);
-                String overkategoriNavn = rs.getString(3);
+                int UKID = rs.getInt("FS_Underkategori_ID");
+                String tilstandsKlassifikation = rs.getString("FS_Underkategori_Title");
+                String overkategoriNavn = rs.getString("FS_Overkategori_Titel");
 
 
                 FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation, overkategoriNavn);

@@ -21,7 +21,7 @@ public class DBCitizenDAO {
     {
         try(Connection connection = dbConnecting.getConnection())
         {
-            String sql = "DELETE FROM [Borger] WHERE ID = (?)";
+            String sql = "DELETE FROM [Borger] WHERE Borger_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, borger.getIDProperty().get());
             preparedStatement.executeQuery();
@@ -37,7 +37,7 @@ public class DBCitizenDAO {
     {
         try(Connection connection = dbConnecting.getConnection())
         {
-            String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?), Helhedsvurdering = (?) WHERE ID =(?)";
+            String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?), Helhedsvurdering = (?) WHERE Borger_ID =(?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, borger.getFirstNameProperty().get());
@@ -92,12 +92,12 @@ public class DBCitizenDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next())
             {
-                int ID = resultSet.getInt(1);
-                String firsteName =resultSet.getString(2);
-                String lastName =resultSet.getString(3);
-                int age = resultSet.getInt(4);
-                boolean isTemplate = resultSet.getBoolean(5);
-                String helhedsvurdering = resultSet.getString(6);
+                int ID = resultSet.getInt("Borger_ID");
+                String firsteName =resultSet.getString("FirstName");
+                String lastName =resultSet.getString("LastName");
+                int age = resultSet.getInt("Age");
+                boolean isTemplate = resultSet.getBoolean("Template");
+                String helhedsvurdering = resultSet.getString("Helhedsvurdering");
                 Borger borger = new Borger(firsteName, lastName, isTemplate, age);
                 borger.setID(ID);
                 borger.setHelhedsvurdering(helhedsvurdering);
@@ -126,15 +126,16 @@ public class DBCitizenDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next())
             {
-                int ID = resultSet.getInt(1);
-                String firsteName =resultSet.getString(2);
-                String lastName =resultSet.getString(3);
-                int age = resultSet.getInt(4);
-                boolean isTemplate = resultSet.getBoolean(5);
+                int ID = resultSet.getInt("Borger_ID");
+                String firsteName =resultSet.getString("FirstName");
+                String lastName =resultSet.getString("LastName");
+                int age = resultSet.getInt("Age");
+                boolean isTemplate = resultSet.getBoolean("Template");
+                String helhedsvurdering = resultSet.getString("Helhedsvurdering");
                 Borger borger = new Borger(firsteName, lastName, isTemplate, age);
                 borger.setID(ID);
+                borger.setHelhedsvurdering(helhedsvurdering);
                 listOfTemplates.add(borger);
-
             }
             return listOfTemplates;
         } catch (SQLException throwables) {

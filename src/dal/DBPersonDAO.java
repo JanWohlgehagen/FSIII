@@ -14,7 +14,7 @@ public class DBPersonDAO {
 
     public User getPersonById(int id){
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [Person] WHERE ID = (?)";
+            String sql = "SELECT * FROM [Person] WHERE Person_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1,id);
 
