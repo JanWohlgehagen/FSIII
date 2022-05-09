@@ -66,4 +66,8 @@ public interface IDatabaseFacade {
     public Funktionstilstand getEmptyFunktionsTilstand();
 
     public Helbredstilstand getEmptyHelbredsTilstand();
+
+    public List<String> getHelbredstilstand();
+
+    public List<String> getHelbredstilstandsUnderkategori();
 }

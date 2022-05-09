@@ -2,10 +2,7 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import gui.model.CaseModel;
-import gui.model.CitizenModel;
-import gui.model.FunktionstilstandModel;
-import gui.model.FunktionstilstandsUnderkategoriModel;
+import gui.model.*;
 import gui.util.CreateAndEditCaseScene;
 import gui.util.ISceneLoader;
 import gui.util.SagsoplysningScene;
@@ -39,8 +36,6 @@ public class CaseOpeningController implements Initializable {
     @FXML
     private Label alderLbl;
     @FXML
-    private Label antalAktiveSagerLbl;
-    @FXML
     private Label sagsansvarligLbl;
     @FXML
     private Label lblHenvisning;
@@ -71,6 +66,8 @@ public class CaseOpeningController implements Initializable {
     private FunktionstilstandModel funktionstilstandModel;
     private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
     private DashboardController dashboardController;
+    private HelbredstilstandModel helbredstilstandModel;
+    private HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel;
 
 
     @Override
@@ -90,7 +87,6 @@ public class CaseOpeningController implements Initializable {
                 fornavnLbl.setText(borger.getFirstNameProperty().get());
                 efternavnLbl.setText(borger.getLastNameProperty().get());
                 alderLbl.setText(String.valueOf(borger.getAgeProperty().get()));
-                antalAktiveSagerLbl.setText("Skal denne være her???");
                 sagsansvarligLbl.setText(newValue.getSagsansvarligProperty().get());
                 lblHenvisning.setText(newValue.getHenvisningProperty().get());
                 lblOpfolgningsTag.setText(newValue.getOpfoelgningstagProperty().get());
@@ -124,6 +120,14 @@ public class CaseOpeningController implements Initializable {
         this.funktionstilstandsUnderkategoriModel = funktionstilstandsUnderkategoriModel;
     }
 
+    public void setHelbredstilstandModel(HelbredstilstandModel helbredstilstandModel) {
+        this.helbredstilstandModel = helbredstilstandModel;
+    }
+
+    public void setHelbredstilstandsUnderkategoriModel(HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel) {
+        this.helbredstilstandsUnderkategoriModel = helbredstilstandsUnderkategoriModel;
+    }
+
     public void handleOpretSag(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CreateAndEditCaseController> createAndEditCaseScene = new CreateAndEditCaseScene();
         createAndEditCaseScene.loadNewScene(new Stage());
@@ -133,6 +137,8 @@ public class CaseOpeningController implements Initializable {
         createAndEditCaseController.setCaseModel(caseModel);
         createAndEditCaseController.setFunktionstilstandModel(funktionstilstandModel);
         createAndEditCaseController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
+        createAndEditCaseController.setHelbredstilstandModel(helbredstilstandModel);
+        createAndEditCaseController.setHelbredstilstandsUnderkategoriModel(helbredstilstandsUnderkategoriModel);
     }
 
     public void handleRedigerSag(ActionEvent actionEvent) throws IOException {
@@ -143,13 +149,15 @@ public class CaseOpeningController implements Initializable {
         createAndEditCaseController.setCaseModel(caseModel);
         createAndEditCaseController.setFunktionstilstandModel(funktionstilstandModel);
         createAndEditCaseController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
+        createAndEditCaseController.setHelbredstilstandModel(helbredstilstandModel);
+        createAndEditCaseController.setHelbredstilstandsUnderkategoriModel(helbredstilstandsUnderkategoriModel);
         if(getSelectedCase() != null){
             createAndEditCaseController.setEditThisCase(getSelectedCase());
             createAndEditCaseController.editCaseModeIsOn();
         }else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error.. ");
-            alert.setContentText("Der skal vælges en sag, før man kan rediger den");
+            alert.setTitle("Error... ");
+            alert.setContentText("Der skal vælges en sag, før den kan redigeres");
             alert.showAndWait();
         }
     }
@@ -165,7 +173,6 @@ public class CaseOpeningController implements Initializable {
             fornavnLbl.setText("");
             efternavnLbl.setText("");
             alderLbl.setText("");
-            antalAktiveSagerLbl.setText("Skal denne være her???");
             sagsansvarligLbl.setText("");
             lblHenvisning.setText("");
             lblOpfolgningsTag.setText("");
@@ -180,7 +187,7 @@ public class CaseOpeningController implements Initializable {
     private boolean displayWarning (){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Skal denne Sag( " + getSelectedCase() + " ) slettes");
+        alert.setHeaderText("Skal denne Sag (" + getSelectedCase() + ") slettes?");
         alert.setContentText("Press OK to continue.");
         Optional<ButtonType> result = alert.showAndWait();
         return result.get() == ButtonType.OK;

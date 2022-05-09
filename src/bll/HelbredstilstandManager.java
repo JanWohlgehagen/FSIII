@@ -4,6 +4,8 @@ import be.Borger;
 import be.Helbredstilstand;
 import dal.interfaces.IDatabaseFacade;
 
+import java.util.List;
+
 public class HelbredstilstandManager {
     private final IDatabaseFacade databaseFacade;
 
@@ -24,5 +26,9 @@ public class HelbredstilstandManager {
     public void deleteHelbredstilstand (Borger borger)
     {
         databaseFacade.deleteHelbredstilstandOnCitizen(borger);
+    }
+
+    public List<String> getHelbredstilstandsList() {
+        return databaseFacade.getHelbredstilstand();
     }
 }

@@ -2,9 +2,7 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import gui.model.CaseModel;
-import gui.model.FunktionstilstandModel;
-import gui.model.FunktionstilstandsUnderkategoriModel;
+import gui.model.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,6 +49,8 @@ public class CreateAndEditCaseController implements Initializable {
     private DashboardController dashboardController;
     private FunktionstilstandModel funktionstilstandModel;
     private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
+    private HelbredstilstandModel helbredstilstandModel;
+    private HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,7 +59,9 @@ public class CreateAndEditCaseController implements Initializable {
             borger = dashboardController.getSelectedCitizen();
 
             overkategoriCbx.getItems().addAll(funktionstilstandModel.getFunktionstilstandsList());
+            overkategoriCbx.getItems().addAll(helbredstilstandModel.getHelbredstilstandsList());
             underkategoriCbx.getItems().addAll(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
+            underkategoriCbx.getItems().addAll(helbredstilstandsUnderkategoriModel.getHelbredstilstandsUnderkategoriList());
 
             if(editCaseMode) {
                 overkategoriCbx.setPromptText(editThisCase.getOverkategoriTitleProperty().get());
@@ -98,6 +100,14 @@ public class CreateAndEditCaseController implements Initializable {
 
     public void setFunktionstilstandsUnderkategoriModel(FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel) {
         this.funktionstilstandsUnderkategoriModel =funktionstilstandsUnderkategoriModel;
+    }
+
+    public void setHelbredstilstandModel(HelbredstilstandModel helbredstilstandModel) {
+        this.helbredstilstandModel = helbredstilstandModel;
+    }
+
+    public void setHelbredstilstandsUnderkategoriModel(HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel) {
+        this.helbredstilstandsUnderkategoriModel = helbredstilstandsUnderkategoriModel;
     }
 
     public void setCaseModel(CaseModel caseModel){

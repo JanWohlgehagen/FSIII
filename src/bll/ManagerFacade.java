@@ -5,6 +5,7 @@ import be.user.User;
 import bll.Interfaces.IManagerFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
+import gui.model.HelbredstilstandsUnderkategoriModel;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,6 +18,7 @@ public class ManagerFacade implements IManagerFacade {
     private final FunktionstilstandManager funktionstilstandManager;
     private final FunktionstilstandsUnderkategoriManager funktionstilstandsUnderkategoriManager;
     private final HelbredstilstandManager helbredstilstandManager;
+    private final HelbredstilstandsUnderkategoriManager helbredstilstandsUnderkategoriManager;
 
     public ManagerFacade() throws IOException {
         credentialManager = new CredentialManager(new DatabaseFacade());
@@ -25,6 +27,8 @@ public class ManagerFacade implements IManagerFacade {
         funktionstilstandManager = new FunktionstilstandManager(new DatabaseFacade());
         funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(new DatabaseFacade());
         helbredstilstandManager = new HelbredstilstandManager(new DatabaseFacade());
+        helbredstilstandsUnderkategoriManager = new HelbredstilstandsUnderkategoriManager(new DatabaseFacade());
+
     }
 
                             /***************************************************/
@@ -156,6 +160,16 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public void deleteHelbredstilstand(Borger borger) {
         helbredstilstandManager.deleteHelbredstilstand(borger);
+    }
+
+    @Override
+    public List<String> getHelbredstilstandsList()  {
+        return helbredstilstandManager.getHelbredstilstandsList();
+    }
+
+    @Override
+    public List<String> getHelbredstilstandsUnderkategoriList() {
+        return helbredstilstandsUnderkategoriManager.getHelbredstilstandsUnderkategoriList();
     }
 
 
