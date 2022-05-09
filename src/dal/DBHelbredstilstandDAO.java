@@ -35,7 +35,7 @@ public class DBHelbredstilstandDAO {
     }
 
     public void updateHelbredstilstand(Borger borger) {
-        String sql = "UPDATE [H_Tilstandsvurdering (HS_Borger_ID, HS_UK_ID, Tilstand, Vurdering, Aarsag, Faglig_Notat, Forventet_Tilstand) VALUES (?,?,?,?,?,?,?) " +
+        String sql = "UPDATE [H_Tilstandsvurdering] SET HS_Borger_ID = (?), HS_UK_ID = (?), Tilstand = (?), Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?) " +
                 "WHERE HS_Borger_ID = (?) AND HS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {

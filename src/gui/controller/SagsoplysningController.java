@@ -157,6 +157,7 @@ public class SagsoplysningController implements Initializable {
             populateFunktionstilstandsCombobox();
             populateGenerelleOplysninger();
             populateHelhedsvurdering();
+
         });
 
         comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {

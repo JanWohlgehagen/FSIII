@@ -19,7 +19,7 @@ public class DBFunktionstilstandDAO {
     }
 
     public void createEmptyFunktionstilstand(Borger borger) {
-        String sql = "INSERT INTO [F_Tilstandsvurdering (FS_Borger_ID, FS_UK_ID) VALUES (?,?)";
+        String sql = "INSERT INTO [F_Tilstandsvurdering] (FS_Borger_ID, FS_UK_ID) VALUES (?,?)";
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
                 for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
@@ -27,8 +27,7 @@ public class DBFunktionstilstandDAO {
                     preparedStatement.setInt(1, borger.getIDProperty().get());
                     preparedStatement.setInt(2, funktionstilstandsUnderkategori.getId().get());
 
-                    preparedStatement.executeQuery();
-
+                    preparedStatement.execute();
                 }
             }
 
@@ -39,8 +38,8 @@ public class DBFunktionstilstandDAO {
     }
 
     public void updateFunktionstilstand(Borger borger) {
-        String sql = "UPDATE [F_Tilstandsvurdering (FS_Borger_ID, FS_UK_ID, Udfoerelse, Betydning, Borger_Maal, Niveau, Vurdering, Aarsag," +
-                " Faglig_Notat, Forvente_Tilstand, opfoelgning) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" +
+        String sql = "UPDATE [F_Tilstandsvurdering] SET FS_Borger_ID = (?), FS_UK_ID = (?), Udfoerelse = (?), Betydning = (?), Borger_Maal = (?), Niveau = (?), Vurdering = (?), Aarsag = (?)," +
+                " Faglig_Notat = (?), Forventet_Tilstand = (?), opfoelgning = (?)" +
                 "WHERE FS_Borger_ID = (?) AND FS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
