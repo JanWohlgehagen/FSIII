@@ -190,7 +190,7 @@ public class SagsoplysningController implements Initializable {
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         if (borger != null){ //TODO skal slettes, når borger er implementeret
             updateBorgerInformationer();
-            citizenModel.updateGenerelleOplysninger(borger);
+            citizenModel.updateSagsoplysninger(borger);
         }
         closeStage();
     }
@@ -198,40 +198,40 @@ public class SagsoplysningController implements Initializable {
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         if (borger != null){ //TODO skal slettes, når borger er implementeret
             updateBorgerInformationer();
-            citizenModel.updateGenerelleOplysninger(borger);
+            citizenModel.updateSagsoplysninger(borger);
         }
         goToNextScene();
     }
 
     public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
+        citizenModel.updateSagsoplysninger(borger);
         closeStage();
     }
 
     public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        //TODO
+        citizenModel.updateSagsoplysninger(borger);
         goToNextScene();
     }
 
     public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        //TODO
+        citizenModel.updateSagsoplysninger(borger);
         closeStage();
     }
 
     public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        //TODO
+        citizenModel.updateSagsoplysninger(borger);
         goToNextScene();
     }
 
     public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         extractMedicineList();
-        //TODO
+        citizenModel.updateSagsoplysninger(borger);
         closeStage();
     }
 
     public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         extractMedicineList();
-        //TODO
+        citizenModel.updateSagsoplysninger(borger);
         goToNextScene();
     }
 

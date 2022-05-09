@@ -1,5 +1,6 @@
 package bll;
 
+import be.Borger;
 import be.Case;
 import be.Funktionstilstand;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -17,5 +18,9 @@ public class FunktionstilstandManager {
 
     public List<String> getFunktionstilstandsList() {
         return databaseFacade.getFunktionstilstand();
+    }
+
+    public void updateFunktionstilstand(Borger borger) {
+        databaseFacade.updateFunktiontilstand(borger);
     }
 }
