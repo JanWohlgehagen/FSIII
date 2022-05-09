@@ -44,7 +44,7 @@ public class DBGenerelInformationDAO {
 
     public void createGenerelleOplysninger(Borger borger) {
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "INSERT INTO INSERT INTO Generelle_Oplysninger (Borger_ID) VALUES (?)";
+            String sql = "INSERT INTO Generelle_Oplysninger (Borger_ID) VALUES (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, borger.getIDProperty().get());
             ResultSet resultSet = preparedStatement.executeQuery();
