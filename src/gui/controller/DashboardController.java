@@ -201,15 +201,12 @@ public class DashboardController implements Initializable {
         ISceneLoader<CreateCitizenViewController> createCitizenSceneLoader = new CreateCitizenScene();
         createCitizenSceneLoader.loadNewScene(new Stage());
         CreateCitizenViewController createCitizenViewController = createCitizenSceneLoader.getController();
-        createCitizenViewController.setCreateCitizenViewController(createCitizenViewController);
-        createCitizenViewController.setDashboardController(this);
+        createCitizenViewController.setDashboardController(dashboardController);
+        createCitizenViewController.setCitizenModel(citizenModel);
     }
 
     public void updateCitizenList() {
         lvCitizens.getItems().clear();
         lvCitizens.setItems(citizenModel.getAllCitizen());
-    }
-
-    public void selectBorger(MouseEvent mouseEvent) {
     }
 }

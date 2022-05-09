@@ -45,9 +45,9 @@ public class DBGenerelInformationDAO {
     public void createGenerelleOplysninger(Borger borger) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "INSERT INTO Generelle_Oplysninger (Borger_ID) VALUES (?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, borger.getIDProperty().get());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke oprette generelle oplysninger.", ButtonType.OK);
@@ -65,17 +65,17 @@ public class DBGenerelInformationDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-               borger.setMestring(resultSet.getString(2));
-               borger.setMotivation(resultSet.getString(3));
-               borger.setRessourcer(resultSet.getString(4));
-               borger.setRoller(resultSet.getString(5));
-               borger.setVaner(resultSet.getString(6));
-               borger.setUddannelse(resultSet.getString(7));
-               borger.setLivshistorie(resultSet.getString(8));
-               borger.setNetvaerk(resultSet.getString(9));
-               borger.setHelbredsoplysninger(resultSet.getString(10));
-               borger.setHjaelpemidler(resultSet.getString(11));
-               borger.setBoligensIndretning(resultSet.getString(12));
+               borger.setMestring(resultSet.getString("Mestring"));
+               borger.setMotivation(resultSet.getString("Motivation"));
+               borger.setRessourcer(resultSet.getString("Ressourcer"));
+               borger.setRoller(resultSet.getString("Roller"));
+               borger.setVaner(resultSet.getString("Vaner"));
+               borger.setUddannelse(resultSet.getString("Uddannelse"));
+               borger.setLivshistorie(resultSet.getString("Livshistorie"));
+               borger.setNetvaerk(resultSet.getString("Netvaerk"));
+               borger.setHelbredsoplysninger(resultSet.getString("Helbredsoplysninger"));
+               borger.setHjaelpemidler(resultSet.getString("hjaelpemidler"));
+               borger.setBoligensIndretning(resultSet.getString("Boligens_Indretning"));
             }
             return borger;
 

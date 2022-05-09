@@ -21,7 +21,7 @@ public class DBHelbredstilstandsUnderkategoriDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String underkategori = rs.getString("Titel");
+                String underkategori = rs.getString("HS_Underkategori_Titel");
                 helbredstilstandsUnderkategoriList.add(underkategori);
             }
         } catch (SQLException throwables) {
