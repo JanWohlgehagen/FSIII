@@ -3,10 +3,7 @@ package dal;
 import be.*;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,18 +14,14 @@ public class DBHelbredstilstandDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void createEmptyHelbredstilstandOnCitizen(Borger borger)
-    {
-        String sql = "INSERT INTO [F_Helbredstilstand] (HS_Borger_ID, HS_UK_ID, Tilstand, Vurdering, Aarsag, Faglig_Notat, Forventet_Tilstand) VALUES (?,?,?,?,?,?,?)";
-        try (Connection connection = dbConnecting.getConnection())
-        {
-            for(String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet())
-            {
-                for(HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key))
-                {
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1,borger.getIDProperty().get());
-                    preparedStatement.setInt(2,helbredstilstandsUnderkategori.getId().get());
+    public void createEmptyHelbredstilstandOnCitizen(Borger borger) {
+        String sql = "INSERT INTO [H_Tilstandsvurdering] (HS_Borger_ID, HS_UK_ID) VALUES (?,?)";
+        try (Connection connection = dbConnecting.getConnection()) {
+            for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
+                for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    preparedStatement.setInt(1, borger.getIDProperty().get());
+                    preparedStatement.setInt(2, helbredstilstandsUnderkategori.getId().get());
 
                     preparedStatement.executeQuery();
 
@@ -44,14 +37,12 @@ public class DBHelbredstilstandDAO {
         String sql = "UPDATE [H_Tilstandsvurdering (HS_Borger_ID, HS_UK_ID, Tilstand, Vurdering, Aarsag, Faglig_Notat, Forventet_Tilstand) VALUES (?,?,?,?,?,?,?) " +
                 "WHERE HS_Borger_ID = (?) AND HS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
-            for(String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet())
-            {
-                for(HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key))
-                 {
+            for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
+                for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(sql);
                     preparedStatement.setInt(1, borger.getIDProperty().get());
                     preparedStatement.setInt(2, helbredstilstandsUnderkategori.getId().get());
-                    preparedStatement.setString(3, helbredstilstandsUnderkategori.getTilstandProperty().get() );
+                    preparedStatement.setString(3, helbredstilstandsUnderkategori.getTilstandProperty().get());
                     preparedStatement.setString(4, helbredstilstandsUnderkategori.getVurderingProperty().get());
                     preparedStatement.setString(5, helbredstilstandsUnderkategori.getAarsagProperty().get());
                     preparedStatement.setString(6, helbredstilstandsUnderkategori.getFagligNotatProperty().get());
@@ -69,11 +60,9 @@ public class DBHelbredstilstandDAO {
         }
     }
 
-    public void deleteHelbredstilstand(Borger borger)
-    {
+    public void deleteHelbredstilstand(Borger borger) {
         String sql = "DELETE FROM [H_Tilstandsvurdering] WHERE HS_Borger_ID = (?)";
-        try(Connection connection = dbConnecting.getConnection())
-        {
+        try (Connection connection = dbConnecting.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, borger.getIDProperty().get());
 
@@ -82,7 +71,6 @@ public class DBHelbredstilstandDAO {
             throwables.printStackTrace();
         }
     }
-
 
 
     public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger) {
@@ -135,111 +123,99 @@ public class DBHelbredstilstandDAO {
 
                 //Overkategori
                 String overKategoriTitel = resultSet.getString(13);
+                int OKID = resultSet.getInt(12);
 
                 int UKID = resultSet.getInt(3);
-                if (UKID == 1) {
-                    OkTitel1= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                if (OKID == 1) {
+                    OkTitel1 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe1.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 2) {
-                    OkTitel2= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 2) {
+                    OkTitel2 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe2.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 3) {
-                    OkTitel3= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 3) {
+                    OkTitel3 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe3.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 4) {
-                    OkTitel4= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 4) {
+                    OkTitel4 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe4.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 5) {
-                    OkTitel5= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 5) {
+                    OkTitel5 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe5.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 6) {
-                    OkTitel6= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 6) {
+                    OkTitel6 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe6.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 7) {
-                    OkTitel7= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 7) {
+                    OkTitel7 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe7.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 8) {
-                    OkTitel8= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 8) {
+                    OkTitel8 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe8.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 9) {
-                    OkTitel9= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 9) {
+                    OkTitel9 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe9.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 10) {
-                    OkTitel10= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 10) {
+                    OkTitel10 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe10.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 11) {
-                    OkTitel11= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 11) {
+                    OkTitel11 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe11.add(helbredstilstandsUnderkategori);
-                }
-                else if (UKID == 12) {
-                    OkTitel12= overKategoriTitel;
-                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID,underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
+                } else if (OKID == 12) {
+                    OkTitel12 = overKategoriTitel;
+                    HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat);
                     OKListe12.add(helbredstilstandsUnderkategori);
                 }
 
             }
-            if(!OKListe1.isEmpty()) {
+            if (!OKListe1.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel1, OKListe1);
-                }
-            if(!OKListe2.isEmpty()) {
+            }
+            if (!OKListe2.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel2, OKListe2);
-                }
-            if(!OKListe3.isEmpty()) {
+            }
+            if (!OKListe3.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel3, OKListe3);
-                }
-            if(!OKListe4.isEmpty()) {
+            }
+            if (!OKListe4.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel4, OKListe4);
-                }
-            if(!OKListe5.isEmpty()) {
+            }
+            if (!OKListe5.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel5, OKListe5);
-                }
-            if(!OKListe6.isEmpty()) {
+            }
+            if (!OKListe6.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel6, OKListe6);
-                }
-            if(!OKListe7.isEmpty()) {
+            }
+            if (!OKListe7.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel7, OKListe7);
-                }
-            if(!OKListe8.isEmpty()) {
+            }
+            if (!OKListe8.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel8, OKListe8);
-                }
-            if(!OKListe9.isEmpty()) {
+            }
+            if (!OKListe9.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel9, OKListe9);
-                }
-            if(!OKListe10.isEmpty()) {
+            }
+            if (!OKListe10.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel10, OKListe10);
-                }
-            if(!OKListe11.isEmpty()) {
+            }
+            if (!OKListe11.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel11, OKListe11);
-                }
-            if(!OKListe12.isEmpty()) {
+            }
+            if (!OKListe12.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel12, OKListe12);
-                }
+            }
 
             return helbredstilstand;
 
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -277,8 +253,8 @@ public class DBHelbredstilstandDAO {
         String OkTitel12 = "";
 
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT HS_Underkategori.ID, HS_Underkategori.Titel, HS_Overkategori.Titel FROM [HS_Underkategori]" +
-                    "FULL JOIN [HS_Overkategori] ON HS_Underkategori.FS_OK_ID = HS_Overkategori.ID";
+            String sql = "SELECT HS_Underkategori.ID, HS_Underkategori.Titel, HS_Overkategori.Titel, HS_Overkategori.ID FROM [HS_Underkategori]" +
+                    "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.ID";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -290,106 +266,107 @@ public class DBHelbredstilstandDAO {
 
                 //Overkategori
                 String overKategoriTitel = resultSet.getString(3);
+                int OKID = resultSet.getInt(4);
 
 
-                if (UKID == 1) {
-                    OkTitel1= overKategoriTitel;
+                if (OKID == 1) {
+                    OkTitel1 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe1.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 2) {
-                    OkTitel2= overKategoriTitel;
+                if (OKID == 2) {
+                    OkTitel2 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe2.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 3) {
-                    OkTitel3= overKategoriTitel;
+                if (OKID == 3) {
+                    OkTitel3 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe3.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 4) {
-                    OkTitel4= overKategoriTitel;
+                if (OKID == 4) {
+                    OkTitel4 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe4.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 5) {
-                    OkTitel5= overKategoriTitel;
+                if (OKID == 5) {
+                    OkTitel5 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe5.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 6) {
-                    OkTitel6= overKategoriTitel;
+                if (OKID == 6) {
+                    OkTitel6 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe6.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 7) {
-                    OkTitel7= overKategoriTitel;
+                if (OKID == 7) {
+                    OkTitel7 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe7.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 8) {
-                    OkTitel8= overKategoriTitel;
+                if (OKID == 8) {
+                    OkTitel8 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe8.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 9) {
-                    OkTitel9= overKategoriTitel;
+                if (OKID == 9) {
+                    OkTitel9 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe9.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 10) {
-                    OkTitel10= overKategoriTitel;
+                if (OKID == 10) {
+                    OkTitel10 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe10.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 11) {
-                    OkTitel11= overKategoriTitel;
+                if (OKID == 11) {
+                    OkTitel11 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe11.add(helbredstilstandsUnderkategori);
                 }
-                if (UKID == 12) {
-                    OkTitel12= overKategoriTitel;
+                if (OKID == 12) {
+                    OkTitel12 = overKategoriTitel;
                     HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                     OKListe12.add(helbredstilstandsUnderkategori);
                 }
 
             }
-            if(!OKListe1.isEmpty()) {
+            if (!OKListe1.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel1, OKListe1);
-                }
-            if(!OKListe2.isEmpty()) {
+            }
+            if (!OKListe2.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel2, OKListe2);
-                }
-            if(!OKListe3.isEmpty()) {
+            }
+            if (!OKListe3.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel3, OKListe3);
-                }
-            if(!OKListe4.isEmpty()) {
+            }
+            if (!OKListe4.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel4, OKListe4);
-                }
-            if(!OKListe5.isEmpty()) {
+            }
+            if (!OKListe5.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel5, OKListe5);
-                }
-            if(!OKListe6.isEmpty()) {
+            }
+            if (!OKListe6.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel6, OKListe6);
-                }
-            if(!OKListe7.isEmpty()) {
+            }
+            if (!OKListe7.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel7, OKListe7);
-                }
-            if(!OKListe8.isEmpty()) {
+            }
+            if (!OKListe8.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel8, OKListe8);
-                }
-            if(!OKListe9.isEmpty()) {
+            }
+            if (!OKListe9.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel9, OKListe9);
-                }
-            if(!OKListe10.isEmpty()) {
+            }
+            if (!OKListe10.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel10, OKListe10);
-                }
-            if(!OKListe11.isEmpty()) {
+            }
+            if (!OKListe11.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel11, OKListe11);
-                }
-            if(!OKListe12.isEmpty()) {
+            }
+            if (!OKListe12.isEmpty()) {
                 helbredstilstand.addCategoryField(OkTitel12, OKListe12);
-                }
+            }
 
             return helbredstilstand;
 

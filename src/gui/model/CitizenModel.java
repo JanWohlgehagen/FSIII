@@ -33,17 +33,22 @@ public class CitizenModel {
 
     public void createCitizen(Borger borger) {
 
-        borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
-        borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
+
+
         if (borger.isTemplateProperty().get())
         {
             allTemplates.add(managerFacade.createCitizen(borger));
-
+            borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
+            borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
             managerFacade.createEmptyTilstande(borger);
+            managerFacade.createGenerelleOplysninger(borger);
         }
         else
         allCitizens.add(managerFacade.createCitizen(borger));
+        borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
+        borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
         managerFacade.createEmptyTilstande(borger);
+        managerFacade.createGenerelleOplysninger(borger);
     }
 
 

@@ -47,7 +47,7 @@ public class DBFunktionstilstandsUnderkategoriDAO {
         String OkTitel4 = "";
         String OkTitel5 = "";
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT FS_Underkategori.ID, FS_Underkategori.Titel, FS_Overkategori.Titel FROM [FS_Underkategori]" +
+            String sql = "SELECT FS_Underkategori.ID, FS_Underkategori.Titel, FS_Overkategori.Titel, FS_Overkategori.ID FROM [FS_Underkategori]" +
                     "FULL JOIN [FS_Overkategori] ON FS_Underkategori.FS_OK_ID = FS_Overkategori.ID";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -57,26 +57,27 @@ public class DBFunktionstilstandsUnderkategoriDAO {
                 int UKID = rs.getInt(1);
                 String tilstandsKlassifikation = rs.getString(2);
                 String overkategoriNavn = rs.getString(3);
+                int OKID = rs.getInt(4);
 
 
 
-                if (UKID == 1) {
+                if (OKID == 1) {
                     OkTitel1 = overkategoriNavn;
                     FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation,overkategoriNavn);
                     OKListe1.add(funktionstilstandsUnderkategori);
-                } else if (UKID == 2) {
+                } else if (OKID == 2) {
                     OkTitel2 = overkategoriNavn;
                     FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation,overkategoriNavn);
                     OKListe2.add(funktionstilstandsUnderkategori);
-                } else if (UKID == 3) {
+                } else if (OKID == 3) {
                     OkTitel3 = overkategoriNavn;
                     FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation,overkategoriNavn);
                     OKListe3.add(funktionstilstandsUnderkategori);
-                } else if (UKID == 4) {
+                } else if (OKID == 4) {
                     OkTitel4 = overkategoriNavn;
                     FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation,overkategoriNavn);
                     OKListe4.add(funktionstilstandsUnderkategori);
-                } else if (UKID == 5) {
+                } else if (OKID == 5) {
                     OkTitel5 = overkategoriNavn;
                     FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation,overkategoriNavn);
                     OKListe5.add(funktionstilstandsUnderkategori);
