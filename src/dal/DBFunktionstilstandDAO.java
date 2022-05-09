@@ -89,7 +89,7 @@ public class DBFunktionstilstandDAO {
         List<FunktionstilstandsUnderkategori> allFunktionstilstande = new ArrayList<>();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT *   FROM [F_Tilstandsvurdering]" +
+            String sql = "SELECT * FROM [F_Tilstandsvurdering]" +
                     "FULL JOIN [FS_Underkategori] ON F_Tilstandsvurdering.FS_UK_ID= FS_Underkategori.FS_OK_ID " +
                     "FULL JOIN [FS_Overkategori] on FS_Underkategori.FS_OK_ID = FS_Overkategori.FS_Overkategori_ID " +
                     "WHERE FS_Borger_ID = (?)";
@@ -119,6 +119,10 @@ public class DBFunktionstilstandDAO {
                 FunktionstilstandsUnderkategori f = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
                 allFunktionstilstande.add(f);
             }
+            System.out.println(allFunktionstilstande);
+            System.out.println(allFunktionstilstande.size());
+
+            System.out.println("_____________________________________________");
 
             for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
                 if (!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())) {

@@ -63,7 +63,6 @@ public class DBFunktionstilstandsUnderkategoriDAO {
                 }
                 funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
             }
-
             funktionstilstand.setFunktionsTilstande(funktionstilstandeHP);
             return funktionstilstand;
         } catch (SQLException throwables) {
