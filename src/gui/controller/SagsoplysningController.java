@@ -313,7 +313,7 @@ public class SagsoplysningController implements Initializable {
     }
 
     private void populateHelhedsvurdering() {
-        //TODO
+        txtAreaHelhedsvurdering.setText(borger.getHelhedsvurderingProperty().get());
     }
 
     private void populateGenerelleOplysninger() {
