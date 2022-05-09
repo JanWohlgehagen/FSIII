@@ -205,6 +205,8 @@ public class CaseOpeningController implements Initializable {
 
     public void handleMouseSagsoplysningsScene(MouseEvent mouseEvent) throws IOException {
         setSelectedCase();
+        citizenModel.getTilstande(dashboardController.getSelectedCitizen());
+        citizenModel.getGenerelleOplysninger(dashboardController.getSelectedCitizen());
         ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(getStage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
