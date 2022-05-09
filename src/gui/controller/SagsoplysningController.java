@@ -196,7 +196,6 @@ public class SagsoplysningController implements Initializable {
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
-        updateBorgerInformationer();
         updateBorger(borger);
         closeStage();
     }
@@ -204,7 +203,6 @@ public class SagsoplysningController implements Initializable {
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
-        updateBorgerInformationer();
         updateBorger(borger);
         goToNextScene();
     }
@@ -240,7 +238,7 @@ public class SagsoplysningController implements Initializable {
     public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
-        extractMedicineList();
+        extractMedicineList(); //TODO
         updateBorger(borger);
         closeStage();
     }
@@ -248,7 +246,7 @@ public class SagsoplysningController implements Initializable {
     public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
-        extractMedicineList();
+        extractMedicineList(); //TODO
         updateBorger(borger);
         goToNextScene();
     }
@@ -298,20 +296,6 @@ public class SagsoplysningController implements Initializable {
         BestillingsViewController bestillingsViewController = bestillingsScene.getController();
         bestillingsViewController.setBestillingsViewController(bestillingsViewController);
         bestillingsViewController.setDashboardController(dashboardController);
-    }
-
-    private void updateBorgerInformationer(){
-        borger.setMestring(txtAreaMestring.getText());
-        borger.setMotivation(txtAreaMotivaton.getText());
-        borger.setRessourcer(txtAreaRessourcer.getText());
-        borger.setRoller(txtAreaRoller.getText());
-        borger.setVaner(txtAreaVaner.getText());
-        borger.setUddannelse(txtAreaUddOgJob.getText());
-        borger.setLivshistorie(txtAreaLivshistorie.getText());
-        borger.setNetvaerk(txtAreaNetvaerk.getText());
-        borger.setHelbredsoplysninger(txtAreaHelbredsoplysninger.getText());
-        borger.setHjaelpemidler(txtAreaHjaelpemidler.getText());
-        borger.setBoligensIndretning(txtAreaBoligensIndretning.getText());
     }
 
     private void closeStage(){
