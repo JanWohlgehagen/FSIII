@@ -17,4 +17,8 @@ public class Helbredstilstand {
     public HashMap<String, List <HelbredstilstandsUnderkategori>> getHelbredsTilstandsKort(){
         return tilstandsKortet;
     }
+
+    public void setHelbredstilstandskort(HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandeHP) {
+        this.tilstandsKortet = helbredstilstandeHP;
+    }
 }
