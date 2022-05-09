@@ -58,4 +58,9 @@ public interface IManagerFacade {
     public void updateHelbredstilstand(Borger borger);
 
     public void deleteHelbredstilstand (Borger borger);
+
+    public List<String> getHelbredstilstandsList();
+
+    public List<String> getHelbredstilstandsUnderkategoriList();
+
 }

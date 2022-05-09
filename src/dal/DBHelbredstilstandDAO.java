@@ -3,10 +3,7 @@ package dal;
 import be.*;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -398,5 +395,25 @@ public class DBHelbredstilstandDAO {
             return null;
         }
     }
+
+    public List<String> getHelbredstilstandList() {
+        List<String> helbredstilstandList = new ArrayList<>();
+        try (Connection connection = dbConnecting.getConnection()) {
+            String sql = "SELECT * FROM [HS_Overkategori]";
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String overkategori = rs.getString("Titel");
+                helbredstilstandList.add(overkategori);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+        return helbredstilstandList;
+    }
+
 }
 

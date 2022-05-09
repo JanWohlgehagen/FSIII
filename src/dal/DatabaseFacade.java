@@ -19,6 +19,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBFunktionstilstandDAO dbFunktionstilstandDAO;
     private DBFunktionstilstandsUnderkategoriDAO dbFunktionstilstandsUnderkategoriDAO;
     private DBHelbredstilstandDAO dbHelbredstilstandDAO;
+    private DBHelbredstilstandsUnderkategoriDAO dbHelbredstilstandsUnderkategoriDAO;
 
 
     public DatabaseFacade() throws IOException {
@@ -31,7 +32,7 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
         dbFunktionstilstandsUnderkategoriDAO = new DBFunktionstilstandsUnderkategoriDAO(dbConnecting);
         dbHelbredstilstandDAO = new DBHelbredstilstandDAO(dbConnecting);
-
+        dbHelbredstilstandsUnderkategoriDAO = new DBHelbredstilstandsUnderkategoriDAO(dbConnecting);
 
     }
 
@@ -195,6 +196,16 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public Helbredstilstand getEmptyHelbredsTilstand() {
         return dbHelbredstilstandDAO.getEmptyHelbredstilstand();
+    }
+
+    @Override
+    public List<String> getHelbredstilstand() {
+        return dbHelbredstilstandDAO.getHelbredstilstandList();
+    }
+
+    @Override
+    public List<String> getHelbredstilstandsUnderkategori() {
+        return dbHelbredstilstandsUnderkategoriDAO.getHelbredstilstandsUnderkategoriList();
     }
 
 }
