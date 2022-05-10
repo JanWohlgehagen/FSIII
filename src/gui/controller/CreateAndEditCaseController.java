@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class CreateAndEditCaseController implements Initializable {
@@ -60,8 +61,6 @@ public class CreateAndEditCaseController implements Initializable {
 
             overkategoriCbx.getItems().addAll(funktionstilstandModel.getFunktionstilstandsList());
             overkategoriCbx.getItems().addAll(helbredstilstandModel.getHelbredstilstandsList());
-            underkategoriCbx.getItems().addAll(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
-            underkategoriCbx.getItems().addAll(helbredstilstandsUnderkategoriModel.getHelbredstilstandsUnderkategoriList());
 
             if(editCaseMode) {
                 overkategoriCbx.setPromptText(editThisCase.getOverkategoriTitleProperty().get());
@@ -76,6 +75,15 @@ public class CreateAndEditCaseController implements Initializable {
 
             }
         });
+    }
+
+    public void HandleOverkategoriCbx(ActionEvent actionEvent) {
+        underkategoriCbx.getItems().clear();
+        var cbx = overkategoriCbx.getSelectionModel().getSelectedItem();
+        if (cbx.contains("Samfundsliv") || cbx.contains("Mobilitet") || cbx.contains("Mentale funktioner") || cbx.contains("Egenomsorg") || cbx.contains("Praktiske opgaver"))
+            underkategoriCbx.getItems().addAll(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
+        else
+            underkategoriCbx.getItems().addAll(helbredstilstandsUnderkategoriModel.getHelbredstilstandsUnderkategoriList());
     }
 
     public void newCaseModeIsOn(){
@@ -164,4 +172,5 @@ public class CreateAndEditCaseController implements Initializable {
         Stage stage = (Stage) parentGridPane.getScene().getWindow();
         stage.close();
     }
+
 }
