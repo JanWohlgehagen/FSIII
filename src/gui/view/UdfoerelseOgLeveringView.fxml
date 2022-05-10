@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="parentPane" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.UdfoerelseIOgLeveringController">
+<GridPane fx:id="parentPane" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.UdfoerelseIOgLeveringController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="219.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="452.0" minWidth="10.0" prefWidth="339.0" />
@@ -58,10 +58,10 @@
       <Button alignment="CENTER" mnemonicParsing="false" onAction="#btnNewDocumentation" prefHeight="25.0" prefWidth="180.0" text="New" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <HBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <children>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseSaveAndNextScene" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css" visible="false">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseSaveAndClose" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
                <children>
-                  <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
-                  <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
+                  <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
+                  <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -71,10 +71,10 @@
                   <Insets left="5.0" right="5.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseSaveAndClose" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseSaveAndNextScene" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
                <children>
-                  <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
-                  <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
+                  <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
+                  <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

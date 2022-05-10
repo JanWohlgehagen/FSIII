@@ -10,12 +10,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OpfoelgningController implements Initializable {
 
+    @FXML
+    private GridPane parentPane;
     @FXML
     private TextArea txtAreaOpfoelgning;
     @FXML
@@ -100,9 +104,15 @@ public class OpfoelgningController implements Initializable {
     }
 
     public void handleMouseGemOgLukScene(MouseEvent mouseEvent) {
+        caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase); //TODO
+        getStage().close();
     }
 
     public void handleMouseGemOgNæsteScene(MouseEvent mouseEvent) {
         caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
+    }
+
+    private Stage getStage(){
+        return (Stage) parentPane.getScene().getWindow();
     }
 }

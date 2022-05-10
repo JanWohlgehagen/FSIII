@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.OpfoelgningController">
+<GridPane fx:id="parentPane" alignment="CENTER" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.OpfoelgningController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" />
     </columnConstraints>
@@ -35,10 +35,10 @@
             <children>
             <HBox alignment="BOTTOM_RIGHT" spacing="15.0">
                <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseGemOgLukScene" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseGemOgNæsteScene" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css" visible="false">
                      <children>
-                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
-                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -48,10 +48,10 @@
                         <Insets left="5.0" right="5.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseGemOgNæsteScene" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseGemOgLukScene" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
                      <children>
-                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
-                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
