@@ -161,7 +161,7 @@ public class DashboardController implements Initializable {
             BestillingsViewController bestillingsViewController = bestillingsScene.getController();
             bestillingsViewController.setBestillingsViewController(bestillingsViewController);
             bestillingsViewController.setDashboardController(dashboardController);
-        //}
+
     }
 
     public void handleButtonPlanlaegning(ActionEvent actionEvent) throws IOException {
