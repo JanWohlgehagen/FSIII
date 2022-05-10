@@ -57,7 +57,6 @@ public class DashboardController implements Initializable {
 
     private CaseModel caseModel;
     private CitizenModel citizenModel;
-    private ObservableList<Borger> allCitizens;
     private Case selectedCase;
     private Borger selectCitizen;
     private FunktionstilstandModel funktionstilstandModel;
@@ -114,10 +113,6 @@ public class DashboardController implements Initializable {
 
     public Borger getSelectedCitizen() {
         return selectCitizen;
-    }
-
-    public void setSelectedCitizen(Borger selectCitizen) {
-        this.selectCitizen = selectCitizen;
     }
 
     public CaseModel getCaseModel(){
