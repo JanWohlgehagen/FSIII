@@ -104,7 +104,7 @@ public class OpfoelgningController implements Initializable {
     }
 
     public void handleMouseGemOgLukScene(MouseEvent mouseEvent) {
-        caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase); //TODO
+        //caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase); //TODO
         getStage().close();
     }
 
