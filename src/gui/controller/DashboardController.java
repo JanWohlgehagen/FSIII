@@ -176,6 +176,7 @@ public class DashboardController implements Initializable {
             caseDocumentationScene.loadNewScene(new Stage());
             UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
             udfoerelseIOgLeveringController.setCaseDocumentationViewController(udfoerelseIOgLeveringController);
+            udfoerelseIOgLeveringController.setDashboardController(dashboardController);
             udfoerelseIOgLeveringController.setCurrentCase(selectedCase);
         }
     }
