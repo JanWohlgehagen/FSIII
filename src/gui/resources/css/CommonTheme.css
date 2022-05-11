@@ -1,5 +1,5 @@
 .ParentPane{
-    -fx-background-color: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(228,207,141,1) 100%);
+    -fx-background-color: linear-gradient(to right, rgba(188,166,218,0.4) 25%, rgba(127,218,134,0.4) 100%);
 }
 
 .label{
