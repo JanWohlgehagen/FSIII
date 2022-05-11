@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SagsoplysningController">
+<TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SagsoplysningController">
    <tabs>
       <Tab text="Generelle Oplysninger">
         <content>
@@ -214,7 +214,7 @@
          <content>
             <GridPane>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="64.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
@@ -252,7 +252,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="scrollPaneFunktionstilstand" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
+                  <ScrollPane fx:id="scrollPaneFunktionstilstand" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
                      <content>
                         <HBox spacing="5.0">
                            <children>
@@ -309,7 +309,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" />
                            </rowConstraints>
                            <children>
-                              <VBox alignment="CENTER" prefWidth="100.0" spacing="12.0" GridPane.columnSpan="2147483647">
+                              <VBox alignment="CENTER" spacing="12.0" GridPane.columnSpan="2147483647">
                                  <children>
                                     <Label fx:id="lblOverkategoriFunktionstilstand" alignment="BOTTOM_CENTER" styleClass="labelTitle" text="Overklassifikation" textAlignment="CENTER" wrapText="true" />
                                     <Label fx:id="lblTilstandsklassifikationFunktionstilstand" alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" text="Tilstandsklassifikation" textAlignment="CENTER" wrapText="true" />
@@ -365,7 +365,7 @@
         <content>
             <GridPane>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="64.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
@@ -403,7 +403,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="scrollPaneHelbredstilstand" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
+                  <ScrollPane fx:id="scrollPaneHelbredstilstand" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
                      <content>
                         <HBox spacing="5.0">
                            <children>
@@ -424,7 +424,7 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </ScrollPane>
-                  <GridPane GridPane.columnIndex="1">
+                  <GridPane GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
