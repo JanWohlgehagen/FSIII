@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.user.User;
 import bll.ManagerFacade;
+import dal.DatabaseFacade;
 import gui.model.CredentialModel;
 import gui.util.DashboardScene;
 import gui.util.ISceneLoader;
@@ -30,7 +31,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            credentialModel = new CredentialModel(new ManagerFacade());
+            credentialModel = new CredentialModel(new ManagerFacade(new DatabaseFacade()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

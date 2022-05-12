@@ -6,6 +6,7 @@ import be.user.User;
 
 import be.user.UserType;
 import bll.ManagerFacade;
+import dal.DatabaseFacade;
 import gui.model.*;
 import gui.util.*;
 
@@ -71,12 +72,16 @@ public class DashboardController implements Initializable {
 
         Platform.runLater(() -> {
             try {
-                caseModel = new CaseModel(new ManagerFacade());
-                citizenModel = new CitizenModel(new ManagerFacade());
-                funktionstilstandModel = new FunktionstilstandModel(new ManagerFacade());
-                funktionstilstandsUnderkategoriModel = new FunktionstilstandsUnderkategoriModel(new ManagerFacade());
-                helbredstilstandModel = new HelbredstilstandModel(new ManagerFacade());
-                helbredstilstandsUnderkategoriModel = new HelbredstilstandsUnderkategoriModel(new ManagerFacade());
+                caseModel = new CaseModel(new ManagerFacade(new DatabaseFacade()));
+                citizenModel = new CitizenModel(new ManagerFacade(new DatabaseFacade()));
+                funktionstilstandModel = new FunktionstilstandModel(new ManagerFacade(new DatabaseFacade()));
+                funktionstilstandsUnderkategoriModel = new FunktionstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
+                helbredstilstandModel = new HelbredstilstandModel(new ManagerFacade(new DatabaseFacade()));
+                helbredstilstandsUnderkategoriModel = new HelbredstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
+
+
+
+
                 lvCitizens.setItems(citizenModel.getAllCitizen());
 
             } catch (IOException e) {
