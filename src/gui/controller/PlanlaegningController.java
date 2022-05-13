@@ -53,8 +53,6 @@ public class PlanlaegningController implements Initializable {
         ISceneLoader<UdfoerelseIOgLeveringController> caseDocumentationScene = new CaseDocumentationScene();
         caseDocumentationScene.loadNewScene(getStage());
         UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
-        udfoerelseIOgLeveringController.setCaseDocumentationViewController(udfoerelseIOgLeveringController);
-        udfoerelseIOgLeveringController.setCurrentCase(dashboardController.getSelectedCase());
         udfoerelseIOgLeveringController.setDashboardController(dashboardController);
     }
 

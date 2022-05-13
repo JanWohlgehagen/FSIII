@@ -37,13 +37,12 @@ public class DBCitizenDAO {
     {
         try(Connection connection = dbConnecting.getConnection())
         {
-            String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?), Helhedsvurdering = (?) WHERE Borger_ID =(?)";
+            String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?) WHERE Borger_ID =(?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, borger.getFirstNameProperty().get());
             preparedStatement.setString(2, borger.getLastNameProperty().get());
-            preparedStatement.setString(3, borger.getHelhedsvurderingProperty().get());
-            preparedStatement.setInt(4, borger.getIDProperty().get());
+            preparedStatement.setInt(3, borger.getIDProperty().get());
 
             preparedStatement.execute();
             return;
@@ -97,10 +96,8 @@ public class DBCitizenDAO {
                 String lastName =resultSet.getString("LastName");
                 int age = resultSet.getInt("Age");
                 boolean isTemplate = resultSet.getBoolean("Template");
-                String helhedsvurdering = resultSet.getString("Helhedsvurdering");
                 Borger borger = new Borger(firsteName, lastName, isTemplate, age);
                 borger.setID(ID);
-                borger.setHelhedsvurdering(helhedsvurdering);
                 listOfCitizens.add(borger);
 
             }
@@ -131,10 +128,8 @@ public class DBCitizenDAO {
                 String lastName =resultSet.getString("LastName");
                 int age = resultSet.getInt("Age");
                 boolean isTemplate = resultSet.getBoolean("Template");
-                String helhedsvurdering = resultSet.getString("Helhedsvurdering");
                 Borger borger = new Borger(firsteName, lastName, isTemplate, age);
                 borger.setID(ID);
-                borger.setHelhedsvurdering(helhedsvurdering);
                 listOfTemplates.add(borger);
             }
             return listOfTemplates;

@@ -16,7 +16,6 @@ CREATE TABLE [Borger]
     [LastName]         NVARCHAR(200) NULL,
     [Age]              INT           NULL,
     [Template]         BIT           NULL,
-    [Helhedsvurdering] NVARCHAR(MAX) NULL,
 
     CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID])
 

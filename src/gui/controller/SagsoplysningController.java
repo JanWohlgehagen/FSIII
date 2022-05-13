@@ -158,7 +158,6 @@ public class SagsoplysningController implements Initializable {
             populateHelbredstilstandsCombobox();
             populateFunktionstilstandsCombobox();
             populateGenerelleOplysninger();
-            populateHelhedsvurdering();
         });
 
         comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -251,20 +250,6 @@ public class SagsoplysningController implements Initializable {
         goToNextScene();
     }
 
-    public void helhedsvurderingHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-        updateBorger(borger);
-        closeStage();
-    }
-
-    public void helhedsvurderingHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-        updateBorger(borger);
-        goToNextScene();
-    }
-
     public void handleAddTxtFieldMedicineList(ActionEvent actionEvent) {
         vBoxMedicinliste.getChildren().add(new TextField());
         updateHelbredstilstandsUnderkategori();
@@ -285,8 +270,6 @@ public class SagsoplysningController implements Initializable {
         borger.setHjaelpemidler(txtAreaHjaelpemidler.getText());
         borger.setBoligensIndretning(txtAreaBoligensIndretning.getText());
 
-        //Update generelle helhedsvurdering
-        borger.setHelhedsvurdering(txtAreaHelhedsvurdering.getText());
         citizenModel.updateSagsoplysninger(borger);
     }
 
@@ -294,7 +277,6 @@ public class SagsoplysningController implements Initializable {
         ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
         bestillingsScene.loadNewScene((Stage) tabPaneParent.getScene().getWindow());
         BestillingsViewController bestillingsViewController = bestillingsScene.getController();
-        bestillingsViewController.setBestillingsViewController(bestillingsViewController);
         bestillingsViewController.setDashboardController(dashboardController);
     }
 
@@ -337,10 +319,6 @@ public class SagsoplysningController implements Initializable {
             txtAreaFagligtNotatFunktionstilstand.clear();
             txtOpfoelgningFunktionstilstand.clear();
         }
-    }
-
-    private void populateHelhedsvurdering() {
-        txtAreaHelhedsvurdering.setText(borger.getHelhedsvurderingProperty().get());
     }
 
     private void populateGenerelleOplysninger() {
