@@ -12,7 +12,7 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     private DBConnecting dbConnecting;
     private DBLoginDAO dbLoginDAO;
-    private DBPersonDAO dbPersonDAO;
+    private DBUserDAO dbUserDAO;
     private DBCaseDAO dbCaseDAO;
     private DBCitizenDAO dbCitizenDAO;
     private DBGenerelInformationDAO dbGenerelInformationDAO;
@@ -25,7 +25,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
         dbLoginDAO = new DBLoginDAO(dbConnecting);
-        dbPersonDAO = new DBPersonDAO(dbConnecting);
+        dbUserDAO = new DBUserDAO(dbConnecting);
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
         dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
@@ -42,13 +42,17 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public User getPersonById(int id) {
-        return dbPersonDAO.getPersonById(id);
+    public User getUserById(int id) {
+        return dbUserDAO.getUserById(id);
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return dbUserDAO.getAllUser();
     }
 
 
-
-                            /***************************************************/
+    /***************************************************/
                             /******************** Case *************************/
                             /***************************************************/
 

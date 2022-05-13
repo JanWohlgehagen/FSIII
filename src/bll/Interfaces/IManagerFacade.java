@@ -12,6 +12,7 @@ public interface IManagerFacade {
 
     String newHashPassword(String password);
 
+    List<User> getAllUser();
 
 
     // CASE

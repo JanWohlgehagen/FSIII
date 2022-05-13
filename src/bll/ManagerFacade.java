@@ -13,6 +13,7 @@ public class ManagerFacade implements IManagerFacade {
     private final CredentialManager credentialManager;
     private final CaseManager caseManager;
     private final CitizenManager citizenManager;
+    private final UserManager userManager;
     private final FunktionstilstandManager funktionstilstandManager;
     private final FunktionstilstandsUnderkategoriManager funktionstilstandsUnderkategoriManager;
     private final HelbredstilstandManager helbredstilstandManager;
@@ -22,6 +23,7 @@ public class ManagerFacade implements IManagerFacade {
         credentialManager = new CredentialManager(databaseFacade);
         caseManager = new CaseManager(databaseFacade);
         citizenManager = new CitizenManager(databaseFacade);
+        userManager = new UserManager(databaseFacade);
         funktionstilstandManager = new FunktionstilstandManager(databaseFacade);
         funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(databaseFacade);
         helbredstilstandManager = new HelbredstilstandManager(databaseFacade);
@@ -43,9 +45,13 @@ public class ManagerFacade implements IManagerFacade {
         return credentialManager.newHashPassword(password);
     }
 
+    @Override
+    public List<User> getAllUser() {
+        return userManager.getAllUser();
+    }
 
 
-                            /***************************************************/
+    /***************************************************/
                             /******************** Case *************************/
                             /***************************************************/
 

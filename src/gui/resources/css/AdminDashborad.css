@@ -1,0 +1,76 @@
+/*********** THE PARENT TAB-PANE ****************/
+/*********** THE PARENT TAB-PANE ****************/
+/*********** THE PARENT TAB-PANE ****************/
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 140px;
+}
+
+.tab {
+    -fx-background-insets: 0 1 0 1, 0, 0;
+    -fx-pref-height: 35px;
+    -fx-wrap-text: true;
+}
+
+.tab-pane .tab {
+    -fx-background-color: rgba(119, 161, 131, 1);
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: rgba(185, 105, 144, 1);
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: black;
+}
+
+.tab-pane:top *.tab-header-area {
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em; /* overridden as 5 2 0 0 */
+}
+
+.tab-down-button {
+    -fx-padding: 0;
+}
+
+.tab-down-button .arrow {
+    -fx-padding: 0;
+}
+
+.labelTitle{
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+}
+
+.addArrowRightBtn{
+    -fx-background-image: url("../images/arrowRight.png");
+    -fx-background-color: transparent;
+    -fx-background-size: 100% 100%;
+    -fx-border-radius: 25;
+    -fx-border-color: transparent;
+    -fx-padding: 1, 1, 1, 1;
+    -fx-cursor: hand;
+}
+
+.addArrowLeftBtn{
+    -fx-background-image: url("../images/arrowLeft.png");
+    -fx-background-color: transparent;
+    -fx-background-size: 100% 100%;
+    -fx-border-radius: 25;
+    -fx-border-color: transparent;
+    -fx-padding: 1, 1, 1, 1;
+    -fx-cursor: hand;
+}

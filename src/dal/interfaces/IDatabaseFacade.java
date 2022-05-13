@@ -2,7 +2,6 @@ package dal.interfaces;
 
 import be.*;
 import be.user.User;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
 
@@ -12,7 +11,9 @@ import java.util.List;
 public interface IDatabaseFacade {
 
     Credential checkCredential(String userName);
-    User getPersonById(int id);
+    User getUserById(int id);
+
+    List<User> getAllUser();
 
     public List<Case> getAllCasesOnCitizen(int citizenid);
 
