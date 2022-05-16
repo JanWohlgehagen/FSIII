@@ -23,4 +23,5 @@ public class FunktionstilstandManager {
     public void updateFunktionstilstand(Borger borger) {
         databaseFacade.updateFunktiontilstand(borger);
     }
+
 }
