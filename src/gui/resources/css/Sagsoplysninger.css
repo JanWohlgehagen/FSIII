@@ -92,7 +92,45 @@
     -fx-cursor: hand;
 }
 
+
 .addMedicineFieldBtn:hover{
     -fx-scale-y: 1.2;
     -fx-scale-x: 1.2;
+}
+
+/* Tableviews */
+
+.table-view,
+.table-view .table-column,
+.table-view .column-header,
+.table-view .column-header-background .filler,
+.table-view .corner {
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+}
+
+.Funktionstable-view .column-header-background{
+    -fx-background-color: rgba(198,178,47,1);
+    -fx-border-color: rgba(198,178,47,1);
+    -fx-background-radius: 0px 0px 0px 0px;
+    -fx-padding: 0 0 0px 0;
+    -fx-text-background-color: black;
+}
+
+.Helbredstable-view .column-header-background{
+    -fx-background-color: rgba(125,152,171,1);
+    -fx-border-color: rgba(125,152,171,1);
+    -fx-background-radius: 0px 0px 0px 0px;
+    -fx-padding: 0 0 0px 0;
+    -fx-text-background-color: black;
+}
+
+.scroll-pane-funktionsTilstande{
+    -fx-border-color: rgba(198,178,47,1);
+    -fx-border-width: 3;
+}
+
+.scroll-pane-helbredsTilstande{
+    -fx-border-color: rgba(125,152,171,1);
+    -fx-border-width: 3;
 }
