@@ -159,6 +159,7 @@ CREATE TABLE [FS_Underkategori]
 
 CREATE TABLE [F_Tilstandsvurdering]
 (
+<<<<<<< Updated upstream
     [FS_Borger_ID] INT NOT NULL,
     [FS_UK_ID] INT NOT NULL,
     [Udfoerelse] VARCHAR(200) NULL,
@@ -170,6 +171,19 @@ CREATE TABLE [F_Tilstandsvurdering]
     [Faglig_Notat] VARCHAR(200) NULL,
     [Forventet_Tilstand] INT NULL,
     [Opfoelgning] NVARCHAR (200) NULL,
+=======
+    [FS_Borger_ID]       INT            NOT NULL,
+    [FS_UK_ID]           INT            NOT NULL,
+    [Udfoerelse]         NVARCHAR(4000)  NULL,
+    [Betydning]          NVARCHAR(4000)  NULL,
+    [Borger_Maal]        NVARCHAR(4000)  NULL,
+    [Niveau]             INT            NULL,
+    [Vurdering]          NVARCHAR(4000)  NULL,
+    [Aarsag]             NVARCHAR(4000)  NULL,
+    [Faglig_Notat]       NVARCHAR(4000)  NULL,
+    [Forventet_Tilstand] INT            NULL,
+    [Opfoelgning]        NVARCHAR(4000) NULL,
+>>>>>>> Stashed changes
 
     CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_UK_ID, FS_Borger_ID),
     CONSTRAINT FK_HS_IDFSV FOREIGN KEY (FS_Borger_ID) REFERENCES Borger(ID) ON DELETE CASCADE,
