@@ -20,12 +20,14 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBFunktionstilstandsUnderkategoriDAO dbFunktionstilstandsUnderkategoriDAO;
     private DBHelbredstilstandDAO dbHelbredstilstandDAO;
     private DBHelbredstilstandsUnderkategoriDAO dbHelbredstilstandsUnderkategoriDAO;
+    private DBClassDAO dbClassDAO;
 
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
         dbLoginDAO = new DBLoginDAO(dbConnecting);
         dbUserDAO = new DBUserDAO(dbConnecting);
+        dbClassDAO = new DBClassDAO(dbConnecting);
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
         dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
@@ -49,6 +51,37 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public List<User> getAllUser() {
         return dbUserDAO.getAllUser();
+    }
+
+
+
+                                /***************************************************/
+                                /******************** Class ************************/
+                                /***************************************************/
+
+    @Override
+    public WClass createClass(WClass wClass) {
+        return dbClassDAO.createClass(wClass);
+    }
+
+    @Override
+    public void deleteClass(WClass wClass) {
+        dbClassDAO.deleteClass(wClass);
+    }
+
+    @Override
+    public List<User> getAllStudentInClass(WClass wClass) {
+        return dbClassDAO.getAllStudentInClass(wClass);
+    }
+
+    @Override
+    public List<User> getAllTeacherInClass(WClass wClass) {
+        return null;
+    }
+
+    @Override
+    public void addStudentToClass(User user, WClass wClass) {
+        dbClassDAO.addStudentToClass(user, wClass);
     }
 
 
@@ -211,5 +244,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     public List<String> getHelbredstilstandsUnderkategori() {
         return dbHelbredstilstandsUnderkategoriDAO.getHelbredstilstandsUnderkategoriList();
     }
+
+
 
 }

@@ -138,4 +138,10 @@ public class AdminDashboardController implements Initializable {
 
     public void handleSaveStudentClass(ActionEvent actionEvent) {
     }
+
+    public void handleMouseAddStudentToClass(MouseEvent mouseEvent) {
+    }
+
+    public void handleMouseRemoveStudentFromClass(MouseEvent mouseEvent) {
+    }
 }

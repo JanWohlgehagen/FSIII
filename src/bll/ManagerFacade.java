@@ -32,7 +32,7 @@ public class ManagerFacade implements IManagerFacade {
     }
 
                             /***************************************************/
-                            /****************** Credential *********************/
+                            /****************** Credential/User ****************/
                             /***************************************************/
 
     @Override
@@ -48,6 +48,51 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public List<User> getAllUser() {
         return userManager.getAllUser();
+    }
+
+    @Override
+    public List<User> getAllStudent() {
+        return userManager.getAllStudent();
+    }
+
+    @Override
+    public List<User> getAllTeacher() {
+        return userManager.getAllTeacher();
+    }
+
+    @Override
+    public List<User> getAllAdmin() {
+        return userManager.getAllAdmin();
+    }
+
+                                    /***************************************************/
+                                    /********************* Class ***********************/
+                                    /***************************************************/
+
+    @Override
+    public WClass createClass(WClass wClass) {
+        return userManager.createClass(wClass);
+    }
+
+    @Override
+    public void deleteClass(WClass wClass) {
+        userManager.deleteClass(wClass);
+
+    }
+
+    @Override
+    public List<User> getAllStudentInClass(WClass wClass) {
+        return userManager.getAllStudentInClass(wClass);
+    }
+
+    @Override
+    public List<User> getAllTeacherInClass(WClass wClass) {
+        return userManager.getAllTeacherInClass(wClass);
+    }
+
+    @Override
+    public void addStudentToClass(User user, WClass wClass) {
+        userManager.addStudentToClass(user, wClass);
     }
 
 

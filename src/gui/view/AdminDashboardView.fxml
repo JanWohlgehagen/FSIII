@@ -133,7 +133,7 @@
                         <ComboBox fx:id="comboBoxStudentClass" prefWidth="150.0" promptText="Vælg klasse" />
                      </children>
                   </HBox>
-                  <TableView fx:id="tvAllstudent" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <TableView fx:id="tvAllstudent" onMouseReleased="#handleMouseAddStudentToClass" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
                       <TableColumn fx:id="tcAllStudentName" prefWidth="75.0" text="Navn" />
                       <TableColumn fx:id="tcAllStudentRolle" prefWidth="75.0" text="Stilling" />
@@ -145,7 +145,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TableView>
-                  <TableView fx:id="tvStudentInClass" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <TableView fx:id="tvStudentInClass" onMouseReleased="#handleMouseRemoveStudentFromClass" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <columns>
                       <TableColumn fx:id="tcStudentInClassName" prefWidth="75.0" text="Navn" />
                       <TableColumn fx:id="tcStudentInClassRolle" prefWidth="75.0" text="Stilling" />

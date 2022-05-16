@@ -8,11 +8,30 @@ import java.util.List;
 
 public interface IManagerFacade {
 
+    // USER
     User loginCredential(String userName, String userPassword);
 
     String newHashPassword(String password);
 
     List<User> getAllUser();
+
+    List<User> getAllStudent();
+
+    List<User> getAllTeacher();
+
+    List<User> getAllAdmin();
+
+
+    // Class
+    public WClass createClass(WClass wClass);
+
+    public void deleteClass(WClass wClass);
+
+    public List<User> getAllStudentInClass(WClass wClass);
+
+    public List<User> getAllTeacherInClass(WClass wClass);
+
+    public void addStudentToClass(User user, WClass wClass);
 
 
     // CASE

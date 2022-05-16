@@ -27,6 +27,29 @@ INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (7,'Rosa', '$2a$1
 INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (8,'Vinni', '$2a$10$YvmNIkjXaNy9CJFDCEi09uAGVnNgMs353F9tCGTkq9NHwtPCGjsAy')
 INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (9,'l', '$2a$10$fDGJS/UbXJ3QmJ6A5YYx9OGgHX0WZF6MIqSghr1/hInhyhHsRCIRq')
 
+-- Klasser
+INSERT INTO [Class] (Name) VALUES ('SOSU_Esbejerg_1_2022')
+INSERT INTO [Class] (Name) VALUES ('SOSU_Esbejerg_2_2022')
+INSERT INTO [Class] (Name) VALUES ('SOSU_Esbejerg_3_2022')
+
+-- Elev i klasse
+INSERT INTO [ClassStudents] (Student_ID, Class_ID) VALUES (1,1)
+INSERT INTO [ClassStudents] (Student_ID, Class_ID) VALUES (2,2)
+INSERT INTO [ClassStudents] (Student_ID, Class_ID) VALUES (3,3)
+
+-- Lærer i klasse
+INSERT INTO [Classteachers] (Teacher_ID, Class_ID) VALUES (5,1)
+INSERT INTO [Classteachers] (Teacher_ID, Class_ID) VALUES (6,2)
+INSERT INTO [Classteachers] (Teacher_ID, Class_ID) VALUES (7,3)
+
+
+
+
+
+
+
+
+
 
 
 

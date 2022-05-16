@@ -1,5 +1,6 @@
 package gui.model;
 
+import be.WClass;
 import be.user.Teacher;
 import be.user.User;
 import be.user.UserType;
@@ -17,39 +18,59 @@ public class UserModel {
     private ObservableList<User> allStudent = FXCollections.observableArrayList();
     private ObservableList<User> allTeacher  = FXCollections.observableArrayList();
     private ObservableList<User> allAdmin  = FXCollections.observableArrayList();
+    private ObservableList<User> userInClass = FXCollections.observableArrayList();
 
     public UserModel(ManagerFacade managerFacade) {
         this.managerFacade = managerFacade;
-        sortUser(managerFacade.getAllUser());
     }
 
     public List<User> allUsers(){
         return managerFacade.getAllUser();
     }
-    private void sortUser(List<User> users){
-        for (User user: users) {
-            switch (user.getUserType()){
-                case STUDENT -> allStudent.add(user);
-                case TEACHER -> allTeacher.add(user);
-                case ADMIN -> allAdmin.add(user);
-            }
-        }
-    }
 
     public ObservableList<User> getAllStudent() {
+        if(allStudent.isEmpty()){
+            allStudent.addAll(managerFacade.getAllStudent());
+        }
         return allStudent;
     }
 
-    public void addStudent(User user){
-        allStudent.add(user);
+    public ObservableList<User> getAllTeacher() {
+        if(allTeacher.isEmpty()){
+            allTeacher.addAll(managerFacade.getAllTeacher());
+        }
+        return allTeacher;
+    }
+
+    public ObservableList<User> getAllAdmin() {
+        if(allAdmin.isEmpty()){
+            allAdmin.addAll(managerFacade.getAllAdmin());
+        }
+        return allAdmin;
+    }
+
+    public void studentInClass(WClass wClass){
+        userInClass.clear();
+        userInClass.addAll(managerFacade.getAllStudentInClass(wClass));
+    }
+
+    public void teacherInClass(WClass wClass){
+        userInClass.clear();
+        userInClass.addAll(managerFacade.getAllTeacherInClass(wClass));
+    }
+
+    public void teacherAndStudentInClass(WClass wClass){
+        userInClass.clear();
+        userInClass.addAll(managerFacade.getAllTeacherInClass(wClass));
+        userInClass.addAll(managerFacade.getAllStudentInClass(wClass));
+    }
+
+    public void addStudentToClass(User user, WClass wClass){
+        managerFacade.addStudentToClass(user, wClass);
     }
 
     public void removeStudent(User user){
         allStudent.remove(user);
-    }
-
-    public ObservableList<User> getAllTeacher() {
-        return allTeacher;
     }
 
     public void addTeacher(Teacher teacher){

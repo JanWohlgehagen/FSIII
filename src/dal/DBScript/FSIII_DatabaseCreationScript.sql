@@ -189,33 +189,25 @@ CREATE TABLE [Person]
     CONSTRAINT PK_P_ID PRIMARY KEY ([Person_ID])
 )
 
-CREATE TABLE [Teacher]
-(
-    [Teacher_ID] INT NOT NULL,
-    CONSTRAINT PK_Teacher_ID PRIMARY KEY ([Teacher_ID]),
-    CONSTRAINT FK_T_ID FOREIGN KEY ([Teacher_ID]) REFERENCES Person ([Person_ID])
-)
-
-CREATE TABLE [Classteachers]
+CREATE TABLE [ClassTeachers]
 (
     [Teacher_ID] INT NOT NULL,
     [Class_ID]   INT NOT NULL,
 
     CONSTRAINT PK_Class_Teacher_ID PRIMARY KEY (Teacher_ID, Class_ID),
-    CONSTRAINT FK_Teacher_ID FOREIGN KEY (Teacher_ID) REFERENCES Teacher ([Teacher_ID]),
-    CONSTRAINT FK_Class_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
+    CONSTRAINT FK_Teacher_ID FOREIGN KEY (Teacher_ID) REFERENCES Person ([Person_ID]),
+    CONSTRAINT FK_Class_Teacher_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
 )
 
 
-CREATE TABLE [Student]
+CREATE TABLE [ClassStudents]
 (
     [Student_ID] INT NOT NULL,
-    [Class_ID]   INT,
+    [Class_ID]   INT NOT NULL,
 
-    CONSTRAINT Student_ID PRIMARY KEY ([Student_ID]),
-    CONSTRAINT FK_S_ID FOREIGN KEY ([Student_ID]) REFERENCES Person ([Person_ID]),
-    CONSTRAINT FK_Student_Class_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
-
+    CONSTRAINT PK_Class_Student_ID PRIMARY KEY (Student_ID, Class_ID),
+    CONSTRAINT FK_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person ([Person_ID]),
+    CONSTRAINT FK_Class_Student_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
 )
 
 CREATE TABLE [Credentials]
