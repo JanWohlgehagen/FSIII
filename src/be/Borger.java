@@ -10,6 +10,8 @@ public class Borger {
     private StringProperty firstName= new SimpleStringProperty();
     private StringProperty lastName= new SimpleStringProperty();
     private BooleanProperty isTemplate = new SimpleBooleanProperty();
+    private IntegerProperty studentID = new SimpleIntegerProperty();
+    private StringProperty studentName = new SimpleStringProperty();
 
     //Generelle oplysninger
     private StringProperty mestring = new SimpleStringProperty();
@@ -188,9 +190,32 @@ public class Borger {
         this.helbredstilstand = helbredstilstand;
     }
 
+    public IntegerProperty getStudentIDProperty() {
+        return studentID;
+    }
+
+    public void setStudentID(int studentID) {
+        this.studentID.set(studentID);
+    }
+
+    public StringProperty getStudentNameProperty()
+    {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName.set(studentName);
+    }
+
     @Override
     public String toString() {
-        return firstName.get() + " " +  lastName.get() + " " + age.get() + "år";
+        if (studentID.get() ==0 )
+        {
+            return firstName.get() + " " +  lastName.get() + " " + age.get() + "år";
+
+        }
+        else
+            return firstName.get() + " " +  lastName.get() + " " + age.get() + " år " + studentName.get();
 
     }
 }

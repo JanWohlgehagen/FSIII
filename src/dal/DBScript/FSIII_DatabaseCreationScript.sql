@@ -16,8 +16,10 @@ CREATE TABLE [Borger]
     [LastName]         NVARCHAR(200) NULL,
     [Age]              INT           NULL,
     [Template]         BIT           NULL,
+    [Student_ID]       INT           Null,
 
-    CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID])
+    CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID]),
+    CONSTRAINT FK_Student_ID FOREIGN KEY (Student_ID) REFERENCES Student([Student_ID])
 
 )
 

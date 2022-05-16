@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
 
+
     @FXML
     private Button btnUdorelseLevering;
     @FXML
@@ -41,6 +42,8 @@ public class DashboardController implements Initializable {
     private TextField txtSearchBar;
     @FXML
     private  ListView<Borger> lvCitizens;
+    @FXML
+    private TabPane tabpaneDBView;
     @FXML
     private  Tab tabTemplates;
     @FXML
@@ -75,12 +78,15 @@ public class DashboardController implements Initializable {
             funktionstilstandsUnderkategoriModel = new FunktionstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
             helbredstilstandModel = new HelbredstilstandModel(new ManagerFacade(new DatabaseFacade()));
             helbredstilstandsUnderkategoriModel = new HelbredstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
-            lvCitizens.setItems(citizenModel.getAllCitizen());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         Platform.runLater(this::setDashboardToLoginUserProfile);
+
+
+
 
         lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){
@@ -197,12 +203,19 @@ public class DashboardController implements Initializable {
         if (this.loginUser != null) {
             switch (this.loginUser.getUserType()) {
                 case STUDENT -> {
-                    tabStudents.setDisable(true);
-                    tabTemplates.setDisable(true);
+                    tabpaneDBView.getTabs().remove(1, 3);
+                    for(Borger b: citizenModel.getAllCitizen())
+                    {
+                        if (b.getStudentIDProperty().get() == loginUser.getIdProperty().get())
+                        {
+                            lvCitizens.getItems().add(b);
+                        }
+                    }
                 }
                 case TEACHER -> {
                     tabStudents.setDisable(false);
                     tabTemplates.setDisable(false);
+                    lvCitizens.setItems(citizenModel.getAllCitizen());
                 }
 
                 default -> throw new UnsupportedOperationException();
@@ -221,5 +234,13 @@ public class DashboardController implements Initializable {
     public void updateCitizenList() {
         lvCitizens.getItems().clear();
         lvCitizens.setItems(citizenModel.getAllCitizen());
+    }
+
+    public void btnConnectStudent(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<TilfoejStuderendePaaBorgerController> tilfoejStuderendePaaBorgerControllerSceneLoader = new TilfoejStuderendeScene();
+        tilfoejStuderendePaaBorgerControllerSceneLoader.loadNewScene(new Stage());
+        TilfoejStuderendePaaBorgerController tilfoejStuderendePaaBorgerController = tilfoejStuderendePaaBorgerControllerSceneLoader.getController();
+        tilfoejStuderendePaaBorgerController.setBorger(selectCitizen);
+        tilfoejStuderendePaaBorgerController.setModels(citizenModel);
     }
 }
