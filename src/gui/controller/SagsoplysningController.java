@@ -9,6 +9,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -394,6 +396,29 @@ public class SagsoplysningController implements Initializable {
                 populateTxtAreasHelbredstilstand(tableView.getSelectionModel().getSelectedItem());
             });
 
+
+            tableView.setRowFactory(tv -> new TableRow<HelbredstilstandsUnderkategori>(){
+                @Override
+                protected void updateItem(HelbredstilstandsUnderkategori hsKategori, boolean empty){
+                    super.updateItem(hsKategori, empty);
+                    if (!empty && hsKategori != null) {
+                        this.styleProperty().bind(Bindings.createStringBinding(() -> {
+                            if (hsKategori.getTilstandProperty().get() == null) {
+                                return "-fx-background-color: red;";
+                            } else {
+                                return "-fx-background-color: green;";
+                            }
+                        }, hsKategori.getTilstandProperty()));
+                    } else {
+                        setText(null);
+                        setGraphic(null);
+                        this.styleProperty().unbind();
+
+                        setStyle("");
+                    }
+                }
+            });
+
             if(insertionCounter %2 == 0){
                 vBoxLeftHelbredstilstand.getChildren().add(tableView);
             } else {
@@ -422,6 +447,28 @@ public class SagsoplysningController implements Initializable {
 
                 oldValueOfFunktionstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
                 populateTxtAreasFunktionstilstand(tableView.getSelectionModel().getSelectedItem());
+            });
+
+            tableView.setRowFactory(tv -> new TableRow<FunktionstilstandsUnderkategori>(){
+                @Override
+                protected void updateItem(FunktionstilstandsUnderkategori fsKategori, boolean empty){
+                    super.updateItem(fsKategori, empty);
+                    if (!empty && fsKategori != null) {
+                        this.styleProperty().bind(Bindings.createStringBinding(() -> {
+                            if (fsKategori.getNiveauProperty().get() == -1) {
+                                return "-fx-background-color: red;";
+                            } else {
+                                return "-fx-background-color: green;";
+                            }
+                        }, fsKategori.getNiveauProperty()));
+                    } else {
+                        setText(null);
+                        setGraphic(null);
+                        this.styleProperty().unbind();
+
+                        setStyle("");
+                    }
+                }
             });
 
             if(insertionCounter %2 == 0){
