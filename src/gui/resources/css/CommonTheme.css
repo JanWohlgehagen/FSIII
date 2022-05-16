@@ -41,6 +41,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-font-size: 15;
+    -fx-cursor: hand;
 }
 
 .button:hover,
