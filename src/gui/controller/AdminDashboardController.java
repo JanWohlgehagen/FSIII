@@ -1,9 +1,6 @@
 package gui.controller;
 
-import be.Funktionstilstand;
-import be.FunktionstilstandsUnderkategori;
-import be.Helbredstilstand;
-import be.HelbredstilstandsUnderkategori;
+import be.*;
 import be.user.User;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
@@ -14,6 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -60,9 +58,9 @@ public class AdminDashboardController implements Initializable {
     private TableColumn<User, String> tcTeacherInClassRolle;
 
     @FXML
-    private TableView<User> tvClass;
+    private TableView<WClass> tvClass;
     @FXML
-    private TableColumn<User, String> tcClassName;
+    private TableColumn<WClass, String> tcClassName;
     @FXML
     private TableView<User> tvUserInClass;
     @FXML
@@ -71,13 +69,10 @@ public class AdminDashboardController implements Initializable {
     private TableColumn<User, String> tcUserRolle;
 
     @FXML
-    private ComboBox comboBoxStudentClass;
+    private ComboBox<WClass> comboBoxStudentClass;
     @FXML
-    private ComboBox comboboxTeacherClass;
+    private ComboBox<WClass> comboboxTeacherClass;
 
-
-    private  List<User> allUser = new ArrayList<>();
-    TableRow<User> row;
     private UserModel userModel;
 
     @Override
@@ -93,14 +88,42 @@ public class AdminDashboardController implements Initializable {
         tcAllStudentName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
         tcAllStudentRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
 
+        tvStudentInClass.setItems(userModel.getStudentInClass());
+        tcStudentInClassName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
+        tcStudentInClassRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
+
         tvAllTeacher.setItems(userModel.getAllTeacher());
         tcAllTeacherName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
         tcAllTeacherRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
 
+        tvTeacherInClass.setItems(userModel.getTeacherInClass());
+        tcTeacherInClassName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
+        tcTeacherInClassRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
+
+        tvClass.setItems(userModel.getAllClass());
+        tcClassName.setCellValueFactory(param -> param.getValue().getNameProperty());
+
+        tvUserInClass.setItems(userModel.getTeacherAndStudentInClass());
+        tcUserName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
+        tcUserRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
+
+        comboBoxStudentClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                userModel.studentInClass(newValue);
+            }
+        });
+        comboboxTeacherClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                userModel.teacherInClass(newValue);
+            }
+        });
+
+        tvClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                userModel.teacherAndStudentInClass(newValue);
+            }
+        });
         }
-
-
-
 
 
     public void handleNewTeacher(ActionEvent actionEvent) {
@@ -140,8 +163,28 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void handleMouseAddStudentToClass(MouseEvent mouseEvent) {
+        User student = tvAllstudent.getSelectionModel().getSelectedItem();
+        WClass wClass = comboBoxStudentClass.getSelectionModel().getSelectedItem();
+        if(student != null && wClass != null){
+            userModel.addStudentToClass(student, wClass);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void handleMouseRemoveStudentFromClass(MouseEvent mouseEvent) {
     }
+
+
+    public void handleComboboxSetStudentInClass(Event event) {
+        comboBoxStudentClass.getItems().clear();
+        comboBoxStudentClass.setItems(userModel.getAllClass());
+    }
+
+    public void handleComboboxSetTeacherInClass(Event event) {
+        comboBoxStudentClass.getItems().clear();
+        comboBoxStudentClass.setItems(userModel.getAllClass());
+    }
+
 }

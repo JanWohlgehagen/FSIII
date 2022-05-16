@@ -30,4 +30,9 @@ public class WClass {
     public void setName(String name) {
         this.name.set(name);
     }
+
+    @Override
+    public String toString() {
+        return  name.get();
+    }
 }

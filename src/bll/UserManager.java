@@ -4,6 +4,7 @@ import be.WClass;
 import be.user.User;
 import be.user.UserType;
 import bll.Interfaces.IManagerFacade;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
 import dal.interfaces.IDatabaseFacade;
 
@@ -20,6 +21,10 @@ public class UserManager {
 
     public UserManager(DatabaseFacade databaseFacade) {
         this.databaseFacade = databaseFacade;
+        allUserInDatabase = new ArrayList<>();
+        allStudentInDatabase = new ArrayList<>();
+        allTeacherInDatabase = new ArrayList<>();
+        allAdminInDatabase = new ArrayList<>();
     }
 
     public List<User> getAllUser() {
@@ -65,6 +70,10 @@ public class UserManager {
         databaseFacade.deleteClass(wClass);
     }
 
+    public List<WClass> allClass(){
+        return databaseFacade.getAllClass();
+    }
+
     public List<User> getAllStudentInClass(WClass wClass){
         return databaseFacade.getAllStudentInClass(wClass);
     }
@@ -73,7 +82,7 @@ public class UserManager {
         return databaseFacade.getAllTeacherInClass(wClass);
     }
 
-    public void addStudentToClass(User user, WClass wClass) {
+    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
         databaseFacade.addStudentToClass(user, wClass);
     }
 }

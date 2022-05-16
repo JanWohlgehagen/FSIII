@@ -3,6 +3,7 @@ package dal;
 
 import be.*;
 import be.user.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
@@ -53,9 +54,13 @@ public class DatabaseFacade implements IDatabaseFacade {
         return dbUserDAO.getAllUser();
     }
 
+    @Override
+    public List<WClass> getAllClass() {
+        return dbClassDAO.getAllClass();
+    }
 
 
-                                /***************************************************/
+    /***************************************************/
                                 /******************** Class ************************/
                                 /***************************************************/
 
@@ -76,11 +81,11 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public List<User> getAllTeacherInClass(WClass wClass) {
-        return null;
+        return dbClassDAO.getAllTeacherInClass(wClass);
     }
 
     @Override
-    public void addStudentToClass(User user, WClass wClass) {
+    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
         dbClassDAO.addStudentToClass(user, wClass);
     }
 

@@ -2,6 +2,7 @@ package dal.interfaces;
 
 import be.*;
 import be.user.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface IDatabaseFacade {
 
     // CLASS
 
+    public List<WClass> getAllClass();
+
     public WClass createClass(WClass wClass);
 
     public void deleteClass(WClass wClass);
@@ -27,7 +30,7 @@ public interface IDatabaseFacade {
 
     public List<User> getAllTeacherInClass(WClass wClass);
 
-    public void addStudentToClass(User user, WClass wClass);
+    public void addStudentToClass(User user, WClass wClass) throws SQLServerException;
 
 
     // CASE

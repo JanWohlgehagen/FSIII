@@ -3,6 +3,7 @@ package bll;
 import be.*;
 import be.user.User;
 import bll.Interfaces.IManagerFacade;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
 
 import java.io.IOException;
@@ -81,6 +82,11 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
+    public List<WClass> getAllClass() {
+        return userManager.allClass();
+    }
+
+    @Override
     public List<User> getAllStudentInClass(WClass wClass) {
         return userManager.getAllStudentInClass(wClass);
     }
@@ -91,7 +97,7 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public void addStudentToClass(User user, WClass wClass) {
+    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
         userManager.addStudentToClass(user, wClass);
     }
 

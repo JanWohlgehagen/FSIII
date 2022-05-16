@@ -49,7 +49,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                      <children>
-                        <ComboBox fx:id="comboboxTeacherClass" prefWidth="150.0" promptText="Vælg klasse" />
+                        <ComboBox fx:id="comboboxTeacherClass" onShowing="#handleComboboxSetTeacherInClass" prefWidth="200.0" promptText="Vælg klasse" />
                      </children>
                   </HBox>
                   <TableView fx:id="tvAllTeacher" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -130,7 +130,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                      <children>
-                        <ComboBox fx:id="comboBoxStudentClass" prefWidth="150.0" promptText="Vælg klasse" />
+                        <ComboBox fx:id="comboBoxStudentClass" onShowing="#handleComboboxSetStudentInClass" prefHeight="35.0" prefWidth="200.0" promptText="Vælg klasse" />
                      </children>
                   </HBox>
                   <TableView fx:id="tvAllstudent" onMouseReleased="#handleMouseAddStudentToClass" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">

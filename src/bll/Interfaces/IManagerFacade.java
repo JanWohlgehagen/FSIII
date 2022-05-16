@@ -27,11 +27,13 @@ public interface IManagerFacade {
 
     public void deleteClass(WClass wClass);
 
+    public List<WClass> getAllClass();
+
     public List<User> getAllStudentInClass(WClass wClass);
 
     public List<User> getAllTeacherInClass(WClass wClass);
 
-    public void addStudentToClass(User user, WClass wClass);
+    public void addStudentToClass(User user, WClass wClass) throws SQLServerException;
 
 
     // CASE
