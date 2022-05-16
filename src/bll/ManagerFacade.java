@@ -3,9 +3,7 @@ package bll;
 import be.*;
 import be.user.User;
 import bll.Interfaces.IManagerFacade;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
-import gui.model.HelbredstilstandsUnderkategoriModel;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,14 +18,14 @@ public class ManagerFacade implements IManagerFacade {
     private final HelbredstilstandManager helbredstilstandManager;
     private final HelbredstilstandsUnderkategoriManager helbredstilstandsUnderkategoriManager;
 
-    public ManagerFacade() throws IOException {
-        credentialManager = new CredentialManager(new DatabaseFacade());
-        caseManager = new CaseManager(new DatabaseFacade());
-        citizenManager = new CitizenManager(new DatabaseFacade());
-        funktionstilstandManager = new FunktionstilstandManager(new DatabaseFacade());
-        funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(new DatabaseFacade());
-        helbredstilstandManager = new HelbredstilstandManager(new DatabaseFacade());
-        helbredstilstandsUnderkategoriManager = new HelbredstilstandsUnderkategoriManager(new DatabaseFacade());
+    public ManagerFacade(DatabaseFacade databaseFacade) throws IOException {
+        credentialManager = new CredentialManager(databaseFacade);
+        caseManager = new CaseManager(databaseFacade);
+        citizenManager = new CitizenManager(databaseFacade);
+        funktionstilstandManager = new FunktionstilstandManager(databaseFacade);
+        funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(databaseFacade);
+        helbredstilstandManager = new HelbredstilstandManager(databaseFacade);
+        helbredstilstandsUnderkategoriManager = new HelbredstilstandsUnderkategoriManager(databaseFacade);
 
     }
 
@@ -170,6 +168,11 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public List<String> getHelbredstilstandsUnderkategoriList() {
         return helbredstilstandsUnderkategoriManager.getHelbredstilstandsUnderkategoriList();
+    }
+
+    @Override
+    public void getTilstande(Borger borger) {
+        citizenManager.getTilstande(borger);
     }
 
 

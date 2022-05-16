@@ -59,20 +59,22 @@
     -fx-padding: 1, 1, 1, 1;
 }
 
-.label{
-    -fx-font-size: 16;
-    -fx-font-weight: bold;
+.informationButton:hover,
+.informationButton:armed,
+.informationButton:focused {
+    -fx-border-width: 1;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-scale-z: 1;
+    -fx-border-insets: 0 0 0 0;
 }
 
 .labelTitle{
     -fx-font-size: 22;
     -fx-font-weight: bold;
-}
-
-.text-area:focused,
-.text-area:selected,
-.text-area:armed{
-    -fx-border-color: black;
 }
 
 .tooltip{
@@ -94,12 +96,3 @@
     -fx-scale-y: 1.2;
     -fx-scale-x: 1.2;
 }
-
-.text-field{
-    -fx-font-weight: bold;
-    -fx-font-size: 14;
-    -fx-alignment: center;
-}
-
-
-

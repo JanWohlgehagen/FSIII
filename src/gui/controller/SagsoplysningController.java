@@ -145,26 +145,29 @@ public class SagsoplysningController implements Initializable {
     private TooltipBank tooltipBank = new TooltipBank();
     private Borger borger;
     private CitizenModel citizenModel;
+    private HelbredstilstandsUnderkategori oldValueOfHelbredstilstandsUnderkategori;
+    private FunktionstilstandsUnderkategori oldValueOfFunktionstilstandsUnderkategori;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
+            setGenerelleOplysningerTooltips();
+            setFunktionstilstandsTooltips();
+            populateTilstande();
+            populateHelbredstilstandsCombobox();
+            populateFunktionstilstandsCombobox();
+            populateGenerelleOplysninger();
         });
-        setGenerelleOplysningerTooltips();
-        setFunktionstilstandsTooltips();
-        populateTilstande();
-        populateHelbredstilstandsCombobox();
-        populateFunktionstilstandsCombobox();
-        populateGenerelleOplysninger();
-        populateHelhedsvurdering();
 
         comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (newValue.equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
-                    changeAbilityHelbredstilstandsFields(true);
-                } else changeAbilityHelbredstilstandsFields(false);
+                if (newValue != null){
+                    if (newValue.equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
+                        changeAbilityHelbredstilstandsFields(true);
+                    } else changeAbilityHelbredstilstandsFields(false);
+                }
             }
         });
 
@@ -172,9 +175,11 @@ public class SagsoplysningController implements Initializable {
         comboBoxTilstandFunktionstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Integer>() {
             @Override
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
-                if (newValue == 9){
-                    changeAbilityFunktionstilstandsFields(true);
-                } else changeAbilityFunktionstilstandsFields(false);
+                if (newValue != null) {
+                    if (newValue == 9) {
+                        changeAbilityFunktionstilstandsFields(true);
+                    } else changeAbilityFunktionstilstandsFields(false);
+                }
             }
         });
     }
@@ -188,76 +193,71 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        if (borger != null){ //TODO skal slettes, når borger er implementeret
-            updateBorgerInformationer();
-            citizenModel.updateSagsoplysninger(borger);
-        }
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
+        updateBorger(borger);
         closeStage();
     }
 
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        if (borger != null){ //TODO skal slettes, når borger er implementeret
-            updateBorgerInformationer();
-            citizenModel.updateSagsoplysninger(borger);
-        }
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        citizenModel.updateSagsoplysninger(borger);
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
+        updateBorger(borger);
         closeStage();
     }
 
     public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        citizenModel.updateSagsoplysninger(borger);
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        citizenModel.updateSagsoplysninger(borger);
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
+        updateBorger(borger);
         closeStage();
     }
 
     public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        citizenModel.updateSagsoplysninger(borger);
+        updateFunktionstilstandsUnderkategori();
+        updateHelbredstilstandsUnderkategori();
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        extractMedicineList();
-        citizenModel.updateSagsoplysninger(borger);
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
+        extractMedicineList(); //TODO
+        updateBorger(borger);
         closeStage();
     }
 
     public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        extractMedicineList();
-        citizenModel.updateSagsoplysninger(borger);
-        goToNextScene();
-    }
-
-    public void helhedsvurderingHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        citizenModel.updateSagsoplysninger(borger);
-        closeStage();
-    }
-
-    public void helhedsvurderingHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        citizenModel.updateSagsoplysninger(borger);
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
+        extractMedicineList(); //TODO
+        updateBorger(borger);
         goToNextScene();
     }
 
     public void handleAddTxtFieldMedicineList(ActionEvent actionEvent) {
         vBoxMedicinliste.getChildren().add(new TextField());
+        updateHelbredstilstandsUnderkategori();
+        updateFunktionstilstandsUnderkategori();
     }
 
-    private void goToNextScene() throws IOException {
-        ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
-        bestillingsScene.loadNewScene((Stage) tabPaneParent.getScene().getWindow());
-        BestillingsViewController bestillingsViewController = bestillingsScene.getController();
-        bestillingsViewController.setBestillingsViewController(bestillingsViewController);
-        bestillingsViewController.setDashboardController(dashboardController);
-    }
-
-    private void updateBorgerInformationer(){
+    private void updateBorger(Borger borger){
+        //Update generelle oplysninger on citizen object
         borger.setMestring(txtAreaMestring.getText());
         borger.setMotivation(txtAreaMotivaton.getText());
         borger.setRessourcer(txtAreaRessourcer.getText());
@@ -269,6 +269,15 @@ public class SagsoplysningController implements Initializable {
         borger.setHelbredsoplysninger(txtAreaHelbredsoplysninger.getText());
         borger.setHjaelpemidler(txtAreaHjaelpemidler.getText());
         borger.setBoligensIndretning(txtAreaBoligensIndretning.getText());
+
+        citizenModel.updateSagsoplysninger(borger);
+    }
+
+    private void goToNextScene() throws IOException {
+        ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
+        bestillingsScene.loadNewScene((Stage) tabPaneParent.getScene().getWindow());
+        BestillingsViewController bestillingsViewController = bestillingsScene.getController();
+        bestillingsViewController.setDashboardController(dashboardController);
     }
 
     private void closeStage(){
@@ -312,12 +321,7 @@ public class SagsoplysningController implements Initializable {
         }
     }
 
-    private void populateHelhedsvurdering() {
-        txtAreaHelhedsvurdering.setText(borger.getHelhedsvurderingProperty().get());
-    }
-
     private void populateGenerelleOplysninger() {
-        if (borger != null) {
             txtAreaMestring.setText(borger.getMestringProperty().get());
             txtAreaMotivaton.setText(borger.getMotivationProperty().get());
             txtAreaRessourcer.setText(borger.getRessourcerProperty().get());
@@ -329,7 +333,6 @@ public class SagsoplysningController implements Initializable {
             txtAreaHelbredsoplysninger.setText(borger.getHelbredsoplysningerProperty().get());
             txtAreaHjaelpemidler.setText(borger.getHjaelpemidlerProperty().get());
             txtAreaBoligensIndretning.setText(borger.getBoligensIndretningProperty().get());
-        }
     }
 
     private void populateHelbredstilstandsCombobox(){
@@ -362,10 +365,6 @@ public class SagsoplysningController implements Initializable {
     }
 
     private void populateTilstande(){
-        if (borger == null){
-            //TODO skal slettes, når borgeren kommer ind fra dashboard
-            return;
-        }
         int insertionCounter = 0;
 
         Helbredstilstand helbredstilstand = borger.getHelbredstilstand();
@@ -387,13 +386,12 @@ public class SagsoplysningController implements Initializable {
             tableView.setMaxWidth(245.0);
 
             // populates text areas as well as the comboboxes for a given subcategory
-            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HelbredstilstandsUnderkategori>() {
-                @Override
-                public void changed(ObservableValue<? extends HelbredstilstandsUnderkategori> observable, HelbredstilstandsUnderkategori oldValue, HelbredstilstandsUnderkategori newValue) {
-                    if (newValue != null){
-                        populateTxtAreasHelbredstilstand(newValue);
-                    }
-                }
+            tableView.setOnMouseClicked(event -> {
+
+                updateHelbredstilstandsUnderkategori();
+
+                oldValueOfHelbredstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
+                populateTxtAreasHelbredstilstand(tableView.getSelectionModel().getSelectedItem());
             });
 
             if(insertionCounter %2 == 0){
@@ -418,13 +416,12 @@ public class SagsoplysningController implements Initializable {
             tableView.setMaxWidth(245.0);
 
             // populates text areas as well as the comboboxes for a given subcategory
-            tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<FunktionstilstandsUnderkategori>() {
-                @Override
-                public void changed(ObservableValue<? extends FunktionstilstandsUnderkategori> observable, FunktionstilstandsUnderkategori oldValue, FunktionstilstandsUnderkategori newValue) {
-                    if (newValue != null){
-                        populateTxtAreasFunktionstilstand(newValue);
-                    }
-                }
+            tableView.setOnMouseClicked(event -> {
+
+                updateFunktionstilstandsUnderkategori();
+
+                oldValueOfFunktionstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
+                populateTxtAreasFunktionstilstand(tableView.getSelectionModel().getSelectedItem());
             });
 
             if(insertionCounter %2 == 0){
@@ -433,6 +430,30 @@ public class SagsoplysningController implements Initializable {
                 vBoxRightFunktionstilstand.getChildren().add(tableView);
             }
             insertionCounter ++;
+        }
+    }
+
+    private void updateFunktionstilstandsUnderkategori(){
+        if(oldValueOfFunktionstilstandsUnderkategori != null) {
+            oldValueOfFunktionstilstandsUnderkategori.setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+            oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+            oldValueOfFunktionstilstandsUnderkategori.setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setBetydning(txtAreaBetydningFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setOenskerOgMaal(txtAreaOenskerOgMålFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setVurdering(txtAreaVurderingFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setAarsag(txtAreaAarsagFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatFunktionstilstand.getText());
+            oldValueOfFunktionstilstandsUnderkategori.setOpfølgning(txtOpfoelgningFunktionstilstand.getText());
+        }
+    }
+
+    private void updateHelbredstilstandsUnderkategori(){
+        if(oldValueOfHelbredstilstandsUnderkategori != null) {
+            oldValueOfHelbredstilstandsUnderkategori.setVurdering(txtAreaVurderingHelbredstilstand.getText());
+            oldValueOfHelbredstilstandsUnderkategori.setAarsag(txtAreaAarsagHelbredstilstand.getText());
+            oldValueOfHelbredstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatHelbredstilstand.getText());
+            oldValueOfHelbredstilstandsUnderkategori.setTilstand(comboBoxTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+            oldValueOfHelbredstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
         }
     }
 

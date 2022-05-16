@@ -32,12 +32,8 @@ public class CreateCitizenViewController {
 
     private CitizenModel citizenModel;
 
-    private CreateCitizenViewController createCitizenViewController;
     private DashboardController dashboardController;
 
-    public CreateCitizenViewController() throws IOException {
-        citizenModel = new CitizenModel(new ManagerFacade());
-    }
 
     public void btnSave(ActionEvent actionEvent) {
         try{Integer.parseInt(txtAge.getText());}
@@ -53,6 +49,7 @@ public class CreateCitizenViewController {
         int age = Integer.parseInt(txtAge.getText());
         Borger borger = new Borger(firstName, lastName, isTemplate, age);
         borger.setFunktionstilstand(new Funktionstilstand());
+        borger.setHelbredstilstand(new Helbredstilstand());
         citizenModel.createCitizen(borger);
 
         dashboardController.updateCitizenList();
@@ -61,12 +58,12 @@ public class CreateCitizenViewController {
         stage.close();
     }
 
-    public void setCreateCitizenViewController(CreateCitizenViewController createCitizenViewController) {
-        this.createCitizenViewController = createCitizenViewController;
-    }
-
     public void setDashboardController(DashboardController dashboardController)
     {
         this.dashboardController = dashboardController;
+    }
+
+    public void setCitizenModel(CitizenModel citizenModel) {
+        this.citizenModel = citizenModel;
     }
 }

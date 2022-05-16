@@ -6,17 +6,16 @@ import be.user.User;
 
 import be.user.UserType;
 import bll.ManagerFacade;
+import dal.DatabaseFacade;
 import gui.model.*;
 import gui.util.*;
 
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -47,13 +46,17 @@ public class DashboardController implements Initializable {
     @FXML
     private  Tab tabStudents;
 
+    @FXML
+    private Label lblName;
+    @FXML
+    private Label lblAge;
+
 
     private DashboardController dashboardController;
     private User loginUser;
 
     private CaseModel caseModel;
     private CitizenModel citizenModel;
-    private ObservableList<Borger> allCitizens;
     private Case selectedCase;
     private Borger selectCitizen;
     private FunktionstilstandModel funktionstilstandModel;
@@ -65,25 +68,25 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            caseModel = new CaseModel(new ManagerFacade(new DatabaseFacade()));
+            citizenModel = new CitizenModel(new ManagerFacade(new DatabaseFacade()));
+            funktionstilstandModel = new FunktionstilstandModel(new ManagerFacade(new DatabaseFacade()));
+            funktionstilstandsUnderkategoriModel = new FunktionstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
+            helbredstilstandModel = new HelbredstilstandModel(new ManagerFacade(new DatabaseFacade()));
+            helbredstilstandsUnderkategoriModel = new HelbredstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
+            lvCitizens.setItems(citizenModel.getAllCitizen());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        Platform.runLater(() -> {
-            try {
-                caseModel = new CaseModel(new ManagerFacade());
-                citizenModel = new CitizenModel(new ManagerFacade());
-                funktionstilstandModel = new FunktionstilstandModel(new ManagerFacade());
-                funktionstilstandsUnderkategoriModel = new FunktionstilstandsUnderkategoriModel(new ManagerFacade());
-                helbredstilstandModel = new HelbredstilstandModel(new ManagerFacade());
-                helbredstilstandsUnderkategoriModel = new HelbredstilstandsUnderkategoriModel(new ManagerFacade());
-                lvCitizens.setItems(citizenModel.getAllCitizen());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        Platform.runLater(this::setDashboardToLoginUserProfile);
 
         lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){
                 selectCitizen = newValue;
+                lblAge.setText(selectCitizen.getAgeProperty().get() + " år");
+                lblName.setText(selectCitizen.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
             }
             if(newValue != null && oldValue == null){
                 btnSagsaabning.setDisable(false);
@@ -110,8 +113,12 @@ public class DashboardController implements Initializable {
         return selectCitizen;
     }
 
-    public void setSelectedCitizen(Borger selectCitizen) {
-        this.selectCitizen = selectCitizen;
+    public CaseModel getCaseModel(){
+        return caseModel;
+    }
+
+    public User getLoginUser() {
+        return loginUser;
     }
 
     public void handleButtonSagsåbning(ActionEvent actionEvent) throws IOException {
@@ -136,6 +143,8 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonSagsoplysning(ActionEvent actionEvent) throws IOException {
+        citizenModel.getTilstande(selectCitizen);
+        citizenModel.getGenerelleOplysninger(selectCitizen);
         ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(new Stage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
@@ -144,42 +153,35 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
-        /*
-        if(selectedCase == null)
-        {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
-            alert.show();
-        }
-        else {
-
-         */
+        if(selectedCase != null) {
             ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
             bestillingsScene.loadNewScene(new Stage());
             BestillingsViewController bestillingsViewController = bestillingsScene.getController();
-            bestillingsViewController.setBestillingsViewController(bestillingsViewController);
             bestillingsViewController.setDashboardController(dashboardController);
-        //}
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
+
     }
 
-    public void handleButtonPlanlægning(ActionEvent actionEvent) throws IOException {
+    public void handleButtonPlanlaegning(ActionEvent actionEvent) throws IOException {
         ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
         planlaegningScene.loadNewScene(new Stage());
         PlanlaegningController planlaegningController = planlaegningScene.getController();
         planlaegningController.setDashboardController(dashboardController);
-        planlaegningController.setCaseModel(caseModel);
     }
 
     public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
-        if(selectedCase == null) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
-            alert.show();
+        if(selectedCase != null) {
+            ISceneLoader<UdfoerelseIOgLeveringController> caseDocumentationScene = new CaseDocumentationScene();
+            caseDocumentationScene.loadNewScene(new Stage());
+            UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
+            udfoerelseIOgLeveringController.setDashboardController(dashboardController);
         }
         else {
-            ISceneLoader<CaseDocumentationViewController> caseDocumentationScene = new CaseDocumentationScene();
-            caseDocumentationScene.loadNewScene(new Stage());
-            CaseDocumentationViewController caseDocumentationViewController = caseDocumentationScene.getController();
-            caseDocumentationViewController.setCaseDocumentationViewController(caseDocumentationViewController);
-            caseDocumentationViewController.setCurrentCase(selectedCase);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
         }
     }
 
@@ -187,11 +189,24 @@ public class DashboardController implements Initializable {
         this.dashboardController = dashboardController;
     }
 
-    public void setloginPerson(User user){
+    public void setLoginPerson(User user){
         this.loginUser = user;
-        if(user.getUserType().equals(UserType.STUDENT)) {
-            tabStudents.setDisable(true);
-            tabTemplates.setDisable(true);
+    }
+
+    private void setDashboardToLoginUserProfile(){
+        if (this.loginUser != null) {
+            switch (this.loginUser.getUserType()) {
+                case STUDENT -> {
+                    tabStudents.setDisable(true);
+                    tabTemplates.setDisable(true);
+                }
+                case TEACHER -> {
+                    tabStudents.setDisable(false);
+                    tabTemplates.setDisable(false);
+                }
+
+                default -> throw new UnsupportedOperationException();
+            }
         }
     }
 
@@ -199,15 +214,12 @@ public class DashboardController implements Initializable {
         ISceneLoader<CreateCitizenViewController> createCitizenSceneLoader = new CreateCitizenScene();
         createCitizenSceneLoader.loadNewScene(new Stage());
         CreateCitizenViewController createCitizenViewController = createCitizenSceneLoader.getController();
-        createCitizenViewController.setCreateCitizenViewController(createCitizenViewController);
-        createCitizenViewController.setDashboardController(this);
+        createCitizenViewController.setDashboardController(dashboardController);
+        createCitizenViewController.setCitizenModel(citizenModel);
     }
 
     public void updateCitizenList() {
         lvCitizens.getItems().clear();
         lvCitizens.setItems(citizenModel.getAllCitizen());
-    }
-
-    public void selectBorger(MouseEvent mouseEvent) {
     }
 }

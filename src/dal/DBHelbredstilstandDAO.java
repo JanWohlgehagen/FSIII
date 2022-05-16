@@ -20,12 +20,11 @@ public class DBHelbredstilstandDAO {
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
                 for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
                     preparedStatement.setInt(1, borger.getIDProperty().get());
                     preparedStatement.setInt(2, helbredstilstandsUnderkategori.getId().get());
 
-                    preparedStatement.executeQuery();
-
+                    preparedStatement.execute();
                 }
             }
 
@@ -35,7 +34,7 @@ public class DBHelbredstilstandDAO {
     }
 
     public void updateHelbredstilstand(Borger borger) {
-        String sql = "UPDATE [H_Tilstandsvurdering (HS_Borger_ID, HS_UK_ID, Tilstand, Vurdering, Aarsag, Faglig_Notat, Forventet_Tilstand) VALUES (?,?,?,?,?,?,?) " +
+        String sql = "UPDATE [H_Tilstandsvurdering] SET HS_Borger_ID = (?), HS_UK_ID = (?), Tilstand = (?), Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?) " +
                 "WHERE HS_Borger_ID = (?) AND HS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
@@ -51,8 +50,7 @@ public class DBHelbredstilstandDAO {
 
                     preparedStatement.setInt(8, borger.getIDProperty().get());
                     preparedStatement.setInt(9, helbredstilstandsUnderkategori.getId().get());
-
-                    preparedStatement.executeQuery();
+                    preparedStatement.execute();
 
                 }
             }
@@ -67,7 +65,7 @@ public class DBHelbredstilstandDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, borger.getIDProperty().get());
 
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -82,8 +80,8 @@ public class DBHelbredstilstandDAO {
 
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [H_Tilstandsvurdering]" +
-                    "FULL JOIN [HS_Underkategori] ON H_Tilstandsvurdering.HS_UK_ID = HS_Underkategori.ID " +
-                    "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.ID " +
+                    "FULL JOIN [HS_Underkategori] ON H_Tilstandsvurdering.HS_UK_ID = HS_Underkategori.HS_Underkategori_ID " +
+                    "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.HS_Overkategori_ID " +
                     "WHERE HS_Borger_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, borger.getIDProperty().get());
@@ -91,19 +89,18 @@ public class DBHelbredstilstandDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 //tilstandsvurdering
-                int ID = resultSet.getInt(3);
-                String tilstand = resultSet.getString(4);
-                String vurdering = resultSet.getString(5);
-                String aarsag = resultSet.getString(6);
-                String fagligNotat = resultSet.getString(7);
-                String forventetTilstand = resultSet.getString(8);
+                int ID = resultSet.getInt("HS_UK_ID");
+                String tilstand = resultSet.getString("Tilstand");
+                String vurdering = resultSet.getString("Vurdering");
+                String aarsag = resultSet.getString("Aarsag");
+                String fagligNotat = resultSet.getString("Faglig_Notat");
+                String forventetTilstand = resultSet.getString("Forventet_Tilstand");
 
                 //Underkategori
-                String underKategoriTitel = resultSet.getString(10);
+                String underKategoriTitel = resultSet.getString("HS_Underkategori_Titel");
 
                 //Overkategori
-                String overKategoriTitel = resultSet.getString(13);
-                int OKID = resultSet.getInt(12);
+                String overKategoriTitel = resultSet.getString("HS_Overkategori_Titel");
 
                 HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(ID,underKategoriTitel, overKategoriTitel, tilstand,forventetTilstand, vurdering,aarsag,fagligNotat);
                 allHelbredstilstandeUK.add(helbredstilstandsUnderkategori);
@@ -134,19 +131,19 @@ public class DBHelbredstilstandDAO {
         List<HelbredstilstandsUnderkategori> allHelbredstilstandeUK = new ArrayList<>();
 
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT HS_Underkategori.ID, HS_Underkategori.Titel, HS_Overkategori.Titel, HS_Overkategori.ID FROM [HS_Underkategori]" +
-                    "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.ID";
+            String sql = "SELECT HS_Underkategori.HS_Underkategori_ID, HS_Underkategori.HS_Underkategori_Titel, HS_Overkategori.HS_Overkategori_Titel, HS_Overkategori.HS_Overkategori_ID FROM [HS_Underkategori]" +
+                    "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.HS_Overkategori_ID";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int UKID = resultSet.getInt(1);
+                int UKID = resultSet.getInt("HS_Underkategori_ID");
 
                 //Underkategori
-                String underKategoriTitel = resultSet.getString(2);
+                String underKategoriTitel = resultSet.getString("HS_Underkategori_Titel");
 
                 //Overkategori
-                String overKategoriTitel = resultSet.getString(3);
+                String overKategoriTitel = resultSet.getString("HS_Overkategori_Titel");
 
                 HelbredstilstandsUnderkategori h = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                 allHelbredstilstandeUK.add(h);
@@ -180,7 +177,7 @@ public class DBHelbredstilstandDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String overkategori = rs.getString("Titel");
+                String overkategori = rs.getString("HS_Overkategori_Titel");
                 helbredstilstandList.add(overkategori);
             }
         } catch (SQLException throwables) {

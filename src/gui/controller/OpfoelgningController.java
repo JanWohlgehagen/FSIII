@@ -9,12 +9,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OpfoelgningController implements Initializable {
 
+    @FXML
+    private GridPane parentPane;
     @FXML
     private TextArea txtAreaOpfoelgning;
     @FXML
@@ -70,10 +75,6 @@ public class OpfoelgningController implements Initializable {
         }
     }
 
-    public void handelVidere(ActionEvent actionEvent) {
-        caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
-    }
-
     public void handleCBClose(ActionEvent actionEvent) {
         selectCase.getOpfoelgningstagProperty().set("Afsluttes");
         checkBoxRevisitationCase.setSelected(false);
@@ -100,5 +101,18 @@ public class OpfoelgningController implements Initializable {
         checkBoxChangeCase.setSelected(false);
         checkBoxContinueCase.setSelected(false);
         checkBoxCloseCase.setSelected(false);
+    }
+
+    public void handleMouseGemOgLukScene(MouseEvent mouseEvent) {
+        //caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase); //TODO
+        getStage().close();
+    }
+
+    public void handleMouseGemOgNæsteScene(MouseEvent mouseEvent) {
+        caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
+    }
+
+    private Stage getStage(){
+        return (Stage) parentPane.getScene().getWindow();
     }
 }

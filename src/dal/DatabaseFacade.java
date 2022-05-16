@@ -152,7 +152,7 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public void createEmptyFunktionstilstand(Borger borger) {
-        dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger);
+        dbFunktionstilstandDAO.createEmptyFunktionstilstand(borger);
 
     }
 

@@ -32,9 +32,6 @@ public class CitizenModel {
 
 
     public void createCitizen(Borger borger) {
-
-
-
         if (borger.isTemplateProperty().get())
         {
             allTemplates.add(managerFacade.createCitizen(borger));
@@ -65,4 +62,11 @@ public class CitizenModel {
         managerFacade.updateSagsoplysninger(borger);
     }
 
+    public void getTilstande(Borger borger) {
+        managerFacade.getTilstande(borger);
+    }
+
+    public void getGenerelleOplysninger(Borger borger) {
+        managerFacade.getGenerelleOplysninger(borger);
+    }
 }

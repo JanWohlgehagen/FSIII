@@ -2,11 +2,12 @@ package bll;
 
 import be.Borger;
 import dal.DatabaseFacade;
+import dal.interfaces.IDatabaseFacade;
 
 import java.util.List;
 
 public class CitizenManager {
-    private DatabaseFacade databaseFacade;
+    private IDatabaseFacade databaseFacade;
 
     public CitizenManager(DatabaseFacade databaseFacade)
     {
@@ -54,5 +55,9 @@ public class CitizenManager {
     {
         databaseFacade.createEmptyHelbredstilstand(borger);
         databaseFacade.createEmptyFunktionstilstand(borger);
+    }
+
+    public void getTilstande(Borger borger) {
+        databaseFacade.getTilstandeOnCitizen(borger);
     }
 }
