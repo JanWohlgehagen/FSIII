@@ -10,12 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<GridPane prefHeight="505.0"
-          prefWidth="497.0"
-          xmlns="http://javafx.com/javafx/17"
-          xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="gui.controller.TilfoejStuderendePaaBorgerController">
+<GridPane prefHeight="505.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TilfoejStuderendePaaBorgerController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -53,7 +48,7 @@
             </ListView>
          </children>
       </VBox>
-      <Button mnemonicParsing="false" onAction="#btnAddStudent" text="Button" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+      <Button mnemonicParsing="false" onAction="#btnAddStudent" text="Tilføj" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>

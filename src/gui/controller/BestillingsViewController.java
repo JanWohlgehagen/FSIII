@@ -1,7 +1,9 @@
 package gui.controller;
 
+import be.Borger;
 import be.Case;
 import be.user.User;
+import gui.model.CaseModel;
 import gui.util.ISceneLoader;
 import gui.util.PlanlaegningScene;
 import javafx.application.Platform;
@@ -30,6 +32,8 @@ public class BestillingsViewController implements Initializable {
     private Case currentCase;
     private User loginUser;
     private DashboardController dashBoardController;
+    private CaseModel caseModel;
+    private Borger currentCitizen;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,23 +50,48 @@ public class BestillingsViewController implements Initializable {
     }
 
     public void handleSaveAndClose(MouseEvent mouseEvent) {
+        if(checkBoxBevilling.isSelected()){
         currentCase.setIsBevilget(checkBoxBevilling.isSelected());
         currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
+        }
+        else
+        {
+            caseModel.deleteCaseOnCitizen(currentCitizen.getIDProperty().get(), currentCase.getCaseIDProperty().get());
+        }
+
         getStage().close();
     }
 
     public void handleSaveAndNextScene(MouseEvent mouseEvent) throws IOException {
-        currentCase.setIsBevilget(checkBoxBevilling.isSelected());
-        currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
-        ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
-        planlaegningScene.loadNewScene(getStage());
-        PlanlaegningController planlaegningController = planlaegningScene.getController();
-        planlaegningController.setDashboardController(dashBoardController);
-        //TODO - det her skal ned i databasen
+        if(checkBoxBevilling.isSelected()){
+            currentCase.setIsBevilget(checkBoxBevilling.isSelected());
+            currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
+            currentCase.setIsBevilget(checkBoxBevilling.isSelected());
+            currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
+            ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
+            planlaegningScene.loadNewScene(getStage());
+            PlanlaegningController planlaegningController = planlaegningScene.getController();
+            planlaegningController.setDashboardController(dashBoardController);
+        }
+        else
+        {
+            caseModel.deleteCaseOnCitizen(currentCitizen.getIDProperty().get(), currentCase.getCaseIDProperty().get());
+            getStage().close();
+        }
+
+
     }
 
     public void setDashboardController(DashboardController dashboardController) {
         this.dashBoardController = dashboardController;
+    }
+
+    public void setCurrentCitizen(Borger currentCitizen) {
+        this.currentCitizen = currentCitizen;
+    }
+
+    public void setCaseModel(CaseModel caseModel) {
+        this.caseModel = caseModel;
     }
 
     private Stage getStage(){

@@ -86,4 +86,9 @@ public class User {
         fullName.set(this.firstName.get() + " " + this.lastName.get());
         return this.fullName;
     }
+
+    @Override
+    public String toString() {
+        return id.get() + ": "+ getFullNameProperty().get();
+    }
 }

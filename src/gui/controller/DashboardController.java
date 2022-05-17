@@ -66,6 +66,7 @@ public class DashboardController implements Initializable {
     private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
     private HelbredstilstandModel helbredstilstandModel;
     private HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel;
+    private UserModel userModel;
 
 
 
@@ -78,12 +79,13 @@ public class DashboardController implements Initializable {
             funktionstilstandsUnderkategoriModel = new FunktionstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
             helbredstilstandModel = new HelbredstilstandModel(new ManagerFacade(new DatabaseFacade()));
             helbredstilstandsUnderkategoriModel = new HelbredstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
-
+            userModel = new UserModel(new ManagerFacade(new DatabaseFacade()));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         Platform.runLater(() -> {
+            setDashboardToLoginUserProfile();
 
         });
 
@@ -158,6 +160,7 @@ public class DashboardController implements Initializable {
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
         sagsoplysningController.setCitizenModel(citizenModel);
+        sagsoplysningController.setCaseModel(caseModel);
     }
 
     public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
@@ -166,6 +169,8 @@ public class DashboardController implements Initializable {
             bestillingsScene.loadNewScene(new Stage());
             BestillingsViewController bestillingsViewController = bestillingsScene.getController();
             bestillingsViewController.setDashboardController(dashboardController);
+            bestillingsViewController.setCaseModel(caseModel);
+            bestillingsViewController.setCurrentCitizen(selectCitizen);
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
@@ -243,6 +248,6 @@ public class DashboardController implements Initializable {
         tilfoejStuderendePaaBorgerControllerSceneLoader.loadNewScene(new Stage());
         TilfoejStuderendePaaBorgerController tilfoejStuderendePaaBorgerController = tilfoejStuderendePaaBorgerControllerSceneLoader.getController();
         tilfoejStuderendePaaBorgerController.setBorger(selectCitizen);
-        tilfoejStuderendePaaBorgerController.setModels(citizenModel);
+        tilfoejStuderendePaaBorgerController.setModels(citizenModel, userModel);
     }
 }
