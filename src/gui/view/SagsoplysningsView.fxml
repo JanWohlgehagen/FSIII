@@ -252,7 +252,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="scrollPaneFunktionstilstand" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" styleClass="scroll-pane-funktionsTilstande" GridPane.rowSpan="2147483647">
+                  <ScrollPane fx:id="scrollPaneFunktionstilstand" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" styleClass="scroll-pane-funktionsTilstande" stylesheets="@../resources/css/funktionstilstand.css" GridPane.rowSpan="2147483647">
                      <content>
                         <HBox spacing="5.0">
                            <children>
@@ -273,7 +273,7 @@
                         <Insets right="10.0" top="10.0" />
                      </GridPane.margin>
                   </ScrollPane>
-                  <ScrollPane fitToWidth="true" GridPane.columnIndex="1">
+                  <ScrollPane fitToWidth="true" stylesheets="@../resources/css/funktionstilstand.css" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
@@ -309,7 +309,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" />
                            </rowConstraints>
                            <children>
-                              <VBox alignment="CENTER" spacing="12.0" GridPane.columnSpan="2147483647">
+                              <VBox alignment="CENTER" spacing="12.0" stylesheets="@../resources/css/funktionstilstand.css" GridPane.columnSpan="2147483647">
                                  <children>
                                     <Label fx:id="lblOverkategoriFunktionstilstand" alignment="BOTTOM_CENTER" styleClass="labelTitle" text="Overklassifikation" textAlignment="CENTER" wrapText="true" />
                                     <Label fx:id="lblTilstandsklassifikationFunktionstilstand" alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" text="Tilstandsklassifikation" textAlignment="CENTER" wrapText="true" />
@@ -403,7 +403,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="scrollPaneHelbredstilstand" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" styleClass="scroll-pane-helbredsTilstande" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
+                  <ScrollPane fx:id="scrollPaneHelbredstilstand" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" styleClass="scroll-pane-helbredsTilstande" stylesheets="@../resources/css/helbredstilstand.css" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
                      <content>
                         <HBox spacing="5.0">
                            <children>
