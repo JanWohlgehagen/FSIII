@@ -37,12 +37,13 @@ public class DBCitizenDAO {
     {
         try(Connection connection = dbConnecting.getConnection())
         {
-            String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?) WHERE Borger_ID =(?)";
+            String sql ="UPDATE [Borger] SET FirstName = (?), LastName = (?), Student_ID = (?) WHERE Borger_ID =(?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, borger.getFirstNameProperty().get());
             preparedStatement.setString(2, borger.getLastNameProperty().get());
-            preparedStatement.setInt(3, borger.getIDProperty().get());
+            preparedStatement.setInt(3, borger.getStudentIDProperty().get());
+            preparedStatement.setInt(4, borger.getIDProperty().get());
 
             preparedStatement.execute();
             return;

@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.Borger;
 import be.user.Student;
+import be.user.User;
 import gui.model.CitizenModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ public class TilfoejStuderendePaaBorgerController {
     @FXML
     private ComboBox cboxClasses;
     @FXML
-    private ListView<Student> lvStudents;
+    private ListView<User> lvStudents;
 
     private TilfoejStuderendePaaBorgerController tilfoejStuderendePaaBorgerController;
     private CitizenModel citizenModel;
@@ -27,6 +28,7 @@ public class TilfoejStuderendePaaBorgerController {
     public void setModels(CitizenModel citizenModel)
     {
         this.citizenModel = citizenModel;
+
 
     }
 
