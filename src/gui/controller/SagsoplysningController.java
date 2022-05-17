@@ -384,8 +384,6 @@ public class SagsoplysningController implements Initializable {
         HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandsKort = helbredstilstand.getHelbredsTilstandsKort();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = funktionstilstand.getFunktionsTilstandsKort();
 
-        System.out.println(helbredstilstandsKort.keySet());
-        System.out.println(funktionstilstandsKort.keySet());
 
         for (String klassifikation: helbredstilstandsKort.keySet()) {
             TableView<HelbredstilstandsUnderkategori> tableView = new TableView();

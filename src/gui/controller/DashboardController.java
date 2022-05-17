@@ -13,6 +13,7 @@ import gui.util.*;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -51,11 +52,11 @@ public class DashboardController implements Initializable {
     @FXML
     private ListView<Borger> lvCitizens;
     @FXML
-    private ListView lvTemplates;
+    private ListView <Borger>lvTemplates;
     @FXML
-    private ListView lvStuderende;
+    private ListView <User>lvStuderende;
     @FXML
-    private ListView lvStuderendesBorgere;
+    private ListView <Borger>lvStuderendesBorgere;
 
     @FXML
     private TabPane tabpaneDBView;
@@ -111,17 +112,45 @@ public class DashboardController implements Initializable {
                 lblAge.setText(selectCitizen.getAgeProperty().get() + " år");
                 lblName.setText(selectCitizen.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
             }
-            if (newValue != null && oldValue == null) {
-                btnSagsaabning.setDisable(false);
-                btnSagsOplysning.setDisable(false);
-                btnAfgorelseBestilling.setDisable(false);
-                btnPlanlaegning.setDisable(false);
-                btnOpfolgning.setDisable(false);
-                btnUdorelseLevering.setDisable(false);
-            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
         });
 
+        lvStuderendesBorgere.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectCitizen = newValue;
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
 
+        lvTemplates.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectCitizen = newValue;
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
+
+        lvStuderende.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                lvStuderende.getItems().clear();
+                for (Borger b : citizenModel.getAllCitizen()) {
+                    if (b.getStudentIDProperty().get() == newValue.getIdProperty().get()) {
+                        lvStuderendesBorgere.getItems().add(b);
+                    }
+                }
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
+    }
+
+    private <T, U> void checkForNullValuesAndDisableCircle(T newValue, U oldValue){
+        if (newValue != null && oldValue == null) {
+            btnSagsaabning.setDisable(false);
+            btnSagsOplysning.setDisable(false);
+            btnAfgorelseBestilling.setDisable(false);
+            btnPlanlaegning.setDisable(false);
+            btnOpfolgning.setDisable(false);
+            btnUdorelseLevering.setDisable(false);
+        }
     }
 
     public void setSelectedCase(Case selectionCase) {
@@ -220,6 +249,25 @@ public class DashboardController implements Initializable {
 
     public void handleBtnGenerateCitizenFromTemplate(ActionEvent actionEvent) {
         //TODO
+    }
+
+    public void handleChangeTab(Event event) {
+        try{
+            lvStuderende.getSelectionModel().clearSelection();
+            lvStuderendesBorgere.getSelectionModel().clearSelection();
+            lvCitizens.getSelectionModel().clearSelection();
+            lvTemplates.getSelectionModel().clearSelection();
+            selectedCase = null;
+            selectCitizen = null;
+            btnSagsaabning.setDisable(true);
+            btnSagsOplysning.setDisable(true);
+            btnAfgorelseBestilling.setDisable(true);
+            btnPlanlaegning.setDisable(true);
+            btnOpfolgning.setDisable(true);
+            btnUdorelseLevering.setDisable(true);
+        } catch (NullPointerException nullPointerException){
+            //No handling required, this is thrown when the Dashboard view loads.
+        }
     }
 
     public void setDashboardController(DashboardController dashboardController) {
