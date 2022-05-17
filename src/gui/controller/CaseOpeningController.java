@@ -213,6 +213,7 @@ public class CaseOpeningController implements Initializable {
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
         sagsoplysningController.setCitizenModel(citizenModel);
+        sagsoplysningController.setCaseModel(caseModel);
     }
 
     private Stage getStage(){

@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.*;
+import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.util.BestillingsScene;
 import gui.util.ISceneLoader;
@@ -149,6 +150,7 @@ public class SagsoplysningController implements Initializable {
     private CitizenModel citizenModel;
     private HelbredstilstandsUnderkategori oldValueOfHelbredstilstandsUnderkategori;
     private FunktionstilstandsUnderkategori oldValueOfFunktionstilstandsUnderkategori;
+    private CaseModel caseModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -192,6 +194,11 @@ public class SagsoplysningController implements Initializable {
 
     public void setCitizenModel(CitizenModel citizenModel) {
         this.citizenModel = citizenModel;
+    }
+
+    public void setCaseModel(CaseModel caseModel)
+    {
+        this.caseModel = caseModel;
     }
 
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
@@ -280,6 +287,8 @@ public class SagsoplysningController implements Initializable {
         bestillingsScene.loadNewScene((Stage) tabPaneParent.getScene().getWindow());
         BestillingsViewController bestillingsViewController = bestillingsScene.getController();
         bestillingsViewController.setDashboardController(dashboardController);
+        bestillingsViewController.setCaseModel(caseModel);
+        bestillingsViewController.setCurrentCitizen(borger);
     }
 
     private void closeStage(){
