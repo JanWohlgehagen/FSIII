@@ -1,6 +1,7 @@
 package bll;
 
 import be.Borger;
+import be.Funktionstilstand;
 import be.Helbredstilstand;
 import dal.interfaces.IDatabaseFacade;
 
@@ -31,4 +32,5 @@ public class HelbredstilstandManager {
     public List<String> getHelbredstilstandsList() {
         return databaseFacade.getHelbredstilstand();
     }
+
 }
