@@ -24,6 +24,7 @@ public class FunktionstilstandsUnderkategori {
     private StringProperty opfølgning = new SimpleStringProperty();
     private IntegerProperty niveau = new SimpleIntegerProperty();
     private IntegerProperty forventetTilstand = new SimpleIntegerProperty();
+    private Observation observation = new Observation();
 
     public FunktionstilstandsUnderkategori(int id, String tilstandsklassifikation, String overKategori)
     {
@@ -33,7 +34,7 @@ public class FunktionstilstandsUnderkategori {
 
     }
     public FunktionstilstandsUnderkategori(int id,String udførelse, String betydning, String oenskerOgMaal, String tilstandsklassifikation, String vurdering,
-                                           String aarsag, String fagligNotat, String opfølgning, String overKategori, int niveau, int forventetTilstand) {
+                                           String aarsag, String fagligNotat, String opfølgning, String overKategori, int niveau, int forventetTilstand, Observation observation) {
         this.id.set(id);
         this.udførelse.set(udførelse);
         this.betydning.set(betydning);
@@ -46,6 +47,7 @@ public class FunktionstilstandsUnderkategori {
         this.overKategori.set(overKategori);
         this.niveau.set(niveau);
         this.forventetTilstand.set(forventetTilstand);
+        this.observation.set
     }
 
     // This constructor is for use, if the user chooses that a subcategory is not relevant
