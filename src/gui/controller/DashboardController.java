@@ -26,6 +26,10 @@ public class DashboardController implements Initializable {
 
 
     @FXML
+    private Button btnAddStudent;
+    @FXML
+    private Button btnNewCitizen;
+    @FXML
     private Button btnUdorelseLevering;
     @FXML
     private Button btnOpfolgning;
@@ -211,6 +215,8 @@ public class DashboardController implements Initializable {
             switch (this.loginUser.getUserType()) {
                 case STUDENT -> {
                     tabpaneDBView.getTabs().remove(1, 3);
+                    btnAddStudent.setVisible(false);
+                    btnNewCitizen.setVisible(false);
                     for(Borger b: citizenModel.getAllCitizen())
                     {
                         if (b.getStudentIDProperty().get() == loginUser.getIdProperty().get())
