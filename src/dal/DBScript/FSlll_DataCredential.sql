@@ -14,6 +14,9 @@ INSERT INTO [Person] (FirstName, LastName, Role) VALUES ('Rosa', 'Jensen', 'TEAC
 INSERT INTO [Person] (FirstName, LastName, Role) VALUES ('Vinni', 'Bro', 'TEACHER')
 INSERT INTO [Person] (FirstName, LastName, Role) VALUES ('lærer', 'Esbjerg', 'TEACHER')
 
+-- Admin
+INSERT INTO [Person] (FirstName, LastName, Role) VALUES ('Admin', '', 'ADMIN')
+
 -- Elev logins
 INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (1,'tobias', '$2a$10$YvmNIkjXaNy9CJFDCEi09uAGVnNgMs353F9tCGTkq9NHwtPCGjsAy')
 INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (2,'jan', '$2a$10$YvmNIkjXaNy9CJFDCEi09uAGVnNgMs353F9tCGTkq9NHwtPCGjsAy')
@@ -26,6 +29,9 @@ INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (6,'Simone', '$2a
 INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (7,'Rosa', '$2a$10$YvmNIkjXaNy9CJFDCEi09uAGVnNgMs353F9tCGTkq9NHwtPCGjsAy')
 INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (8,'Vinni', '$2a$10$YvmNIkjXaNy9CJFDCEi09uAGVnNgMs353F9tCGTkq9NHwtPCGjsAy')
 INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (9,'l', '$2a$10$fDGJS/UbXJ3QmJ6A5YYx9OGgHX0WZF6MIqSghr1/hInhyhHsRCIRq')
+
+-- Admin login
+INSERT INTO [Credentials] (Person_ID,UserName,Password) VALUES (10,'admin', '$2a$10$YvmNIkjXaNy9CJFDCEi09uAGVnNgMs353F9tCGTkq9NHwtPCGjsAy')
 
 -- Klasser
 INSERT INTO [Class] (Name) VALUES ('SOSU_Esbejerg_1_2022')

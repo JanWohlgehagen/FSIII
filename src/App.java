@@ -26,7 +26,7 @@ public class App extends Application {
         LoginController loginController = loginScene.getController();
 
         loginController.setPrimaryStage(primaryStage);
-         
+
 
     }
 

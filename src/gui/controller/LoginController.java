@@ -5,6 +5,7 @@ import be.user.UserType;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
 import gui.model.CredentialModel;
+import gui.util.AdminDashboardScene;
 import gui.util.DashboardScene;
 import gui.util.ISceneLoader;
 import javafx.event.ActionEvent;
@@ -53,7 +54,9 @@ public class LoginController implements Initializable {
                 dashboardSceneController.setLoginPerson(user);
 
             } else if (user.getUserType().equals(UserType.ADMIN)) {
-                //TODO
+                ISceneLoader<AdminDashboardController> adminDashboardScene = new AdminDashboardScene();
+                adminDashboardScene.loadNewScene(this.primaryStage);
+
 
             }else throw new UnsupportedOperationException();
         }
