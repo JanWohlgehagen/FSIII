@@ -9,7 +9,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -86,7 +85,7 @@
                <content>
                   <VBox>
                      <children>
-                        <TextField fx:id="txtSearchBar" promptText="Søg efter borgere">
+                        <TextField fx:id="txtSearchBarBorgere" promptText="Søg efter borgere">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -131,32 +130,96 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                        <VBox alignment="BOTTOM_CENTER" spacing="15.0" VBox.vgrow="SOMETIMES">
                            <children>
-                              <Button fx:id="btnAddStudent" mnemonicParsing="false" onAction="#btnConnectStudent" text="Tilføj Studerende">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="btnNewCitizen" layoutX="225.0" layoutY="93.0" mnemonicParsing="false" onAction="#createCitizen" text="Ny Borger">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Button>
+                              <Button fx:id="btnAddStudent" mnemonicParsing="false" onAction="#btnConnectStudent" prefWidth="227.0" text="Tilføj Studerende" />
+                              <Button fx:id="btnNewCitizen" mnemonicParsing="false" onAction="#createCitizen" prefWidth="227.0" text="Ny Borger" />
                            </children>
-                        </HBox>
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                        </VBox>
                      </children>
                   </VBox>
                </content>
             </Tab>
             <Tab fx:id="tabTemplates" closable="false" text="Templates">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <VBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <TextField fx:id="txtSearchBarTemplates" promptText="Søg efter borgere">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <ListView fx:id="lvTemplates" prefHeight="390.0" prefWidth="313.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="6.0" />
+                                 </VBox.margin>
+                              </ListView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="15.0" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleBtnNewCitizenTemplate" prefWidth="227.0" text="Ny Borger Template" />
+                              <Button mnemonicParsing="false" onAction="#handleBtnDeleteCitizenTemplate" prefWidth="227.0" text="Slet Borger Template" />
+                              <Button mnemonicParsing="false" onAction="#handleBtnGenerateCitizenFromTemplate" prefWidth="227.0" text="Generer Borger Fra Template" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
               </content>
             </Tab>
-            <Tab fx:id="tabStudents" closable="false" text="Students">
+            <Tab fx:id="tabStudents" closable="false" text="Studerende">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <VBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <TextField fx:id="txtSearchBarStudentBorgere" promptText="Søg efter sturende">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <ListView fx:id="lvStuderende" prefHeight="390.0" prefWidth="313.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="6.0" />
+                                 </VBox.margin>
+                              </ListView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
+                           <children>
+                              <Label text="Den studerendes borgere" />
+                              <ListView fx:id="lvStuderendesBorgere" prefHeight="390.0" prefWidth="313.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="6.0" />
+                                 </VBox.margin>
+                              </ListView>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </VBox>
               </content>
             </Tab>
          </tabs>

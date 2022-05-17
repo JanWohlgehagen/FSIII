@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
 
-
     @FXML
     private Button btnAddStudent;
     @FXML
@@ -43,15 +42,28 @@ public class DashboardController implements Initializable {
     private Button btnPlanlaegning;
 
     @FXML
-    private TextField txtSearchBar;
+    private TextField txtSearchBarBorgere;
     @FXML
-    private  ListView<Borger> lvCitizens;
+    private TextField txtSearchBarStudentBorgere;
+    @FXML
+    private TextField txtSearchBarTemplates;
+
+    @FXML
+    private ListView<Borger> lvCitizens;
+    @FXML
+    private ListView lvTemplates;
+    @FXML
+    private ListView lvStuderende;
+    @FXML
+    private ListView lvStuderendesBorgere;
+
     @FXML
     private TabPane tabpaneDBView;
+
     @FXML
-    private  Tab tabTemplates;
+    private Tab tabTemplates;
     @FXML
-    private  Tab tabStudents;
+    private Tab tabStudents;
 
     @FXML
     private Label lblName;
@@ -71,7 +83,6 @@ public class DashboardController implements Initializable {
     private HelbredstilstandModel helbredstilstandModel;
     private HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel;
     private UserModel userModel;
-
 
 
     @Override
@@ -94,15 +105,13 @@ public class DashboardController implements Initializable {
         });
 
 
-
-
         lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null){
+            if (newValue != null) {
                 selectCitizen = newValue;
                 lblAge.setText(selectCitizen.getAgeProperty().get() + " år");
                 lblName.setText(selectCitizen.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
             }
-            if(newValue != null && oldValue == null){
+            if (newValue != null && oldValue == null) {
                 btnSagsaabning.setDisable(false);
                 btnSagsOplysning.setDisable(false);
                 btnAfgorelseBestilling.setDisable(false);
@@ -115,11 +124,11 @@ public class DashboardController implements Initializable {
 
     }
 
-    public void setSelectedCase(Case selectionCase){
+    public void setSelectedCase(Case selectionCase) {
         this.selectedCase = selectionCase;
     }
 
-    public Case getSelectedCase(){
+    public Case getSelectedCase() {
         return selectedCase;
     }
 
@@ -127,7 +136,7 @@ public class DashboardController implements Initializable {
         return selectCitizen;
     }
 
-    public CaseModel getCaseModel(){
+    public CaseModel getCaseModel() {
         return caseModel;
     }
 
@@ -136,7 +145,7 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonSagsåbning(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<CaseOpeningController> caseOpeningScene =  new CaseOpeningScene();
+        ISceneLoader<CaseOpeningController> caseOpeningScene = new CaseOpeningScene();
         caseOpeningScene.loadNewScene(new Stage());
         CaseOpeningController caseOpeningController = caseOpeningScene.getController();
         caseOpeningController.setCaseModel(caseModel);
@@ -159,7 +168,7 @@ public class DashboardController implements Initializable {
     public void handleButtonSagsoplysning(ActionEvent actionEvent) throws IOException {
         citizenModel.getTilstande(selectCitizen);
         citizenModel.getGenerelleOplysninger(selectCitizen);
-        ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
+        ISceneLoader<SagsoplysningController> sagsoplysningsScene = new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(new Stage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
@@ -168,14 +177,14 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
-        if(selectedCase != null) {
+        if (selectedCase != null) {
             ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
             bestillingsScene.loadNewScene(new Stage());
             BestillingsViewController bestillingsViewController = bestillingsScene.getController();
             bestillingsViewController.setDashboardController(dashboardController);
             bestillingsViewController.setCaseModel(caseModel);
             bestillingsViewController.setCurrentCitizen(selectCitizen);
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
         }
@@ -190,37 +199,34 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
-        if(selectedCase != null) {
+        if (selectedCase != null) {
             ISceneLoader<UdfoerelseIOgLeveringController> caseDocumentationScene = new CaseDocumentationScene();
             caseDocumentationScene.loadNewScene(new Stage());
             UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
             udfoerelseIOgLeveringController.setDashboardController(dashboardController);
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
         }
     }
 
-    public void setDashboardController(DashboardController dashboardController){
+    public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
 
-    public void setLoginPerson(User user){
+    public void setLoginPerson(User user) {
         this.loginUser = user;
     }
 
-    private void setDashboardToLoginUserProfile(){
+    private void setDashboardToLoginUserProfile() {
         if (this.loginUser != null) {
             switch (this.loginUser.getUserType()) {
                 case STUDENT -> {
                     tabpaneDBView.getTabs().remove(1, 3);
                     btnAddStudent.setVisible(false);
                     btnNewCitizen.setVisible(false);
-                    for(Borger b: citizenModel.getAllCitizen())
-                    {
-                        if (b.getStudentIDProperty().get() == loginUser.getIdProperty().get())
-                        {
+                    for (Borger b : citizenModel.getAllCitizen()) {
+                        if (b.getStudentIDProperty().get() == loginUser.getIdProperty().get()) {
                             lvCitizens.getItems().add(b);
                         }
                     }
@@ -255,5 +261,14 @@ public class DashboardController implements Initializable {
         TilfoejStuderendePaaBorgerController tilfoejStuderendePaaBorgerController = tilfoejStuderendePaaBorgerControllerSceneLoader.getController();
         tilfoejStuderendePaaBorgerController.setBorger(selectCitizen);
         tilfoejStuderendePaaBorgerController.setModels(citizenModel, userModel);
+    }
+
+    public void handleBtnNewCitizenTemplate(ActionEvent actionEvent) {
+    }
+
+    public void handleBtnDeleteCitizenTemplate(ActionEvent actionEvent) {
+    }
+
+    public void handleBtnGenerateCitizenFromTemplate(ActionEvent actionEvent) {
     }
 }
