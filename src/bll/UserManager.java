@@ -82,7 +82,19 @@ public class UserManager {
         return databaseFacade.getAllTeacherInClass(wClass);
     }
 
-    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
-        databaseFacade.addStudentToClass(user, wClass);
+    public void addStudentToClass(User student, WClass wClass) throws SQLServerException {
+        databaseFacade.addStudentToClass(student, wClass);
+    }
+
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException {
+        databaseFacade.addTeacherToClass(teacher, wClass);
+    }
+
+    public void removeStudentFromClass(User student, WClass wClass) {
+        databaseFacade.removeStudentFromClass(student, wClass);
+    }
+
+    public void removeTeacherFromClass(User teacher, WClass wClass) {
+        databaseFacade.removeTeacherFromClass(teacher, wClass);
     }
 }

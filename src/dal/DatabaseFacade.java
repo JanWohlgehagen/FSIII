@@ -85,8 +85,23 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
-        dbClassDAO.addStudentToClass(user, wClass);
+    public void addStudentToClass(User student, WClass wClass) throws SQLServerException {
+        dbClassDAO.addStudentToClass(student, wClass);
+    }
+
+    @Override
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException {
+        dbClassDAO.addTeacherToClass(teacher, wClass);
+    }
+
+    @Override
+    public void removeStudentFromClass(User student, WClass wClass) {
+        dbClassDAO.removeStudentFromClass(student, wClass);
+    }
+
+    @Override
+    public void removeTeacherFromClass(User teacher, WClass wClass) {
+        dbClassDAO.removeTeacherFromClass(teacher, wClass);
     }
 
 
@@ -249,7 +264,5 @@ public class DatabaseFacade implements IDatabaseFacade {
     public List<String> getHelbredstilstandsUnderkategori() {
         return dbHelbredstilstandsUnderkategoriDAO.getHelbredstilstandsUnderkategoriList();
     }
-
-
 
 }

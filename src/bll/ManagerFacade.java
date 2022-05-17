@@ -101,6 +101,21 @@ public class ManagerFacade implements IManagerFacade {
         userManager.addStudentToClass(user, wClass);
     }
 
+    @Override
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException {
+        userManager.addTeacherToClass(teacher, wClass);
+    }
+
+    @Override
+    public void removeStudentFromClass(User student, WClass wClass) {
+        userManager.removeStudentFromClass(student, wClass);
+    }
+
+    @Override
+    public void removeTeacherFromClass(User teacher, WClass wClass) {
+        userManager.removeTeacherFromClass(teacher,wClass);
+    }
+
 
     /***************************************************/
                             /******************** Case *************************/

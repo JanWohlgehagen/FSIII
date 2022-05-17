@@ -32,6 +32,12 @@ public interface IDatabaseFacade {
 
     public void addStudentToClass(User user, WClass wClass) throws SQLServerException;
 
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException;
+
+    public void removeStudentFromClass(User student, WClass wClass);
+
+    public void removeTeacherFromClass(User teacher, WClass wClass);
+
 
     // CASE
 
@@ -91,5 +97,4 @@ public interface IDatabaseFacade {
     public List<String> getHelbredstilstand();
 
     public List<String> getHelbredstilstandsUnderkategori();
-
 }

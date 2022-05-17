@@ -24,7 +24,7 @@ public class UserModel {
     private ObservableList<WClass> allClass  = FXCollections.observableArrayList();
     private ObservableList<User> studentInClass = FXCollections.observableArrayList();
     private ObservableList<User> teacherInClass = FXCollections.observableArrayList();
-    private final ObservableList<User> teacherAndStudentInClass = FXCollections.observableArrayList();
+    private ObservableList<User> teacherAndStudentInClass = FXCollections.observableArrayList();
 
     public UserModel(ManagerFacade managerFacade) {
         this.managerFacade = managerFacade;
@@ -98,6 +98,26 @@ public class UserModel {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Denne person er allerede i klassen.", ButtonType.OK);
             alert.show();
         }
+
+    }
+    public void addTeacherToClass(User teacher, WClass wClass){
+        try {
+            managerFacade.addTeacherToClass(teacher, wClass);
+            teacherInClass.add(teacher);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Denne person er allerede i klassen.", ButtonType.OK);
+            alert.show();
+        }
+    }
+
+    public void removeStudentFromClass(User student, WClass wClass) {
+        managerFacade.removeStudentFromClass(student, wClass);
+        studentInClass.remove(student);
+    }
+
+    public void removeTeacherFromClass(User teacher, WClass wClass) {
+        managerFacade.removeTeacherFromClass(teacher, wClass);
+        teacherInClass.remove(teacher);
     }
 
     public void removeStudent(User user){

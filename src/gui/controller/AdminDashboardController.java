@@ -5,24 +5,15 @@ import be.user.User;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
 import gui.model.UserModel;
-import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminDashboardController implements Initializable {
@@ -31,7 +22,7 @@ public class AdminDashboardController implements Initializable {
     private TabPane tabPaneParent;
 
     @FXML
-    private TableView<User> tvAllstudent;
+    private TableView<User> tvAllStudent;
     @FXML
     private TableColumn<User, String> tcAllStudentName;
     @FXML
@@ -84,7 +75,7 @@ public class AdminDashboardController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        tvAllstudent.setItems(userModel.getAllStudent());
+        tvAllStudent.setItems(userModel.getAllStudent());
         tcAllStudentName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
         tcAllStudentRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
 
@@ -163,9 +154,9 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void handleMouseAddStudentToClass(MouseEvent mouseEvent) {
-        User student = tvAllstudent.getSelectionModel().getSelectedItem();
+        User student = tvAllStudent.getSelectionModel().getSelectedItem();
         WClass wClass = comboBoxStudentClass.getSelectionModel().getSelectedItem();
-        if(student != null && wClass != null){
+        if(student != null && wClass != null) {
             userModel.addStudentToClass(student, wClass);
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
@@ -173,7 +164,31 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
+    public void handleMouseAddTeacherToClass(MouseEvent mouseEvent) {
+        User teacher = tvAllTeacher.getSelectionModel().getSelectedItem();
+        WClass wClass = comboboxTeacherClass.getSelectionModel().getSelectedItem();
+        if(teacher != null && wClass != null) {
+            userModel.addTeacherToClass(teacher, wClass);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
+            alert.show();
+        }
+    }
+
     public void handleMouseRemoveStudentFromClass(MouseEvent mouseEvent) {
+        User student = tvStudentInClass.getSelectionModel().getSelectedItem();
+        WClass wClass = comboBoxStudentClass.getSelectionModel().getSelectedItem();
+        if(student != null && wClass != null) {
+            userModel.removeStudentFromClass(student, wClass);
+        }
+    }
+
+    public void handleMouseRemoveTeacherFromClass(MouseEvent mouseEvent) {
+        User teacher = tvTeacherInClass.getSelectionModel().getSelectedItem();
+        WClass wClass = comboboxTeacherClass.getSelectionModel().getSelectedItem();
+        if(teacher != null && wClass != null) {
+            userModel.removeTeacherFromClass(teacher, wClass);
+        }
     }
 
 
@@ -183,8 +198,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void handleComboboxSetTeacherInClass(Event event) {
-        comboBoxStudentClass.getItems().clear();
-        comboBoxStudentClass.setItems(userModel.getAllClass());
+        comboboxTeacherClass.getItems().clear();
+        comboboxTeacherClass.setItems(userModel.getAllClass());
     }
-
 }
