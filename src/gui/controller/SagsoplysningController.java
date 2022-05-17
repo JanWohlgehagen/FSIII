@@ -375,6 +375,9 @@ public class SagsoplysningController implements Initializable {
         HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandsKort = helbredstilstand.getHelbredsTilstandsKort();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = funktionstilstand.getFunktionsTilstandsKort();
 
+        System.out.println(helbredstilstandsKort.keySet());
+        System.out.println(funktionstilstandsKort.keySet());
+
         for (String klassifikation: helbredstilstandsKort.keySet()) {
             TableView<HelbredstilstandsUnderkategori> tableView = new TableView();
             tableView.setItems(FXCollections.observableList(helbredstilstandsKort.get(klassifikation)));
@@ -408,9 +411,9 @@ public class SagsoplysningController implements Initializable {
                                 return "-fx-background-color: rgba(185, 105, 144, 1);";
                             } else if (hsKategori.getTilstandProperty().get().equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
                                 return "-fx-background-color: rgba(119, 161, 131, 1);";
-                            }
-                            else {
-                                return "-fx-background-color: rgba(198,178,47,1);";
+                            } else {
+                                //return "-fx-background-color: rgba(198,178,47,1);"; themed yellow
+                                return "-fx-background-color: rgb(220, 138, 77);";
                             }
                         }, hsKategori.getTilstandProperty()));
                     } else {
@@ -465,7 +468,8 @@ public class SagsoplysningController implements Initializable {
                             } else if (fsKategori.getNiveauProperty().get() == 9){
                                 return "-fx-background-color: rgba(119, 161, 131, 1);";
                             } else {
-                                return "-fx-background-color: rgba(198,178,47,1);";
+                                //return "-fx-background-color: rgba(198,178,47,1);"; themed yellow
+                                return "-fx-background-color: rgb(220, 138, 77);";
                             }
                         }, fsKategori.getNiveauProperty()));
                     } else {

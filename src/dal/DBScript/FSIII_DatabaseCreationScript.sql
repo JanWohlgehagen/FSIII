@@ -8,6 +8,15 @@ CREATE DATABASE CSe21A_FSIII_Simulator
 GO
 USE CSe21A_FSIII_Simulator
 GO
+CREATE TABLE [Person]
+(
+    [Person_ID] INT IDENTITY  NOT NULL,
+    [FirstName] NVARCHAR(200) NULL,
+    [LastName]  NVARCHAR(200) NULL,
+    [Role]      NVARCHAR(50)  NOT NULL,
+
+    CONSTRAINT PK_P_ID PRIMARY KEY ([Person_ID])
+)
 
 CREATE TABLE [Borger]
 (
@@ -19,7 +28,8 @@ CREATE TABLE [Borger]
     [Student_ID]       INT           Null,
 
     CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID]),
-    CONSTRAINT FK_Student_ID FOREIGN KEY (Student_ID) REFERENCES Student([Student_ID])
+    CONSTRAINT FK_Borger_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person([Person_ID])
+
 
     )
 
@@ -183,44 +193,26 @@ CREATE TABLE [Class]
     CONSTRAINT PK_Class_ID PRIMARY KEY ([Class_ID])
     )
 
-CREATE TABLE [Person]
-(
-    [Person_ID] INT IDENTITY  NOT NULL,
-    [FirstName] NVARCHAR(200) NULL,
-    [LastName]  NVARCHAR(200) NULL,
-    [Role]      NVARCHAR(50)  NOT NULL,
-
-    CONSTRAINT PK_P_ID PRIMARY KEY ([Person_ID])
-    )
-
-CREATE TABLE [Teacher]
-(
-    [Teacher_ID] INT NOT NULL,
-     CONSTRAINT PK_Teacher_ID PRIMARY KEY ([Teacher_ID]),
-    CONSTRAINT FK_T_ID FOREIGN KEY ([Teacher_ID]) REFERENCES Person ([Person_ID])
-    )
-
-CREATE TABLE [Classteachers]
+CREATE TABLE [ClassTeachers]
 (
     [Teacher_ID] INT NOT NULL,
     [Class_ID]   INT NOT NULL,
 
-     CONSTRAINT PK_Class_Teacher_ID PRIMARY KEY (Teacher_ID, Class_ID),
-    CONSTRAINT FK_Teacher_ID FOREIGN KEY (Teacher_ID) REFERENCES Teacher ([Teacher_ID]),
-    CONSTRAINT FK_Class_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
-    )
+    CONSTRAINT PK_Class_Teacher_ID PRIMARY KEY (Teacher_ID, Class_ID),
+    CONSTRAINT FK_Teacher_ID FOREIGN KEY (Teacher_ID) REFERENCES Person ([Person_ID]),
+    CONSTRAINT FK_Class_Teacher_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
+)
 
 
-CREATE TABLE [Student]
+CREATE TABLE [ClassStudents]
 (
     [Student_ID] INT NOT NULL,
-    [Class_ID]   INT,
+    [Class_ID]   INT NOT NULL,
 
-     CONSTRAINT Student_ID PRIMARY KEY ([Student_ID]),
-    CONSTRAINT FK_S_ID FOREIGN KEY ([Student_ID]) REFERENCES Person ([Person_ID]),
-    CONSTRAINT FK_Student_Class_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
-
-    )
+    CONSTRAINT PK_Class_Student_ID PRIMARY KEY (Student_ID, Class_ID),
+    CONSTRAINT FK_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person ([Person_ID]),
+    CONSTRAINT FK_Class_Student_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
+)
 
 CREATE TABLE [Credentials]
 (

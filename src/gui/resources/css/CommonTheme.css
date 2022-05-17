@@ -95,6 +95,6 @@
     -fx-opacity: 0;
 }
 
-.scroll-bar .scroll-bar:vertical .thumb {
+.scroll-bar .scroll-bar:vertical{
     -fx-background-color: transparent;
 }

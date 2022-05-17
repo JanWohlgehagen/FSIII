@@ -83,7 +83,9 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
 
-        Platform.runLater(this::setDashboardToLoginUserProfile);
+        Platform.runLater(() -> {
+
+        });
 
 
 

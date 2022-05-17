@@ -14,6 +14,9 @@ public class User {
     protected StringProperty firstName = new SimpleStringProperty();
     protected StringProperty lastName = new SimpleStringProperty();
     protected EnumSet<UserType> userType = EnumSet.noneOf(UserType.class);
+    private StringProperty fullName = new SimpleStringProperty();
+
+    private StringProperty type =  new SimpleStringProperty();
 
     public User(String firstName, String lastName) {
         this.firstName.set(firstName);
@@ -46,6 +49,15 @@ public class User {
         }return null;
     }
 
+    public StringProperty getUserTypeProperty(){
+        if(!userType.isEmpty()){
+            for (UserType type: userType) {
+                this.type.set(type.name());
+                return this.type;
+            }
+        }return null;
+    }
+
     public IntegerProperty getIdProperty() {
         return id;
     }
@@ -68,5 +80,10 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
+    }
+
+    public StringProperty getFullNameProperty(){
+        fullName.set(this.firstName.get() + " " + this.lastName.get());
+        return this.fullName;
     }
 }

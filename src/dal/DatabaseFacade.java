@@ -3,6 +3,7 @@ package dal;
 
 import be.*;
 import be.user.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     private DBConnecting dbConnecting;
     private DBLoginDAO dbLoginDAO;
-    private DBPersonDAO dbPersonDAO;
+    private DBUserDAO dbUserDAO;
     private DBCaseDAO dbCaseDAO;
     private DBCitizenDAO dbCitizenDAO;
     private DBGenerelInformationDAO dbGenerelInformationDAO;
@@ -20,12 +21,14 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBFunktionstilstandsUnderkategoriDAO dbFunktionstilstandsUnderkategoriDAO;
     private DBHelbredstilstandDAO dbHelbredstilstandDAO;
     private DBHelbredstilstandsUnderkategoriDAO dbHelbredstilstandsUnderkategoriDAO;
+    private DBClassDAO dbClassDAO;
 
 
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
         dbLoginDAO = new DBLoginDAO(dbConnecting);
-        dbPersonDAO = new DBPersonDAO(dbConnecting);
+        dbUserDAO = new DBUserDAO(dbConnecting);
+        dbClassDAO = new DBClassDAO(dbConnecting);
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
         dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
@@ -42,13 +45,52 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public User getPersonById(int id) {
-        return dbPersonDAO.getPersonById(id);
+    public User getUserById(int id) {
+        return dbUserDAO.getUserById(id);
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return dbUserDAO.getAllUser();
+    }
+
+    @Override
+    public List<WClass> getAllClass() {
+        return dbClassDAO.getAllClass();
     }
 
 
+    /***************************************************/
+                                /******************** Class ************************/
+                                /***************************************************/
 
-                            /***************************************************/
+    @Override
+    public WClass createClass(WClass wClass) {
+        return dbClassDAO.createClass(wClass);
+    }
+
+    @Override
+    public void deleteClass(WClass wClass) {
+        dbClassDAO.deleteClass(wClass);
+    }
+
+    @Override
+    public List<User> getAllStudentInClass(WClass wClass) {
+        return dbClassDAO.getAllStudentInClass(wClass);
+    }
+
+    @Override
+    public List<User> getAllTeacherInClass(WClass wClass) {
+        return dbClassDAO.getAllTeacherInClass(wClass);
+    }
+
+    @Override
+    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
+        dbClassDAO.addStudentToClass(user, wClass);
+    }
+
+
+    /***************************************************/
                             /******************** Case *************************/
                             /***************************************************/
 
@@ -207,5 +249,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     public List<String> getHelbredstilstandsUnderkategori() {
         return dbHelbredstilstandsUnderkategoriDAO.getHelbredstilstandsUnderkategoriList();
     }
+
+
 
 }
