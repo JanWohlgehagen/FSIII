@@ -106,7 +106,7 @@
                   <Insets left="20.0" />
                </VBox.margin>
             </HBox>
-            <TextArea fx:id="beskrivelseTxtArea" editable="false" promptText="Henvisning og beskrivelse" wrapText="true" VBox.vgrow="ALWAYS">
+            <TextArea fx:id="beskrivelseTxtArea" editable="false" promptText="Henvisning og beskrivelse" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
