@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 public class FunktionstilstandsUnderkategori {
 
-    private IntegerProperty id = new SimpleIntegerProperty();
+    private IntegerProperty id = new SimpleIntegerProperty(-1); // default int value would not work because zero is part of the scale used in the application.
     private StringProperty overKategori = new SimpleStringProperty();
 
     // The citizen's own input

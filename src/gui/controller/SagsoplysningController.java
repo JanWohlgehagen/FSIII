@@ -9,6 +9,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -384,6 +386,7 @@ public class SagsoplysningController implements Initializable {
             tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             tableView.getColumns().add(tableColumn);
             tableView.setMaxWidth(245.0);
+            tableView.getStyleClass().add("Helbredstable-view");
 
             // populates text areas as well as the comboboxes for a given subcategory
             tableView.setOnMouseClicked(event -> {
@@ -392,6 +395,32 @@ public class SagsoplysningController implements Initializable {
 
                 oldValueOfHelbredstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
                 populateTxtAreasHelbredstilstand(tableView.getSelectionModel().getSelectedItem());
+            });
+
+
+            tableView.setRowFactory(tv -> new TableRow<HelbredstilstandsUnderkategori>(){
+                @Override
+                protected void updateItem(HelbredstilstandsUnderkategori hsKategori, boolean empty){
+                    super.updateItem(hsKategori, empty);
+                    if (!empty && hsKategori != null) {
+                        this.styleProperty().bind(Bindings.createStringBinding(() -> {
+                            if (hsKategori.getTilstandProperty().get() == null) {
+                                return "-fx-background-color: rgba(185, 105, 144, 1);";
+                            } else if (hsKategori.getTilstandProperty().get().equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
+                                return "-fx-background-color: rgba(119, 161, 131, 1);";
+                            }
+                            else {
+                                return "-fx-background-color: rgba(198,178,47,1);";
+                            }
+                        }, hsKategori.getTilstandProperty()));
+                    } else {
+                        setText(null);
+                        setGraphic(null);
+                        this.styleProperty().unbind();
+
+                        setStyle("");
+                    }
+                }
             });
 
             if(insertionCounter %2 == 0){
@@ -414,6 +443,7 @@ public class SagsoplysningController implements Initializable {
             tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             tableView.getColumns().add(tableColumn);
             tableView.setMaxWidth(245.0);
+            tableView.getStyleClass().add("Funktionstable-view");
 
             // populates text areas as well as the comboboxes for a given subcategory
             tableView.setOnMouseClicked(event -> {
@@ -422,6 +452,30 @@ public class SagsoplysningController implements Initializable {
 
                 oldValueOfFunktionstilstandsUnderkategori = tableView.getSelectionModel().getSelectedItem();
                 populateTxtAreasFunktionstilstand(tableView.getSelectionModel().getSelectedItem());
+            });
+
+            tableView.setRowFactory(tv -> new TableRow<FunktionstilstandsUnderkategori>(){
+                @Override
+                protected void updateItem(FunktionstilstandsUnderkategori fsKategori, boolean empty){
+                    super.updateItem(fsKategori, empty);
+                    if (!empty && fsKategori != null) {
+                        this.styleProperty().bind(Bindings.createStringBinding(() -> {
+                            if (fsKategori.getNiveauProperty().get() == -1) {
+                                return "-fx-background-color: rgba(185, 105, 144, 1);";
+                            } else if (fsKategori.getNiveauProperty().get() == 9){
+                                return "-fx-background-color: rgba(119, 161, 131, 1);";
+                            } else {
+                                return "-fx-background-color: rgba(198,178,47,1);";
+                            }
+                        }, fsKategori.getNiveauProperty()));
+                    } else {
+                        setText(null);
+                        setGraphic(null);
+                        this.styleProperty().unbind();
+
+                        setStyle("");
+                    }
+                }
             });
 
             if(insertionCounter %2 == 0){
@@ -436,7 +490,10 @@ public class SagsoplysningController implements Initializable {
     private void updateFunktionstilstandsUnderkategori(){
         if(oldValueOfFunktionstilstandsUnderkategori != null) {
             oldValueOfFunktionstilstandsUnderkategori.setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
-            oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+
+            if (comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem() != null) // in case the user chooses 9 in the first dropdown
+                oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
+
             oldValueOfFunktionstilstandsUnderkategori.setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());
             oldValueOfFunktionstilstandsUnderkategori.setBetydning(txtAreaBetydningFunktionstilstand.getText());
             oldValueOfFunktionstilstandsUnderkategori.setOenskerOgMaal(txtAreaOenskerOgMålFunktionstilstand.getText());

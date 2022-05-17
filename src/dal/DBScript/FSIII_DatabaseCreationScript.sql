@@ -21,7 +21,7 @@ CREATE TABLE [Borger]
     CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID]),
     CONSTRAINT FK_Student_ID FOREIGN KEY (Student_ID) REFERENCES Student([Student_ID])
 
-)
+    )
 
 CREATE TABLE [Case]
 (
@@ -43,7 +43,7 @@ CREATE TABLE [Case]
 
     CONSTRAINT PK_Case_ID PRIMARY KEY ([Case_ID], [Borger_ID]),
     CONSTRAINT FK_Borger_ID FOREIGN KEY (Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
-)
+    )
 
 CREATE TABLE [Case_Dokumentation]
 (
@@ -56,7 +56,7 @@ CREATE TABLE [Case_Dokumentation]
 
     CONSTRAINT FK_Borger_IDCD FOREIGN KEY (Case_ID, [Borger_ID]) REFERENCES [Case] ([Case_ID], Borger_ID) ON DELETE CASCADE,
 
-)
+    )
 
 CREATE TABLE [Generelle_Oplysninger]
 (
@@ -76,7 +76,7 @@ CREATE TABLE [Generelle_Oplysninger]
     CONSTRAINT PK_Customer_IDGO PRIMARY KEY ([Borger_ID]),
     CONSTRAINT FK_Borger_IDGO FOREIGN KEY ([Borger_ID]) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE
 
-)
+    )
 
 
 CREATE TABLE [Helbredstilstand]
@@ -84,9 +84,9 @@ CREATE TABLE [Helbredstilstand]
     [Helbredstislstand_ID]INT IDENTITY NOT NULL,
     [Borger_ID]           INT          NOT NULL,
 
-    CONSTRAINT PK_HS_IDHS PRIMARY KEY (Helbredstislstand_ID, [Borger_ID]),
+     CONSTRAINT PK_HS_IDHS PRIMARY KEY (Helbredstislstand_ID, [Borger_ID]),
     CONSTRAINT FK_Borger_IDHS FOREIGN KEY ([Borger_ID]) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE
-)
+    )
 
 CREATE TABLE [HS_Overkategori]
 (
@@ -96,7 +96,7 @@ CREATE TABLE [HS_Overkategori]
 
     CONSTRAINT PK_HSID PRIMARY KEY (HS_Overkategori_ID),
 
-)
+    )
 
 CREATE TABLE [HS_Underkategori]
 (
@@ -106,7 +106,7 @@ CREATE TABLE [HS_Underkategori]
 
     CONSTRAINT PK_HS_IDUK PRIMARY KEY ([HS_Underkategori_ID]),
     CONSTRAINT FK_HS_OK_ID FOREIGN KEY (HS_OK_ID) REFERENCES HS_Overkategori (HS_Overkategori_ID)
-)
+    )
 
 
 CREATE TABLE [H_Tilstandsvurdering]
@@ -122,16 +122,16 @@ CREATE TABLE [H_Tilstandsvurdering]
     CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_UK_ID, HS_Borger_ID),
     CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
     CONSTRAINT FK_HS_UK_IDHSV FOREIGN KEY (HS_UK_ID) REFERENCES HS_Underkategori ([HS_Underkategori_ID])
-)
+    )
 
 CREATE TABLE [Funktionstilstand]
 (
     [Funktionstilstand_ID] INT IDENTITY NOT NULL,
     [Borger_ID]            INT          NOT NULL,
 
-    CONSTRAINT PK_FS_IDFS PRIMARY KEY (Funktionstilstand_ID, Borger_ID),
+     CONSTRAINT PK_FS_IDFS PRIMARY KEY (Funktionstilstand_ID, Borger_ID),
     CONSTRAINT FK_Borger_IDFS FOREIGN KEY (Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE
-)
+    )
 
 CREATE TABLE [FS_Overkategori]
 (
@@ -139,7 +139,7 @@ CREATE TABLE [FS_Overkategori]
     [FS_Overkategori_Titel] NVARCHAR(200) NULL,
 
     CONSTRAINT PK_FSID PRIMARY KEY ([FS_Overkategori_ID]),
-)
+    )
 
 CREATE TABLE [FS_Underkategori]
 (
@@ -150,7 +150,7 @@ CREATE TABLE [FS_Underkategori]
     CONSTRAINT PK_FS_UK_ID PRIMARY KEY ([FS_Underkategori_ID]),
     CONSTRAINT FK_FS_OK_ID FOREIGN KEY (FS_OK_ID) REFERENCES FS_Overkategori ([FS_Overkategori_ID])
 
-)
+    )
 
 
 CREATE TABLE [F_Tilstandsvurdering]
@@ -158,13 +158,13 @@ CREATE TABLE [F_Tilstandsvurdering]
 
     [FS_Borger_ID]       INT            NOT NULL,
     [FS_UK_ID]           INT            NOT NULL,
-    [Udfoerelse]         NVARCHAR(4000)  NULL,
-    [Betydning]          NVARCHAR(4000)  NULL,
-    [Borger_Maal]        NVARCHAR(4000)  NULL,
-    [Niveau]             INT            NULL,
-    [Vurdering]          NVARCHAR(4000)  NULL,
-    [Aarsag]             NVARCHAR(4000)  NULL,
-    [Faglig_Notat]       NVARCHAR(4000)  NULL,
+    [Udfoerelse]         VARCHAR(4000)  NULL,
+    [Betydning]          VARCHAR(4000)  NULL,
+    [Borger_Maal]        VARCHAR(4000)  NULL,
+    [Niveau]             INT            DEFAULT -1,
+    [Vurdering]          VARCHAR(4000)  NULL,
+    [Aarsag]             VARCHAR(4000)  NULL,
+    [Faglig_Notat]       VARCHAR(4000)  NULL,
     [Forventet_Tilstand] INT            NULL,
     [Opfoelgning]        NVARCHAR(4000) NULL,
 
@@ -172,7 +172,7 @@ CREATE TABLE [F_Tilstandsvurdering]
     CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_UK_ID, FS_Borger_ID),
     CONSTRAINT FK_HS_IDFSV FOREIGN KEY (FS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
     CONSTRAINT FK_UK_IDFSV FOREIGN KEY (FS_UK_ID) REFERENCES FS_Underkategori ([FS_Underkategori_ID])
-)
+    )
 
 
 CREATE TABLE [Class]
@@ -181,7 +181,7 @@ CREATE TABLE [Class]
     [Name]     NVARCHAR(200) NULL,
 
     CONSTRAINT PK_Class_ID PRIMARY KEY ([Class_ID])
-)
+    )
 
 CREATE TABLE [Person]
 (
@@ -191,24 +191,24 @@ CREATE TABLE [Person]
     [Role]      NVARCHAR(50)  NOT NULL,
 
     CONSTRAINT PK_P_ID PRIMARY KEY ([Person_ID])
-)
+    )
 
 CREATE TABLE [Teacher]
 (
     [Teacher_ID] INT NOT NULL,
-    CONSTRAINT PK_Teacher_ID PRIMARY KEY ([Teacher_ID]),
+     CONSTRAINT PK_Teacher_ID PRIMARY KEY ([Teacher_ID]),
     CONSTRAINT FK_T_ID FOREIGN KEY ([Teacher_ID]) REFERENCES Person ([Person_ID])
-)
+    )
 
 CREATE TABLE [Classteachers]
 (
     [Teacher_ID] INT NOT NULL,
     [Class_ID]   INT NOT NULL,
 
-    CONSTRAINT PK_Class_Teacher_ID PRIMARY KEY (Teacher_ID, Class_ID),
+     CONSTRAINT PK_Class_Teacher_ID PRIMARY KEY (Teacher_ID, Class_ID),
     CONSTRAINT FK_Teacher_ID FOREIGN KEY (Teacher_ID) REFERENCES Teacher ([Teacher_ID]),
     CONSTRAINT FK_Class_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
-)
+    )
 
 
 CREATE TABLE [Student]
@@ -216,11 +216,11 @@ CREATE TABLE [Student]
     [Student_ID] INT NOT NULL,
     [Class_ID]   INT,
 
-    CONSTRAINT Student_ID PRIMARY KEY ([Student_ID]),
+     CONSTRAINT Student_ID PRIMARY KEY ([Student_ID]),
     CONSTRAINT FK_S_ID FOREIGN KEY ([Student_ID]) REFERENCES Person ([Person_ID]),
     CONSTRAINT FK_Student_Class_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
 
-)
+    )
 
 CREATE TABLE [Credentials]
 (
@@ -230,4 +230,4 @@ CREATE TABLE [Credentials]
 
     CONSTRAINT PK_ID PRIMARY KEY ([Person_ID]),
     CONSTRAINT FK_P_ID FOREIGN KEY ([Person_ID]) REFERENCES Person ([Person_ID])
-)
+    )

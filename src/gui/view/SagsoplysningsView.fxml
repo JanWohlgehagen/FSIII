@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SagsoplysningController">
+<TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SagsoplysningController">
    <tabs>
       <Tab text="Generelle Oplysninger">
         <content>
@@ -252,7 +252,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="scrollPaneFunktionstilstand" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
+                  <ScrollPane fx:id="scrollPaneFunktionstilstand" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" styleClass="scroll-pane-funktionsTilstande" GridPane.rowSpan="2147483647">
                      <content>
                         <HBox spacing="5.0">
                            <children>
@@ -270,7 +270,7 @@
                         </HBox>
                      </content>
                      <GridPane.margin>
-                        <Insets top="10.0" />
+                        <Insets right="10.0" top="10.0" />
                      </GridPane.margin>
                   </ScrollPane>
                   <ScrollPane fitToWidth="true" GridPane.columnIndex="1">
@@ -403,7 +403,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="scrollPaneHelbredstilstand" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
+                  <ScrollPane fx:id="scrollPaneHelbredstilstand" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="511.0" styleClass="scroll-pane-helbredsTilstande" vbarPolicy="ALWAYS" GridPane.rowSpan="2147483647">
                      <content>
                         <HBox spacing="5.0">
                            <children>
@@ -421,7 +421,7 @@
                         </HBox>
                      </content>
                      <GridPane.margin>
-                        <Insets top="10.0" />
+                        <Insets right="10.0" top="10.0" />
                      </GridPane.margin>
                   </ScrollPane>
                   <GridPane GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES">
