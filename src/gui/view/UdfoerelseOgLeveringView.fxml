@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -10,22 +11,25 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="parentPane" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.UdfoerelseIOgLeveringController">
+<GridPane fx:id="parentPane" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.UdfoerelseIOgLeveringController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="219.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="452.0" minWidth="10.0" prefWidth="339.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="36.0" vgrow="SOMETIMES" />
       <RowConstraints vgrow="SOMETIMES" />
       <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <ScrollPane fx:id="scrollpaneDocumentations" fitToWidth="true" prefHeight="260.0" GridPane.rowIndex="1">
+      <ScrollPane fx:id="scrollpaneDocumentations" fitToWidth="true" prefHeight="260.0" GridPane.rowSpan="3">
          <GridPane.margin>
-            <Insets left="15.0" />
+            <Insets top="30.0" />
          </GridPane.margin>
       </ScrollPane>
       <VBox prefHeight="260.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -89,13 +93,81 @@
             <Insets top="15.0" />
          </padding>
       </HBox>
-      <Label styleClass="labelTitle" text="Udførelse/ Levering" GridPane.columnSpan="2147483647">
+      <Label styleClass="labelTitle" text="Udførelse/ Levering" GridPane.columnSpan="2147483647" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets left="30.0" />
+            <Insets />
          </GridPane.margin>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
       </Label>
+      <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
+         <children>
+            <HBox alignment="TOP_RIGHT">
+               <children>
+                  <GridPane alignment="TOP_RIGHT" minHeight="160.0" minWidth="160.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <StackPane styleClass="stackPane">
+                           <children>
+                              <Circle fill="DODGERBLUE" radius="62.5" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" styleClass="BackgroundCircle" />
+                              <Circle fill="DODGERBLUE" layoutX="430.0" layoutY="410.0" radius="46.75" stroke="BLACK" strokeType="INSIDE" styleClass="arrowCircle" />
+                              <Button fx:id="btnSagsaabning" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton1" text="1" textAlignment="CENTER" translateX="-26.25" translateY="-35.0" wrapText="true">
+                                 <font>
+                                    <Font name="Cambria Bold" size="96.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnSagsOplysning" alignment="CENTER" disable="true" layoutX="365.0" layoutY="345.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton2" text="2" textAlignment="CENTER" translateX="13.75" translateY="-41.25" wrapText="true">
+                                 <font>
+                                    <Font name="Cambria Bold" size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnAfgorelseBestilling" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton3" text="3" textAlignment="CENTER" translateX="41.25" translateY="-16.25" wrapText="true">
+                                 <font>
+                                    <Font name="Cambria Bold" size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton4" text="4" textAlignment="CENTER" translateX="31.25" translateY="30.0" wrapText="true">
+                                 <font>
+                                    <Font name="Cambria Bold" size="16.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </Button>
+                              <Button fx:id="btnUdorelseLevering" alignment="CENTER" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton5" text="5" textAlignment="CENTER" translateX="-13.75" translateY="41.25" wrapText="true">
+                                 <font>
+                                    <Font name="Cambria Bold" size="16.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="btnOpfolgning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="middleButton" text="6" textAlignment="CENTER" translateX="-43.75" wrapText="true" />
+                              <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-12.5" />
+                              <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel" text="LEVERANDØR" translateY="12.5" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
+   <stylesheets>
+      <URL value="@../resources/css/CommonTheme.css" />
+      <URL value="@../resources/css/UdfoelseOgLeveringView.css" />
+   </stylesheets>
 </GridPane>
