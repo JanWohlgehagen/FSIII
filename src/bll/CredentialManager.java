@@ -18,7 +18,7 @@ public class CredentialManager {
 
     public User loginCredential(String userName, String userPassword){
         if(checkCredential(userName, userPassword)){
-            return databaseFacade.getPersonById(credential.getId());
+            return databaseFacade.getUserById(credential.getId());
         }else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Failed");

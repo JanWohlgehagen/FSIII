@@ -80,7 +80,9 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
 
-        Platform.runLater(this::setDashboardToLoginUserProfile);
+        Platform.runLater(() -> {
+
+        });
 
         lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){

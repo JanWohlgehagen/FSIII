@@ -11,8 +11,29 @@ import java.util.List;
  */
 public interface IDatabaseFacade {
 
+    // USER
+
     Credential checkCredential(String userName);
-    User getPersonById(int id);
+    User getUserById(int id);
+
+    public List<User> getAllUser();
+
+    // CLASS
+
+    public List<WClass> getAllClass();
+
+    public WClass createClass(WClass wClass);
+
+    public void deleteClass(WClass wClass);
+
+    public List<User> getAllStudentInClass(WClass wClass);
+
+    public List<User> getAllTeacherInClass(WClass wClass);
+
+    public void addStudentToClass(User user, WClass wClass) throws SQLServerException;
+
+
+    // CASE
 
     public List<Case> getAllCasesOnCitizen(int citizenid);
 
@@ -70,4 +91,5 @@ public interface IDatabaseFacade {
     public List<String> getHelbredstilstand();
 
     public List<String> getHelbredstilstandsUnderkategori();
+
 }

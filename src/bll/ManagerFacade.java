@@ -3,6 +3,7 @@ package bll;
 import be.*;
 import be.user.User;
 import bll.Interfaces.IManagerFacade;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ public class ManagerFacade implements IManagerFacade {
     private final CredentialManager credentialManager;
     private final CaseManager caseManager;
     private final CitizenManager citizenManager;
+    private final UserManager userManager;
     private final FunktionstilstandManager funktionstilstandManager;
     private final FunktionstilstandsUnderkategoriManager funktionstilstandsUnderkategoriManager;
     private final HelbredstilstandManager helbredstilstandManager;
@@ -22,6 +24,7 @@ public class ManagerFacade implements IManagerFacade {
         credentialManager = new CredentialManager(databaseFacade);
         caseManager = new CaseManager(databaseFacade);
         citizenManager = new CitizenManager(databaseFacade);
+        userManager = new UserManager(databaseFacade);
         funktionstilstandManager = new FunktionstilstandManager(databaseFacade);
         funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(databaseFacade);
         helbredstilstandManager = new HelbredstilstandManager(databaseFacade);
@@ -30,7 +33,7 @@ public class ManagerFacade implements IManagerFacade {
     }
 
                             /***************************************************/
-                            /****************** Credential *********************/
+                            /****************** Credential/User ****************/
                             /***************************************************/
 
     @Override
@@ -43,9 +46,63 @@ public class ManagerFacade implements IManagerFacade {
         return credentialManager.newHashPassword(password);
     }
 
+    @Override
+    public List<User> getAllUser() {
+        return userManager.getAllUser();
+    }
+
+    @Override
+    public List<User> getAllStudent() {
+        return userManager.getAllStudent();
+    }
+
+    @Override
+    public List<User> getAllTeacher() {
+        return userManager.getAllTeacher();
+    }
+
+    @Override
+    public List<User> getAllAdmin() {
+        return userManager.getAllAdmin();
+    }
+
+                                    /***************************************************/
+                                    /********************* Class ***********************/
+                                    /***************************************************/
+
+    @Override
+    public WClass createClass(WClass wClass) {
+        return userManager.createClass(wClass);
+    }
+
+    @Override
+    public void deleteClass(WClass wClass) {
+        userManager.deleteClass(wClass);
+
+    }
+
+    @Override
+    public List<WClass> getAllClass() {
+        return userManager.allClass();
+    }
+
+    @Override
+    public List<User> getAllStudentInClass(WClass wClass) {
+        return userManager.getAllStudentInClass(wClass);
+    }
+
+    @Override
+    public List<User> getAllTeacherInClass(WClass wClass) {
+        return userManager.getAllTeacherInClass(wClass);
+    }
+
+    @Override
+    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
+        userManager.addStudentToClass(user, wClass);
+    }
 
 
-                            /***************************************************/
+    /***************************************************/
                             /******************** Case *************************/
                             /***************************************************/
 
