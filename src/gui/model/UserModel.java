@@ -6,7 +6,6 @@ import be.user.User;
 import be.user.UserType;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -120,15 +119,47 @@ public class UserModel {
         teacherInClass.remove(teacher);
     }
 
-    public void removeStudent(User user){
-        allStudent.remove(user);
+    public void newUser(User newUser) {
+        if(newUser.getUserType().equals(UserType.STUDENT)){
+            allStudent.add(managerFacade.newUser(newUser));
+        }else if(newUser.getUserType().equals(UserType.TEACHER)){
+           allTeacher.add(managerFacade.newUser(newUser));
+        }
     }
 
-    public void addTeacher(Teacher teacher){
-        allTeacher.add(teacher);
+    public void removeUser(User user){
+        if(user.getUserType().equals(UserType.STUDENT)){
+            allStudent.remove(user);
+        }else if(user.getUserType().equals(UserType.TEACHER)){
+            allTeacher.remove(user);
+        }
+        managerFacade.deleteUser(user);
     }
 
-    public void removeTeacher(Teacher teacher){
-        allTeacher.remove(teacher);
+    public void editUser(User user) {
+        managerFacade.editUser(user);
+
+        if(allTeacher.contains(user)){
+            allTeacher.clear();
+            allTeacher.addAll(managerFacade.getAllTeacher());
+        }else if (allStudent.contains(user)){
+            allStudent.clear();
+            allStudent.addAll(managerFacade.getAllStudent());
+        }
+    }
+
+    public void createClass(WClass wClass){
+        allClass.add(managerFacade.createClass(wClass));
+    }
+
+    public void deleteClass(WClass wClass){
+        managerFacade.deleteClass(wClass);
+        allClass.remove(wClass);
+    }
+
+    public void editClass(WClass wClass){
+        managerFacade.editClass(wClass);
+        allClass.clear();
+        allClass.addAll(managerFacade.getAllClass());
     }
 }

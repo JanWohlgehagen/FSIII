@@ -5,18 +5,25 @@ import be.user.User;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
 import gui.model.UserModel;
+import gui.util.CreateAndEditClassScene;
+import gui.util.CreateTeacherAndStudentScene;
+import gui.util.EditTeacherAndStudentScene;
+import gui.util.ISceneLoader;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminDashboardController implements Initializable {
+
 
     @FXML
     private TabPane tabPaneParent;
@@ -60,6 +67,11 @@ public class AdminDashboardController implements Initializable {
     private TableColumn<User, String> tcUserRolle;
 
     @FXML
+    private Button btnInfoTeacher;
+    @FXML
+    private Button btnInfoStudent;
+
+    @FXML
     private ComboBox<WClass> comboBoxStudentClass;
     @FXML
     private ComboBox<WClass> comboboxTeacherClass;
@@ -76,6 +88,7 @@ public class AdminDashboardController implements Initializable {
         }
 
         tvAllStudent.setItems(userModel.getAllStudent());
+        btnInfoStudent.setTooltip(getTooltipForAddUserToClass());
         tcAllStudentName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
         tcAllStudentRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
 
@@ -84,6 +97,7 @@ public class AdminDashboardController implements Initializable {
         tcStudentInClassRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
 
         tvAllTeacher.setItems(userModel.getAllTeacher());
+        btnInfoTeacher.setTooltip(getTooltipForAddUserToClass());
         tcAllTeacherName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
         tcAllTeacherRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
 
@@ -116,62 +130,68 @@ public class AdminDashboardController implements Initializable {
         });
         }
 
-
-    public void handleNewTeacher(ActionEvent actionEvent) {
+    public void handleNewTeacher(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CreateTeacherAndStudentController> createTeacherAndStudentScene = new CreateTeacherAndStudentScene();
+        createTeacherAndStudentScene.loadNewScene(new Stage());
+        CreateTeacherAndStudentController createTeacherAndStudentController = createTeacherAndStudentScene.getController();
+        createTeacherAndStudentController.setUserModel(userModel);
+        createTeacherAndStudentController.setTeacher(true);
     }
 
-    public void handleEditTeacher(ActionEvent actionEvent) {
+    public void handleEditTeacher(ActionEvent actionEvent) throws IOException {
+        User teacher = tvAllTeacher.getSelectionModel().getSelectedItem();
+
+        ISceneLoader<EditTeacherAndStudentController> editTeacherAndStudentScene = new EditTeacherAndStudentScene();
+        editTeacherAndStudentScene.loadNewScene(new Stage());
+        EditTeacherAndStudentController editTeacherAndStudentController = editTeacherAndStudentScene.getController();
+        editTeacherAndStudentController.setUserModel(userModel);
+        editTeacherAndStudentController.setTeacher(teacher);
+
     }
 
     public void handleDeleteTeacher(ActionEvent actionEvent) {
+        User teacher = tvAllTeacher.getSelectionModel().getSelectedItem();
+        userModel.removeUser(teacher);
     }
 
-    public void HandleAddTeacherToClass(ActionEvent actionEvent) {
+    public void handleNewStudent(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CreateTeacherAndStudentController> createTeacherAndStudentScene = new CreateTeacherAndStudentScene();
+        createTeacherAndStudentScene.loadNewScene(new Stage());
+        CreateTeacherAndStudentController createTeacherAndStudentController = createTeacherAndStudentScene.getController();
+        createTeacherAndStudentController.setUserModel(userModel);
+        createTeacherAndStudentController.setStudent(true);
     }
 
-    public void handleRemoveTeacherFromClass(ActionEvent actionEvent) {
-    }
+    public void handleEditStudent(ActionEvent actionEvent) throws IOException {
+        User student = tvAllStudent.getSelectionModel().getSelectedItem();
 
-    public void handleSaveTeacherClass(ActionEvent actionEvent) {
-    }
-
-    public void handleNewStudent(ActionEvent actionEvent) {
-    }
-
-    public void handleEditStudent(ActionEvent actionEvent) {
+        ISceneLoader<EditTeacherAndStudentController> editTeacherAndStudentScene = new EditTeacherAndStudentScene();
+        editTeacherAndStudentScene.loadNewScene(new Stage());
+        EditTeacherAndStudentController editTeacherAndStudentController = editTeacherAndStudentScene.getController();
+        editTeacherAndStudentController.setUserModel(userModel);
+        editTeacherAndStudentController.setStudent(student);
     }
 
     public void handleDeleteStudent(ActionEvent actionEvent) {
-    }
-
-    public void HandleAddStudentToClass(ActionEvent actionEvent) {
-    }
-
-    public void handleRemoveStudentFromClass(ActionEvent actionEvent) {
-    }
-
-    public void handleSaveStudentClass(ActionEvent actionEvent) {
+        User student = tvAllStudent.getSelectionModel().getSelectedItem();
+        userModel.removeUser(student);
     }
 
     public void handleMouseAddStudentToClass(MouseEvent mouseEvent) {
         User student = tvAllStudent.getSelectionModel().getSelectedItem();
         WClass wClass = comboBoxStudentClass.getSelectionModel().getSelectedItem();
-        if(student != null && wClass != null) {
+
+        if(mouseEvent.isControlDown() && student != null && wClass != null){
             userModel.addStudentToClass(student, wClass);
-        }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
-            alert.show();
         }
     }
 
     public void handleMouseAddTeacherToClass(MouseEvent mouseEvent) {
         User teacher = tvAllTeacher.getSelectionModel().getSelectedItem();
         WClass wClass = comboboxTeacherClass.getSelectionModel().getSelectedItem();
-        if(teacher != null && wClass != null) {
+
+        if(mouseEvent.isControlDown() && teacher != null && wClass != null){
             userModel.addTeacherToClass(teacher, wClass);
-        }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
-            alert.show();
         }
     }
 
@@ -191,7 +211,6 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
-
     public void handleComboboxSetStudentInClass(Event event) {
         comboBoxStudentClass.getItems().clear();
         comboBoxStudentClass.setItems(userModel.getAllClass());
@@ -200,5 +219,35 @@ public class AdminDashboardController implements Initializable {
     public void handleComboboxSetTeacherInClass(Event event) {
         comboboxTeacherClass.getItems().clear();
         comboboxTeacherClass.setItems(userModel.getAllClass());
+    }
+
+    public void handleNewClass(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CreateAndEditClassController> createAndEditClassScene = new CreateAndEditClassScene();
+        createAndEditClassScene.loadNewScene(new Stage());
+        CreateAndEditClassController createAndEditClassController = createAndEditClassScene.getController();
+        createAndEditClassController.setUserModel(userModel);
+    }
+
+    public void handleEditClass(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CreateAndEditClassController> createAndEditClassScene = new CreateAndEditClassScene();
+        createAndEditClassScene.loadNewScene(new Stage());
+        CreateAndEditClassController createAndEditClassController = createAndEditClassScene.getController();
+        createAndEditClassController.setUserModel(userModel);
+        if(tvClass.getSelectionModel().getSelectedItem() != null){
+            createAndEditClassController.setClass(tvClass.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    public void handleDeleteClass(ActionEvent actionEvent) {
+        userModel.deleteClass(tvClass.getSelectionModel().getSelectedItem());
+    }
+
+    public Tooltip getTooltipForAddUserToClass(){
+        Tooltip tooltip = new Tooltip("For at tilføj en person til en klasse, så skal du holde 'Control-knappen' nede og derefter klikke på en person");
+        tooltip.setShowDuration(Duration.INDEFINITE);
+        tooltip.setShowDelay(Duration.millis(0));
+        tooltip.setWrapText(true);
+        tooltip.setPrefWidth(175);
+        return tooltip;
     }
 }

@@ -1,6 +1,7 @@
 package dal;
 
 import be.user.User;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -66,30 +67,53 @@ public class DBUserDAO {
         return allUsers;
     }
 
-    public List<User> getAllStudentInClass(){
-        List<User> allUsers = new ArrayList<>();
+    public User newUser(User newUser) {
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [Person]";
+            String sql = "INSERT INTO Person (FirstName, LastName, Role) VALUES ((?), (?), (?))";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, newUser.getFirstNameProperty().get());
+            preparedStatement.setString(2, newUser.getLastNameProperty().get());
+            preparedStatement.setString(3, newUser.getUserTypeProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt("Person_ID");
-                String firstName = resultSet.getString("FirstName");
-                String lastName = resultSet.getString("LastName");
-                String role = resultSet.getString("Role");
-
-                User user = new User(firstName,lastName);
-                user.setUserType(role);
-                user.setId(id);
-                allUsers.add(user);
+            if (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                newUser.setId(id);
+                return newUser;
             }
 
         } catch (SQLException SQLe) {
             SQLe.printStackTrace();
             return null;
         }
-        return allUsers;
+        return null;
+
+    }
+
+    public void deleteUser(User user) {
+        try(Connection connection = dbConnecting.getConnection()) {
+            String sql = "DELETE FROM [Person] WHERE Person_ID = (?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, user.getIdProperty().get());
+            preparedStatement.execute();
+
+        } catch (SQLException SQLe) {
+            SQLe.printStackTrace();
+        }
+    }
+
+    public void editUser(User user) {
+        try(Connection connection = dbConnecting.getConnection()) {
+            String sql = "UPDATE [Person] SET FirstName = (?), LastName = (?) WHERE Person_ID = (?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getFirstNameProperty().get());
+            preparedStatement.setString(2, user.getLastNameProperty().get());
+            preparedStatement.setInt(3,user.getIdProperty().get());
+            preparedStatement.execute();
+
+        } catch (SQLException SQLe) {
+            SQLe.printStackTrace();
+        }
     }
 }

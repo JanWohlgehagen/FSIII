@@ -50,7 +50,7 @@ public class DBClassDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                int id = resultSet.getInt("Class_ID");
+                int id = resultSet.getInt(1);
                 wClass.setId(id);
             }
 
@@ -71,6 +71,19 @@ public class DBClassDAO {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+    public void editClass(WClass wClass){
+        try(Connection connection = dbConnecting.getConnection()) {
+            String sql = "UPDATE [Class] SET Name = (?) WHERE Class_ID = (?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, wClass.getNameProperty().get());
+            preparedStatement.setInt(2,wClass.getIdProperty().get());
+            preparedStatement.execute();
+
+        } catch (SQLException SQLe) {
+            SQLe.printStackTrace();
         }
     }
 

@@ -75,6 +75,11 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
+    public void editClass(WClass wClass) {
+        dbClassDAO.editClass(wClass);
+    }
+
+    @Override
     public List<User> getAllStudentInClass(WClass wClass) {
         return dbClassDAO.getAllStudentInClass(wClass);
     }
@@ -102,6 +107,21 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public void removeTeacherFromClass(User teacher, WClass wClass) {
         dbClassDAO.removeTeacherFromClass(teacher, wClass);
+    }
+
+    @Override
+    public User newUser(User newUser) {
+        return dbUserDAO.newUser(newUser);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        dbUserDAO.deleteUser(user);
+    }
+
+    @Override
+    public void editUser(User user) {
+        dbUserDAO.editUser(user);
     }
 
 

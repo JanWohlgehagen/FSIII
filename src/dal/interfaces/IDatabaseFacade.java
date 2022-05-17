@@ -18,6 +18,12 @@ public interface IDatabaseFacade {
 
     public List<User> getAllUser();
 
+    public User newUser(User newUser);
+
+    void deleteUser(User user);
+
+    void editUser(User user);
+
     // CLASS
 
     public List<WClass> getAllClass();
@@ -25,6 +31,8 @@ public interface IDatabaseFacade {
     public WClass createClass(WClass wClass);
 
     public void deleteClass(WClass wClass);
+
+    void editClass(WClass wClass);
 
     public List<User> getAllStudentInClass(WClass wClass);
 
@@ -37,7 +45,6 @@ public interface IDatabaseFacade {
     public void removeStudentFromClass(User student, WClass wClass);
 
     public void removeTeacherFromClass(User teacher, WClass wClass);
-
 
     // CASE
 
