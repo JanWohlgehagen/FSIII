@@ -2,11 +2,13 @@ package dal;
 
 
 import be.*;
+import be.user.Student;
 import be.user.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseFacade implements IDatabaseFacade {
@@ -142,7 +144,16 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public List<Borger> getAllCitizens() {
-        return dbCitizenDAO.getAllCitizens();
+
+        List<Borger> listOfCitizens = dbCitizenDAO.getAllCitizens();
+        for(Borger b:listOfCitizens)
+        {
+            if (b.getStudentIDProperty().get()!= 0)
+            {
+                b.setStudent(dbUserDAO.getUserById(b.getStudentIDProperty().get()));
+            }
+        }
+        return listOfCitizens;
     }
 
     @Override

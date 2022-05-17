@@ -97,8 +97,10 @@ public class DBCitizenDAO {
                 String lastName =resultSet.getString("LastName");
                 int age = resultSet.getInt("Age");
                 boolean isTemplate = resultSet.getBoolean("Template");
+                int studentID= resultSet.getInt("Student_ID");
                 Borger borger = new Borger(firsteName, lastName, isTemplate, age);
                 borger.setID(ID);
+                borger.setStudentID(studentID);
                 listOfCitizens.add(borger);
 
             }

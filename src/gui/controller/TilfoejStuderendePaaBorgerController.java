@@ -14,11 +14,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TilfoejStuderendePaaBorgerController implements Initializable {
+
+    @FXML
+    private GridPane parentPane;
     @FXML
     private ComboBox<WClass> cboxClasses;
     @FXML
@@ -28,18 +33,21 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
     private CitizenModel citizenModel;
     private Borger selectedBorger;
     private UserModel userModel;
+    private DashboardController dashboardController;
 
 
     public void btnAddStudent(ActionEvent actionEvent) {
         selectedBorger.setStudentID(lvStudents.getSelectionModel().getSelectedItem().getIdProperty().get());
         citizenModel.updateCitizen(selectedBorger);
+        dashboardController.updateCitizenList();
+        getStage().close();
     }
 
-    public void setModels(CitizenModel citizenModel, UserModel userModel)
+    public void setModelsAndControllers(CitizenModel citizenModel, UserModel userModel, DashboardController dashboardController)
     {
         this.citizenModel = citizenModel;
         this.userModel = userModel;
-
+        this.dashboardController = dashboardController;
 
     }
 
@@ -68,4 +76,9 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
     public void setCboxClasses() {
         cboxClasses.setItems(userModel.getAllClass());
     }
+
+    private Stage getStage(){
+        return (Stage) parentPane.getScene().getWindow();
+    }
 }
+

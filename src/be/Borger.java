@@ -1,5 +1,7 @@
 package be;
 
+import be.user.Student;
+import be.user.User;
 import javafx.beans.property.*;
 
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ public class Borger {
     private StringProperty lastName= new SimpleStringProperty();
     private BooleanProperty isTemplate = new SimpleBooleanProperty();
     private IntegerProperty studentID = new SimpleIntegerProperty();
-    private StringProperty studentName = new SimpleStringProperty();
+    private User student;
 
     //Generelle oplysninger
     private StringProperty mestring = new SimpleStringProperty();
@@ -198,24 +200,23 @@ public class Borger {
         this.studentID.set(studentID);
     }
 
-    public StringProperty getStudentNameProperty()
-    {
-        return studentName;
+    public void setStudent(User student) {
+        this.student = student;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName.set(studentName);
+    public User getStudent() {
+        return student;
     }
 
     @Override
     public String toString() {
-        if (studentID.get() ==0 )
+        if (student == null )
         {
-            return firstName.get() + " " +  lastName.get() + " " + age.get() + "år";
+            return firstName.get() + " " +  lastName.get();
 
         }
         else
-            return firstName.get() + " " +  lastName.get() + " " + age.get() + " år " + studentName.get();
+            return firstName.get() + " " +  lastName.get() +". Studerende: " + student.getFullNameProperty().get();
 
     }
 }

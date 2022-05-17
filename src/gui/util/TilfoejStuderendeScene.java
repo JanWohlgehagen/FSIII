@@ -18,6 +18,7 @@ public class TilfoejStuderendeScene implements ISceneLoader<TilfoejStuderendePaa
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("FSIII Learning Platform");
         stage.getIcons().add(image);
+        stage.setResizable(false);
         stage.show();
     }
 

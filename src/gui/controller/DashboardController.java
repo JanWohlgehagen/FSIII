@@ -219,8 +219,13 @@ public class DashboardController implements Initializable {
                     btnNewCitizen.setVisible(false);
                     for(Borger b: citizenModel.getAllCitizen())
                     {
+                        System.out.println(b);
+                        System.out.println(b.getStudentIDProperty().get());
+                        System.out.println(loginUser.getIdProperty().get());
                         if (b.getStudentIDProperty().get() == loginUser.getIdProperty().get())
                         {
+
+
                             lvCitizens.getItems().add(b);
                         }
                     }
@@ -254,6 +259,6 @@ public class DashboardController implements Initializable {
         tilfoejStuderendePaaBorgerControllerSceneLoader.loadNewScene(new Stage());
         TilfoejStuderendePaaBorgerController tilfoejStuderendePaaBorgerController = tilfoejStuderendePaaBorgerControllerSceneLoader.getController();
         tilfoejStuderendePaaBorgerController.setBorger(selectCitizen);
-        tilfoejStuderendePaaBorgerController.setModels(citizenModel, userModel);
+        tilfoejStuderendePaaBorgerController.setModelsAndControllers(citizenModel, userModel,this);
     }
 }
