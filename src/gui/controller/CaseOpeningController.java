@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CaseOpeningController implements Initializable {
+
     @FXML
     private GridPane parentGridPane;
     @FXML

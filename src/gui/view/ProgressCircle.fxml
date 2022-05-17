@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_RIGHT" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="TOP_RIGHT">
+         <children>
+            <GridPane alignment="TOP_RIGHT" minHeight="160.0" minWidth="160.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <StackPane styleClass="stackPane" stylesheets="@../resources/css/ProgressCircle.css">
+                     <children>
+                        <Circle fill="DODGERBLUE" radius="62.5" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" styleClass="BackgroundCircle" />
+                        <Circle fill="DODGERBLUE" layoutX="430.0" layoutY="410.0" radius="46.75" stroke="BLACK" strokeType="INSIDE" styleClass="arrowCircle" />
+                        <Button fx:id="btnSagsaabning" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton1" text="1" textAlignment="CENTER" translateX="-26.25" translateY="-35.0" wrapText="true">
+                           <font>
+                              <Font name="Cambria Bold" size="96.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSagsOplysning" alignment="CENTER" layoutX="365.0" layoutY="345.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton2" text="2" textAlignment="CENTER" translateX="13.75" translateY="-41.25" wrapText="true">
+                           <font>
+                              <Font name="Cambria Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnAfgorelseBestilling" alignment="CENTER" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton3" text="3" textAlignment="CENTER" translateX="41.25" translateY="-16.25" wrapText="true">
+                           <font>
+                              <Font name="Cambria Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnPlanlaegning" alignment="CENTER" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton4" text="4" textAlignment="CENTER" translateX="31.25" translateY="30.0" wrapText="true">
+                           <font>
+                              <Font name="Cambria Bold" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </Button>
+                        <Button fx:id="btnUdorelseLevering" alignment="CENTER" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton5" text="5" textAlignment="CENTER" translateX="-13.75" translateY="41.25" wrapText="true">
+                           <font>
+                              <Font name="Cambria Bold" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="btnOpfolgning" alignment="CENTER" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="middleButton" text="6" textAlignment="CENTER" translateX="-43.75" wrapText="true" />
+                        <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-12.5" />
+                        <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel" text="LEVERANDØR" translateY="12.5" />
+                     </children>
+                  </StackPane>
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>
