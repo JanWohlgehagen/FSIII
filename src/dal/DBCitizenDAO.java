@@ -24,7 +24,7 @@ public class DBCitizenDAO {
             String sql = "DELETE FROM [Borger] WHERE Borger_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, borger.getIDProperty().get());
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
 
         } catch (SQLServerException throwables) {
             throwables.printStackTrace();

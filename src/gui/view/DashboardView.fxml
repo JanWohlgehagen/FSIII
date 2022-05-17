@@ -134,6 +134,7 @@
                            <children>
                               <Button fx:id="btnAddStudent" mnemonicParsing="false" onAction="#btnConnectStudent" prefWidth="227.0" text="Tilføj Studerende" />
                               <Button fx:id="btnNewCitizen" mnemonicParsing="false" onAction="#createCitizen" prefWidth="227.0" text="Ny Borger" />
+                              <Button fx:id="btnDeleteCitizen" layoutX="50.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnDeleteCitizen" prefWidth="227.0" text="Slet Borger" />
                            </children>
                            <padding>
                               <Insets bottom="15.0" />

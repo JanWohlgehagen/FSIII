@@ -20,10 +20,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
 
+    @FXML
+    private Button btnDeleteCitizen;
     @FXML
     private Button btnAddStudent;
     @FXML
@@ -237,6 +240,7 @@ public class DashboardController implements Initializable {
                     tabpaneDBView.getTabs().remove(1, 3);
                     btnAddStudent.setVisible(false);
                     btnNewCitizen.setVisible(false);
+                    btnDeleteCitizen.setVisible(false);
 
                     for (Borger b : citizenModel.getAllCitizen()) {
                         if (b.getStudentIDProperty().get() == loginUser.getIdProperty().get()) {
@@ -274,5 +278,18 @@ public class DashboardController implements Initializable {
         TilfoejStuderendePaaBorgerController tilfoejStuderendePaaBorgerController = tilfoejStuderendePaaBorgerControllerSceneLoader.getController();
         tilfoejStuderendePaaBorgerController.setBorger(selectCitizen);
         tilfoejStuderendePaaBorgerController.setModelsAndControllers(citizenModel, userModel, this);
+    }
+
+    public void btnDeleteCitizen(ActionEvent actionEvent) {
+        if (selectCitizen != null) {
+            Alert alert = new Alert( Alert.AlertType.CONFIRMATION,"Er du sikker på du vil slette denne borger?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get().equals(ButtonType.YES))
+            {
+                citizenModel.deleteCitizen(selectCitizen);
+                updateCitizenList();
+
+            }
+        }
     }
 }
