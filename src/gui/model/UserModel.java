@@ -24,7 +24,7 @@ public class UserModel {
     private ObservableList<WClass> allClass  = FXCollections.observableArrayList();
     private ObservableList<User> studentInClass = FXCollections.observableArrayList();
     private ObservableList<User> teacherInClass = FXCollections.observableArrayList();
-    private ObservableList<User> teacherAndStudentInClass = FXCollections.observableArrayList();
+    private final ObservableList<User> teacherAndStudentInClass = FXCollections.observableArrayList();
 
     public UserModel(ManagerFacade managerFacade) {
         this.managerFacade = managerFacade;

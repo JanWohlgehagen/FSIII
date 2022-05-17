@@ -8,6 +8,15 @@ CREATE DATABASE CSe21A_FSIII_Simulator
 GO
 USE CSe21A_FSIII_Simulator
 GO
+CREATE TABLE [Person]
+(
+    [Person_ID] INT IDENTITY  NOT NULL,
+    [FirstName] NVARCHAR(200) NULL,
+    [LastName]  NVARCHAR(200) NULL,
+    [Role]      NVARCHAR(50)  NOT NULL,
+
+    CONSTRAINT PK_P_ID PRIMARY KEY ([Person_ID])
+)
 
 CREATE TABLE [Borger]
 (
@@ -16,8 +25,10 @@ CREATE TABLE [Borger]
     [LastName]         NVARCHAR(200) NULL,
     [Age]              INT           NULL,
     [Template]         BIT           NULL,
+    [Student_ID]       INT           Null,
 
-    CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID])
+    CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID]),
+    CONSTRAINT FK_Borger_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person([Person_ID])
 
 )
 
@@ -158,7 +169,7 @@ CREATE TABLE [F_Tilstandsvurdering]
     [Udfoerelse]         VARCHAR(4000)  NULL,
     [Betydning]          VARCHAR(4000)  NULL,
     [Borger_Maal]        VARCHAR(4000)  NULL,
-    [Niveau]             INT            NULL,
+    [Niveau]             INT            DEFAULT -1,
     [Vurdering]          VARCHAR(4000)  NULL,
     [Aarsag]             VARCHAR(4000)  NULL,
     [Faglig_Notat]       VARCHAR(4000)  NULL,
@@ -177,16 +188,6 @@ CREATE TABLE [Class]
     [Name]     NVARCHAR(200) NULL,
 
     CONSTRAINT PK_Class_ID PRIMARY KEY ([Class_ID])
-)
-
-CREATE TABLE [Person]
-(
-    [Person_ID] INT IDENTITY  NOT NULL,
-    [FirstName] NVARCHAR(200) NULL,
-    [LastName]  NVARCHAR(200) NULL,
-    [Role]      NVARCHAR(50)  NOT NULL,
-
-    CONSTRAINT PK_P_ID PRIMARY KEY ([Person_ID])
 )
 
 CREATE TABLE [ClassTeachers]
