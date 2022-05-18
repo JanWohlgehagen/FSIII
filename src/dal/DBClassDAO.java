@@ -50,7 +50,7 @@ public class DBClassDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                int id = resultSet.getInt("Class_ID");
+                int id = resultSet.getInt(1);
                 wClass.setId(id);
             }
 
@@ -71,6 +71,19 @@ public class DBClassDAO {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+    public void editClass(WClass wClass){
+        try(Connection connection = dbConnecting.getConnection()) {
+            String sql = "UPDATE [Class] SET Name = (?) WHERE Class_ID = (?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, wClass.getNameProperty().get());
+            preparedStatement.setInt(2,wClass.getIdProperty().get());
+            preparedStatement.execute();
+
+        } catch (SQLException SQLe) {
+            SQLe.printStackTrace();
         }
     }
 
@@ -141,6 +154,46 @@ public class DBClassDAO {
         } catch (SQLException SQLe) {
             SQLe.printStackTrace();
         }
+    }
 
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException {
+        try (Connection connection = dbConnecting.getConnection()) {
+            String sql = "INSERT INTO [ClassTeachers] (Teacher_ID, Class_ID) VALUES ((?),(?))";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, teacher.getIdProperty().get());
+            preparedStatement.setInt(2, wClass.getIdProperty().get());
+
+            preparedStatement.execute();
+        }catch (SQLServerException SQLse){
+            throw SQLse;
+        } catch (SQLException SQLe) {
+            SQLe.printStackTrace();
+        }
+    }
+
+    public void removeStudentFromClass(User student, WClass wClass) {
+        try (Connection connection = dbConnecting.getConnection()) {
+            String sql = "DELETE FROM ClassStudents WHERE Student_ID = (?) AND Class_ID = (?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, student.getIdProperty().get());
+            preparedStatement.setInt(2, wClass.getIdProperty().get());
+
+            preparedStatement.execute();
+        }catch (SQLException SQLe) {
+            SQLe.printStackTrace();
+        }
+    }
+
+    public void removeTeacherFromClass(User teacher, WClass wClass) {
+        try (Connection connection = dbConnecting.getConnection()) {
+            String sql = "DELETE FROM ClassTeachers WHERE Teacher_ID = (?) AND Class_ID = (?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, teacher.getIdProperty().get());
+            preparedStatement.setInt(2, wClass.getIdProperty().get());
+
+            preparedStatement.execute();
+        }catch (SQLException SQLe) {
+            SQLe.printStackTrace();
+        }
     }
 }

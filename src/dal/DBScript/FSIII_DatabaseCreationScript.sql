@@ -28,7 +28,7 @@ CREATE TABLE [Borger]
     [Student_ID]       INT           Null,
 
     CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID]),
-    CONSTRAINT FK_Borger_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person([Person_ID])
+    CONSTRAINT FK_Borger_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person([Person_ID]) ON DELETE CASCADE
 
 
     )
@@ -199,8 +199,8 @@ CREATE TABLE [ClassTeachers]
     [Class_ID]   INT NOT NULL,
 
     CONSTRAINT PK_Class_Teacher_ID PRIMARY KEY (Teacher_ID, Class_ID),
-    CONSTRAINT FK_Teacher_ID FOREIGN KEY (Teacher_ID) REFERENCES Person ([Person_ID]),
-    CONSTRAINT FK_Class_Teacher_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
+    CONSTRAINT FK_Teacher_ID FOREIGN KEY (Teacher_ID) REFERENCES Person ([Person_ID]) ON DELETE CASCADE,
+    CONSTRAINT FK_Class_Teacher_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID]) ON DELETE CASCADE
 )
 
 
@@ -210,8 +210,8 @@ CREATE TABLE [ClassStudents]
     [Class_ID]   INT NOT NULL,
 
     CONSTRAINT PK_Class_Student_ID PRIMARY KEY (Student_ID, Class_ID),
-    CONSTRAINT FK_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person ([Person_ID]),
-    CONSTRAINT FK_Class_Student_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID])
+    CONSTRAINT FK_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person ([Person_ID]) ON DELETE CASCADE,
+    CONSTRAINT FK_Class_Student_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID]) ON DELETE CASCADE
 )
 
 CREATE TABLE [Credentials]
@@ -221,5 +221,5 @@ CREATE TABLE [Credentials]
     [Password]  NVARCHAR(500)  NOT NULL,
 
     CONSTRAINT PK_ID PRIMARY KEY ([Person_ID]),
-    CONSTRAINT FK_P_ID FOREIGN KEY ([Person_ID]) REFERENCES Person ([Person_ID])
+    CONSTRAINT FK_P_ID FOREIGN KEY ([Person_ID]) REFERENCES Person ([Person_ID]) ON DELETE CASCADE
     )

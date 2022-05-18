@@ -80,6 +80,10 @@ public class ManagerFacade implements IManagerFacade {
         userManager.deleteClass(wClass);
 
     }
+    @Override
+    public void editClass(WClass wClass) {
+        userManager.editClass(wClass);
+    }
 
     @Override
     public List<WClass> getAllClass() {
@@ -99,6 +103,36 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
         userManager.addStudentToClass(user, wClass);
+    }
+
+    @Override
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException {
+        userManager.addTeacherToClass(teacher, wClass);
+    }
+
+    @Override
+    public void removeStudentFromClass(User student, WClass wClass) {
+        userManager.removeStudentFromClass(student, wClass);
+    }
+
+    @Override
+    public void removeTeacherFromClass(User teacher, WClass wClass) {
+        userManager.removeTeacherFromClass(teacher,wClass);
+    }
+
+    @Override
+    public User newUser(User newUser) {
+       return userManager.newUser(newUser);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userManager.deleteUser(user);
+    }
+
+    @Override
+    public void editUser(User user) {
+        userManager.editUser(user);
     }
 
 

@@ -1,6 +1,5 @@
 package be;
 
-import be.user.Student;
 import be.user.User;
 import javafx.beans.property.*;
 

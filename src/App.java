@@ -15,19 +15,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        /**
-        ISceneLoader<AdminDashboardController> test = new AdminDashboardScene();
-        test.loadNewScene(primaryStage);
-         **/
-
 
         ISceneLoader<LoginController> loginScene =  new LoginScene();
         loginScene.loadNewScene(primaryStage);
         LoginController loginController = loginScene.getController();
 
         loginController.setPrimaryStage(primaryStage);
-
-
     }
 
     public static void main(String[] args) {

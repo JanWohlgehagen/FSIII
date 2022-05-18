@@ -2,8 +2,6 @@ package bll;
 
 import be.WClass;
 import be.user.User;
-import be.user.UserType;
-import bll.Interfaces.IManagerFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
 import dal.interfaces.IDatabaseFacade;
@@ -70,6 +68,10 @@ public class UserManager {
         databaseFacade.deleteClass(wClass);
     }
 
+    public void editClass(WClass wClass){
+        databaseFacade.editClass(wClass);
+    }
+
     public List<WClass> allClass(){
         return databaseFacade.getAllClass();
     }
@@ -82,7 +84,31 @@ public class UserManager {
         return databaseFacade.getAllTeacherInClass(wClass);
     }
 
-    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
-        databaseFacade.addStudentToClass(user, wClass);
+    public void addStudentToClass(User student, WClass wClass) throws SQLServerException {
+        databaseFacade.addStudentToClass(student, wClass);
+    }
+
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException {
+        databaseFacade.addTeacherToClass(teacher, wClass);
+    }
+
+    public void removeStudentFromClass(User student, WClass wClass) {
+        databaseFacade.removeStudentFromClass(student, wClass);
+    }
+
+    public void removeTeacherFromClass(User teacher, WClass wClass) {
+        databaseFacade.removeTeacherFromClass(teacher, wClass);
+    }
+
+    public User newUser(User newUser) {
+        return databaseFacade.newUser(newUser);
+    }
+
+    public void deleteUser(User user) {
+        databaseFacade.deleteUser(user);
+    }
+
+    public void editUser(User user) {
+        databaseFacade.editUser(user);
     }
 }

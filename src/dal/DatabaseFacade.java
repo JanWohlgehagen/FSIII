@@ -2,13 +2,11 @@ package dal;
 
 
 import be.*;
-import be.user.Student;
 import be.user.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseFacade implements IDatabaseFacade {
@@ -77,6 +75,11 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
+    public void editClass(WClass wClass) {
+        dbClassDAO.editClass(wClass);
+    }
+
+    @Override
     public List<User> getAllStudentInClass(WClass wClass) {
         return dbClassDAO.getAllStudentInClass(wClass);
     }
@@ -87,8 +90,38 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public void addStudentToClass(User user, WClass wClass) throws SQLServerException {
-        dbClassDAO.addStudentToClass(user, wClass);
+    public void addStudentToClass(User student, WClass wClass) throws SQLServerException {
+        dbClassDAO.addStudentToClass(student, wClass);
+    }
+
+    @Override
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException {
+        dbClassDAO.addTeacherToClass(teacher, wClass);
+    }
+
+    @Override
+    public void removeStudentFromClass(User student, WClass wClass) {
+        dbClassDAO.removeStudentFromClass(student, wClass);
+    }
+
+    @Override
+    public void removeTeacherFromClass(User teacher, WClass wClass) {
+        dbClassDAO.removeTeacherFromClass(teacher, wClass);
+    }
+
+    @Override
+    public User newUser(User newUser) {
+        return dbUserDAO.newUser(newUser);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        dbUserDAO.deleteUser(user);
+    }
+
+    @Override
+    public void editUser(User user) {
+        dbUserDAO.editUser(user);
     }
 
 
@@ -260,7 +293,5 @@ public class DatabaseFacade implements IDatabaseFacade {
     public List<String> getHelbredstilstandsUnderkategori() {
         return dbHelbredstilstandsUnderkategoriDAO.getHelbredstilstandsUnderkategoriList();
     }
-
-
 
 }

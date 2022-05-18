@@ -18,6 +18,12 @@ public interface IDatabaseFacade {
 
     public List<User> getAllUser();
 
+    public User newUser(User newUser);
+
+    void deleteUser(User user);
+
+    void editUser(User user);
+
     // CLASS
 
     public List<WClass> getAllClass();
@@ -26,12 +32,19 @@ public interface IDatabaseFacade {
 
     public void deleteClass(WClass wClass);
 
+    void editClass(WClass wClass);
+
     public List<User> getAllStudentInClass(WClass wClass);
 
     public List<User> getAllTeacherInClass(WClass wClass);
 
     public void addStudentToClass(User user, WClass wClass) throws SQLServerException;
 
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException;
+
+    public void removeStudentFromClass(User student, WClass wClass);
+
+    public void removeTeacherFromClass(User teacher, WClass wClass);
 
     // CASE
 
@@ -91,5 +104,4 @@ public interface IDatabaseFacade {
     public List<String> getHelbredstilstand();
 
     public List<String> getHelbredstilstandsUnderkategori();
-
 }
