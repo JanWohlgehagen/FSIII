@@ -4,6 +4,7 @@ import be.WClass;
 import gui.model.UserModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -14,10 +15,13 @@ import java.util.ResourceBundle;
 
 public class CreateAndEditClassController implements Initializable {
 
-    public GridPane parentPaneGridPane;
+    @FXML
+    private GridPane parentPaneGridPane;
 
-    public TextField txtName;
+    @FXML
+    private TextField txtName;
 
+    @FXML
     private WClass wClass;
 
     private UserModel userModel;

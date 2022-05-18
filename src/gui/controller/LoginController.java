@@ -24,6 +24,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private GridPane parentPaneGridPane;
+    
     @FXML
     private TextField txtUsername;
     @FXML
@@ -53,7 +54,7 @@ public class LoginController implements Initializable {
             } else if (user.getUserType().equals(UserType.ADMIN)) {
                 ISceneLoader<AdminDashboardController> adminDashboardScene = new AdminDashboardScene();
                 adminDashboardScene.loadNewScene((Stage) parentPaneGridPane.getScene().getWindow());
-                
+
             } else throw new UnsupportedOperationException();
         }
 

@@ -17,10 +17,11 @@ import java.util.ResourceBundle;
 public class CreateTeacherAndStudentController implements Initializable {
 
 
-    public GridPane parentPaneGridPane;
+    @FXML
+    private GridPane parentPaneGridPane;
+
     @FXML
     private TextField txtLastName;
-
     @FXML
     private TextField txtFirstName;
 

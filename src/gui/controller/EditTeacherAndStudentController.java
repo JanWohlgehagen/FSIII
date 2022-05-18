@@ -4,6 +4,7 @@ import be.user.User;
 import gui.model.UserModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -14,9 +15,13 @@ import java.util.ResourceBundle;
 
 public class EditTeacherAndStudentController implements Initializable {
 
-    public GridPane parentPaneGridPane;
-    public TextField txtFirstName;
-    public TextField txtLastName;
+    @FXML
+    private GridPane parentPaneGridPane;
+
+    @FXML
+    private TextField txtFirstName;
+    @FXML
+    private TextField txtLastName;
 
     private User student;
 
