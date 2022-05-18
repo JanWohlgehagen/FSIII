@@ -14,9 +14,15 @@ public class CitizenManager {
         this.databaseFacade = databaseFacade;
     }
 
-    public List<Borger> getAllCitizen()
-    {
-        return databaseFacade.getAllCitizens();
+    public List<Borger> getAllCitizen(){
+        List<Borger> listOfCitizens = databaseFacade.getAllCitizens();
+        for(Borger borger:listOfCitizens)
+        {
+            if (borger.getStudentIDProperty().get() != 0) {
+                borger.setStudent(databaseFacade.getUserById(borger.getStudentIDProperty().get()));
+            }
+        }
+        return listOfCitizens;
     }
 
     public List<Borger> getAllTemplates()
@@ -32,6 +38,10 @@ public class CitizenManager {
     public void updateCitizen(Borger borger)
     {
         databaseFacade.updateCitizen(borger);
+    }
+
+    public void addStudentToCitizen(Borger borger){
+        databaseFacade.addStudentToCitizen(borger);
     }
 
     public void deleteCitizen (Borger borger)

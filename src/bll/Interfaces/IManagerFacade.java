@@ -71,6 +71,8 @@ public interface IManagerFacade {
 
     public void updateCitizen(Borger borger);
 
+    public void addStudentToCitizen(Borger borger);
+
     public void deleteCitizen (Borger borger);
 
     public void updateSagsoplysninger(Borger borger);

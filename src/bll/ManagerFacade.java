@@ -191,6 +191,11 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
+    public void addStudentToCitizen(Borger borger) {
+        citizenManager.addStudentToCitizen(borger);
+    }
+
+    @Override
     public void deleteCitizen(Borger borger) {
         citizenManager.deleteCitizen(borger);
     }

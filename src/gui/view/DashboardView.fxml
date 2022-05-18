@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.DashboardController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.DashboardController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
@@ -98,36 +98,30 @@
                               <Insets top="6.0" />
                            </VBox.margin>
                         </ListView>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
                            <children>
-                              <VBox prefHeight="182.0" prefWidth="78.0">
+                              <GridPane prefHeight="100.0" prefWidth="307.0" HBox.hgrow="SOMETIMES">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" percentHeight="60.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                                </rowConstraints>
                                  <children>
-                                    <Label text="Navn">
-                                       <VBox.margin>
-                                          <Insets left="6.0" top="6.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Alder">
-                                       <VBox.margin>
-                                          <Insets left="6.0" top="6.0" />
-                                       </VBox.margin>
-                                    </Label>
+                                    <Label text="Navn" />
+                                    <Label text="Alder" GridPane.rowIndex="1" />
+                                    <Label text="Studerende" GridPane.rowIndex="2" />
+                                    <Label fx:id="lblName" GridPane.columnIndex="1" />
+                                    <Label fx:id="lblAge" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="lblStudent" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
-                              </VBox>
-                              <VBox prefHeight="182.0" prefWidth="192.0">
-                                 <children>
-                                    <Label fx:id="lblName">
-                                       <VBox.margin>
-                                          <Insets top="6.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label fx:id="lblAge">
-                                       <VBox.margin>
-                                          <Insets top="6.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
-                              </VBox>
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </GridPane>
                            </children>
                         </HBox>
                         <VBox alignment="BOTTOM_CENTER" spacing="15.0" VBox.vgrow="SOMETIMES">

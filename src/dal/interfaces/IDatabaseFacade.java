@@ -72,6 +72,8 @@ public interface IDatabaseFacade {
 
     public void updateCitizen(Borger borger);
 
+    public void addStudentToCitizen(Borger borger);
+
     public void deleteCitizen(Borger borger);
 
     public void updateGenerelleOplysninger(Borger borger);

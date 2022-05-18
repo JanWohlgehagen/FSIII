@@ -165,7 +165,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
 
-
                                 /***************************************************/
                                 /******************** Citizen **********************/
                                 /***************************************************/
@@ -177,16 +176,7 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public List<Borger> getAllCitizens() {
-
-        List<Borger> listOfCitizens = dbCitizenDAO.getAllCitizens();
-        for(Borger b:listOfCitizens)
-        {
-            if (b.getStudentIDProperty().get()!= 0)
-            {
-                b.setStudent(dbUserDAO.getUserById(b.getStudentIDProperty().get()));
-            }
-        }
-        return listOfCitizens;
+        return dbCitizenDAO.getAllCitizens();
     }
 
     @Override
@@ -198,6 +188,11 @@ public class DatabaseFacade implements IDatabaseFacade {
     public void updateCitizen(Borger borger) {
         dbCitizenDAO.updateCitizen(borger);
 
+    }
+
+    @Override
+    public void addStudentToCitizen(Borger borger) {
+        dbCitizenDAO.addStudentToCitizen(borger);
     }
 
     @Override
