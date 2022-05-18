@@ -81,7 +81,7 @@
             <Insets left="8.0" right="5.0" top="5.0" />
          </GridPane.margin>
          <tabs>
-            <Tab closable="false" text="Borgere">
+            <Tab closable="false" onSelectionChanged="#handleChangeTab" text="Borgere">
                <content>
                   <VBox>
                      <children>
@@ -144,7 +144,7 @@
                   </VBox>
                </content>
             </Tab>
-            <Tab fx:id="tabTemplates" closable="false" text="Templates">
+            <Tab fx:id="tabTemplates" closable="false" onSelectionChanged="#handleChangeTab" text="Templates">
               <content>
                   <VBox>
                      <children>
@@ -179,7 +179,7 @@
                   </VBox>
               </content>
             </Tab>
-            <Tab fx:id="tabStudents" closable="false" text="Studerende">
+            <Tab fx:id="tabStudents" closable="false" onSelectionChanged="#handleChangeTab" text="Studerende">
               <content>
                   <VBox>
                      <children>
