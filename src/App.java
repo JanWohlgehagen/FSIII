@@ -18,9 +18,6 @@ public class App extends Application {
 
         ISceneLoader<LoginController> loginScene =  new LoginScene();
         loginScene.loadNewScene(primaryStage);
-        LoginController loginController = loginScene.getController();
-
-        loginController.setPrimaryStage(primaryStage);
     }
 
     public static void main(String[] args) {

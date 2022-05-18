@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,11 +23,11 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
+    private GridPane parentPaneGridPane;
+    @FXML
     private TextField txtUsername;
     @FXML
     private PasswordField txtPassword;
-
-    private Stage primaryStage;
 
     private CredentialModel credentialModel;
 
@@ -39,23 +40,19 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void setPrimaryStage(Stage stage){
-        this.primaryStage = stage;
-    }
-
     public void handleLoginButton(ActionEvent actionEvent) throws IOException {
         User user = credentialModel.checkCredential(txtUsername.getText(), txtPassword.getText());
         if(user != null){
             if(user.getUserType().equals(UserType.STUDENT) || user.getUserType().equals(UserType.TEACHER)){
                 ISceneLoader<DashboardController> dashboardScene =  new DashboardScene();
-                dashboardScene.loadNewScene(this.primaryStage);
+                dashboardScene.loadNewScene((Stage) parentPaneGridPane.getScene().getWindow());
                 DashboardController dashboardSceneController = dashboardScene.getController();
                 dashboardSceneController.setDashboardController(dashboardSceneController);
                 dashboardSceneController.setLoginPerson(user);
 
             } else if (user.getUserType().equals(UserType.ADMIN)) {
                 ISceneLoader<AdminDashboardController> adminDashboardScene = new AdminDashboardScene();
-                adminDashboardScene.loadNewScene(this.primaryStage);
+                adminDashboardScene.loadNewScene((Stage) parentPaneGridPane.getScene().getWindow());
                 AdminDashboardController adminDashboardController = adminDashboardScene.getController();
                 //adminDashboardController.setAdminDashboardController(adminDashboardController);
 
