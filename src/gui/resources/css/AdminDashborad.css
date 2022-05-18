@@ -55,22 +55,29 @@
     -fx-font-weight: bold;
 }
 
-.addArrowRightBtn{
-    -fx-background-image: url("../images/arrowRight.png");
+.informationButton{
+    -fx-background-image: url("../images/infoBtn.png");
+    -fx-background-size: 25;
     -fx-background-color: transparent;
-    -fx-background-size: 100% 100%;
     -fx-border-radius: 25;
-    -fx-border-color: transparent;
+    -fx-border-color: black;
     -fx-padding: 1, 1, 1, 1;
-    -fx-cursor: hand;
 }
 
-.addArrowLeftBtn{
-    -fx-background-image: url("../images/arrowLeft.png");
+.informationButton:hover,
+.informationButton:armed,
+.informationButton:focused {
+    -fx-border-width: 1;
     -fx-background-color: transparent;
-    -fx-background-size: 100% 100%;
-    -fx-border-radius: 25;
-    -fx-border-color: transparent;
-    -fx-padding: 1, 1, 1, 1;
-    -fx-cursor: hand;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-scale-z: 1;
+    -fx-border-insets: 0 0 0 0;
+}
+
+.tooltip{
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
 }

@@ -56,6 +56,8 @@ public class LoginController implements Initializable {
             } else if (user.getUserType().equals(UserType.ADMIN)) {
                 ISceneLoader<AdminDashboardController> adminDashboardScene = new AdminDashboardScene();
                 adminDashboardScene.loadNewScene(this.primaryStage);
+                AdminDashboardController adminDashboardController = adminDashboardScene.getController();
+                //adminDashboardController.setAdminDashboardController(adminDashboardController);
 
 
             }else throw new UnsupportedOperationException();

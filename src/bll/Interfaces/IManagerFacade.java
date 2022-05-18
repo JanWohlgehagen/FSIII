@@ -21,9 +21,17 @@ public interface IManagerFacade {
 
     List<User> getAllAdmin();
 
+    public User newUser(User newUser);
+
+    void deleteUser(User user);
+
+    void editUser(User user);
 
     // Class
+
     public WClass createClass(WClass wClass);
+
+    void editClass(WClass wClass);
 
     public void deleteClass(WClass wClass);
 
@@ -34,6 +42,13 @@ public interface IManagerFacade {
     public List<User> getAllTeacherInClass(WClass wClass);
 
     public void addStudentToClass(User user, WClass wClass) throws SQLServerException;
+
+    public void addTeacherToClass(User teacher, WClass wClass) throws SQLServerException;
+
+    public void removeStudentFromClass(User student, WClass wClass);
+
+    public void removeTeacherFromClass(User teacher, WClass wClass);
+
 
 
     // CASE
@@ -85,5 +100,5 @@ public interface IManagerFacade {
 
     public List<String> getHelbredstilstandsUnderkategoriList();
 
-    void getTilstande(Borger borger);
+    public void getTilstande(Borger borger);
 }
