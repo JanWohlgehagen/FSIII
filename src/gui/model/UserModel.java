@@ -1,7 +1,6 @@
 package gui.model;
 
 import be.WClass;
-import be.user.Teacher;
 import be.user.User;
 import be.user.UserType;
 import bll.Interfaces.IManagerFacade;

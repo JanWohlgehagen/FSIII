@@ -2,13 +2,11 @@ package dal;
 
 
 import be.*;
-import be.user.Student;
 import be.user.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseFacade implements IDatabaseFacade {

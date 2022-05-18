@@ -2,7 +2,6 @@ package gui.controller;
 
 import be.Borger;
 import be.WClass;
-import be.user.Student;
 import be.user.User;
 import gui.model.CitizenModel;
 import gui.model.UserModel;
