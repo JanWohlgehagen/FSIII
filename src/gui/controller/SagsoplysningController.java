@@ -33,7 +33,6 @@ import java.util.ResourceBundle;
 
 public class SagsoplysningController implements Initializable {
 
-
     @FXML
     private Label lblOverkategoriFunktionstilstand;
     @FXML
@@ -87,6 +86,10 @@ public class SagsoplysningController implements Initializable {
     private TextField txtOpfoelgningFunktionstilstand;
     @FXML
     private TextArea txtAreaHelhedsvurdering;
+    @FXML
+    private TextArea txtAreaObservationFunktionstilstand1;
+    @FXML
+    private TextArea txtAreaObservationHelbredstilstand1;
 
 
     @FXML
@@ -531,6 +534,7 @@ public class SagsoplysningController implements Initializable {
         txtAreaVurderingHelbredstilstand.setText(newValue.getVurderingProperty().get());
         txtAreaAarsagHelbredstilstand.setText(newValue.getAarsagProperty().get());
         txtAreaFagligtNotatHelbredstilstand.setText(newValue.getFagligNotatProperty().get());
+        txtAreaObservationHelbredstilstand1.setText(newValue.getObservation().getDescriptionProperty().get());
         lblOverkategoriHelbredstilstand.setText(newValue.getOverkategoriProperty().get());
         lblTilstandsklassifikationHelbredstilstand.setText(newValue.getTilstandsklassifikationProperty().get());
     }
@@ -544,6 +548,7 @@ public class SagsoplysningController implements Initializable {
         txtAreaVurderingFunktionstilstand.setText(newValue.getVurderingProperty().get());
         txtAreaAarsagFunktionstilstand.setText(newValue.getAarsagProperty().get());
         txtAreaFagligtNotatFunktionstilstand.setText(newValue.getFagligNotatProperty().get());
+        txtAreaObservationFunktionstilstand1.setText(newValue.getObservation().getDescriptionProperty().get());
         txtOpfoelgningFunktionstilstand.setText(newValue.getOpfølgningProperty().get());
         lblOverkategoriFunktionstilstand.setText(newValue.getOverKategoriProperty().get());
         lblTilstandsklassifikationFunktionstilstand.setText(newValue.getTilstandsklassifikationProperty().get());

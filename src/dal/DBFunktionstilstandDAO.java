@@ -3,9 +3,10 @@ package dal;
 import be.Borger;
 import be.Funktionstilstand;
 import be.FunktionstilstandsUnderkategori;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+import be.Observation;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +40,7 @@ public class DBFunktionstilstandDAO {
 
     public void updateFunktionstilstand(Borger borger) {
         String sql = "UPDATE [F_Tilstandsvurdering] SET FS_Borger_ID = (?), FS_UK_ID = (?), Udfoerelse = (?), Betydning = (?), Borger_Maal = (?), Niveau = (?)," +
-                " Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?), opfoelgning = (?)" +
+                " Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?), Observation = (?), ObservationTime = (?), Opfoelgning = (?)" +
                 "WHERE FS_Borger_ID = (?) AND FS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
@@ -55,10 +56,12 @@ public class DBFunktionstilstandDAO {
                     preparedStatement.setString(8, funktionstilstandsUnderkategori.getAarsagProperty().get());
                     preparedStatement.setString(9, funktionstilstandsUnderkategori.getFagligNotatProperty().get());
                     preparedStatement.setInt(10, funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
-                    preparedStatement.setString(11, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
+                    preparedStatement.setString(11,funktionstilstandsUnderkategori.getObservation().getDescriptionProperty().get());
+                    preparedStatement.setTimestamp(12, funktionstilstandsUnderkategori.getObservation().getTidspunkt());
+                    preparedStatement.setString(13, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
 
-                    preparedStatement.setInt(12, borger.getIDProperty().get());
-                    preparedStatement.setInt(13, funktionstilstandsUnderkategori.getId().get());
+                    preparedStatement.setInt(14, borger.getIDProperty().get());
+                    preparedStatement.setInt(15, funktionstilstandsUnderkategori.getId().get());
 
                     preparedStatement.execute();
 
@@ -109,20 +112,26 @@ public class DBFunktionstilstandDAO {
                 String aarsag = resultSet.getString("Aarsag");
                 String fagligNotat = resultSet.getString("Faglig_Notat");
                 int forventetTilstand = resultSet.getInt("Forventet_Tilstand");
+                String observationDescription = resultSet.getString("Observation");
+                Timestamp tidspunkt = resultSet.getTimestamp("ObservationTime");
                 String opfoelgning = resultSet.getString("Opfoelgning");
+
+                Observation observation = new Observation();
+                observation.setDescription(observationDescription);
+                observation.setTidspunkt(tidspunkt);
 
                 // Underkategori
                 String underkategoriTitel = resultSet.getString("FS_Underkategori_Title");
 
                 //Overkategori
                 String overKategoriTitel = resultSet.getString("FS_Overkategori_Titel");
-                FunktionstilstandsUnderkategori f = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
+                FunktionstilstandsUnderkategori f = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand, observation);
                 allFunktionstilstande.add(f);
             }
 
             for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
                 if (!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())) {
-                    funktionstilstandeHP.put(f.getOverKategoriProperty().get(), new ArrayList<FunktionstilstandsUnderkategori>());
+                    funktionstilstandeHP.put(f.getOverKategoriProperty().get(), new ArrayList<>());
                 }
                 funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
             }

@@ -121,13 +121,15 @@ CREATE TABLE [HS_Underkategori]
 
 CREATE TABLE [H_Tilstandsvurdering]
 (
-    [HS_Borger_ID]       INT           NOT NULL,
-    [HS_UK_ID]           INT           NOT NULL,
-    [Tilstand]           VARCHAR(200)  NULL,
-    [Vurdering]          VARCHAR(4000) NULL,
-    [Aarsag]             VARCHAR(4000) NULL,
-    [Faglig_Notat]       VARCHAR(4000) NULL,
-    [Forventet_Tilstand] VARCHAR(200)  NULL,
+    [HS_Borger_ID]       INT            NOT NULL,
+    [HS_UK_ID]           INT            NOT NULL,
+    [Tilstand]           NVARCHAR(200)  NULL,
+    [Vurdering]          NVARCHAR(4000) NULL,
+    [Aarsag]             NVARCHAR(4000) NULL,
+    [Faglig_Notat]       NVARCHAR(4000) NULL,
+    [Forventet_Tilstand] NVARCHAR(200)  NULL,
+    [Observation]        NVARCHAR(4000) NULL,
+    [ObservationTime]    DATETIME      NULL,
 
     CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_UK_ID, HS_Borger_ID),
     CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
@@ -166,17 +168,19 @@ CREATE TABLE [FS_Underkategori]
 CREATE TABLE [F_Tilstandsvurdering]
 (
 
-    [FS_Borger_ID]       INT            NOT NULL,
-    [FS_UK_ID]           INT            NOT NULL,
-    [Udfoerelse]         VARCHAR(4000)  NULL,
-    [Betydning]          VARCHAR(4000)  NULL,
-    [Borger_Maal]        VARCHAR(4000)  NULL,
-    [Niveau]             INT            DEFAULT -1,
-    [Vurdering]          VARCHAR(4000)  NULL,
-    [Aarsag]             VARCHAR(4000)  NULL,
-    [Faglig_Notat]       VARCHAR(4000)  NULL,
-    [Forventet_Tilstand] INT            NULL,
-    [Opfoelgning]        NVARCHAR(4000) NULL,
+    [FS_Borger_ID]       INT             NOT NULL,
+    [FS_UK_ID]           INT             NOT NULL,
+    [Udfoerelse]         NVARCHAR(4000)  NULL,
+    [Betydning]          NVARCHAR(4000)  NULL,
+    [Borger_Maal]        NVARCHAR(4000)  NULL,
+    [Niveau]             INT             DEFAULT -1,
+    [Vurdering]          NVARCHAR(4000)  NULL,
+    [Aarsag]             NVARCHAR(4000)  NULL,
+    [Faglig_Notat]       NVARCHAR(4000)  NULL,
+    [Forventet_Tilstand] INT             NULL,
+    [Observation]        NVARCHAR(4000)  NULL,
+    [ObservationTime]    DATETIME       NULL,
+    [Opfoelgning]        NVARCHAR(4000)  NULL,
 
 
     CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_UK_ID, FS_Borger_ID),
@@ -216,8 +220,8 @@ CREATE TABLE [ClassStudents]
 
 CREATE TABLE [Credentials]
 (
-    [Person_ID] INT           NOT NULL,
-    [UserName]  NVARCHAR(100) NOT NULL,
+    [Person_ID] INT            NOT NULL,
+    [UserName]  NVARCHAR(100)  NOT NULL,
     [Password]  NVARCHAR(500)  NOT NULL,
 
     CONSTRAINT PK_ID PRIMARY KEY ([Person_ID]),

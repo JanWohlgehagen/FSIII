@@ -434,7 +434,7 @@
                                     <Label layoutX="10.0" layoutY="975.0" text="Observation" GridPane.rowIndex="21" />
                                     <TextField fx:id="txtOpfoelgningFunktionstilstand" GridPane.columnSpan="2147483647" GridPane.rowIndex="24" />
                                     <Label layoutX="10.0" layoutY="756.0" text="Faglig vurdering" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
-                                    <TextArea fx:id="txtAreaFagligtNotatFunktionstilstand1" prefHeight="97.0" prefWidth="200.0" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="22" />
+                                    <TextArea fx:id="txtAreaObservationFunktionstilstand1" prefHeight="97.0" prefWidth="200.0" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="22" />
                                     <Label text="Opfølgning" GridPane.rowIndex="23" />
                                  </children>
                               </GridPane>
@@ -618,7 +618,7 @@
                                     <Label layoutX="10.0" layoutY="319.0" text="Fagligt notat" GridPane.rowIndex="9" />
                                     <TextArea fx:id="txtAreaFagligtNotatHelbredstilstand" layoutX="10.0" layoutY="363.0" prefHeight="97.0" prefWidth="200.0" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="10" />
                                     <Label text="Observation" GridPane.rowIndex="11" />
-                                    <TextArea fx:id="txtAreaFagligtNotatHelbredstilstand1" prefHeight="97.0" prefWidth="200.0" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="12" />
+                                    <TextArea fx:id="txtAreaObservationHelbredstilstand1" prefHeight="97.0" prefWidth="200.0" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="12" />
                                  </children>
                               </GridPane>
                            </content>

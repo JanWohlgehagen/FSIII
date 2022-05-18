@@ -1,9 +1,8 @@
 package be;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+
+import java.time.LocalDateTime;
 
 public class FunktionstilstandsUnderkategori {
 
@@ -31,8 +30,8 @@ public class FunktionstilstandsUnderkategori {
         this.id.set(id);
         this.tilstandsklassifikation.set(tilstandsklassifikation);
         this.overKategori.set(overKategori);
-
     }
+
     public FunktionstilstandsUnderkategori(int id,String udførelse, String betydning, String oenskerOgMaal, String tilstandsklassifikation, String vurdering,
                                            String aarsag, String fagligNotat, String opfølgning, String overKategori, int niveau, int forventetTilstand, Observation observation) {
         this.id.set(id);
@@ -47,7 +46,7 @@ public class FunktionstilstandsUnderkategori {
         this.overKategori.set(overKategori);
         this.niveau.set(niveau);
         this.forventetTilstand.set(forventetTilstand);
-        this.observation.set
+        setObservation(observation);
     }
 
     // This constructor is for use, if the user chooses that a subcategory is not relevant
@@ -151,6 +150,14 @@ public class FunktionstilstandsUnderkategori {
 
     public void setOverKategori(String overKategori) {
         this.overKategori.set(overKategori);
+    }
+
+    public Observation getObservation() {
+        return observation;
+    }
+
+    public void setObservation(Observation observation) {
+        this.observation = observation;
     }
 
     @Override

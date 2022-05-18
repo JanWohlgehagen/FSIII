@@ -34,7 +34,7 @@ public class DBHelbredstilstandDAO {
     }
 
     public void updateHelbredstilstand(Borger borger) {
-        String sql = "UPDATE [H_Tilstandsvurdering] SET HS_Borger_ID = (?), HS_UK_ID = (?), Tilstand = (?), Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?) " +
+        String sql = "UPDATE [H_Tilstandsvurdering] SET HS_Borger_ID = (?), HS_UK_ID = (?), Tilstand = (?), Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?), Observation = (?), ObservationTime = (?) " +
                 "WHERE HS_Borger_ID = (?) AND HS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
@@ -47,9 +47,11 @@ public class DBHelbredstilstandDAO {
                     preparedStatement.setString(5, helbredstilstandsUnderkategori.getAarsagProperty().get());
                     preparedStatement.setString(6, helbredstilstandsUnderkategori.getFagligNotatProperty().get());
                     preparedStatement.setString(7, helbredstilstandsUnderkategori.getForventetTilstandProperty().get());
+                    preparedStatement.setString(8, helbredstilstandsUnderkategori.getObservation().getDescriptionProperty().get());
+                    preparedStatement.setTimestamp(9, helbredstilstandsUnderkategori.getObservation().getTidspunkt());
 
-                    preparedStatement.setInt(8, borger.getIDProperty().get());
-                    preparedStatement.setInt(9, helbredstilstandsUnderkategori.getId().get());
+                    preparedStatement.setInt(10, borger.getIDProperty().get());
+                    preparedStatement.setInt(11, helbredstilstandsUnderkategori.getId().get());
                     preparedStatement.execute();
 
                 }
@@ -95,6 +97,12 @@ public class DBHelbredstilstandDAO {
                 String aarsag = resultSet.getString("Aarsag");
                 String fagligNotat = resultSet.getString("Faglig_Notat");
                 String forventetTilstand = resultSet.getString("Forventet_Tilstand");
+                String observationDescription = resultSet.getString("Observation");
+                Timestamp tidspunkt = resultSet.getTimestamp("ObservationTime");
+
+                Observation observation = new Observation();
+                observation.setDescription(observationDescription);
+                observation.setTidspunkt(tidspunkt);
 
                 //Underkategori
                 String underKategoriTitel = resultSet.getString("HS_Underkategori_Titel");
@@ -102,7 +110,7 @@ public class DBHelbredstilstandDAO {
                 //Overkategori
                 String overKategoriTitel = resultSet.getString("HS_Overkategori_Titel");
 
-                HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(ID,underKategoriTitel, overKategoriTitel, tilstand,forventetTilstand, vurdering,aarsag,fagligNotat);
+                HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(ID,underKategoriTitel, overKategoriTitel, tilstand,forventetTilstand, vurdering,aarsag,fagligNotat, observation);
                 allHelbredstilstandeUK.add(helbredstilstandsUnderkategori);
 
             }
