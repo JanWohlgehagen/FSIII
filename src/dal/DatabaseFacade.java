@@ -260,7 +260,4 @@ public class DatabaseFacade implements IDatabaseFacade {
     public List<String> getHelbredstilstandsUnderkategori() {
         return dbHelbredstilstandsUnderkategoriDAO.getHelbredstilstandsUnderkategoriList();
     }
-
-
-
 }

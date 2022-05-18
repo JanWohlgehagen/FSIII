@@ -86,4 +86,5 @@ public interface IManagerFacade {
     public List<String> getHelbredstilstandsUnderkategoriList();
 
     void getTilstande(Borger borger);
+
 }

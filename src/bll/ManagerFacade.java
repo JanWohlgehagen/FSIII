@@ -232,5 +232,4 @@ public class ManagerFacade implements IManagerFacade {
         citizenManager.getTilstande(borger);
     }
 
-
 }

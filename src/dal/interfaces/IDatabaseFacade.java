@@ -91,5 +91,4 @@ public interface IDatabaseFacade {
     public List<String> getHelbredstilstand();
 
     public List<String> getHelbredstilstandsUnderkategori();
-
 }
