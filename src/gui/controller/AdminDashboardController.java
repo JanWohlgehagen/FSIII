@@ -183,6 +183,9 @@ public class AdminDashboardController implements Initializable {
 
         if(mouseEvent.isControlDown() && student != null && wClass != null){
             userModel.addStudentToClass(student, wClass);
+        }else if(mouseEvent.isControlDown() && wClass == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
+            alert.show();
         }
     }
 
@@ -192,6 +195,9 @@ public class AdminDashboardController implements Initializable {
 
         if(mouseEvent.isControlDown() && teacher != null && wClass != null){
             userModel.addTeacherToClass(teacher, wClass);
+        }else if(mouseEvent.isControlDown() && wClass == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
+            alert.show();
         }
     }
 
@@ -243,7 +249,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     public Tooltip getTooltipForAddUserToClass(){
-        Tooltip tooltip = new Tooltip("For at tilføj en person til en klasse, så skal du holde 'Control-knappen' nede og derefter klikke på en person");
+        Tooltip tooltip = new Tooltip("For at tilføje en person til en klasse, så skal du holde 'Control-knappen' nede og derefter klikke på en person.");
         tooltip.setShowDuration(Duration.INDEFINITE);
         tooltip.setShowDelay(Duration.millis(0));
         tooltip.setWrapText(true);
