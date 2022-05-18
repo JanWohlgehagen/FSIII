@@ -134,14 +134,13 @@ public class DashboardController implements Initializable {
 
         lvStuderende.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                lvStuderende.getItems().clear();
+                lvStuderendesBorgere.getItems().clear();
                 for (Borger b : citizenModel.getAllCitizen()) {
                     if (b.getStudentIDProperty().get() == newValue.getIdProperty().get()) {
                         lvStuderendesBorgere.getItems().add(b);
                     }
                 }
             }
-            checkForNullValuesAndDisableCircle(newValue, oldValue);
         });
 
         // Search functionality in the list view
@@ -315,6 +314,7 @@ public class DashboardController implements Initializable {
                     tabStudents.setDisable(false);
                     tabTemplates.setDisable(false);
                     lvCitizens.setItems(citizenModel.getAllCitizen());
+                    lvStuderende.setItems(userModel.getAllStudent());
                 }
 
                 default -> throw new UnsupportedOperationException();
