@@ -143,6 +143,21 @@ public class DashboardController implements Initializable {
             }
             checkForNullValuesAndDisableCircle(newValue, oldValue);
         });
+
+        // Search functionality in the list view
+        txtSearchBarBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            citizenModel.searchCitizen(newValue);
+        });
+
+        // Search functionality in the list view
+        txtSearchBarTemplates.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            citizenModel.searchTemplates(newValue);
+        });
+
+        // Search functionality in the list view
+        txtSearchBarStudentBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            userModel.searchStudent(newValue);
+        });
     }
 
     private <T, U> void checkForNullValuesAndDisableCircle(T newValue, U oldValue){

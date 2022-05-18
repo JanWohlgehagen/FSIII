@@ -5,11 +5,13 @@ import be.user.User;
 import be.user.UserType;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
+import bll.Seachers.UserSearcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserModel {
@@ -17,15 +19,19 @@ public class UserModel {
     private final IManagerFacade managerFacade;
 
     private ObservableList<User> allStudent = FXCollections.observableArrayList();
+    private List<User> allStudentCache = new ArrayList<>();
     private ObservableList<User> allTeacher  = FXCollections.observableArrayList();
     private ObservableList<User> allAdmin  = FXCollections.observableArrayList();
     private ObservableList<WClass> allClass  = FXCollections.observableArrayList();
     private ObservableList<User> studentInClass = FXCollections.observableArrayList();
     private ObservableList<User> teacherInClass = FXCollections.observableArrayList();
     private ObservableList<User> teacherAndStudentInClass = FXCollections.observableArrayList();
+    private UserSearcher userSearcher;
+
 
     public UserModel(ManagerFacade managerFacade) {
         this.managerFacade = managerFacade;
+        userSearcher = new UserSearcher();
     }
 
     public List<User> allUsers(){
@@ -55,6 +61,7 @@ public class UserModel {
         if(allStudent.isEmpty()){
             allStudent.addAll(managerFacade.getAllStudent());
         }
+        allStudentCache.addAll(allStudent);
         return allStudent;
     }
 
@@ -160,5 +167,15 @@ public class UserModel {
         managerFacade.editClass(wClass);
         allClass.clear();
         allClass.addAll(managerFacade.getAllClass());
+    }
+
+    public void searchStudent(String query) {
+        if (query.isBlank() || query.isEmpty()) {
+            allStudent.clear();
+            allStudent.addAll(allStudentCache);
+        } else {
+            allStudent.clear();
+            allStudent.addAll(userSearcher.search(allStudentCache, query));
+        }
     }
 }
