@@ -21,6 +21,7 @@ public class FunktionsTilstandOverviewScene implements ISceneLoader<AlleRelevant
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("FSIII Learning Platform");
         stage.getIcons().add(image);
+        stage.setResizable(false);
         stage.show();
 
     }
