@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminDashboardController">
+<TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminDashboardController">
   <tabs>
       <Tab text="Lærer">
          <content>
@@ -31,16 +31,6 @@
                 <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="12.0" GridPane.rowIndex="2">
-                     <children>
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewTeacher" prefWidth="120.0" text="Opret Lærer" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditTeacher" prefWidth="120.0" text="Redigere" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteTeacher" prefWidth="120.0" text="Slet" />
-                     </children>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </HBox>
                   <GridPane>
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,7 +43,7 @@
                         <TextField promptText="Søg" />
                         <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="btnInfoTeacher" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
+                              <Button fx:id="btnInfoTeacher" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
                                  <VBox.margin>
                                     <Insets bottom="5.0" right="10.0" />
                                  </VBox.margin>
@@ -94,6 +84,13 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TableView>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.rowIndex="2">
+                     <children>
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewTeacher" prefWidth="120.0" text="Opret Lærer" />
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditTeacher" prefWidth="120.0" text="Redigere" />
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteTeacher" prefWidth="120.0" text="Slet" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </content></Tab>
@@ -122,7 +119,7 @@
                         <TextField promptText="Søg" />
                         <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="btnInfoStudent" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
+                              <Button fx:id="btnInfoStudent" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
                                  <VBox.margin>
                                     <Insets bottom="5.0" right="10.0" />
                                  </VBox.margin>
@@ -131,19 +128,6 @@
                         </VBox>
                      </children>
                   </GridPane>
-                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="12.0" GridPane.rowIndex="2">
-                     <children>
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewStudent" prefWidth="120.0" text="Opret elev" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditStudent" prefWidth="120.0" text="Redigere" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteStudent" prefWidth="120.0" text="Slet" />
-                     </children>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
                         <ComboBox fx:id="comboBoxStudentClass" onShowing="#handleComboboxSetStudentInClass" prefHeight="35.0" prefWidth="200.0" promptText="Vælg klasse" />
@@ -176,6 +160,16 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TableView>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.rowIndex="2">
+                     <children>
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewStudent" prefWidth="120.0" text="Opret elev" />
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditStudent" prefWidth="120.0" text="Redigere" />
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteStudent" prefWidth="120.0" text="Slet" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </HBox>
                </children>
             </GridPane>
          </content></Tab>
@@ -192,16 +186,6 @@
                 <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <HBox alignment="BOTTOM_LEFT" prefHeight="44.0" prefWidth="344.0" spacing="12.0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
-                     <children>
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewClass" prefWidth="120.0" text="Opret klasse" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditClass" prefWidth="120.0" text="Redigere" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteClass" prefWidth="120.0" text="Slet" />
-                     </children>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </HBox>
                   <TableView fx:id="tvClass" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
                       <TableColumn fx:id="tcClassName" prefWidth="75.0" text="Navn" />
@@ -227,12 +211,19 @@
                   </TableView>
                   <HBox alignment="CENTER">
                      <children>
-                        <Label text="Klasser" />
+                        <Label styleClass="labelTitle" text="Klasser" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" GridPane.columnIndex="1">
                      <children>
-                        <Label text="Personer i klassen" />
+                        <Label styleClass="labelTitle" text="Personer i klassen" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="44.0" spacing="15.0" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewClass" prefWidth="120.0" text="Opret klasse" />
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditClass" prefWidth="120.0" text="Redigere" />
+                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteClass" prefWidth="120.0" text="Slet" />
                      </children>
                   </HBox>
                </children>
