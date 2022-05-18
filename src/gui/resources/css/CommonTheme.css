@@ -11,6 +11,12 @@
     -fx-font-size: 22;
     -fx-font-weight: bold;
 }
+.labelTitleFunktionsOplysninger{
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(198,178,47,0.44);
+    -fx-border-color: rgba(198,178,47,1);
+}
 
 .combo-box{
     -fx-font-weight: bold;
@@ -97,4 +103,9 @@
 
 .scroll-bar .scroll-bar:vertical{
     -fx-background-color: transparent;
+}
+.separator .line{
+    -fx-border-width: 2;
+    -fx-border-color: rgb(255, 255, 255);
+    -fx-border-radius: 5px;
 }

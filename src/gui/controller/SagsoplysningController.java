@@ -4,6 +4,7 @@ import be.*;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.util.BestillingsScene;
+import gui.util.FunktionsTilstandOverviewScene;
 import gui.util.ISceneLoader;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -263,6 +264,14 @@ public class SagsoplysningController implements Initializable {
         vBoxMedicinliste.getChildren().add(new TextField());
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
+    }
+
+
+    public void openOverviewHandle(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<AlleRelevanteOplysningerViewController> funktionstilstandOverviewScene = new FunktionsTilstandOverviewScene();
+        funktionstilstandOverviewScene.loadNewScene(new Stage());
+        AlleRelevanteOplysningerViewController alleRelevanteOplysningerViewController = funktionstilstandOverviewScene.getController();
+        alleRelevanteOplysningerViewController.setFunktionstilstand(borger.getFunktionstilstand());
     }
 
     private void updateBorger(Borger borger){
