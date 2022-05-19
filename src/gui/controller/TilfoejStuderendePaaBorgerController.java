@@ -28,7 +28,6 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
     @FXML
     private ListView<User> lvStudents;
 
-    private TilfoejStuderendePaaBorgerController tilfoejStuderendePaaBorgerController;
     private CitizenModel citizenModel;
     private Borger selectedBorger;
     private UserModel userModel;
@@ -36,9 +35,8 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
 
 
     public void btnAddStudent(ActionEvent actionEvent) {
-        selectedBorger.setStudentID(lvStudents.getSelectionModel().getSelectedItem().getIdProperty().get());
-        citizenModel.updateCitizen(selectedBorger);
-        dashboardController.updateCitizenList();
+        selectedBorger.setStudent(lvStudents.getSelectionModel().getSelectedItem());
+        citizenModel.addStudentToCitizen(selectedBorger);
         getStage().close();
     }
 
@@ -50,21 +48,19 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
 
     }
 
-    public void setBorger(Borger b)
+    public void setBorger(Borger borger)
     {
-        selectedBorger = b;
+        selectedBorger = borger;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(()->{
-            setCboxClasses();
-                });
+        Platform.runLater(this::setCboxClasses);
 
         cboxClasses.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<WClass>() {
             @Override
             public void changed(ObservableValue<? extends WClass> observable, WClass oldValue, WClass newValue) {
-                if(newValue!=null) {
+                if(newValue != null) {
                     userModel.studentInClass(newValue);
                     lvStudents.setItems(userModel.getStudentInClass());
                 }

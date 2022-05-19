@@ -1,5 +1,6 @@
 package gui.controller;
 
+import be.Credential;
 import be.user.User;
 import gui.model.UserModel;
 import javafx.event.ActionEvent;
@@ -17,12 +18,17 @@ import java.util.ResourceBundle;
 public class CreateTeacherAndStudentController implements Initializable {
 
 
-    public GridPane parentPaneGridPane;
     @FXML
-    private TextField txtLastName;
+    private GridPane parentPaneGridPane;
 
     @FXML
+    private TextField txtLastName;
+    @FXML
     private TextField txtFirstName;
+    @FXML
+    private TextField txtLoginName;
+    @FXML
+    private TextField txtPassword;
 
     private boolean isStudent = false;
 
@@ -49,8 +55,10 @@ public class CreateTeacherAndStudentController implements Initializable {
     }
 
     public void btnSave(ActionEvent actionEvent) {
-        if(!txtFirstName.getText().isBlank() && !txtLastName.getText().isBlank()){
+        if(!txtFirstName.getText().isBlank() && !txtLastName.getText().isBlank() && !txtLoginName.getText().isBlank() && !txtPassword.getText().isBlank()){
             User newUser = new User(txtFirstName.getText(), txtLastName.getText());
+
+
             if(isTeacher){
                 newUser.setUserType("TEACHER");
                 userModel.newUser(newUser);
@@ -58,6 +66,8 @@ public class CreateTeacherAndStudentController implements Initializable {
                 newUser.setUserType("STUDENT");
                 userModel.newUser(newUser);
             }
+            newUser.setCredential(new Credential(newUser.getIdProperty().get(), txtLoginName.getText(), txtPassword.getText()));
+            userModel.createNewLoginUser(newUser.getCredential());
             Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();
             stage.close();
         }else{

@@ -5,8 +5,10 @@ import be.Funktionstilstand;
 import be.Helbredstilstand;
 import bll.ManagerFacade;
 import gui.model.CitizenModel;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -16,8 +18,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class CreateCitizenViewController {
+public class CreateCitizenViewController implements Initializable {
 
     @FXML
     private  GridPane parentPaneGridPane;
@@ -32,8 +36,20 @@ public class CreateCitizenViewController {
 
     private CitizenModel citizenModel;
 
+    private boolean isTemplate;
+
     private DashboardController dashboardController;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
+            checkButtonTemplate.setSelected(isTemplate);
+        });
+    }
+
+    public void setTemplate(boolean template) {
+        isTemplate = template;
+    }
 
     public void btnSave(ActionEvent actionEvent) {
         try{Integer.parseInt(txtAge.getText());}
@@ -45,7 +61,7 @@ public class CreateCitizenViewController {
         }
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
-        boolean isTemplate= checkButtonTemplate.isSelected();
+        boolean isTemplate = checkButtonTemplate.isSelected();
         int age = Integer.parseInt(txtAge.getText());
         Borger borger = new Borger(firstName, lastName, isTemplate, age);
         borger.setFunktionstilstand(new Funktionstilstand());
@@ -66,4 +82,6 @@ public class CreateCitizenViewController {
     public void setCitizenModel(CitizenModel citizenModel) {
         this.citizenModel = citizenModel;
     }
+
+
 }

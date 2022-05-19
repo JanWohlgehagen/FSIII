@@ -2,21 +2,33 @@ package be;
 
 public class Credential {
 
-    private int id;
+    private int userId;
     private String userName;
     private String password;
 
-    public Credential(int id, String userName, String password) {
-        this.id = id;
+    public Credential(int userId, String userName, String password) {
+        this.userId = userId;
         this.userName = userName;
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

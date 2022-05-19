@@ -25,7 +25,7 @@ CREATE TABLE [Borger]
     [LastName]         NVARCHAR(200) NULL,
     [Age]              INT           NULL,
     [Template]         BIT           NULL,
-    [Student_ID]       INT           Null,
+    [Student_ID]       INT           NULL,
 
     CONSTRAINT PK_Borger_ID PRIMARY KEY ([Borger_ID]),
     CONSTRAINT FK_Borger_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person([Person_ID]) ON DELETE CASCADE

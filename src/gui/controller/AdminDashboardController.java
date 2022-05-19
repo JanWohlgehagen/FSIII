@@ -4,6 +4,7 @@ import be.*;
 import be.user.User;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
+import gui.model.CitizenModel;
 import gui.model.UserModel;
 import gui.util.CreateAndEditClassScene;
 import gui.util.CreateTeacherAndStudentScene;
@@ -76,6 +77,11 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private ComboBox<WClass> comboboxTeacherClass;
 
+    @FXML
+    private TextField txtSearchBarTeacher;
+    @FXML
+    private TextField txtSearchBarStudent;
+
     private UserModel userModel;
 
     @Override
@@ -128,7 +134,17 @@ public class AdminDashboardController implements Initializable {
                 userModel.teacherAndStudentInClass(newValue);
             }
         });
-        }
+
+        txtSearchBarStudent.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            userModel.searchStudent(newValue);
+        });
+
+        txtSearchBarTeacher.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            userModel.searchTeacher(newValue);
+        });
+
+
+    }
 
     public void handleNewTeacher(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CreateTeacherAndStudentController> createTeacherAndStudentScene = new CreateTeacherAndStudentScene();

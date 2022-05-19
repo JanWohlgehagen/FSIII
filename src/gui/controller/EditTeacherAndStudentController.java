@@ -4,6 +4,7 @@ import be.user.User;
 import gui.model.UserModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -14,9 +15,18 @@ import java.util.ResourceBundle;
 
 public class EditTeacherAndStudentController implements Initializable {
 
-    public GridPane parentPaneGridPane;
-    public TextField txtFirstName;
-    public TextField txtLastName;
+
+    @FXML
+    private GridPane parentPaneGridPane;
+
+    @FXML
+    private TextField txtFirstName;
+    @FXML
+    private TextField txtLastName;
+    @FXML
+    private TextField txtLoginName;
+    @FXML
+    private TextField txtPassword;
 
     private User student;
 
@@ -30,9 +40,11 @@ public class EditTeacherAndStudentController implements Initializable {
             if(student != null){
                 txtFirstName.setText(student.getFirstNameProperty().get());
                 txtLastName.setText(student.getLastNameProperty().get());
+                txtLoginName.setText(student.getCredential().getUserName());
             }else if(teacher != null){
                 txtFirstName.setText(teacher.getFirstNameProperty().get());
                 txtLastName.setText(teacher.getLastNameProperty().get());
+                txtLoginName.setText(teacher.getCredential().getUserName());
             }
         });
 
@@ -54,11 +66,17 @@ public class EditTeacherAndStudentController implements Initializable {
         if(student != null){
             student.setFirstName(txtFirstName.getText());
             student.setLastName(txtLastName.getText());
+            student.getCredential().setUserName(txtLoginName.getText());
+            student.getCredential().setPassword(txtPassword.getText());
             userModel.editUser(student);
+            userModel.editLoginUser(student.getCredential());
         }else if(teacher != null){
            teacher.setFirstName(txtFirstName.getText());
            teacher.setLastName(txtLastName.getText());
+           teacher.getCredential().setUserName(txtLoginName.getText());
+           teacher.getCredential().setPassword(txtPassword.getText());
            userModel.editUser(teacher);
+           userModel.editLoginUser(teacher.getCredential());
         }
 
         Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();

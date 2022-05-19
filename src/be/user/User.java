@@ -1,5 +1,6 @@
 package be.user;
 
+import be.Credential;
 import be.user.UserType;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -10,10 +11,15 @@ import java.util.EnumSet;
 
 public class User {
 
-    protected IntegerProperty id = new SimpleIntegerProperty();
-    protected StringProperty firstName = new SimpleStringProperty();
-    protected StringProperty lastName = new SimpleStringProperty();
-    protected EnumSet<UserType> userType = EnumSet.noneOf(UserType.class);
+    private IntegerProperty id = new SimpleIntegerProperty();
+    private StringProperty firstName = new SimpleStringProperty();
+    private StringProperty lastName = new SimpleStringProperty();
+    private EnumSet<UserType> userType = EnumSet.noneOf(UserType.class);
+    private Credential credential;
+
+    private StringProperty loginName = new SimpleStringProperty();
+    private StringProperty password = new SimpleStringProperty();
+
     private StringProperty fullName = new SimpleStringProperty();
 
     private StringProperty type =  new SimpleStringProperty();
@@ -85,6 +91,14 @@ public class User {
     public StringProperty getFullNameProperty(){
         fullName.set(this.firstName.get() + " " + this.lastName.get());
         return this.fullName;
+    }
+
+    public Credential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
     }
 
     @Override

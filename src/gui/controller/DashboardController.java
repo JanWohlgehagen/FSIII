@@ -2,10 +2,8 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import be.FunktionstilstandsUnderkategori;
 import be.user.User;
 
-import be.user.UserType;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
 import gui.model.*;
@@ -26,6 +24,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
+
 
     @FXML
     private Button btnDeleteCitizen;
@@ -74,6 +73,8 @@ public class DashboardController implements Initializable {
     private Label lblName;
     @FXML
     private Label lblAge;
+    @FXML
+    private Label lblStudent;
 
 
     private DashboardController dashboardController;
@@ -83,6 +84,7 @@ public class DashboardController implements Initializable {
     private CitizenModel citizenModel;
     private Case selectedCase;
     private Borger selectCitizen;
+    private Borger selectCitizenTemplate;
     private FunktionstilstandModel funktionstilstandModel;
     private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
     private HelbredstilstandModel helbredstilstandModel;
@@ -92,6 +94,8 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(this::setDashboardToLoginUserProfile);
+
         try {
             caseModel = new CaseModel(new ManagerFacade(new DatabaseFacade()));
             citizenModel = new CitizenModel(new ManagerFacade(new DatabaseFacade()));
@@ -104,46 +108,12 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
 
-        Platform.runLater(() -> {
-            setDashboardToLoginUserProfile();
+        setAllListener();
 
-        });
+    }
 
-
-        lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                selectCitizen = newValue;
-                lblAge.setText(selectCitizen.getAgeProperty().get() + " år");
-                lblName.setText(selectCitizen.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
-            }
-            checkForNullValuesAndDisableCircle(newValue, oldValue);
-        });
-
-        lvStuderendesBorgere.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                selectCitizen = newValue;
-            }
-            checkForNullValuesAndDisableCircle(newValue, oldValue);
-        });
-
-        lvTemplates.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                selectCitizen = newValue;
-            }
-            checkForNullValuesAndDisableCircle(newValue, oldValue);
-        });
-
-        lvStuderende.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                lvStuderende.getItems().clear();
-                for (Borger b : citizenModel.getAllCitizen()) {
-                    if (b.getStudentIDProperty().get() == newValue.getIdProperty().get()) {
-                        lvStuderendesBorgere.getItems().add(b);
-                    }
-                }
-            }
-            checkForNullValuesAndDisableCircle(newValue, oldValue);
-        });
+    public void setDashboardController(DashboardController dashboardController) {
+        this.dashboardController = dashboardController;
     }
 
     private <T, U> void checkForNullValuesAndDisableCircle(T newValue, U oldValue){
@@ -239,16 +209,29 @@ public class DashboardController implements Initializable {
             udfoerelseIOgLeveringController.setCitizenModel(citizenModel);
         }
 
-    public void handleBtnNewCitizenTemplate(ActionEvent actionEvent) {
-        //TODO
+    public void handleBtnNewCitizenTemplate(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<CreateCitizenViewController> createCitizenSceneLoader = new CreateCitizenScene();
+        createCitizenSceneLoader.loadNewScene(new Stage());
+        CreateCitizenViewController createCitizenViewController = createCitizenSceneLoader.getController();
+        createCitizenViewController.setDashboardController(dashboardController);
+        createCitizenViewController.setTemplate(true);
+        createCitizenViewController.setCitizenModel(citizenModel);
     }
 
     public void handleBtnDeleteCitizenTemplate(ActionEvent actionEvent) {
-        //TODO
+        if (selectCitizen != null) {
+            Alert alert = new Alert( Alert.AlertType.CONFIRMATION,"Er du sikker på du vil slette denne template borger?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get().equals(ButtonType.YES)){
+                citizenModel.deleteCitizen(selectCitizenTemplate);
+                lvTemplates.getItems().clear();
+                lvTemplates.setItems(citizenModel.getAllTemplates());
+            }
+        }
     }
 
     public void handleBtnGenerateCitizenFromTemplate(ActionEvent actionEvent) {
-        //TODO
+        citizenModel.createCitizenFromTemplate(selectCitizenTemplate);
     }
 
     public void handleChangeTab(Event event) {
@@ -270,10 +253,6 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void setDashboardController(DashboardController dashboardController) {
-        this.dashboardController = dashboardController;
-    }
-
     public void setLoginPerson(User user) {
         this.loginUser = user;
     }
@@ -288,7 +267,7 @@ public class DashboardController implements Initializable {
                     btnDeleteCitizen.setVisible(false);
 
                     for (Borger b : citizenModel.getAllCitizen()) {
-                        if (b.getStudentIDProperty().get() == loginUser.getIdProperty().get()) {
+                        if (b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
                             lvCitizens.getItems().add(b);
                         }
                     }
@@ -297,6 +276,8 @@ public class DashboardController implements Initializable {
                     tabStudents.setDisable(false);
                     tabTemplates.setDisable(false);
                     lvCitizens.setItems(citizenModel.getAllCitizen());
+                    lvStuderende.setItems(userModel.getAllStudent());
+                    lvTemplates.setItems(citizenModel.getAllTemplates());
                 }
 
                 default -> throw new UnsupportedOperationException();
@@ -336,5 +317,63 @@ public class DashboardController implements Initializable {
 
             }
         }
+    }
+
+    private void setAllListener(){
+
+        lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectCitizen = newValue;
+                lblAge.setText(newValue.getAgeProperty().get() + " år");
+                lblName.setText(newValue.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
+                if(newValue.getStudent() != null){
+                    lblStudent.setText(newValue.getStudent().getFullNameProperty().get());
+                }else{
+                    lblStudent.setText("Ingen tilknyttede studerende.");
+                }
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
+
+        lvStuderendesBorgere.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectCitizen = newValue;
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
+
+        lvTemplates.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectCitizenTemplate = newValue;
+                selectCitizen = newValue;
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
+
+        lvStuderende.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                lvStuderendesBorgere.getItems().clear();
+                for (Borger b : citizenModel.getAllCitizen()) {
+                    if (b.getStudent().getIdProperty().get() == newValue.getIdProperty().get()) {
+                        lvStuderendesBorgere.getItems().add(b);
+                    }
+                }
+            }
+        });
+
+        // Search functionality in the list view
+        txtSearchBarBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            citizenModel.searchCitizen(newValue);
+        });
+
+        // Search functionality in the list view
+        txtSearchBarTemplates.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            citizenModel.searchTemplates(newValue);
+        });
+
+        // Search functionality in the list view
+        txtSearchBarStudentBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            userModel.searchStudent(newValue);
+        });
     }
 }
