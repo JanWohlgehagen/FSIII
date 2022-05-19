@@ -4,6 +4,8 @@ import be.*;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.util.BestillingsScene;
+import gui.util.FunktionsTilstandOverviewScene;
+import gui.util.HelbredsTilstandOverviewScene;
 import gui.util.ISceneLoader;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -264,6 +266,21 @@ public class SagsoplysningController implements Initializable {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
     }
+
+
+    public void openFOverviewHandle(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<AlleRelevanteOplysningerViewController> funktionstilstandOverviewScene = new FunktionsTilstandOverviewScene();
+        funktionstilstandOverviewScene.loadNewScene(new Stage());
+        AlleRelevanteOplysningerViewController alleRelevanteOplysningerViewController = funktionstilstandOverviewScene.getController();
+        alleRelevanteOplysningerViewController.setFunktionstilstand(borger.getFunktionstilstand());
+    }
+    public void openHOverviewHandle(ActionEvent actionEvent) throws IOException {
+        ISceneLoader<AlleRelevanteHelbredstilstandeViewController> helbredstilstandOverviewScene = new HelbredsTilstandOverviewScene();
+        helbredstilstandOverviewScene.loadNewScene(new Stage());
+        AlleRelevanteHelbredstilstandeViewController alleRelevanteHelbredstilstandeViewController = helbredstilstandOverviewScene.getController();
+        alleRelevanteHelbredstilstandeViewController.setHelbredstilstand(borger.getHelbredstilstand());
+    }
+
 
     private void updateBorger(Borger borger){
         //Update generelle oplysninger on citizen object
@@ -591,6 +608,7 @@ public class SagsoplysningController implements Initializable {
         }
         return medicineList;
     }
+
 
 
     private class TooltipBank{

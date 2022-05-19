@@ -20,7 +20,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SagsoplysningController">
+
+<GridPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SagsoplysningController">
+
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -402,7 +404,7 @@
                                           <Insets bottom="15.0" top="15.0" />
                                        </padding>
                                     </VBox>
-                                    <Label text="Tilstand (niveau)" GridPane.rowIndex="1" />
+                                    <Label text="Tilstand (Niveau)" GridPane.rowIndex="1" />
                                     <Label layoutX="10.0" layoutY="120.0" text="Forventet tilstand (Niveau)" GridPane.rowIndex="3" />
                                     <ComboBox fx:id="comboBoxForventetTilstandFunktionstilstand" prefHeight="25.0" prefWidth="265.0" GridPane.columnSpan="2147483647" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" />
                                     <ComboBox fx:id="comboBoxTilstandFunktionstilstand" layoutX="10.0" layoutY="393.0" prefHeight="25.0" prefWidth="265.0" GridPane.columnSpan="2147483647" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" />
@@ -444,6 +446,11 @@
                            <children>
                               <HBox alignment="TOP_RIGHT">
                                  <children>
+                                    <Button mnemonicParsing="false" onAction="#openFOverviewHandle" text="Overblik">
+                                       <HBox.margin>
+                                          <Insets top="30.0" />
+                                       </HBox.margin>
+                                    </Button>
                                     <GridPane alignment="TOP_RIGHT" minHeight="160.0" minWidth="160.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" />
@@ -627,6 +634,11 @@
                            <children>
                               <HBox alignment="TOP_RIGHT">
                                  <children>
+                                    <Button mnemonicParsing="false" onAction="#openHOverviewHandle" text="Overblik">
+                                       <HBox.margin>
+                                          <Insets top="30.0" />
+                                       </HBox.margin>
+                                    </Button>
                                     <GridPane alignment="TOP_RIGHT" minHeight="160.0" minWidth="160.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" />
