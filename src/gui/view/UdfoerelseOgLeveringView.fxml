@@ -15,9 +15,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="parentPane" alignment="CENTER" prefWidth="800.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.UdfoerelseIOgLeveringController">
+<GridPane fx:id="parentPane" alignment="CENTER" prefWidth="800.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.UdfoerelseIOgLeveringController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="250.0" prefWidth="250.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="300.0" prefWidth="300.0" />
       <ColumnConstraints hgrow="SOMETIMES" />
    </columnConstraints>
    <rowConstraints>
@@ -26,7 +26,7 @@
       <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <ListView fx:id="ListViewObservations" prefWidth="300.0" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647">
+      <ListView fx:id="ListViewObservations" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647">
          <GridPane.margin>
             <Insets right="-7.0" top="32.0" />
          </GridPane.margin>
@@ -38,7 +38,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <TextArea fx:id="txtAreaDok" onMouseReleased="#handleMouseReleasedDokumentationArea" VBox.vgrow="ALWAYS">
+            <TextArea fx:id="txtAreaDok" editable="false" onMouseReleased="#handleMouseReleasedDokumentationArea" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="-5.0" />
                </VBox.margin>
@@ -150,6 +150,9 @@
                      </children>
                   </GridPane>
                </children>
+               <VBox.margin>
+                  <Insets bottom="-20.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>

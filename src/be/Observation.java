@@ -3,6 +3,8 @@ package be;
 import javafx.beans.property.*;
 
 import java.sql.Timestamp;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 
 public class Observation {
     private ObjectProperty<Timestamp> tidspunkt = new SimpleObjectProperty<>();
@@ -33,8 +35,13 @@ public class Observation {
         this.titel.set(titel);
     }
 
+    private String formattingOfTidspunkt()
+    {
+        return new SimpleDateFormat("dd-MM-yyyy  HH:mm").format(tidspunkt.get());
+    }
+
     @Override
     public String toString() {
-        return tidspunkt.get() + ": " + titel.get();
+        return formattingOfTidspunkt() + " : " + titel.get();
     }
 }

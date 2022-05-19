@@ -58,10 +58,16 @@ public class UdfoerelseIOgLeveringController implements Initializable {
                             selectedCitizen.getObservationer().add(fuk.getObservation());
                         }
                     }
+                ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    if(newValue!=null)
+                    {
+                        txtAreaDok.setText(newValue.getDescriptionProperty().get());
+                    }
+                });
             }
             ListViewObservations.setItems(selectedCitizen.getObservationer());
         });
-
     }
     public void setDashboardController(DashboardController dashboardController){
         this.dashboardController = dashboardController;

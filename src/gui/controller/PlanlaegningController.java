@@ -2,7 +2,11 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
+import be.FunktionstilstandsUnderkategori;
+import bll.ManagerFacade;
+import dal.DatabaseFacade;
 import gui.model.CaseModel;
+import gui.model.CitizenModel;
 import gui.util.CaseDocumentationScene;
 import gui.util.ISceneLoader;
 import javafx.application.Platform;
@@ -21,6 +25,7 @@ public class PlanlaegningController implements Initializable {
 
     private DashboardController dashboardController;
     private CaseModel caseModel;
+    private CitizenModel citizenModel;
     private Case selectCase;
     private Borger selectCitizen;
 
@@ -33,6 +38,11 @@ public class PlanlaegningController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             selectCase = dashboardController.getSelectedCase();
+            try {
+                citizenModel = new CitizenModel(new ManagerFacade(new DatabaseFacade()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             selectCitizen = dashboardController.getSelectedCitizen();
             txtAreaPlanlaegning.setText(selectCase.getPlanProperty().get());
             caseModel = dashboardController.getCaseModel();
@@ -54,6 +64,25 @@ public class PlanlaegningController implements Initializable {
         caseDocumentationScene.loadNewScene(getStage());
         UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
         udfoerelseIOgLeveringController.setDashboardController(dashboardController);
+        udfoerelseIOgLeveringController.setCitizenModel(citizenModel);
+       /* selectedCitizen = dashboardController.getSelectedCitizen();
+        citizenModel.getTilstande(selectedCitizen);
+        if(selectedCitizen.getObservationer().isEmpty()){
+            for (String key: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
+                for (FunktionstilstandsUnderkategori fuk: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
+                    if (fuk.getObservation().getTidspunkt() != null) {
+                        selectedCitizen.getObservationer().add(fuk.getObservation());
+                    }
+                }
+            ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+            {
+                if(newValue!=null)
+                {
+                    txtAreaDok.setText(newValue.getDescriptionProperty().get());
+                }
+            });
+        }
+        ListViewObservations.setItems(selectedCitizen.getObservationer());*/
     }
 
     private Stage getStage(){

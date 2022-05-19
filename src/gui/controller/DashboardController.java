@@ -237,8 +237,6 @@ public class DashboardController implements Initializable {
             UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
             udfoerelseIOgLeveringController.setDashboardController(dashboardController);
             udfoerelseIOgLeveringController.setCitizenModel(citizenModel);
-            /// TODO: 19/05/2022
-
         }
 
     public void handleBtnNewCitizenTemplate(ActionEvent actionEvent) {
