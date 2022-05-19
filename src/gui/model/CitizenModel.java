@@ -48,14 +48,12 @@ public class CitizenModel {
             borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
             borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
             managerFacade.createEmptyTilstande(borger);
-            managerFacade.createGenerelleOplysninger(borger);
         }
         else
         allCitizens.add(managerFacade.createCitizen(borger));
         borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
         borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
         managerFacade.createEmptyTilstande(borger);
-        managerFacade.createGenerelleOplysninger(borger);
     }
 
 

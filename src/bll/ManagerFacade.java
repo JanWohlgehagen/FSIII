@@ -204,11 +204,6 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public void createGenerelleOplysninger(Borger borger) {
-        citizenManager.createGenerelleOplysninger(borger);
-    }
-
-    @Override
     public Borger getGenerelleOplysninger(Borger borger) {
         return citizenManager.getGenerelleOplysninger(borger);
     }

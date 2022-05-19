@@ -1,12 +1,12 @@
 USE MASTER
 GO
-ALTER DATABASE [CSe21A_FSIII_Simulator] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-DROP DATABASE [CSe21A_FSIII_Simulator]
+ALTER DATABASE [CSe21A_FSIII_Simulator2] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+DROP DATABASE [CSe21A_FSIII_Simulator2]
 GO
 
-CREATE DATABASE CSe21A_FSIII_Simulator
+CREATE DATABASE CSe21A_FSIII_Simulator2
 GO
-USE CSe21A_FSIII_Simulator
+USE CSe21A_FSIII_Simulator2
 GO
 CREATE TABLE [Person]
 (
@@ -16,7 +16,7 @@ CREATE TABLE [Person]
     [Role]      NVARCHAR(50)  NOT NULL,
 
     CONSTRAINT PK_P_ID PRIMARY KEY ([Person_ID])
-)
+    )
 
 CREATE TABLE [Borger]
 (
@@ -65,28 +65,25 @@ CREATE TABLE [Case_Dokumentation]
     [Text]                  NVARCHAR(4000) NULL,
 
     CONSTRAINT FK_Borger_IDCD FOREIGN KEY (Case_ID, [Borger_ID]) REFERENCES [Case] ([Case_ID], Borger_ID) ON DELETE CASCADE,
-
     )
 
-CREATE TABLE [Generelle_Oplysninger]
+CREATE TABLE [General_Information]
 (
-    [Borger_ID]           int            NOT NULL,
-    [Mestring]            NVARCHAR(4000) NULL,
-    [Motivation]          NVARCHAR(4000) NULL,
-    [Ressourcer]          NVARCHAR(4000) NULL,
-    [Roller]              NVARCHAR(4000) NULL,
-    [Vaner]               NVARCHAR(4000) NULL,
-    [Uddannelse]          NVARCHAR(4000) NULL,
-    [Livshistorie]        NVARCHAR(4000) NULL,
-    [Netvaerk]            NVARCHAR(4000) NULL,
-    [Helbredsoplysninger] NVARCHAR(4000) NULL,
-    [hjaelpemidler]       NVARCHAR(4000) NULL,
-    [Boligens_Indretning] NVARCHAR(4000) NULL,
+    [GI_ID] int IDENTITY,
+    [Title] NVARCHAR(200),
 
-    CONSTRAINT PK_Customer_IDGO PRIMARY KEY ([Borger_ID]),
-    CONSTRAINT FK_Borger_IDGO FOREIGN KEY ([Borger_ID]) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE
-
+    CONSTRAINT PK_GI_ID PRIMARY KEY ([GI_ID]),
     )
+
+CREATE TABLE [GI_Assessment](
+    [Citizen_ID] int NOT NULL,
+    [FK_GI_ID] int NOT NULL,
+    [Description] NVARCHAR (4000),
+
+    CONSTRAINT PK_GI_Assessment PRIMARY KEY ([Citizen_ID], [FK_GI_ID]),
+    CONSTRAINT FK_Citizen_ID FOREIGN KEY ([Citizen_ID]) REFERENCES [Borger] ([Borger_ID]) ON DELETE CASCADE,
+    )
+
 
 
 CREATE TABLE [Helbredstilstand]
@@ -198,10 +195,10 @@ CREATE TABLE [ClassTeachers]
     [Teacher_ID] INT NOT NULL,
     [Class_ID]   INT NOT NULL,
 
-    CONSTRAINT PK_Class_Teacher_ID PRIMARY KEY (Teacher_ID, Class_ID),
+     CONSTRAINT PK_Class_Teacher_ID PRIMARY KEY (Teacher_ID, Class_ID),
     CONSTRAINT FK_Teacher_ID FOREIGN KEY (Teacher_ID) REFERENCES Person ([Person_ID]) ON DELETE CASCADE,
     CONSTRAINT FK_Class_Teacher_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID]) ON DELETE CASCADE
-)
+    )
 
 
 CREATE TABLE [ClassStudents]
@@ -209,10 +206,10 @@ CREATE TABLE [ClassStudents]
     [Student_ID] INT NOT NULL,
     [Class_ID]   INT NOT NULL,
 
-    CONSTRAINT PK_Class_Student_ID PRIMARY KEY (Student_ID, Class_ID),
+     CONSTRAINT PK_Class_Student_ID PRIMARY KEY (Student_ID, Class_ID),
     CONSTRAINT FK_Student_ID FOREIGN KEY (Student_ID) REFERENCES Person ([Person_ID]) ON DELETE CASCADE,
     CONSTRAINT FK_Class_Student_ID FOREIGN KEY (Class_ID) REFERENCES Class ([Class_ID]) ON DELETE CASCADE
-)
+    )
 
 CREATE TABLE [Credentials]
 (

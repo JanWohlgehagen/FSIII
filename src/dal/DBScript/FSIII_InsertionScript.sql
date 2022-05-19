@@ -1,7 +1,19 @@
 USE MASTER
 GO
-USE CSe21A_FSIII_Simulator
+USE CSe21A_FSIII_Simulator2
 GO
+
+INSERT INTO General_Information (Title) VALUES ('Mestring')
+INSERT INTO General_Information (Title) VALUES ('Motivation')
+INSERT INTO General_Information (Title) VALUES ('Ressourcer')
+INSERT INTO General_Information (Title) VALUES ('Roller')
+INSERT INTO General_Information (Title) VALUES ('Vaner')
+INSERT INTO General_Information (Title) VALUES ('Uddannelse')
+INSERT INTO General_Information (Title) VALUES ('Livshistorie')
+INSERT INTO General_Information (Title) VALUES ('Netvaerk')
+INSERT INTO General_Information (Title) VALUES ('hjaelpemidler')
+INSERT INTO General_Information (Title) VALUES ('Helbredsoplysninger')
+INSERT INTO General_Information (Title) VALUES ('Boligens_Indretning')
 
 
 INSERT INTO FS_Overkategori (FS_Overkategori_Titel) VALUES ('Egenomsorg')

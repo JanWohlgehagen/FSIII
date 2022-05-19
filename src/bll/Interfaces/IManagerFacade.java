@@ -75,8 +75,6 @@ public interface IManagerFacade {
 
     public void updateSagsoplysninger(Borger borger);
 
-    public void createGenerelleOplysninger(Borger borger);
-
     public Borger getGenerelleOplysninger(Borger borger);
 
     public void createEmptyTilstande(Borger borger);

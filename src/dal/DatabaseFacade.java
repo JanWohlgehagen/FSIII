@@ -216,11 +216,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public void createGenerelleOplysninger(Borger borger) {
-        dbGenerelInformationDAO.createGenerelleOplysninger(borger);
-    }
-
-    @Override
     public Borger getGenerelleOplysninger(Borger borger) {
         return dbGenerelInformationDAO.getGenerelleOplysninger(borger);
     }
