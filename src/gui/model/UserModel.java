@@ -21,6 +21,7 @@ public class UserModel {
 
     private ObservableList<User> allStudent = FXCollections.observableArrayList();
     private List<User> allStudentCache = new ArrayList<>();
+    private List<User> allTeacherCache = new ArrayList<>();
     private ObservableList<User> allTeacher  = FXCollections.observableArrayList();
     private ObservableList<User> allAdmin  = FXCollections.observableArrayList();
     private ObservableList<WClass> allClass  = FXCollections.observableArrayList();
@@ -70,6 +71,7 @@ public class UserModel {
         if(allTeacher.isEmpty()){
             allTeacher.addAll(managerFacade.getAllTeacher());
         }
+        allTeacherCache.addAll(allTeacher);
         return allTeacher;
     }
 
@@ -185,6 +187,16 @@ public class UserModel {
         } else {
             allStudent.clear();
             allStudent.addAll(userSearcher.search(allStudentCache, query));
+        }
+    }
+
+    public void searchTeacher(String query) {
+        if (query.isBlank() || query.isEmpty()) {
+            allTeacher.clear();
+            allTeacher.addAll(allTeacherCache);
+        } else {
+            allTeacher.clear();
+            allTeacher.addAll(userSearcher.search(allTeacherCache, query));
         }
     }
 }

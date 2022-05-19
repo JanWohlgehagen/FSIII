@@ -97,6 +97,8 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(this::setDashboardToLoginUserProfile);
+
         try {
             caseModel = new CaseModel(new ManagerFacade(new DatabaseFacade()));
             citizenModel = new CitizenModel(new ManagerFacade(new DatabaseFacade()));
@@ -109,63 +111,12 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
 
-        Platform.runLater(this::setDashboardToLoginUserProfile);
+        setAllListener();
 
+    }
 
-        lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                selectCitizen = newValue;
-                lblAge.setText(newValue.getAgeProperty().get() + " år");
-                lblName.setText(newValue.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
-                if(newValue.getStudent() != null){
-                    lblStudent.setText(newValue.getStudent().getFullNameProperty().get());
-                }else{
-                    lblStudent.setText("Ingen tilknyttede studerende.");
-                }
-            }
-            checkForNullValuesAndDisableCircle(newValue, oldValue);
-        });
-
-        lvStuderendesBorgere.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                selectCitizen = newValue;
-            }
-            checkForNullValuesAndDisableCircle(newValue, oldValue);
-        });
-
-        lvTemplates.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                selectCitizenTemplate = newValue;
-                selectCitizen = newValue;
-            }
-            checkForNullValuesAndDisableCircle(newValue, oldValue);
-        });
-
-        lvStuderende.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                lvStuderendesBorgere.getItems().clear();
-                for (Borger b : citizenModel.getAllCitizen()) {
-                    if (b.getStudent().getIdProperty().get() == newValue.getIdProperty().get()) {
-                        lvStuderendesBorgere.getItems().add(b);
-                    }
-                }
-            }
-        });
-
-        // Search functionality in the list view
-        txtSearchBarBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            citizenModel.searchCitizen(newValue);
-        });
-
-        // Search functionality in the list view
-        txtSearchBarTemplates.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            citizenModel.searchTemplates(newValue);
-        });
-
-        // Search functionality in the list view
-        txtSearchBarStudentBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            userModel.searchStudent(newValue);
-        });
+    public void setDashboardController(DashboardController dashboardController) {
+        this.dashboardController = dashboardController;
     }
 
     private <T, U> void checkForNullValuesAndDisableCircle(T newValue, U oldValue){
@@ -309,10 +260,6 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void setDashboardController(DashboardController dashboardController) {
-        this.dashboardController = dashboardController;
-    }
-
     public void setLoginPerson(User user) {
         this.loginUser = user;
     }
@@ -377,5 +324,63 @@ public class DashboardController implements Initializable {
 
             }
         }
+    }
+
+    private void setAllListener(){
+
+        lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectCitizen = newValue;
+                lblAge.setText(newValue.getAgeProperty().get() + " år");
+                lblName.setText(newValue.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
+                if(newValue.getStudent() != null){
+                    lblStudent.setText(newValue.getStudent().getFullNameProperty().get());
+                }else{
+                    lblStudent.setText("Ingen tilknyttede studerende.");
+                }
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
+
+        lvStuderendesBorgere.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectCitizen = newValue;
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
+
+        lvTemplates.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectCitizenTemplate = newValue;
+                selectCitizen = newValue;
+            }
+            checkForNullValuesAndDisableCircle(newValue, oldValue);
+        });
+
+        lvStuderende.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                lvStuderendesBorgere.getItems().clear();
+                for (Borger b : citizenModel.getAllCitizen()) {
+                    if (b.getStudent().getIdProperty().get() == newValue.getIdProperty().get()) {
+                        lvStuderendesBorgere.getItems().add(b);
+                    }
+                }
+            }
+        });
+
+        // Search functionality in the list view
+        txtSearchBarBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            citizenModel.searchCitizen(newValue);
+        });
+
+        // Search functionality in the list view
+        txtSearchBarTemplates.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            citizenModel.searchTemplates(newValue);
+        });
+
+        // Search functionality in the list view
+        txtSearchBarStudentBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            userModel.searchStudent(newValue);
+        });
     }
 }

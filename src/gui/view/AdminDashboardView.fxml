@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminDashboardController">
+<TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminDashboardController">
   <tabs>
       <Tab text="Lærer">
          <content>
@@ -40,7 +40,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField promptText="Søg" />
+                        <TextField fx:id="txtSearchBarTeacher" promptText="Søg" />
                         <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1">
                            <children>
                               <Button fx:id="btnInfoTeacher" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
@@ -116,7 +116,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField promptText="Søg" />
+                        <TextField fx:id="txtSearchBarStudent" promptText="Søg" />
                         <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1">
                            <children>
                               <Button fx:id="btnInfoStudent" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
