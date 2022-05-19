@@ -124,6 +124,16 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbUserDAO.editUser(user);
     }
 
+    @Override
+    public void createNewLoginUser(Credential credential) {
+        dbUserDAO.createNewLoginUser(credential);
+    }
+
+    @Override
+    public void editLoginUser(Credential credential) {
+        dbUserDAO.editLoginUser(credential);
+    }
+
 
     /***************************************************/
                             /******************** Case *************************/
@@ -228,7 +238,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     public void getTilstandeOnCitizen(Borger borger) {
         borger.setFunktionstilstand(dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger));
         borger.setHelbredstilstand(dbHelbredstilstandDAO.getHelbredstilstandOnCitizen(borger));
-
+        //TODO Skal den hente Tilstand eller sætte den????
     }
 
     @Override

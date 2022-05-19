@@ -11,7 +11,9 @@ public interface IManagerFacade {
     // USER
     User loginCredential(String userName, String userPassword);
 
-    String newHashPassword(String password);
+    void createNewLoginUser(Credential credential);
+
+    void editLoginUser(Credential credential);
 
     List<User> getAllUser();
 

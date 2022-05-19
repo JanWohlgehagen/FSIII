@@ -9,7 +9,7 @@ import dal.interfaces.IDatabaseFacade;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserManager {
+public class UserManager extends CredentialManager{
 
     private IDatabaseFacade databaseFacade;
     private List<User> allUserInDatabase;
@@ -18,6 +18,7 @@ public class UserManager {
     private List<User> allAdminInDatabase;
 
     public UserManager(DatabaseFacade databaseFacade) {
+        super(databaseFacade);
         this.databaseFacade = databaseFacade;
         allUserInDatabase = new ArrayList<>();
         allStudentInDatabase = new ArrayList<>();

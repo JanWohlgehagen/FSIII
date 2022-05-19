@@ -73,8 +73,11 @@ public class CitizenModel {
             newCase.setOpfoelgningstag(aCase.getOpfoelgningstagProperty().get());
             managerFacade.createCaseOnCitizen(newCase);
         }
-        var te = templateBorger.getHelbredstilstand();
-        te.getHelbredsTilstandsKort();
+
+        // Set the Helbredstiltand and Funktionstilstands
+        if(templateBorger.getHelbredstilstand() == null){
+            managerFacade.getTilstande(templateBorger);
+        }
 
         borger.setHelbredstilstand(templateBorger.getHelbredstilstand());
         borger.setFunktionstilstand(templateBorger.getFunktionstilstand());
