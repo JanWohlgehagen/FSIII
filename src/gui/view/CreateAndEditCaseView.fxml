@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="parentGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CreateAndEditCaseController">
+<GridPane fx:id="parentGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CreateAndEditCaseController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,7 +53,7 @@
                   <Label prefHeight="21.0" prefWidth="134.0" text="SagsHenvisning:" />
                   <TextField fx:id="lblSagsansvarlig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label prefHeight="21.0" prefWidth="118.0" text="Sagsansvarlig:" GridPane.rowIndex="1" />
-                  <TextField fx:id="lblSagsHenvisning" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="comboboxCaseReference" prefHeight="35.0" prefWidth="159.0" GridPane.columnIndex="1" />
                </children>
                <VBox.margin>
                   <Insets />

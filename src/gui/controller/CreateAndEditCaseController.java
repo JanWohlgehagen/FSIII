@@ -12,13 +12,17 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateAndEditCaseController implements Initializable {
 
-    public TextField lblSagsansvarlig;
-    public TextField lblSagsHenvisning;
+    @FXML
+    private TextField lblSagsansvarlig;
+    @FXML
+    private ComboBox<String> comboboxCaseReference;
     @FXML
     private ComboBox<String> overkategoriCbx;
     @FXML
@@ -61,12 +65,13 @@ public class CreateAndEditCaseController implements Initializable {
 
             overkategoriCbx.getItems().addAll(funktionstilstandModel.getFunktionstilstandsList());
             overkategoriCbx.getItems().addAll(helbredstilstandModel.getHelbredstilstandsList());
+            comboboxCaseReference.getItems().addAll(caseReferences());
 
             if(editCaseMode) {
                 overkategoriCbx.setPromptText(editThisCase.getOverkategoriTitleProperty().get());
                 underkategoriCbx.setPromptText(editThisCase.getUnderkategoriTitleProperty().get());
                 lblSagsansvarlig.setText(editThisCase.getSagsansvarligProperty().get());
-                lblSagsHenvisning.setText(editThisCase.getHenvisningProperty().get());
+                comboboxCaseReference.getSelectionModel().select(editThisCase.getHenvisningProperty().get());
                 beskrivelseTxtArea.setText(editThisCase.getCaseDescriptionProperty().get());
                 aarsagsfritekstTxtArea.setText(editThisCase.getAasagsfritekstProperty().get());
                 aarsagsdiagnoseTxtArea.setText(editThisCase.getAasagsdiagnoseProperty().get());
@@ -84,6 +89,15 @@ public class CreateAndEditCaseController implements Initializable {
             underkategoriCbx.getItems().addAll(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
         else
             underkategoriCbx.getItems().addAll(helbredstilstandsUnderkategoriModel.getHelbredstilstandsUnderkategoriList());
+    }
+
+    private List<String> caseReferences(){
+        String[] caseReferences = {"Borger", "Pårørende", "Sagsbehandler - anden forvaltning", "Hjemmeplejen",
+                        "Hjemmesygeplejen", "Træning", "Sundhedsfremme og forebyggelse", "Anden kommune",
+                        "Egen læge/vagtlæge", "Speciallæge", "Sygehus - kirurgisk", " Sygehus - medicinsk",
+                        "Sygehus – psykiatrisk", "Sygehus – akutmodtagelse", "Andre"};
+
+        return Arrays.stream(caseReferences).toList();
     }
 
     public void newCaseModeIsOn(){
@@ -126,7 +140,7 @@ public class CreateAndEditCaseController implements Initializable {
         if(newCaseMode){
             Case newCase = new Case(borger.getIDProperty().get(), overkategoriCbx.getSelectionModel().getSelectedItem(), underkategoriCbx.getSelectionModel().getSelectedItem());
             newCase.setIsBevilget(false);
-            newCase.setHenvisning(lblSagsHenvisning.getText());
+            newCase.setHenvisning(comboboxCaseReference.getSelectionModel().getSelectedItem());
             newCase.setSagsansvarlig(lblSagsansvarlig.getText());
             newCase.setCaseDescription(beskrivelseTxtArea.getText());
             newCase.setAasagsfritekst(aarsagsfritekstTxtArea.getText());
@@ -147,7 +161,7 @@ public class CreateAndEditCaseController implements Initializable {
                 editThisCase.setUnderkategoriTitle(underkategoriCbx.getSelectionModel().getSelectedItem());
             }
             editThisCase.setSagsansvarlig(lblSagsansvarlig.getText());
-            editThisCase.setHenvisning(lblSagsHenvisning.getText());
+            editThisCase.setHenvisning(comboboxCaseReference.getSelectionModel().getSelectedItem());
             editThisCase.setCaseDescription(beskrivelseTxtArea.getText());
             editThisCase.setAasagsfritekst(aarsagsfritekstTxtArea.getText());
             editThisCase.setAasagsdiagnose(aarsagsdiagnoseTxtArea.getText());

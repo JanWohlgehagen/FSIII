@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,6 +26,15 @@
                 <TextField fx:id="txtFirstName" />
                 <Label layoutX="10.0" layoutY="10.0" text="Last name" />
                 <TextField fx:id="txtLastName" />
+            <Separator prefHeight="34.0" prefWidth="400.0" stylesheets="@../resources/css/CommonTheme.css">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Separator>
+            <Label text="Login navn" />
+            <TextField fx:id="txtLoginName" />
+            <Label text="Password" />
+            <TextField fx:id="txtPassword" />
             </children>
             <GridPane.margin>
                 <Insets />

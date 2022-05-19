@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="parentGridPane" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CaseOpeningController">
+<GridPane fx:id="parentGridPane" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CaseOpeningController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -75,11 +75,11 @@
                   <Label fx:id="efternavnLbl" text="Efternavn placeholder" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="alderLbl" text="Alder placeholder" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Sagsansvarlig:" GridPane.rowIndex="3" />
-                  <Label fx:id="sagsansvarligLbl" text="navn placeholder" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="sagsansvarligLbl" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Sagshenvisning:" GridPane.rowIndex="4" />
-                  <Label fx:id="lblHenvisning" text="navn placeholder" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="lblHenvisning" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Opfølgning Tag:" GridPane.rowIndex="5" />
-                  <Label fx:id="lblOpfolgningsTag" text="Tag placeholder" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="lblOpfolgningsTag" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </children>

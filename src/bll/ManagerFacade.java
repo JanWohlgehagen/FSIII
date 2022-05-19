@@ -38,12 +38,17 @@ public class ManagerFacade implements IManagerFacade {
 
     @Override
     public User loginCredential(String userName, String userPassword) {
-        return credentialManager.loginCredential(userName, userPassword);
+        return userManager.loginCredential(userName, userPassword);
     }
 
     @Override
-    public String newHashPassword(String password) {
-        return credentialManager.newHashPassword(password);
+    public void createNewLoginUser(Credential credential) {
+        userManager.createNewLoginUser(credential);
+    }
+
+    @Override
+    public void editLoginUser(Credential credential) {
+        userManager.editLoginUser(credential);
     }
 
     @Override
@@ -64,6 +69,21 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public List<User> getAllAdmin() {
         return userManager.getAllAdmin();
+    }
+
+    @Override
+    public User newUser(User newUser) {
+        return userManager.newUser(newUser);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userManager.deleteUser(user);
+    }
+
+    @Override
+    public void editUser(User user) {
+        userManager.editUser(user);
     }
 
                                     /***************************************************/
@@ -120,21 +140,6 @@ public class ManagerFacade implements IManagerFacade {
         userManager.removeTeacherFromClass(teacher,wClass);
     }
 
-    @Override
-    public User newUser(User newUser) {
-       return userManager.newUser(newUser);
-    }
-
-    @Override
-    public void deleteUser(User user) {
-        userManager.deleteUser(user);
-    }
-
-    @Override
-    public void editUser(User user) {
-        userManager.editUser(user);
-    }
-
 
     /***************************************************/
                             /******************** Case *************************/
@@ -188,6 +193,11 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public void updateCitizen(Borger borger) {
         citizenManager.updateCitizen(borger);
+    }
+
+    @Override
+    public void addStudentToCitizen(Borger borger) {
+        citizenManager.addStudentToCitizen(borger);
     }
 
     @Override

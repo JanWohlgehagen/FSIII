@@ -4,6 +4,7 @@ import be.user.User;
 import javafx.beans.property.*;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Borger {
     private IntegerProperty ID = new SimpleIntegerProperty();
@@ -191,12 +192,12 @@ public class Borger {
         this.helbredstilstand = helbredstilstand;
     }
 
-    public IntegerProperty getStudentIDProperty() {
-        return studentID;
-    }
-
     public void setStudentID(int studentID) {
         this.studentID.set(studentID);
+    }
+
+    public IntegerProperty getStudentIDProperty() {
+        return studentID;
     }
 
     public void setStudent(User student) {
@@ -209,13 +210,6 @@ public class Borger {
 
     @Override
     public String toString() {
-        if (student == null )
-        {
-            return firstName.get() + " " +  lastName.get();
-
-        }
-        else
-            return firstName.get() + " " +  lastName.get() +". Studerende: " + student.getFullNameProperty().get();
-
+        return firstName.get() + " " + lastName.get();
     }
 }

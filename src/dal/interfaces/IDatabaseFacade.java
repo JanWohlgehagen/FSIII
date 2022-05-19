@@ -24,6 +24,11 @@ public interface IDatabaseFacade {
 
     void editUser(User user);
 
+    void createNewLoginUser(Credential credential);
+
+
+    void editLoginUser(Credential credential);
+
     // CLASS
 
     public List<WClass> getAllClass();
@@ -72,6 +77,8 @@ public interface IDatabaseFacade {
 
     public void updateCitizen(Borger borger);
 
+    public void addStudentToCitizen(Borger borger);
+
     public void deleteCitizen(Borger borger);
 
     public void updateGenerelleOplysninger(Borger borger);
@@ -104,4 +111,5 @@ public interface IDatabaseFacade {
     public List<String> getHelbredstilstand();
 
     public List<String> getHelbredstilstandsUnderkategori();
+
 }

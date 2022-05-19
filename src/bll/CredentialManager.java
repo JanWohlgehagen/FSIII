@@ -16,9 +16,9 @@ public class CredentialManager {
         this.databaseFacade = databaseFacade;
     }
 
-    public User loginCredential(String userName, String userPassword){
+    protected User loginCredential(String userName, String userPassword){
         if(checkCredential(userName, userPassword)){
-            return databaseFacade.getUserById(credential.getId());
+            return databaseFacade.getUserById(credential.getUserId());
         }else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Failed");
@@ -28,12 +28,24 @@ public class CredentialManager {
         return null;
     }
 
+    protected void createNewLoginUser(Credential credential){
+        credential.setPassword(newHashPassword(credential.getPassword()));
+        databaseFacade.createNewLoginUser(credential);
+
+
+    }
+
+    protected void editLoginUser(Credential credential){
+        credential.setPassword(newHashPassword(credential.getPassword()));
+        databaseFacade.editLoginUser(credential);
+    }
+
     private boolean checkCredential(String userName, String userPassword){
         credential = databaseFacade.checkCredential(userName);
         return credential != null && BCrypt.checkpw(userPassword, credential.getPassword());
     }
 
-    public String newHashPassword(String password){
+    private String newHashPassword(String password){
         return BCrypt.hashpw(password, this.salt);
     }
 }

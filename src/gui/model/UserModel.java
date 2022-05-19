@@ -1,5 +1,6 @@
 package gui.model;
 
+import be.Credential;
 import be.WClass;
 import be.user.User;
 import be.user.UserType;
@@ -131,6 +132,14 @@ public class UserModel {
         }else if(newUser.getUserType().equals(UserType.TEACHER)){
            allTeacher.add(managerFacade.newUser(newUser));
         }
+    }
+
+    public void createNewLoginUser(Credential credential){
+        managerFacade.createNewLoginUser(credential);
+    }
+
+    public void editLoginUser(Credential credential){
+        managerFacade.editLoginUser(credential);
     }
 
     public void removeUser(User user){

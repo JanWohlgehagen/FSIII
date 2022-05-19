@@ -24,7 +24,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private GridPane parentPaneGridPane;
-    
+
     @FXML
     private TextField txtUsername;
     @FXML
