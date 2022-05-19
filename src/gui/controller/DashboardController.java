@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
+import be.FunktionstilstandsUnderkategori;
 import be.user.User;
 
 import be.user.UserType;
@@ -231,16 +232,14 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
-        if (selectedCase != null) {
             ISceneLoader<UdfoerelseIOgLeveringController> caseDocumentationScene = new CaseDocumentationScene();
             caseDocumentationScene.loadNewScene(new Stage());
             UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
             udfoerelseIOgLeveringController.setDashboardController(dashboardController);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
-            alert.show();
+            udfoerelseIOgLeveringController.setCitizenModel(citizenModel);
+            /// TODO: 19/05/2022
+
         }
-    }
 
     public void handleBtnNewCitizenTemplate(ActionEvent actionEvent) {
         //TODO

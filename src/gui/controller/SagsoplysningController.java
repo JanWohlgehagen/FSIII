@@ -26,6 +26,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -515,6 +517,13 @@ public class SagsoplysningController implements Initializable {
             oldValueOfFunktionstilstandsUnderkategori.setAarsag(txtAreaAarsagFunktionstilstand.getText());
             oldValueOfFunktionstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatFunktionstilstand.getText());
             oldValueOfFunktionstilstandsUnderkategori.setOpfølgning(txtOpfoelgningFunktionstilstand.getText());
+
+            Observation observation = new Observation();
+            observation.setDescription(txtAreaObservationFunktionstilstand1.getText());
+            //observation.setTidspunkt(LocalDateTime.now());
+            observation.setTidspunkt(Timestamp.valueOf(LocalDateTime.now()));
+
+            oldValueOfFunktionstilstandsUnderkategori.setObservation(observation);
         }
     }
 
@@ -525,6 +534,13 @@ public class SagsoplysningController implements Initializable {
             oldValueOfHelbredstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatHelbredstilstand.getText());
             oldValueOfHelbredstilstandsUnderkategori.setTilstand(comboBoxTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
             oldValueOfHelbredstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+
+            Observation observation = new Observation();
+            observation.setDescription(txtAreaObservationHelbredstilstand1.getText());
+            //observation.setTidspunkt(LocalDateTime.now());
+            observation.setTidspunkt(Timestamp.valueOf(LocalDateTime.now()));
+
+            oldValueOfHelbredstilstandsUnderkategori.setObservation(observation);
         }
     }
 

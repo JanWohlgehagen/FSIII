@@ -129,7 +129,7 @@ CREATE TABLE [H_Tilstandsvurdering]
     [Faglig_Notat]       NVARCHAR(4000) NULL,
     [Forventet_Tilstand] NVARCHAR(200)  NULL,
     [Observation]        NVARCHAR(4000) NULL,
-    [ObservationTime]    DATETIME      NULL,
+    [ObservationTime]    DATETIME       NULL,
 
     CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_UK_ID, HS_Borger_ID),
     CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
@@ -179,7 +179,7 @@ CREATE TABLE [F_Tilstandsvurdering]
     [Faglig_Notat]       NVARCHAR(4000)  NULL,
     [Forventet_Tilstand] INT             NULL,
     [Observation]        NVARCHAR(4000)  NULL,
-    [ObservationTime]    DATETIME       NULL,
+    [ObservationTime]    DATETIME        NULL,
     [Opfoelgning]        NVARCHAR(4000)  NULL,
 
 

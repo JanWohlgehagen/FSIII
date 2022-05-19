@@ -106,6 +106,7 @@ public class DBHelbredstilstandDAO {
 
                 //Underkategori
                 String underKategoriTitel = resultSet.getString("HS_Underkategori_Titel");
+                observation.setTitel(underKategoriTitel);
 
                 //Overkategori
                 String overKategoriTitel = resultSet.getString("HS_Overkategori_Titel");

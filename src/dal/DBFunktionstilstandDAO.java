@@ -122,6 +122,7 @@ public class DBFunktionstilstandDAO {
 
                 // Underkategori
                 String underkategoriTitel = resultSet.getString("FS_Underkategori_Title");
+                observation.setTitel(underkategoriTitel);
 
                 //Overkategori
                 String overKategoriTitel = resultSet.getString("FS_Overkategori_Titel");

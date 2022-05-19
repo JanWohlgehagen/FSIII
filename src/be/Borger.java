@@ -2,8 +2,11 @@ package be;
 
 import be.user.User;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Borger {
     private IntegerProperty ID = new SimpleIntegerProperty();
@@ -28,6 +31,7 @@ public class Borger {
     private StringProperty boligensIndretning = new SimpleStringProperty();
 
     private ArrayList<Case> listOfCases= new ArrayList<>();
+    private ObservableList<Observation> observationer = FXCollections.observableArrayList();
     private Funktionstilstand funktionstilstand;
     private Helbredstilstand helbredstilstand;
 
@@ -36,6 +40,14 @@ public class Borger {
         this.lastName.set(lastName);
         this.isTemplate.set(isTemplate);
         this.age.set(age);
+    }
+
+    public ObservableList<Observation> getObservationer() {
+        return observationer;
+    }
+
+    public void setObservationer(ObservableList<Observation> observationer) {
+        this.observationer = observationer;
     }
 
     public void setAge(int age) {
