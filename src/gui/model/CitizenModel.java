@@ -55,6 +55,11 @@ public class CitizenModel {
         managerFacade.createGenerelleOplysninger(borger);
     }
 
+    public void createTemplateFromCitizen (Borger borger)
+    {
+        allTemplates.add(managerFacade.createCitizen(borger));
+        //TODO Vent på DB Fix ..
+    }
     public void createCitizenFromTemplate(Borger templateBorger){
 
 
