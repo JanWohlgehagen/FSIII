@@ -54,19 +54,19 @@ public class UdfoerelseIOgLeveringController implements Initializable {
             if(selectedCitizen.getObservationer().isEmpty()){
                 for (String key: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
                     for (FunktionstilstandsUnderkategori fuk: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
-                        if (fuk.getObservation().getTidspunkt() != null) {
+                        if (fuk.getObservation().getTidspunkt() != null && fuk.getObservation().getDescriptionProperty().get() != null ) {
                             selectedCitizen.getObservationer().add(fuk.getObservation());
                         }
                     }
-                ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                {
-                    if(newValue!=null)
-                    {
-                        txtAreaDok.setText(newValue.getDescriptionProperty().get());
-                    }
-                });
             }
             ListViewObservations.setItems(selectedCitizen.getObservationer());
+            ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+            {
+                if(newValue!=null)
+                {
+                    txtAreaDok.setText(newValue.getDescriptionProperty().get());
+                }
+            });
         });
     }
     public void setDashboardController(DashboardController dashboardController){
