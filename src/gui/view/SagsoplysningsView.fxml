@@ -439,7 +439,7 @@
                            <children>
                               <HBox alignment="TOP_RIGHT">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#openOverviewHandle" text="Overblik">
+                                    <Button mnemonicParsing="false" onAction="#openFOverviewHandle" text="Overblik">
                                        <HBox.margin>
                                           <Insets top="30.0" />
                                        </HBox.margin>
@@ -619,6 +619,11 @@
                            <children>
                               <HBox alignment="TOP_RIGHT">
                                  <children>
+                                    <Button mnemonicParsing="false" onAction="#openHOverviewHandle" text="Overblik">
+                                       <HBox.margin>
+                                          <Insets top="30.0" />
+                                       </HBox.margin>
+                                    </Button>
                                     <GridPane alignment="TOP_RIGHT" minHeight="160.0" minWidth="160.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" />

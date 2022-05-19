@@ -17,6 +17,12 @@
     -fx-background-color: rgba(198,178,47,0.44);
     -fx-border-color: rgba(198,178,47,1);
 }
+.labelTitleHelbredsOplysninger{
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(125,152,171,0.44);
+    -fx-border-color: rgba(125,152,171,1);
+}
 
 .combo-box{
     -fx-font-weight: bold;

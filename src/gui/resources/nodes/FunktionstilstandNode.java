@@ -62,16 +62,16 @@ public class FunktionstilstandNode extends VBox {
         gridpaneUK_Niveau_ForventetTilstand.add(lbNiveau,1,0);
         gridpaneUK_Niveau_ForventetTilstand.add(lbforventetTilstand,2,0);
 
-        gridpaneUK_Niveau_ForventetTilstand.add(createTextArea(fuk.getTilstandsklassifikationProperty().get()),0,1);
-        gridpaneUK_Niveau_ForventetTilstand.add(createTextArea(String.valueOf(fuk.getNiveauProperty().get())),1,1);
-        gridpaneUK_Niveau_ForventetTilstand.add(createTextArea(String.valueOf(fuk.getForventetTilstandProperty().get())),2,1);
+        gridpaneUK_Niveau_ForventetTilstand.add(createSmallTA(fuk.getTilstandsklassifikationProperty().get()),0,1);
+        gridpaneUK_Niveau_ForventetTilstand.add(createSmallTA(String.valueOf(fuk.getNiveauProperty().get())),1,1);
+        gridpaneUK_Niveau_ForventetTilstand.add(createSmallTA(String.valueOf(fuk.getForventetTilstandProperty().get())),2,1);
 
         //Andet gridpane der holder alle tekstfelter
         GridPane gridPaneTekstfelter = new GridPane();
-        gridPaneTekstfelter.setPadding(new Insets(5,10,5,5));
+        gridPaneTekstfelter.setPadding(new Insets(5,5,5,5));
         gridPaneTekstfelter.setVgap(5);
         gridPaneTekstfelter.setHgap(8);
-        gridPaneTekstfelter.setMaxWidth(-1);
+        gridPaneTekstfelter.setMaxWidth(800);
 
         //Første række
         Label lbUdfoerelse = new Label("Udførelse");
@@ -120,6 +120,18 @@ public class FunktionstilstandNode extends VBox {
 
         funktionstilstandNode.getChildren().add(vBoxUK);
 
+    }
+
+    private TextArea createSmallTA(String text)
+    {
+        TextArea txtArea = new TextArea(text);
+        txtArea.setPromptText("Ikke udfyldt");
+        txtArea.setWrapText(true);
+        txtArea.setMaxHeight(75);
+        txtArea.setEditable(false);
+        txtArea.setFocusTraversable(false);
+        txtArea.setStyle("-fx-font-weight: normal");
+        return txtArea;
     }
 
     private TextArea createTextArea(String text)
