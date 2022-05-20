@@ -9,7 +9,7 @@ import dal.interfaces.IDatabaseFacade;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserManager extends CredentialManager{
+public class UserManager extends CredentialManager {
 
     private IDatabaseFacade databaseFacade;
     private List<User> allUserInDatabase;
@@ -27,7 +27,7 @@ public class UserManager extends CredentialManager{
     }
 
     public List<User> getAllUser() {
-        if(allUserInDatabase.isEmpty()) {
+        if (allUserInDatabase.isEmpty()) {
             allUserInDatabase = databaseFacade.getAllUser();
             for (User user : allUserInDatabase) {
                 switch (user.getUserType()) {
@@ -40,48 +40,48 @@ public class UserManager extends CredentialManager{
         return allUserInDatabase;
     }
 
-    public List<User> getAllStudent(){
-        if(allStudentInDatabase.isEmpty()){
+    public List<User> getAllStudent() {
+        if (allStudentInDatabase.isEmpty()) {
             getAllUser();
         }
         return allStudentInDatabase;
     }
 
-    public List<User> getAllTeacher(){
-       if(allTeacherInDatabase.isEmpty()){
-           getAllUser();
-       }
+    public List<User> getAllTeacher() {
+        if (allTeacherInDatabase.isEmpty()) {
+            getAllUser();
+        }
         return allTeacherInDatabase;
     }
 
-    public List<User> getAllAdmin(){
-       if(allAdminInDatabase.isEmpty()){
-           getAllUser();
-       }
+    public List<User> getAllAdmin() {
+        if (allAdminInDatabase.isEmpty()) {
+            getAllUser();
+        }
         return allAdminInDatabase;
     }
 
-    public WClass createClass(WClass wClass){
+    public WClass createClass(WClass wClass) {
         return databaseFacade.createClass(wClass);
     }
 
-    public void deleteClass(WClass wClass){
+    public void deleteClass(WClass wClass) {
         databaseFacade.deleteClass(wClass);
     }
 
-    public void editClass(WClass wClass){
+    public void editClass(WClass wClass) {
         databaseFacade.editClass(wClass);
     }
 
-    public List<WClass> allClass(){
+    public List<WClass> allClass() {
         return databaseFacade.getAllClass();
     }
 
-    public List<User> getAllStudentInClass(WClass wClass){
+    public List<User> getAllStudentInClass(WClass wClass) {
         return databaseFacade.getAllStudentInClass(wClass);
     }
 
-    public List<User> getAllTeacherInClass(WClass wClass){
+    public List<User> getAllTeacherInClass(WClass wClass) {
         return databaseFacade.getAllTeacherInClass(wClass);
     }
 

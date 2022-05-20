@@ -13,23 +13,23 @@ public class CaseManager {
         this.databaseFacade = databaseFacade;
     }
 
-    public Case createCaseOnCitizen(Case newCase){
-       return databaseFacade.createCaseOnCitizen(newCase);
+    public Case createCaseOnCitizen(Case newCase) {
+        return databaseFacade.createCaseOnCitizen(newCase);
     }
 
-    public List<Case> getAllCasesOnCitizen(int citizenid){
+    public List<Case> getAllCasesOnCitizen(int citizenid) {
         return databaseFacade.getAllCasesOnCitizen(citizenid);
     }
 
-    public Case getCaseOnCitizen(int citizenID, int caseID){
+    public Case getCaseOnCitizen(int citizenID, int caseID) {
         return databaseFacade.getCaseOnCitizen(citizenID, caseID);
     }
 
-    public void updateCaseOnCitizen(int citizenID, Case selectCase){
+    public void updateCaseOnCitizen(int citizenID, Case selectCase) {
         databaseFacade.updateCaseOnCitizen(citizenID, selectCase);
     }
 
-    public void deleteCaseOnCitizen(int citizenID, int caseID){
+    public void deleteCaseOnCitizen(int citizenID, int caseID) {
         databaseFacade.deleteCaseOnCitizen(citizenID, caseID);
     }
 }

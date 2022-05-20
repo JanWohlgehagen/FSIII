@@ -30,13 +30,10 @@ public class AlleRelevanteOplysningerViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            for(String key : funktionstilstand.getFunktionsTilstandsKort().keySet())
-            {
+            for (String key : funktionstilstand.getFunktionsTilstandsKort().keySet()) {
                 FunktionstilstandNode funktionstilstandNode = new FunktionstilstandNode(key);
-                for (FunktionstilstandsUnderkategori fuk: funktionstilstand.getFunktionsTilstandsKort().get(key))
-                {
-                    if(fuk.getNiveauProperty().get() != 9 && fuk.getNiveauProperty().get() != -1)
-                    {
+                for (FunktionstilstandsUnderkategori fuk : funktionstilstand.getFunktionsTilstandsKort().get(key)) {
+                    if (fuk.getNiveauProperty().get() != 9 && fuk.getNiveauProperty().get() != -1) {
                         funktionstilstandNode.addUK(fuk);
                     }
                 }

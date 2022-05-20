@@ -119,18 +119,18 @@ public class AdminDashboardController implements Initializable {
         tcUserRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
 
         comboBoxStudentClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null){
+            if (newValue != null) {
                 userModel.studentInClass(newValue);
             }
         });
         comboboxTeacherClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null){
+            if (newValue != null) {
                 userModel.teacherInClass(newValue);
             }
         });
 
         tvClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null){
+            if (newValue != null) {
                 userModel.teacherAndStudentInClass(newValue);
             }
         });
@@ -197,9 +197,9 @@ public class AdminDashboardController implements Initializable {
         User student = tvAllStudent.getSelectionModel().getSelectedItem();
         WClass wClass = comboBoxStudentClass.getSelectionModel().getSelectedItem();
 
-        if(mouseEvent.isControlDown() && student != null && wClass != null){
+        if (mouseEvent.isControlDown() && student != null && wClass != null) {
             userModel.addStudentToClass(student, wClass);
-        }else if(mouseEvent.isControlDown() && wClass == null){
+        } else if (mouseEvent.isControlDown() && wClass == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
             alert.show();
         }
@@ -209,9 +209,9 @@ public class AdminDashboardController implements Initializable {
         User teacher = tvAllTeacher.getSelectionModel().getSelectedItem();
         WClass wClass = comboboxTeacherClass.getSelectionModel().getSelectedItem();
 
-        if(mouseEvent.isControlDown() && teacher != null && wClass != null){
+        if (mouseEvent.isControlDown() && teacher != null && wClass != null) {
             userModel.addTeacherToClass(teacher, wClass);
-        }else if(mouseEvent.isControlDown() && wClass == null){
+        } else if (mouseEvent.isControlDown() && wClass == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en klasse først.", ButtonType.OK);
             alert.show();
         }
@@ -220,7 +220,7 @@ public class AdminDashboardController implements Initializable {
     public void handleMouseRemoveStudentFromClass(MouseEvent mouseEvent) {
         User student = tvStudentInClass.getSelectionModel().getSelectedItem();
         WClass wClass = comboBoxStudentClass.getSelectionModel().getSelectedItem();
-        if(student != null && wClass != null) {
+        if (student != null && wClass != null) {
             userModel.removeStudentFromClass(student, wClass);
         }
     }
@@ -228,7 +228,7 @@ public class AdminDashboardController implements Initializable {
     public void handleMouseRemoveTeacherFromClass(MouseEvent mouseEvent) {
         User teacher = tvTeacherInClass.getSelectionModel().getSelectedItem();
         WClass wClass = comboboxTeacherClass.getSelectionModel().getSelectedItem();
-        if(teacher != null && wClass != null) {
+        if (teacher != null && wClass != null) {
             userModel.removeTeacherFromClass(teacher, wClass);
         }
     }
@@ -255,7 +255,7 @@ public class AdminDashboardController implements Initializable {
         createAndEditClassScene.loadNewScene(new Stage());
         CreateAndEditClassController createAndEditClassController = createAndEditClassScene.getController();
         createAndEditClassController.setUserModel(userModel);
-        if(tvClass.getSelectionModel().getSelectedItem() != null){
+        if (tvClass.getSelectionModel().getSelectedItem() != null) {
             createAndEditClassController.setClass(tvClass.getSelectionModel().getSelectedItem());
         }
     }
@@ -264,7 +264,7 @@ public class AdminDashboardController implements Initializable {
         userModel.deleteClass(tvClass.getSelectionModel().getSelectedItem());
     }
 
-    public Tooltip getTooltipForAddUserToClass(){
+    public Tooltip getTooltipForAddUserToClass() {
         Tooltip tooltip = new Tooltip("For at tilføje en person til en klasse, så skal du holde 'Control-knappen' nede og derefter klikke på en person.");
         tooltip.setShowDuration(Duration.INDEFINITE);
         tooltip.setShowDelay(Duration.millis(0));

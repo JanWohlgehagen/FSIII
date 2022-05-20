@@ -24,9 +24,9 @@ import java.util.ResourceBundle;
 public class CreateCitizenViewController implements Initializable {
 
     @FXML
-    private  GridPane parentPaneGridPane;
+    private GridPane parentPaneGridPane;
     @FXML
-    private  TextField txtAge;
+    private TextField txtAge;
     @FXML
     private CheckBox checkButtonTemplate;
     @FXML
@@ -52,9 +52,9 @@ public class CreateCitizenViewController implements Initializable {
     }
 
     public void btnSave(ActionEvent actionEvent) {
-        try{Integer.parseInt(txtAge.getText());}
-        catch (Exception E)
-        {
+        try {
+            Integer.parseInt(txtAge.getText());
+        } catch (Exception E) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Alder skal være et tal", ButtonType.OK);
             alert.show();
             return;
@@ -74,8 +74,7 @@ public class CreateCitizenViewController implements Initializable {
         stage.close();
     }
 
-    public void setDashboardController(DashboardController dashboardController)
-    {
+    public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
 

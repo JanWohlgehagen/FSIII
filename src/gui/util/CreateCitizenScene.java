@@ -13,8 +13,6 @@ public class CreateCitizenScene implements ISceneLoader<CreateCitizenViewControl
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 
-
-
     @Override
     public void loadNewScene(Stage stage) throws IOException {
         loader = new FXMLLoader(new File("src/gui/view/CreateCitizenView.fxml").toURI().toURL());

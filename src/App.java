@@ -16,13 +16,11 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        ISceneLoader<LoginController> loginScene =  new LoginScene();
+        ISceneLoader<LoginController> loginScene = new LoginScene();
         loginScene.loadNewScene(primaryStage);
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
-
 }

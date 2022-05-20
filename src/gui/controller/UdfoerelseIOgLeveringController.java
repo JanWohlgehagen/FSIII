@@ -1,12 +1,16 @@
 package gui.controller;
 
-import be.Case;
+import be.*;
+import gui.model.CitizenModel;
 import gui.util.ISceneLoader;
 import gui.util.OpfoelgningScene;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -16,31 +20,66 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UdfoerelseIOgLeveringController implements Initializable {
+
+    @FXML
+    private ListView<Observation> ListViewObservations;
     @FXML
     private GridPane parentPane;
-    @FXML
-    private ScrollPane scrollpaneDocumentations;
-    @FXML
-    private TextField txtTitel;
     @FXML
     private TextArea txtAreaDok;
 
     private UdfoerelseIOgLeveringController udfoerelseIOgLeveringController;
-    private Case currentCase;
+    private Borger selectedCitizen;
+    private CitizenModel citizenModel;
     private DashboardController dashboardController;
+    private ObservableList<Observation> observationList;
+    private Observation observation;
+
+    public void setObservationList(ObservableList<Observation> observationList) {
+        this.observationList = observationList;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            currentCase = dashboardController.getSelectedCase();
-        });
+            selectedCitizen = dashboardController.getSelectedCitizen();
+            citizenModel.getTilstande(selectedCitizen);
+            selectedCitizen.getObservationer().clear();
+            if (selectedCitizen.getObservationer().isEmpty()) {
+                for (String key : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
+                    for (FunktionstilstandsUnderkategori fuk : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
+                        if (fuk.getObservation().getTidspunkt() != null && fuk.getObservation().getDescriptionProperty().get() != null) {
+                            selectedCitizen.getObservationer().add(fuk.getObservation());
+                        }
+                    }
+                for (String key : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet())
+                    for (HelbredstilstandsUnderkategori huk : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
+                        if (huk.getObservation().getTidspunkt() != null && huk.getObservation().getDescriptionProperty().get() != null) {
+                            selectedCitizen.getObservationer().add(huk.getObservation());
+                        }
+                    }
+            }
+            ListViewObservations.setItems(selectedCitizen.getObservationer());
 
+            ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+            {
+                if (newValue != null) {
+                    txtAreaDok.setText(newValue.getDescriptionProperty().get());
+                }
+            });
+        });
     }
-    public void setDashboardController(DashboardController dashboardController){
+
+    public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
+    }
+
+    public void setCitizenModel(CitizenModel citizenModel) {
+        this.citizenModel = citizenModel;
     }
 
     public void btnNewDocumentation(ActionEvent actionEvent) {
@@ -61,8 +100,11 @@ public class UdfoerelseIOgLeveringController implements Initializable {
         /// TODO: 09/05/2022
     }
 
-    private Stage getStage(){
+    private Stage getStage() {
         return (Stage) parentPane.getScene().getWindow();
     }
 
+    public void handleMouseReleasedDokumentationArea(MouseEvent mouseEvent) {
+        txtAreaDok.setText(observation.getDescriptionProperty().get());
+    }
 }

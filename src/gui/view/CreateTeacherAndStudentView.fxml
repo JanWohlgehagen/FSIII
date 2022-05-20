@@ -11,48 +11,52 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="parentPaneGridPane" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CreateTeacherAndStudentController">
+<GridPane fx:id="parentPaneGridPane" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css"
+          xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="gui.controller.CreateTeacherAndStudentController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="0.0" prefWidth="400.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="0.0" prefWidth="400.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints vgrow="SOMETIMES" />
-        <RowConstraints vgrow="SOMETIMES" />
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
         <VBox prefHeight="126.0" prefWidth="380.0">
             <children>
-                <Label text="First name" />
-                <TextField fx:id="txtFirstName" />
-                <Label layoutX="10.0" layoutY="10.0" text="Last name" />
-                <TextField fx:id="txtLastName" />
-            <Separator prefHeight="34.0" prefWidth="400.0" stylesheets="@../resources/css/CommonTheme.css">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Separator>
-            <Label text="Login navn" />
-            <TextField fx:id="txtLoginName" />
-            <Label text="Password" />
-            <TextField fx:id="txtPassword" />
+                <Label text="First name"/>
+                <TextField fx:id="txtFirstName"/>
+                <Label layoutX="10.0" layoutY="10.0" text="Last name"/>
+                <TextField fx:id="txtLastName"/>
+                <Separator prefHeight="34.0" prefWidth="400.0" stylesheets="@../resources/css/CommonTheme.css">
+                    <VBox.margin>
+                        <Insets top="15.0"/>
+                    </VBox.margin>
+                </Separator>
+                <Label text="Login navn"/>
+                <TextField fx:id="txtLoginName"/>
+                <Label text="Password"/>
+                <TextField fx:id="txtPassword"/>
             </children>
             <GridPane.margin>
-                <Insets />
+                <Insets/>
             </GridPane.margin>
         </VBox>
-        <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="386.0" spacing="10.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+        <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="386.0" spacing="10.0" GridPane.halignment="RIGHT"
+              GridPane.rowIndex="1">
             <GridPane.margin>
-                <Insets />
+                <Insets/>
             </GridPane.margin>
             <children>
-                <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnSave" text="Gem" textAlignment="JUSTIFY" />
+                <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnSave" text="Gem"
+                        textAlignment="JUSTIFY"/>
             </children>
             <padding>
-                <Insets top="10.0" />
+                <Insets top="10.0"/>
             </padding>
         </HBox>
     </children>
     <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
 </GridPane>

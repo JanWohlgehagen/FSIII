@@ -1,10 +1,10 @@
-.ParentPane{
+.ParentPane {
     -fx-background-image: url("../images/LoginBackground.jpg");
     -fx-background-size: 100% 100%;
     -fx-background-position: center center;
 }
 
-.button{
+.button {
     -fx-cursor: hand;
     -fill: black;
     -fx-background-color: -fill;
@@ -38,7 +38,7 @@
     -fx-border-insets: -1 -1 -2 -1;
 }
 
-.button:focused{
+.button:focused {
     -fx-border-width: 2;
     -fx-border-color: black;
     -fx-scale-x: 1.2;
@@ -49,16 +49,16 @@
     -fx-border-insets: -1 -1 -2 -1;
 }
 
-.loginBox{
+.loginBox {
     -fx-border-radius: 5;
     -fx-border-width: 2;
     -fx-border-color: black;
     -fx-background-radius: 5;
     -fx-background-color: rgba(0, 0, 0, 0.4);
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 10, 0, 0, 0);
 }
 
-.text-field{
+.text-field {
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-font-weight: bold;

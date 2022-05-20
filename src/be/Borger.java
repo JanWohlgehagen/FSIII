@@ -2,18 +2,18 @@ package be;
 
 import be.user.User;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Borger {
     private IntegerProperty ID = new SimpleIntegerProperty();
     private IntegerProperty age = new SimpleIntegerProperty();
-    private StringProperty firstName= new SimpleStringProperty();
-    private StringProperty lastName= new SimpleStringProperty();
+    private StringProperty firstName = new SimpleStringProperty();
+    private StringProperty lastName = new SimpleStringProperty();
     private BooleanProperty isTemplate = new SimpleBooleanProperty();
     private IntegerProperty studentID = new SimpleIntegerProperty();
-    private User student;
 
     //Generelle oplysninger
     private StringProperty mestring = new SimpleStringProperty();
@@ -25,18 +25,28 @@ public class Borger {
     private StringProperty livshistorie = new SimpleStringProperty();
     private StringProperty netvaerk = new SimpleStringProperty();
     private StringProperty helbredsoplysninger = new SimpleStringProperty();
-    private StringProperty hjaelpemidler= new SimpleStringProperty();
+    private StringProperty hjaelpemidler = new SimpleStringProperty();
     private StringProperty boligensIndretning = new SimpleStringProperty();
 
-    private ArrayList<Case> listOfCases= new ArrayList<>();
+    private ArrayList<Case> listOfCases = new ArrayList<>();
+    private ObservableList<Observation> observationer = FXCollections.observableArrayList();
     private Funktionstilstand funktionstilstand;
     private Helbredstilstand helbredstilstand;
+    private User student;
 
     public Borger(String firstName, String lastName, boolean isTemplate, int age) {
         this.firstName.set(firstName);
         this.lastName.set(lastName);
         this.isTemplate.set(isTemplate);
         this.age.set(age);
+    }
+
+    public ObservableList<Observation> getObservationer() {
+        return observationer;
+    }
+
+    public void setObservationer(ObservableList<Observation> observationer) {
+        this.observationer = observationer;
     }
 
     public void setAge(int age) {

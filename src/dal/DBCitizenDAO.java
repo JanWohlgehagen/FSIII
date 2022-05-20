@@ -56,7 +56,7 @@ public class DBCitizenDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, borger.getStudent().getIdProperty().get());
-            preparedStatement.setInt(2, borger.getStudent().getIdProperty().get());
+            preparedStatement.setInt(2, borger.getIDProperty().get());
             preparedStatement.execute();
 
         } catch (SQLException throwables) {
@@ -93,20 +93,18 @@ public class DBCitizenDAO {
 
     public List<Borger> getAllCitizens() {
         List<Borger> listOfCitizens = new ArrayList<>();
-        try(Connection connection =dbConnecting.getConnection())
-        {
+        try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Borger] WHERE Template = 0";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next())
-            {
+            while (resultSet.next()) {
                 int ID = resultSet.getInt("Borger_ID");
-                String firsteName =resultSet.getString("FirstName");
-                String lastName =resultSet.getString("LastName");
+                String firsteName = resultSet.getString("FirstName");
+                String lastName = resultSet.getString("LastName");
                 int age = resultSet.getInt("Age");
                 boolean isTemplate = resultSet.getBoolean("Template");
-                int studentID= resultSet.getInt("Student_ID");
+                int studentID = resultSet.getInt("Student_ID");
                 Borger borger = new Borger(firsteName, lastName, isTemplate, age);
                 borger.setID(ID);
                 borger.setStudentID(studentID);

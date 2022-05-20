@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class LoginScene implements ISceneLoader <LoginController> {
+public class LoginScene implements ISceneLoader<LoginController> {
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 

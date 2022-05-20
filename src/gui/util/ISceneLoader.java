@@ -4,8 +4,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-public interface ISceneLoader <T>{
+public interface ISceneLoader<T> {
     void loadNewScene(Stage stage) throws IOException;
 
     T getController();

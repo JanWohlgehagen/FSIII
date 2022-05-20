@@ -8,13 +8,14 @@ public class Helbredstilstand {
     // Hashmap that holds the chart of health categrories, the String signifies the Main category and the HelbredstilstandsUnderkategory object holds the information the student have to fill out
     HashMap<String, List<HelbredstilstandsUnderkategori>> tilstandsKortet = new HashMap<>();
 
-    public Helbredstilstand() {}
+    public Helbredstilstand() {
+    }
 
-    public void addCategoryField(String overkategori, List<HelbredstilstandsUnderkategori> underkategorier){
+    public void addCategoryField(String overkategori, List<HelbredstilstandsUnderkategori> underkategorier) {
         tilstandsKortet.put(overkategori, underkategorier);
     }
 
-    public HashMap<String, List <HelbredstilstandsUnderkategori>> getHelbredsTilstandsKort(){
+    public HashMap<String, List<HelbredstilstandsUnderkategori>> getHelbredsTilstandsKort() {
         return tilstandsKortet;
     }
 

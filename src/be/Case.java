@@ -6,20 +6,20 @@ import java.util.ArrayList;
 
 public class Case {
     //Istedet for personID kunne case evt. holde en borger så casen ved hvilken borger den er tilknyttet?
-    private IntegerProperty citizenID =  new SimpleIntegerProperty();
+    private IntegerProperty citizenID = new SimpleIntegerProperty();
     private IntegerProperty caseID = new SimpleIntegerProperty();
     private StringProperty overkategoriTitle = new SimpleStringProperty();
     private StringProperty underkategoriTitle = new SimpleStringProperty();
-    private StringProperty caseDescription= new SimpleStringProperty();
+    private StringProperty caseDescription = new SimpleStringProperty();
     private BooleanProperty isBevilget = new SimpleBooleanProperty();
-    private StringProperty Bevillingstekst= new SimpleStringProperty();
-    private StringProperty plan= new SimpleStringProperty();
+    private StringProperty Bevillingstekst = new SimpleStringProperty();
+    private StringProperty plan = new SimpleStringProperty();
     private StringProperty opfoelgningstag = new SimpleStringProperty();
-    private StringProperty henvisning= new SimpleStringProperty();
-    private StringProperty aasagsfritekst= new SimpleStringProperty();
-    private StringProperty aasagsdiagnose= new SimpleStringProperty();
-    private StringProperty aasagstilstand= new SimpleStringProperty();
-    private StringProperty borgerensonsker= new SimpleStringProperty();
+    private StringProperty henvisning = new SimpleStringProperty();
+    private StringProperty aasagsfritekst = new SimpleStringProperty();
+    private StringProperty aasagsdiagnose = new SimpleStringProperty();
+    private StringProperty aasagstilstand = new SimpleStringProperty();
+    private StringProperty borgerensonsker = new SimpleStringProperty();
 
     private StringProperty sagsansvarlig = new SimpleStringProperty();
     private ArrayList<CaseDocumentation> listOfDocumentations = new ArrayList<>();

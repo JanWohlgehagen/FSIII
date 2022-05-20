@@ -18,7 +18,7 @@ public class DBClassDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public List<WClass> getAllClass(){
+    public List<WClass> getAllClass() {
         List<WClass> allClass = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Class]";
@@ -41,7 +41,7 @@ public class DBClassDAO {
         return allClass;
     }
 
-    public WClass createClass(WClass wClass){
+    public WClass createClass(WClass wClass) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "INSERT INTO [Class](Name) VALUES (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -74,12 +74,12 @@ public class DBClassDAO {
         }
     }
 
-    public void editClass(WClass wClass){
-        try(Connection connection = dbConnecting.getConnection()) {
+    public void editClass(WClass wClass) {
+        try (Connection connection = dbConnecting.getConnection()) {
             String sql = "UPDATE [Class] SET Name = (?) WHERE Class_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, wClass.getNameProperty().get());
-            preparedStatement.setInt(2,wClass.getIdProperty().get());
+            preparedStatement.setInt(2, wClass.getIdProperty().get());
             preparedStatement.execute();
 
         } catch (SQLException SQLe) {
@@ -87,7 +87,7 @@ public class DBClassDAO {
         }
     }
 
-    public List<User> getAllStudentInClass(WClass wClass){
+    public List<User> getAllStudentInClass(WClass wClass) {
         List<User> allStudent = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Person] JOIN ClassStudents ON ClassStudents.Student_ID = Person.Person_ID WHERE ClassStudents.[Class_ID] = (?)";
@@ -101,7 +101,7 @@ public class DBClassDAO {
                 String firstName = resultSet.getString("FirstName");
                 String lastName = resultSet.getString("LastName");
                 String role = resultSet.getString("Role");
-                User user = new User(firstName,lastName);
+                User user = new User(firstName, lastName);
                 user.setUserType(role);
                 user.setId(id);
                 allStudent.add(user);
@@ -114,7 +114,7 @@ public class DBClassDAO {
         return allStudent;
     }
 
-    public List<User> getAllTeacherInClass(WClass wClass){
+    public List<User> getAllTeacherInClass(WClass wClass) {
         List<User> allStudent = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Person] JOIN ClassTeachers ON ClassTeachers.Teacher_ID = Person.Person_ID WHERE ClassTeachers.[Class_ID] = (?)";
@@ -128,7 +128,7 @@ public class DBClassDAO {
                 String firstName = resultSet.getString("FirstName");
                 String lastName = resultSet.getString("LastName");
                 String role = resultSet.getString("Role");
-                User user = new User(firstName,lastName);
+                User user = new User(firstName, lastName);
                 user.setUserType(role);
                 user.setId(id);
                 allStudent.add(user);
@@ -149,8 +149,8 @@ public class DBClassDAO {
             preparedStatement.setInt(2, wClass.getIdProperty().get());
 
             preparedStatement.execute();
-        }catch (SQLServerException SQLse){
-           throw SQLse;
+        } catch (SQLServerException SQLse) {
+            throw SQLse;
         } catch (SQLException SQLe) {
             SQLe.printStackTrace();
         }
@@ -164,7 +164,7 @@ public class DBClassDAO {
             preparedStatement.setInt(2, wClass.getIdProperty().get());
 
             preparedStatement.execute();
-        }catch (SQLServerException SQLse){
+        } catch (SQLServerException SQLse) {
             throw SQLse;
         } catch (SQLException SQLe) {
             SQLe.printStackTrace();
@@ -179,7 +179,7 @@ public class DBClassDAO {
             preparedStatement.setInt(2, wClass.getIdProperty().get());
 
             preparedStatement.execute();
-        }catch (SQLException SQLe) {
+        } catch (SQLException SQLe) {
             SQLe.printStackTrace();
         }
     }
@@ -192,7 +192,7 @@ public class DBClassDAO {
             preparedStatement.setInt(2, wClass.getIdProperty().get());
 
             preparedStatement.execute();
-        }catch (SQLException SQLe) {
+        } catch (SQLException SQLe) {
             SQLe.printStackTrace();
         }
     }

@@ -19,219 +19,243 @@
 <TabPane fx:id="tabPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="ParentPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminDashboardController">
   <tabs>
       <Tab text="Lærer">
-         <content>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <TextField fx:id="txtSearchBarTeacher" promptText="Søg" />
-                        <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1">
-                           <children>
-                              <Button fx:id="btnInfoTeacher" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" right="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </children>
-                  </GridPane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                     <children>
-                        <ComboBox fx:id="comboboxTeacherClass" onShowing="#handleComboboxSetTeacherInClass" prefWidth="200.0" promptText="Vælg klasse" />
-                     </children>
-                  </HBox>
-                  <TableView fx:id="tvAllTeacher" onMouseReleased="#handleMouseAddTeacherToClass" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                     <columns>
-                        <TableColumn fx:id="tcAllTeacherName" prefWidth="75.0" text="Navn" />
-                        <TableColumn fx:id="tcAllTeacherRolle" prefWidth="75.0" text="Stilling" />
-                     </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TableView>
-                  <TableView fx:id="tvTeacherInClass" onMouseReleased="#handleMouseRemoveTeacherFromClass" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <columns>
-                        <TableColumn fx:id="tcTeacherInClassName" prefWidth="75.0" text="Navn" />
-                        <TableColumn fx:id="tcTeacherInClassRolle" prefWidth="75.0" text="Stilling" />
-                     </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TableView>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.rowIndex="2">
-                     <children>
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewTeacher" prefWidth="120.0" text="Opret Lærer" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditTeacher" prefWidth="120.0" text="Redigere" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteTeacher" prefWidth="120.0" text="Slet" />
-                     </children>
-                  </HBox>
-               </children>
-            </GridPane>
-         </content></Tab>
-    <Tab text="Elever">
-         <content>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <GridPane>
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TextField fx:id="txtSearchBarStudent" promptText="Søg" />
-                        <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1">
-                           <children>
-                              <Button fx:id="btnInfoStudent" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" right="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </children>
-                  </GridPane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                     <children>
-                        <ComboBox fx:id="comboBoxStudentClass" onShowing="#handleComboboxSetStudentInClass" prefHeight="35.0" prefWidth="200.0" promptText="Vælg klasse" />
-                     </children>
-                  </HBox>
-                  <TableView fx:id="tvAllStudent" onMouseReleased="#handleMouseAddStudentToClass" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                    <columns>
-                      <TableColumn fx:id="tcAllStudentName" prefWidth="75.0" text="Navn" />
-                      <TableColumn fx:id="tcAllStudentRolle" prefWidth="75.0" text="Stilling" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TableView>
-                  <TableView fx:id="tvStudentInClass" onMouseReleased="#handleMouseRemoveStudentFromClass" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <columns>
-                      <TableColumn fx:id="tcStudentInClassName" prefWidth="75.0" text="Navn" />
-                      <TableColumn fx:id="tcStudentInClassRolle" prefWidth="75.0" text="Stilling" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TableView>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.rowIndex="2">
-                     <children>
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewStudent" prefWidth="120.0" text="Opret elev" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditStudent" prefWidth="120.0" text="Redigere" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteStudent" prefWidth="120.0" text="Slet" />
-                     </children>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </HBox>
-               </children>
-            </GridPane>
-         </content></Tab>
-    <Tab text="Klasser">
-         <content>
-            <GridPane alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints minHeight="10.0" percentHeight="7.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <TableView fx:id="tvClass" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                    <columns>
-                      <TableColumn fx:id="tcClassName" prefWidth="75.0" text="Navn" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TableView>
-                  <TableView fx:id="tvUserInClass" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <columns>
-                      <TableColumn fx:id="tcUserName" prefWidth="217.0" text="Navn" />
-                      <TableColumn fx:id="tcUserRolle" prefWidth="87.0" text="Stilling" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TableView>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Label styleClass="labelTitle" text="Klasser" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" GridPane.columnIndex="1">
-                     <children>
-                        <Label styleClass="labelTitle" text="Personer i klassen" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="44.0" spacing="15.0" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
-                     <children>
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleNewClass" prefWidth="120.0" text="Opret klasse" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleEditClass" prefWidth="120.0" text="Redigere" />
-                        <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false" onAction="#handleDeleteClass" prefWidth="120.0" text="Slet" />
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </GridPane>
-         </content></Tab>
+          <content>
+              <GridPane>
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                      <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  </rowConstraints>
+                  <children>
+                      <GridPane>
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                          </rowConstraints>
+                          <children>
+                              <TextField fx:id="txtSearchBarTeacher" promptText="Søg"/>
+                              <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1">
+                                  <children>
+                                      <Button fx:id="btnInfoTeacher" focusTraversable="false" mnemonicParsing="false"
+                                              prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
+                                          <VBox.margin>
+                                              <Insets bottom="5.0" right="10.0"/>
+                                          </VBox.margin>
+                                      </Button>
+                                  </children>
+                              </VBox>
+                          </children>
+                      </GridPane>
+                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                          <children>
+                              <ComboBox fx:id="comboboxTeacherClass" onShowing="#handleComboboxSetTeacherInClass"
+                                        prefWidth="200.0" promptText="Vælg klasse"/>
+                          </children>
+                      </HBox>
+                      <TableView fx:id="tvAllTeacher" onMouseReleased="#handleMouseAddTeacherToClass" prefHeight="200.0"
+                                 prefWidth="200.0" GridPane.rowIndex="1">
+                          <columns>
+                              <TableColumn fx:id="tcAllTeacherName" prefWidth="75.0" text="Navn"/>
+                              <TableColumn fx:id="tcAllTeacherRolle" prefWidth="75.0" text="Stilling"/>
+                          </columns>
+                          <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                          </columnResizePolicy>
+                          <GridPane.margin>
+                              <Insets right="10.0"/>
+                          </GridPane.margin>
+                      </TableView>
+                      <TableView fx:id="tvTeacherInClass" onMouseReleased="#handleMouseRemoveTeacherFromClass"
+                                 prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <columns>
+                              <TableColumn fx:id="tcTeacherInClassName" prefWidth="75.0" text="Navn"/>
+                              <TableColumn fx:id="tcTeacherInClassRolle" prefWidth="75.0" text="Stilling"/>
+                          </columns>
+                          <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                          </columnResizePolicy>
+                          <opaqueInsets>
+                              <Insets/>
+                          </opaqueInsets>
+                          <GridPane.margin>
+                              <Insets left="10.0"/>
+                          </GridPane.margin>
+                      </TableView>
+                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0"
+                            GridPane.rowIndex="2">
+                          <children>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleNewTeacher" prefWidth="120.0" text="Opret Lærer"/>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleEditTeacher" prefWidth="120.0" text="Redigere"/>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleDeleteTeacher" prefWidth="120.0" text="Slet"/>
+                          </children>
+                      </HBox>
+                  </children>
+              </GridPane>
+          </content>
+      </Tab>
+      <Tab text="Elever">
+          <content>
+              <GridPane>
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                      <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  </rowConstraints>
+                  <children>
+                      <GridPane>
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                          </rowConstraints>
+                          <children>
+                              <TextField fx:id="txtSearchBarStudent" promptText="Søg"/>
+                              <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1">
+                                  <children>
+                                      <Button fx:id="btnInfoStudent" focusTraversable="false" mnemonicParsing="false"
+                                              prefHeight="25.0" prefWidth="23.0" styleClass="informationButton">
+                                          <VBox.margin>
+                                              <Insets bottom="5.0" right="10.0"/>
+                                          </VBox.margin>
+                                      </Button>
+                                  </children>
+                              </VBox>
+                          </children>
+                      </GridPane>
+                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                          <children>
+                              <ComboBox fx:id="comboBoxStudentClass" onShowing="#handleComboboxSetStudentInClass"
+                                        prefHeight="35.0" prefWidth="200.0" promptText="Vælg klasse"/>
+                          </children>
+                      </HBox>
+                      <TableView fx:id="tvAllStudent" onMouseReleased="#handleMouseAddStudentToClass" prefHeight="200.0"
+                                 prefWidth="200.0" GridPane.rowIndex="1">
+                          <columns>
+                              <TableColumn fx:id="tcAllStudentName" prefWidth="75.0" text="Navn"/>
+                              <TableColumn fx:id="tcAllStudentRolle" prefWidth="75.0" text="Stilling"/>
+                          </columns>
+                          <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                          </columnResizePolicy>
+                          <GridPane.margin>
+                              <Insets right="10.0"/>
+                          </GridPane.margin>
+                      </TableView>
+                      <TableView fx:id="tvStudentInClass" onMouseReleased="#handleMouseRemoveStudentFromClass"
+                                 prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <columns>
+                              <TableColumn fx:id="tcStudentInClassName" prefWidth="75.0" text="Navn"/>
+                              <TableColumn fx:id="tcStudentInClassRolle" prefWidth="75.0" text="Stilling"/>
+                          </columns>
+                          <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                          </columnResizePolicy>
+                          <opaqueInsets>
+                              <Insets/>
+                          </opaqueInsets>
+                          <GridPane.margin>
+                              <Insets left="10.0"/>
+                          </GridPane.margin>
+                      </TableView>
+                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0"
+                            GridPane.rowIndex="2">
+                          <children>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleNewStudent" prefWidth="120.0" text="Opret elev"/>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleEditStudent" prefWidth="120.0" text="Redigere"/>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleDeleteStudent" prefWidth="120.0" text="Slet"/>
+                          </children>
+                          <GridPane.margin>
+                              <Insets/>
+                          </GridPane.margin>
+                      </HBox>
+                  </children>
+              </GridPane>
+          </content>
+      </Tab>
+      <Tab text="Klasser">
+          <content>
+              <GridPane alignment="CENTER">
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints minHeight="10.0" percentHeight="7.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                      <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  </rowConstraints>
+                  <children>
+                      <TableView fx:id="tvClass" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                          <columns>
+                              <TableColumn fx:id="tcClassName" prefWidth="75.0" text="Navn"/>
+                          </columns>
+                          <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                          </columnResizePolicy>
+                          <GridPane.margin>
+                              <Insets right="10.0"/>
+                          </GridPane.margin>
+                      </TableView>
+                      <TableView fx:id="tvUserInClass" prefHeight="200.0" prefWidth="200.0"
+                                 tableMenuButtonVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <columns>
+                              <TableColumn fx:id="tcUserName" prefWidth="217.0" text="Navn"/>
+                              <TableColumn fx:id="tcUserRolle" prefWidth="87.0" text="Stilling"/>
+                          </columns>
+                          <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                          </columnResizePolicy>
+                          <GridPane.margin>
+                              <Insets left="10.0"/>
+                          </GridPane.margin>
+                      </TableView>
+                      <HBox alignment="CENTER">
+                          <children>
+                              <Label styleClass="labelTitle" text="Klasser"/>
+                          </children>
+                      </HBox>
+                      <HBox alignment="CENTER" GridPane.columnIndex="1">
+                          <children>
+                              <Label styleClass="labelTitle" text="Personer i klassen"/>
+                          </children>
+                      </HBox>
+                      <HBox alignment="CENTER" prefHeight="44.0" spacing="15.0" GridPane.rowIndex="2"
+                            GridPane.vgrow="ALWAYS">
+                          <children>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleNewClass" prefWidth="120.0" text="Opret klasse"/>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleEditClass" prefWidth="120.0" text="Redigere"/>
+                              <Button maxWidth="120.0" minWidth="75.0" mnemonicParsing="false"
+                                      onAction="#handleDeleteClass" prefWidth="120.0" text="Slet"/>
+                          </children>
+                      </HBox>
+                  </children>
+                  <padding>
+                      <Insets top="10.0"/>
+                  </padding>
+              </GridPane>
+          </content>
+      </Tab>
   </tabs>
    <stylesheets>
       <URL value="@../resources/css/CommonTheme.css" />

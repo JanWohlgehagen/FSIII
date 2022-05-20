@@ -16,16 +16,16 @@ public class HelbredstilstandsUnderkategori {
     private StringProperty vurdering = new SimpleStringProperty();
     private StringProperty aarsag = new SimpleStringProperty();
     private StringProperty fagligNotat = new SimpleStringProperty();
+    private Observation observation = new Observation();
 
-    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori)
-    {
+    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori) {
         this.id.set(ID);
         this.tilstandsklassifikation.set(tilstandsklassifikation);
         this.overkategori.set(overkategori);
 
     }
 
-    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori, String tilstand, String forventetTilstand, String vurdering, String aarsag, String fagligNotat) {
+    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori, String tilstand, String forventetTilstand, String vurdering, String aarsag, String fagligNotat, Observation observation) {
         this.id.set(ID);
         this.setTilstand(tilstand);
         this.setForventetTilstand(forventetTilstand);
@@ -34,6 +34,7 @@ public class HelbredstilstandsUnderkategori {
         this.setVurdering(vurdering);
         this.setAarsag(aarsag);
         this.setFagligNotat(fagligNotat);
+        setObservation(observation);
     }
 
     // This constructor is for use, if the user chooses that a subcategory is not relevant
@@ -106,8 +107,16 @@ public class HelbredstilstandsUnderkategori {
         this.forventetTilstand.set(forventetTilstand);
     }
 
+    public Observation getObservation() {
+        return observation;
+    }
+
+    public void setObservation(Observation observation) {
+        this.observation = observation;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.tilstandsklassifikation.get();
     }
 

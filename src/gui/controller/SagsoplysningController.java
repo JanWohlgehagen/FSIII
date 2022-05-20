@@ -28,13 +28,14 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class SagsoplysningController implements Initializable {
-
 
     @FXML
     private Label lblOverkategoriFunktionstilstand;
@@ -89,6 +90,10 @@ public class SagsoplysningController implements Initializable {
     private TextField txtOpfoelgningFunktionstilstand;
     @FXML
     private TextArea txtAreaHelhedsvurdering;
+    @FXML
+    private TextArea txtAreaObservationFunktionstilstand1;
+    @FXML
+    private TextArea txtAreaObservationHelbredstilstand1;
 
 
     @FXML
@@ -119,13 +124,13 @@ public class SagsoplysningController implements Initializable {
     private Button btnInformationFunktionstilstand;
 
     @FXML
-    private ComboBox <String> comboBoxForventetTilstandHelbredstilstand;
+    private ComboBox<String> comboBoxForventetTilstandHelbredstilstand;
     @FXML
-    private ComboBox <String> comboBoxTilstandHelbredstilstand;
+    private ComboBox<String> comboBoxTilstandHelbredstilstand;
     @FXML
-    private ComboBox <Integer> comboBoxForventetTilstandFunktionstilstand;
+    private ComboBox<Integer> comboBoxForventetTilstandFunktionstilstand;
     @FXML
-    private ComboBox <Integer> comboBoxTilstandFunktionstilstand;
+    private ComboBox<Integer> comboBoxTilstandFunktionstilstand;
 
     @FXML
     private VBox vBoxLeftHelbredstilstand;
@@ -169,8 +174,8 @@ public class SagsoplysningController implements Initializable {
         comboBoxTilstandHelbredstilstand.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (newValue != null){
-                    if (newValue.equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
+                if (newValue != null) {
+                    if (newValue.equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")) {
                         changeAbilityHelbredstilstandsFields(true);
                     } else changeAbilityHelbredstilstandsFields(false);
                 }
@@ -190,7 +195,7 @@ public class SagsoplysningController implements Initializable {
         });
     }
 
-    public void setDashboardController (DashboardController dashboardController){
+    public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
 
@@ -198,8 +203,7 @@ public class SagsoplysningController implements Initializable {
         this.citizenModel = citizenModel;
     }
 
-    public void setCaseModel(CaseModel caseModel)
-    {
+    public void setCaseModel(CaseModel caseModel) {
         this.caseModel = caseModel;
     }
 
@@ -274,6 +278,7 @@ public class SagsoplysningController implements Initializable {
         AlleRelevanteOplysningerViewController alleRelevanteOplysningerViewController = funktionstilstandOverviewScene.getController();
         alleRelevanteOplysningerViewController.setFunktionstilstand(borger.getFunktionstilstand());
     }
+
     public void openHOverviewHandle(ActionEvent actionEvent) throws IOException {
         ISceneLoader<AlleRelevanteHelbredstilstandeViewController> helbredstilstandOverviewScene = new HelbredsTilstandOverviewScene();
         helbredstilstandOverviewScene.loadNewScene(new Stage());
@@ -282,7 +287,7 @@ public class SagsoplysningController implements Initializable {
     }
 
 
-    private void updateBorger(Borger borger){
+    private void updateBorger(Borger borger) {
         //Update generelle oplysninger on citizen object
         borger.setMestring(txtAreaMestring.getText());
         borger.setMotivation(txtAreaMotivaton.getText());
@@ -308,18 +313,18 @@ public class SagsoplysningController implements Initializable {
         bestillingsViewController.setCurrentCitizen(borger);
     }
 
-    private void closeStage(){
+    private void closeStage() {
         Stage stage = (Stage) tabPaneParent.getScene().getWindow();
         stage.close();
     }
 
-    private void changeAbilityHelbredstilstandsFields(boolean able){
+    private void changeAbilityHelbredstilstandsFields(boolean able) {
         comboBoxForventetTilstandHelbredstilstand.setDisable(able);
         txtAreaVurderingHelbredstilstand.setDisable(able);
         txtAreaAarsagHelbredstilstand.setDisable(able);
         txtAreaFagligtNotatHelbredstilstand.setDisable(able);
 
-        if (able){ // clears the fields if its not a relevant problem
+        if (able) { // clears the fields if its not a relevant problem
             comboBoxForventetTilstandHelbredstilstand.getSelectionModel().clearSelection();
             txtAreaVurderingHelbredstilstand.clear();
             txtAreaAarsagHelbredstilstand.clear();
@@ -327,7 +332,7 @@ public class SagsoplysningController implements Initializable {
         }
     }
 
-    private void changeAbilityFunktionstilstandsFields(boolean able){
+    private void changeAbilityFunktionstilstandsFields(boolean able) {
         comboBoxForventetTilstandFunktionstilstand.setDisable(able);
         txtAreaUdfoerelseFunktionstilstand.setDisable(able);
         txtAreaBetydningFunktionstilstand.setDisable(able);
@@ -337,7 +342,7 @@ public class SagsoplysningController implements Initializable {
         txtAreaFagligtNotatFunktionstilstand.setDisable(able);
         txtOpfoelgningFunktionstilstand.setDisable(able);
 
-        if (able){
+        if (able) {
             comboBoxForventetTilstandFunktionstilstand.getSelectionModel().clearSelection();
             txtAreaUdfoerelseFunktionstilstand.clear();
             txtAreaBetydningFunktionstilstand.clear();
@@ -350,22 +355,22 @@ public class SagsoplysningController implements Initializable {
     }
 
     private void populateGenerelleOplysninger() {
-            txtAreaMestring.setText(borger.getMestringProperty().get());
-            txtAreaMotivaton.setText(borger.getMotivationProperty().get());
-            txtAreaRessourcer.setText(borger.getRessourcerProperty().get());
-            txtAreaRoller.setText(borger.getRollerProperty().get());
-            txtAreaVaner.setText(borger.getVanerProperty().get());
-            txtAreaUddOgJob.setText(borger.getUddannelseProperty().get());
-            txtAreaLivshistorie.setText(borger.getLivshistorieProperty().get());
-            txtAreaNetvaerk.setText(borger.getNetvaerkProperty().get());
-            txtAreaHelbredsoplysninger.setText(borger.getHelbredsoplysningerProperty().get());
-            txtAreaHjaelpemidler.setText(borger.getHjaelpemidlerProperty().get());
-            txtAreaBoligensIndretning.setText(borger.getBoligensIndretningProperty().get());
+        txtAreaMestring.setText(borger.getMestringProperty().get());
+        txtAreaMotivaton.setText(borger.getMotivationProperty().get());
+        txtAreaRessourcer.setText(borger.getRessourcerProperty().get());
+        txtAreaRoller.setText(borger.getRollerProperty().get());
+        txtAreaVaner.setText(borger.getVanerProperty().get());
+        txtAreaUddOgJob.setText(borger.getUddannelseProperty().get());
+        txtAreaLivshistorie.setText(borger.getLivshistorieProperty().get());
+        txtAreaNetvaerk.setText(borger.getNetvaerkProperty().get());
+        txtAreaHelbredsoplysninger.setText(borger.getHelbredsoplysningerProperty().get());
+        txtAreaHjaelpemidler.setText(borger.getHjaelpemidlerProperty().get());
+        txtAreaBoligensIndretning.setText(borger.getBoligensIndretningProperty().get());
     }
 
-    private void populateHelbredstilstandsCombobox(){
-        List <String> tilstande = new ArrayList<>();
-        List <String> forventedetilstande = new ArrayList<>();
+    private void populateHelbredstilstandsCombobox() {
+        List<String> tilstande = new ArrayList<>();
+        List<String> forventedetilstande = new ArrayList<>();
 
         tilstande.add("Ingen aktuelle eller potentielle problemer");
         tilstande.add("Potentielt problem");
@@ -379,8 +384,8 @@ public class SagsoplysningController implements Initializable {
         comboBoxForventetTilstandHelbredstilstand.getItems().addAll(forventedetilstande);
     }
 
-    private void populateFunktionstilstandsCombobox(){
-        List <Integer> niveauer = new ArrayList<>();
+    private void populateFunktionstilstandsCombobox() {
+        List<Integer> niveauer = new ArrayList<>();
         niveauer.add(0);
         niveauer.add(1);
         niveauer.add(2);
@@ -392,7 +397,7 @@ public class SagsoplysningController implements Initializable {
         comboBoxTilstandFunktionstilstand.getItems().addAll(niveauer);
     }
 
-    private void populateTilstande(){
+    private void populateTilstande() {
         int insertionCounter = 0;
 
         Helbredstilstand helbredstilstand = borger.getHelbredstilstand();
@@ -402,7 +407,7 @@ public class SagsoplysningController implements Initializable {
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = funktionstilstand.getFunktionsTilstandsKort();
 
 
-        for (String klassifikation: helbredstilstandsKort.keySet()) {
+        for (String klassifikation : helbredstilstandsKort.keySet()) {
             TableView<HelbredstilstandsUnderkategori> tableView = new TableView();
             tableView.setItems(FXCollections.observableList(helbredstilstandsKort.get(klassifikation)));
             TableColumn<HelbredstilstandsUnderkategori, String> tableColumn = new TableColumn<>();
@@ -425,15 +430,15 @@ public class SagsoplysningController implements Initializable {
             });
 
 
-            tableView.setRowFactory(tv -> new TableRow<HelbredstilstandsUnderkategori>(){
+            tableView.setRowFactory(tv -> new TableRow<HelbredstilstandsUnderkategori>() {
                 @Override
-                protected void updateItem(HelbredstilstandsUnderkategori hsKategori, boolean empty){
+                protected void updateItem(HelbredstilstandsUnderkategori hsKategori, boolean empty) {
                     super.updateItem(hsKategori, empty);
                     if (!empty && hsKategori != null) {
                         this.styleProperty().bind(Bindings.createStringBinding(() -> {
                             if (hsKategori.getTilstandProperty().get() == null) {
                                 return "-fx-background-color: rgba(185, 105, 144, 1);";
-                            } else if (hsKategori.getTilstandProperty().get().equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")){
+                            } else if (hsKategori.getTilstandProperty().get().equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")) {
                                 return "-fx-background-color: rgba(119, 161, 131, 1);";
                             } else {
                                 //return "-fx-background-color: rgba(198,178,47,1);"; themed yellow
@@ -450,16 +455,16 @@ public class SagsoplysningController implements Initializable {
                 }
             });
 
-            if(insertionCounter %2 == 0){
+            if (insertionCounter % 2 == 0) {
                 vBoxLeftHelbredstilstand.getChildren().add(tableView);
             } else {
                 vBoxRightHelbredstilstand.getChildren().add(tableView);
             }
-            insertionCounter ++;
+            insertionCounter++;
         }
         insertionCounter = 0;
 
-        for (String klassifikation: funktionstilstandsKort.keySet()) {
+        for (String klassifikation : funktionstilstandsKort.keySet()) {
             TableView<FunktionstilstandsUnderkategori> tableView = new TableView();
             tableView.setItems(FXCollections.observableList(funktionstilstandsKort.get(klassifikation)));
             TableColumn<FunktionstilstandsUnderkategori, String> tableColumn = new TableColumn<>();
@@ -481,15 +486,15 @@ public class SagsoplysningController implements Initializable {
                 populateTxtAreasFunktionstilstand(tableView.getSelectionModel().getSelectedItem());
             });
 
-            tableView.setRowFactory(tv -> new TableRow<FunktionstilstandsUnderkategori>(){
+            tableView.setRowFactory(tv -> new TableRow<FunktionstilstandsUnderkategori>() {
                 @Override
-                protected void updateItem(FunktionstilstandsUnderkategori fsKategori, boolean empty){
+                protected void updateItem(FunktionstilstandsUnderkategori fsKategori, boolean empty) {
                     super.updateItem(fsKategori, empty);
                     if (!empty && fsKategori != null) {
                         this.styleProperty().bind(Bindings.createStringBinding(() -> {
                             if (fsKategori.getNiveauProperty().get() == -1) {
                                 return "-fx-background-color: rgba(185, 105, 144, 1);";
-                            } else if (fsKategori.getNiveauProperty().get() == 9){
+                            } else if (fsKategori.getNiveauProperty().get() == 9) {
                                 return "-fx-background-color: rgba(119, 161, 131, 1);";
                             } else {
                                 //return "-fx-background-color: rgba(198,178,47,1);"; themed yellow
@@ -506,17 +511,17 @@ public class SagsoplysningController implements Initializable {
                 }
             });
 
-            if(insertionCounter %2 == 0){
+            if (insertionCounter % 2 == 0) {
                 vBoxLeftFunktionstilstand.getChildren().add(tableView);
             } else {
                 vBoxRightFunktionstilstand.getChildren().add(tableView);
             }
-            insertionCounter ++;
+            insertionCounter++;
         }
     }
 
-    private void updateFunktionstilstandsUnderkategori(){
-        if(oldValueOfFunktionstilstandsUnderkategori != null) {
+    private void updateFunktionstilstandsUnderkategori() {
+        if (oldValueOfFunktionstilstandsUnderkategori != null) {
             oldValueOfFunktionstilstandsUnderkategori.setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
 
             if (comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem() != null) // in case the user chooses 9 in the first dropdown
@@ -529,25 +534,40 @@ public class SagsoplysningController implements Initializable {
             oldValueOfFunktionstilstandsUnderkategori.setAarsag(txtAreaAarsagFunktionstilstand.getText());
             oldValueOfFunktionstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatFunktionstilstand.getText());
             oldValueOfFunktionstilstandsUnderkategori.setOpfølgning(txtOpfoelgningFunktionstilstand.getText());
+
+            Observation observation = new Observation();
+            observation.setDescription(txtAreaObservationFunktionstilstand1.getText());
+            //observation.setTidspunkt(LocalDateTime.now());
+            observation.setTidspunkt(Timestamp.valueOf(LocalDateTime.now()));
+
+            oldValueOfFunktionstilstandsUnderkategori.setObservation(observation);
         }
     }
 
-    private void updateHelbredstilstandsUnderkategori(){
-        if(oldValueOfHelbredstilstandsUnderkategori != null) {
+    private void updateHelbredstilstandsUnderkategori() {
+        if (oldValueOfHelbredstilstandsUnderkategori != null) {
             oldValueOfHelbredstilstandsUnderkategori.setVurdering(txtAreaVurderingHelbredstilstand.getText());
             oldValueOfHelbredstilstandsUnderkategori.setAarsag(txtAreaAarsagHelbredstilstand.getText());
             oldValueOfHelbredstilstandsUnderkategori.setFagligNotat(txtAreaFagligtNotatHelbredstilstand.getText());
             oldValueOfHelbredstilstandsUnderkategori.setTilstand(comboBoxTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
             oldValueOfHelbredstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandHelbredstilstand.getSelectionModel().getSelectedItem());
+
+            Observation observation = new Observation();
+            observation.setDescription(txtAreaObservationHelbredstilstand1.getText());
+            //observation.setTidspunkt(LocalDateTime.now());
+            observation.setTidspunkt(Timestamp.valueOf(LocalDateTime.now()));
+
+            oldValueOfHelbredstilstandsUnderkategori.setObservation(observation);
         }
     }
 
-    private void populateTxtAreasHelbredstilstand(HelbredstilstandsUnderkategori newValue){
+    private void populateTxtAreasHelbredstilstand(HelbredstilstandsUnderkategori newValue) {
         comboBoxTilstandHelbredstilstand.getSelectionModel().select(newValue.getTilstandProperty().get());
         comboBoxForventetTilstandHelbredstilstand.getSelectionModel().select(newValue.getForventetTilstandProperty().get());
         txtAreaVurderingHelbredstilstand.setText(newValue.getVurderingProperty().get());
         txtAreaAarsagHelbredstilstand.setText(newValue.getAarsagProperty().get());
         txtAreaFagligtNotatHelbredstilstand.setText(newValue.getFagligNotatProperty().get());
+        txtAreaObservationHelbredstilstand1.setText(newValue.getObservation().getDescriptionProperty().get());
         lblOverkategoriHelbredstilstand.setText(newValue.getOverkategoriProperty().get());
         lblTilstandsklassifikationHelbredstilstand.setText(newValue.getTilstandsklassifikationProperty().get());
     }
@@ -561,13 +581,14 @@ public class SagsoplysningController implements Initializable {
         txtAreaVurderingFunktionstilstand.setText(newValue.getVurderingProperty().get());
         txtAreaAarsagFunktionstilstand.setText(newValue.getAarsagProperty().get());
         txtAreaFagligtNotatFunktionstilstand.setText(newValue.getFagligNotatProperty().get());
+        txtAreaObservationFunktionstilstand1.setText(newValue.getObservation().getDescriptionProperty().get());
         txtOpfoelgningFunktionstilstand.setText(newValue.getOpfølgningProperty().get());
         lblOverkategoriFunktionstilstand.setText(newValue.getOverKategoriProperty().get());
         lblTilstandsklassifikationFunktionstilstand.setText(newValue.getTilstandsklassifikationProperty().get());
     }
 
 
-    private void setGenerelleOplysningerTooltips(){
+    private void setGenerelleOplysningerTooltips() {
         // Setting up tooltips for the information buttons in the view that guides the student
         btnInformationMestring.setTooltip(tooltipBank.getMestring());
         btnInformationMotivation.setTooltip(tooltipBank.getMotivation());
@@ -598,10 +619,10 @@ public class SagsoplysningController implements Initializable {
     Extracts a list of strings from the textfields in the container where the medicine list is shown
      */
     private List<String> extractMedicineList() {
-        List <Node> nodeList = vBoxMedicinliste.getChildren();
+        List<Node> nodeList = vBoxMedicinliste.getChildren();
         List<String> medicineList = new ArrayList<>();
 
-        for (Node node: nodeList) {
+        for (Node node : nodeList) {
             TextField txtField = (TextField) node;
             if (!txtField.getText().isEmpty() || !txtField.getText().isBlank())
                 medicineList.add(txtField.getText());
@@ -610,12 +631,11 @@ public class SagsoplysningController implements Initializable {
     }
 
 
-
-    private class TooltipBank{
+    private class TooltipBank {
         final private double TOOLTIP_WIDTH = 250.0;
 
         final private String mestring = "Definition: Borgerens bevidste eller ubevidste håndtering af livet/sygdommen – både udfordringer og muligheder." +
-                            "\n \nDokumentationspraksis: Her dokumenteres, hvordan borgeren positivt eller negativt mestrer den modgang vedkommende møder.";
+                "\n \nDokumentationspraksis: Her dokumenteres, hvordan borgeren positivt eller negativt mestrer den modgang vedkommende møder.";
 
         final private String motivation = "Definition: Drivkraften bag at borgeren handler på en bestemt måde eller går i gang med/opretholder en opgave/indsats." +
                 "\n \nDokumentationspraksis: Her dokumenteres borgerens ønsker for sit liv (overordnet mål), og hvad der motiverer borgeren.";
@@ -660,7 +680,7 @@ public class SagsoplysningController implements Initializable {
                 "\n \nDokumentationspraksis: Her dokumenteres både det der hæmmer og fremmer borgerens funktionsevne i hverdagen. Kan suppleres med praktiske oplysninger" +
                 "fx om der er elevator, dørtrin eller trapper.";
 
-        public Tooltip getMestring(){
+        public Tooltip getMestring() {
             Tooltip tooltip = new Tooltip(this.mestring);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -668,7 +688,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getMotivation(){
+
+        public Tooltip getMotivation() {
             Tooltip tooltip = new Tooltip(this.motivation);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -676,7 +697,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getRessourcer(){
+
+        public Tooltip getRessourcer() {
             Tooltip tooltip = new Tooltip(this.ressourcer);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -684,7 +706,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getRoller(){
+
+        public Tooltip getRoller() {
             Tooltip tooltip = new Tooltip(this.roller);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -692,7 +715,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getVaner(){
+
+        public Tooltip getVaner() {
             Tooltip tooltip = new Tooltip(this.vaner);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -700,7 +724,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getUddannelseOgJob(){
+
+        public Tooltip getUddannelseOgJob() {
             Tooltip tooltip = new Tooltip(this.uddannelseOgJob);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -708,7 +733,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getLivshistorie(){
+
+        public Tooltip getLivshistorie() {
             Tooltip tooltip = new Tooltip(this.livshistorie);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -716,7 +742,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getNetvaerk(){
+
+        public Tooltip getNetvaerk() {
             Tooltip tooltip = new Tooltip(this.netvaerk);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -724,7 +751,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getHelbredsoplysninger(){
+
+        public Tooltip getHelbredsoplysninger() {
             Tooltip tooltip = new Tooltip(this.helbredsoplysninger);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -732,7 +760,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getHjaelpemidler(){
+
+        public Tooltip getHjaelpemidler() {
             Tooltip tooltip = new Tooltip(this.hjaelpemidler);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));
@@ -740,7 +769,8 @@ public class SagsoplysningController implements Initializable {
             tooltip.setPrefWidth(TOOLTIP_WIDTH);
             return tooltip;
         }
-        public Tooltip getBoligensIndretning(){
+
+        public Tooltip getBoligensIndretning() {
             Tooltip tooltip = new Tooltip(this.boligensIndretning);
             tooltip.setShowDuration(Duration.INDEFINITE);
             tooltip.setShowDelay(Duration.millis(0));

@@ -3,9 +3,10 @@ package dal;
 import be.Borger;
 import be.Funktionstilstand;
 import be.FunktionstilstandsUnderkategori;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+import be.Observation;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -163,7 +164,6 @@ public class DBFunktionstilstandDAO {
                         }
                     }
 
-
                     preparedStatementDelete.execute();
                     preparedStatementInsert.execute();
 
@@ -214,20 +214,27 @@ public class DBFunktionstilstandDAO {
                 String aarsag = resultSet.getString("Aarsag");
                 String fagligNotat = resultSet.getString("Faglig_Notat");
                 int forventetTilstand = resultSet.getInt("Forventet_Tilstand");
+                String observationDescription = resultSet.getString("Observation");
+                Timestamp tidspunkt = resultSet.getTimestamp("ObservationTime");
                 String opfoelgning = resultSet.getString("Opfoelgning");
+
+                Observation observation = new Observation();
+                observation.setDescription(observationDescription);
+                observation.setTidspunkt(tidspunkt);
 
                 // Underkategori
                 String underkategoriTitel = resultSet.getString("FS_Underkategori_Title");
+                observation.setTitel(underkategoriTitel);
 
                 //Overkategori
                 String overKategoriTitel = resultSet.getString("FS_Overkategori_Titel");
-                FunktionstilstandsUnderkategori f = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand);
+                FunktionstilstandsUnderkategori f = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand, observation);
                 allFunktionstilstande.add(f);
             }
 
             for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
                 if (!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())) {
-                    funktionstilstandeHP.put(f.getOverKategoriProperty().get(), new ArrayList<FunktionstilstandsUnderkategori>());
+                    funktionstilstandeHP.put(f.getOverKategoriProperty().get(), new ArrayList<>());
                 }
                 funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
             }

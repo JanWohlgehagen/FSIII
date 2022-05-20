@@ -52,7 +52,6 @@ public interface IManagerFacade {
     public void removeTeacherFromClass(User teacher, WClass wClass);
 
 
-
     // CASE
     public List<Case> getAllCasesOnCitizen(int citizenid);
 
@@ -75,7 +74,7 @@ public interface IManagerFacade {
 
     public void addStudentToCitizen(Borger borger);
 
-    public void deleteCitizen (Borger borger);
+    public void deleteCitizen(Borger borger);
 
     public void updateSagsoplysninger(Borger borger);
 
@@ -94,9 +93,10 @@ public interface IManagerFacade {
     //HELBREDSTILSTAND
 
     public Helbredstilstand getEmptyHelbredsTilstand();
+
     public void updateHelbredstilstand(Borger borger);
 
-    public void deleteHelbredstilstand (Borger borger);
+    public void deleteHelbredstilstand(Borger borger);
 
     public List<String> getHelbredstilstandsList();
 

@@ -67,7 +67,7 @@ public class CreateAndEditCaseController implements Initializable {
             overkategoriCbx.getItems().addAll(helbredstilstandModel.getHelbredstilstandsList());
             comboboxCaseReference.getItems().addAll(caseReferences());
 
-            if(editCaseMode) {
+            if (editCaseMode) {
                 overkategoriCbx.setPromptText(editThisCase.getOverkategoriTitleProperty().get());
                 underkategoriCbx.setPromptText(editThisCase.getUnderkategoriTitleProperty().get());
                 lblSagsansvarlig.setText(editThisCase.getSagsansvarligProperty().get());
@@ -91,24 +91,24 @@ public class CreateAndEditCaseController implements Initializable {
             underkategoriCbx.getItems().addAll(helbredstilstandsUnderkategoriModel.getHelbredstilstandsUnderkategoriList());
     }
 
-    private List<String> caseReferences(){
+    private List<String> caseReferences() {
         String[] caseReferences = {"Borger", "Pårørende", "Sagsbehandler - anden forvaltning", "Hjemmeplejen",
-                        "Hjemmesygeplejen", "Træning", "Sundhedsfremme og forebyggelse", "Anden kommune",
-                        "Egen læge/vagtlæge", "Speciallæge", "Sygehus - kirurgisk", " Sygehus - medicinsk",
-                        "Sygehus – psykiatrisk", "Sygehus – akutmodtagelse", "Andre"};
+                "Hjemmesygeplejen", "Træning", "Sundhedsfremme og forebyggelse", "Anden kommune",
+                "Egen læge/vagtlæge", "Speciallæge", "Sygehus - kirurgisk", " Sygehus - medicinsk",
+                "Sygehus – psykiatrisk", "Sygehus – akutmodtagelse", "Andre"};
 
         return Arrays.stream(caseReferences).toList();
     }
 
-    public void newCaseModeIsOn(){
+    public void newCaseModeIsOn() {
         this.newCaseMode = true;
     }
 
-    public void editCaseModeIsOn(){
+    public void editCaseModeIsOn() {
         this.editCaseMode = true;
     }
 
-    public void setEditThisCase(Case editThisCase){
+    public void setEditThisCase(Case editThisCase) {
         this.editThisCase = editThisCase;
     }
 
@@ -121,7 +121,7 @@ public class CreateAndEditCaseController implements Initializable {
     }
 
     public void setFunktionstilstandsUnderkategoriModel(FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel) {
-        this.funktionstilstandsUnderkategoriModel =funktionstilstandsUnderkategoriModel;
+        this.funktionstilstandsUnderkategoriModel = funktionstilstandsUnderkategoriModel;
     }
 
     public void setHelbredstilstandModel(HelbredstilstandModel helbredstilstandModel) {
@@ -132,12 +132,12 @@ public class CreateAndEditCaseController implements Initializable {
         this.helbredstilstandsUnderkategoriModel = helbredstilstandsUnderkategoriModel;
     }
 
-    public void setCaseModel(CaseModel caseModel){
+    public void setCaseModel(CaseModel caseModel) {
         this.caseModel = caseModel;
     }
 
     public void handleGem(ActionEvent actionEvent) {
-        if(newCaseMode){
+        if (newCaseMode) {
             Case newCase = new Case(borger.getIDProperty().get(), overkategoriCbx.getSelectionModel().getSelectedItem(), underkategoriCbx.getSelectionModel().getSelectedItem());
             newCase.setIsBevilget(false);
             newCase.setHenvisning(comboboxCaseReference.getSelectionModel().getSelectedItem());
@@ -154,10 +154,10 @@ public class CreateAndEditCaseController implements Initializable {
             caseModel.createCaseOnCitizen(newCase);
             closeStage();
         } else if (editCaseMode) {
-            if(overkategoriCbx.getSelectionModel().getSelectedItem() != null){
+            if (overkategoriCbx.getSelectionModel().getSelectedItem() != null) {
                 editThisCase.setOverkategoriTitle(overkategoriCbx.getSelectionModel().getSelectedItem());
             }
-            if(underkategoriCbx.getSelectionModel().getSelectedItem() != null){
+            if (underkategoriCbx.getSelectionModel().getSelectedItem() != null) {
                 editThisCase.setUnderkategoriTitle(underkategoriCbx.getSelectionModel().getSelectedItem());
             }
             editThisCase.setSagsansvarlig(lblSagsansvarlig.getText());
@@ -170,7 +170,7 @@ public class CreateAndEditCaseController implements Initializable {
 
             caseModel.updateCaseOnCitizen(borger.getIDProperty().get(), editThisCase);
             closeStage();
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error.. ");
             alert.setContentText("Der er noget galt, men sag den der var opret/vælget");
@@ -182,7 +182,7 @@ public class CreateAndEditCaseController implements Initializable {
         closeStage();
     }
 
-    private void closeStage(){
+    private void closeStage() {
         Stage stage = (Stage) parentGridPane.getScene().getWindow();
         stage.close();
     }

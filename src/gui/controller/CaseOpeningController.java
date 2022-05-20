@@ -74,15 +74,19 @@ public class CaseOpeningController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-           borger = dashboardController.getSelectedCitizen();
+            borger = dashboardController.getSelectedCitizen();
 
             fornavnLbl.setText(borger.getFirstNameProperty().get());
             efternavnLbl.setText(borger.getLastNameProperty().get());
             alderLbl.setText(String.valueOf(borger.getAgeProperty().get()));
+
+            if (dashboardController.getSelectedCase() != null) {
+                vaelgSagCbx.getSelectionModel().select(dashboardController.getSelectedCase());
+            }
         });
 
         vaelgSagCbx.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null){
+            if (newValue != null) {
                 overkategoriTxtField.setText(newValue.getOverkategoriTitleProperty().get());
                 underkategoriTxtField.setText(newValue.getUnderkategoriTitleProperty().get());
                 fornavnLbl.setText(borger.getFirstNameProperty().get());
@@ -101,7 +105,7 @@ public class CaseOpeningController implements Initializable {
 
     }
 
-    public void setCaseModel(CaseModel caseModel){
+    public void setCaseModel(CaseModel caseModel) {
         this.caseModel = caseModel;
     }
 
@@ -152,10 +156,10 @@ public class CaseOpeningController implements Initializable {
         createAndEditCaseController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
         createAndEditCaseController.setHelbredstilstandModel(helbredstilstandModel);
         createAndEditCaseController.setHelbredstilstandsUnderkategoriModel(helbredstilstandsUnderkategoriModel);
-        if(getSelectedCase() != null){
+        if (getSelectedCase() != null) {
             createAndEditCaseController.setEditThisCase(getSelectedCase());
             createAndEditCaseController.editCaseModeIsOn();
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error... ");
             alert.setContentText("Der skal vælges en sag, før den kan redigeres");
@@ -164,7 +168,7 @@ public class CaseOpeningController implements Initializable {
     }
 
     public void handleSletSag(ActionEvent actionEvent) {
-        if(displayWarning()){
+        if (displayWarning()) {
             caseModel.deleteCaseOnCitizen(borger.getIDProperty().get(),
                     getSelectedCase().getCaseIDProperty().get());
 
@@ -185,7 +189,7 @@ public class CaseOpeningController implements Initializable {
         }
     }
 
-    private boolean displayWarning (){
+    private boolean displayWarning() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Skal denne Sag (" + getSelectedCase() + ") slettes?");
@@ -208,7 +212,7 @@ public class CaseOpeningController implements Initializable {
         setSelectedCase();
         citizenModel.getTilstande(dashboardController.getSelectedCitizen());
         citizenModel.getGenerelleOplysninger(dashboardController.getSelectedCitizen());
-        ISceneLoader<SagsoplysningController> sagsoplysningsScene =  new SagsoplysningScene();
+        ISceneLoader<SagsoplysningController> sagsoplysningsScene = new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(getStage());
         SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
@@ -216,15 +220,15 @@ public class CaseOpeningController implements Initializable {
         sagsoplysningController.setCaseModel(caseModel);
     }
 
-    private Stage getStage(){
+    private Stage getStage() {
         return (Stage) parentGridPane.getScene().getWindow();
     }
 
-    private Case getSelectedCase(){
+    private Case getSelectedCase() {
         return vaelgSagCbx.getSelectionModel().getSelectedItem();
     }
 
-    private void setSelectedCase(){
+    private void setSelectedCase() {
         dashboardController.setSelectedCase(vaelgSagCbx.getSelectionModel().getSelectedItem());
     }
 }

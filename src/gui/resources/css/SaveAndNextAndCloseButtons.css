@@ -1,6 +1,5 @@
-
 /*Apply this to the hbox that serves as the save and next button*/
-.nextBox{
+.nextBox {
     -fx-border-color: black;
     -fx-border-width: 2;
     -fx-border-radius: 5;
@@ -10,12 +9,12 @@
 }
 
 /*Apply this to the hbox that serves as the save and next button*/
-.nextBox:hover{
+.nextBox:hover {
     -fx-background-color: rgba(185, 105, 144, 1);
 }
 
 /*Apply this to the button in the save and next hbox*/
-.nextButton:disabled{
+.nextButton:disabled {
     -fx-background-image: url("../images/nextBtn.png");
     -fx-background-size: 100% 100%;
     -fx-background-color: transparent;
@@ -27,7 +26,7 @@
 }
 
 /*Apply this to the hbox that serves as the save and close button*/
-.saveBox{
+.saveBox {
     -fx-border-color: black;
     -fx-border-width: 2;
     -fx-border-radius: 5;
@@ -37,12 +36,12 @@
 }
 
 /*Apply this to the hbox that serves as the save and close button*/
-.saveBox:hover{
+.saveBox:hover {
     -fx-background-color: rgba(185, 105, 144, 1);
 }
 
 /*Apply this to the button in the save and close hbox*/
-.saveButton:disabled{
+.saveButton:disabled {
     -fx-background-image: url("../images/saveBtn.png");
     -fx-background-size: 60% 75%;
     -fx-background-color: transparent;
@@ -55,7 +54,7 @@
 }
 
 /*Apply this to the label inside the boxes*/
-.label{
+.label {
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }

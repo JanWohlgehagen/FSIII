@@ -14,26 +14,25 @@ public class CaseModel {
         this.managerFacade = managerFacade;
     }
 
-    public List<Case> getAllCasesOnCitizen(int id){
+    public List<Case> getAllCasesOnCitizen(int id) {
         return managerFacade.getAllCasesOnCitizen(id);
     }
 
-    public Case getCaseOnCitizen(int citizenID, int caseID){
+    public Case getCaseOnCitizen(int citizenID, int caseID) {
         return managerFacade.getCaseOnCitizen(citizenID, caseID);
     }
 
-    public void updateCaseOnCitizen(int citizenID, Case selectCase ){
+    public void updateCaseOnCitizen(int citizenID, Case selectCase) {
         managerFacade.updateCaseOnCitizen(citizenID, selectCase);
     }
 
-    public void deleteCaseOnCitizen(int citizenID, int caseID){
+    public void deleteCaseOnCitizen(int citizenID, int caseID) {
         managerFacade.deleteCaseOnCitizen(citizenID, caseID);
     }
 
     public Case createCaseOnCitizen(Case newCase) {
-       return managerFacade.createCaseOnCitizen(newCase);
+        return managerFacade.createCaseOnCitizen(newCase);
     }
-
 
 
 }

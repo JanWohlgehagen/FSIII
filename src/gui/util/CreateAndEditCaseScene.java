@@ -9,10 +9,11 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class CreateAndEditCaseScene implements ISceneLoader <CreateAndEditCaseController> {
+public class CreateAndEditCaseScene implements ISceneLoader<CreateAndEditCaseController> {
 
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
+
     @Override
     public void loadNewScene(Stage stage) throws IOException {
         loader = new FXMLLoader(new File("src/gui/view/CreateAndEditCaseView.fxml").toURI().toURL());
