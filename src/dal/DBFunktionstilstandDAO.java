@@ -145,25 +145,40 @@ public class DBFunktionstilstandDAO {
 
         return funktionstilstand;
     }
+    public Funktionstilstand getEmptyFunktionstilstands() {
+        Funktionstilstand funktionstilstand = new Funktionstilstand();
+        List<FunktionstilstandsUnderkategori> allFunktionstilstande = new ArrayList<>();
+        HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
 
-
-    public List<String> getFunktionstilstandList() {
-        List<String> funktionstilstandList = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [FS_Overkategori]";
+            String sql = "SELECT FS_Underkategori.FS_Underkategori_ID, FS_Underkategori.FS_Underkategori_Title, FS_Overkategori.FS_Overkategori_Titel FROM [FS_Underkategori]" +
+                    "FULL JOIN [FS_Overkategori] ON FS_Underkategori.FS_OK_ID = FS_Overkategori.FS_Overkategori_ID";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String overkategori = rs.getString("FS_Overkategori_Titel");
-                funktionstilstandList.add(overkategori);
+                int UKID = rs.getInt("FS_Underkategori_ID");
+                String tilstandsKlassifikation = rs.getString("FS_Underkategori_Title");
+                String overkategoriNavn = rs.getString("FS_Overkategori_Titel");
+
+
+                FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation, overkategoriNavn);
+                allFunktionstilstande.add(funktionstilstandsUnderkategori);
             }
+
+            for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
+                if (!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())) {
+                    funktionstilstandeHP.put(f.getOverKategoriProperty().get(), new ArrayList<FunktionstilstandsUnderkategori>());
+                }
+                funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
+            }
+            funktionstilstand.setFunktionsTilstande(funktionstilstandeHP);
+            return funktionstilstand;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
         }
-        return funktionstilstandList;
     }
 }
 

@@ -4,7 +4,7 @@ import be.user.User;
 import be.user.UserType;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
-import gui.model.CredentialModel;
+import gui.model.UserModel;
 import gui.util.AdminDashboardScene;
 import gui.util.DashboardScene;
 import gui.util.ISceneLoader;
@@ -30,19 +30,19 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField txtPassword;
 
-    private CredentialModel credentialModel;
+    private UserModel userModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            credentialModel = new CredentialModel(new ManagerFacade(new DatabaseFacade()));
+            userModel = new UserModel(new ManagerFacade(new DatabaseFacade()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void handleLoginButton(ActionEvent actionEvent) throws IOException {
-        User user = credentialModel.checkCredential(txtUsername.getText(), txtPassword.getText());
+        User user = userModel.checkCredential(txtUsername.getText(), txtPassword.getText());
         if (user != null) {
             if (user.getUserType().equals(UserType.STUDENT) || user.getUserType().equals(UserType.TEACHER)) {
                 ISceneLoader<DashboardController> dashboardScene = new DashboardScene();

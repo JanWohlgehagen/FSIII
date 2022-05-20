@@ -172,25 +172,5 @@ public class DBHelbredstilstandDAO {
             return null;
         }
     }
-
-    public List<String> getHelbredstilstandList() {
-        List<String> helbredstilstandList = new ArrayList<>();
-        try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [HS_Overkategori]";
-            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                String overkategori = rs.getString("HS_Overkategori_Titel");
-                helbredstilstandList.add(overkategori);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return null;
-        }
-        return helbredstilstandList;
-    }
-
 }
 

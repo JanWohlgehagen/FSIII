@@ -15,21 +15,12 @@ public class ManagerFacade implements IManagerFacade {
     private final CaseManager caseManager;
     private final CitizenManager citizenManager;
     private final UserManager userManager;
-    private final FunktionstilstandManager funktionstilstandManager;
-    private final FunktionstilstandsUnderkategoriManager funktionstilstandsUnderkategoriManager;
-    private final HelbredstilstandManager helbredstilstandManager;
-    private final HelbredstilstandsUnderkategoriManager helbredstilstandsUnderkategoriManager;
 
     public ManagerFacade(DatabaseFacade databaseFacade) throws IOException {
         credentialManager = new CredentialManager(databaseFacade);
         caseManager = new CaseManager(databaseFacade);
         citizenManager = new CitizenManager(databaseFacade);
         userManager = new UserManager(databaseFacade);
-        funktionstilstandManager = new FunktionstilstandManager(databaseFacade);
-        funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(databaseFacade);
-        helbredstilstandManager = new HelbredstilstandManager(databaseFacade);
-        helbredstilstandsUnderkategoriManager = new HelbredstilstandsUnderkategoriManager(databaseFacade);
-
     }
 
     /***************************************************/
@@ -192,11 +183,6 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public void updateCitizen(Borger borger) {
-        citizenManager.updateCitizen(borger);
-    }
-
-    @Override
     public void addStudentToCitizen(Borger borger) {
         citizenManager.addStudentToCitizen(borger);
     }
@@ -210,8 +196,8 @@ public class ManagerFacade implements IManagerFacade {
     public void updateSagsoplysninger(Borger borger) {
         citizenManager.updateGenerelleOplysninger(borger);
         citizenManager.updateCitizen(borger);
-        helbredstilstandManager.updateHelbredstilstand(borger);
-        funktionstilstandManager.updateFunktionstilstand(borger);
+        citizenManager.updateFunktionstilstand(borger);
+        citizenManager.updateHelbredstilstand(borger);
     }
 
     @Override
@@ -228,49 +214,38 @@ public class ManagerFacade implements IManagerFacade {
         citizenManager.createEmptyTilstande(borger);
     }
 
-    public List<String> getFunktionstilstandsList() {
-        return funktionstilstandManager.getFunktionstilstandsList();
-    }
-
-    @Override
-    public List<String> getFunktionstilstandsUnderkategoriList() {
-        return funktionstilstandsUnderkategoriManager.getFunktionstilstandsUnderkategoriList();
-    }
-
     @Override
     public Funktionstilstand getEmptyFunktionsTilstand() {
-        return funktionstilstandsUnderkategoriManager.getFunktionsTilstandUnderkategorier();
+        return citizenManager.getEmptyFunktionsTilstand();
+    }
+
+    @Override
+    public Funktionstilstand getTitleFunktionsTilstand() {
+        return caseManager.getTitleFunktionsTilstand();
+    }
+
+    @Override
+    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger) {
+        return citizenManager.getFunktionstilstandOnCitizen(borger);
     }
 
     @Override
     public Helbredstilstand getEmptyHelbredsTilstand() {
-        return helbredstilstandManager.getEmptyHelbredstilstand();
+        return citizenManager.getEmptyHelbredsTilstand();
+    }
+
+    @Override
+    public Helbredstilstand getTitleHelbredsTilstand() {
+        return caseManager.getTitleHelbredsTilstand();
+    }
+
+    @Override
+    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger) {
+        return citizenManager.getHelbredstilstandOnCitizen(borger);
     }
 
     @Override
     public void updateHelbredstilstand(Borger borger) {
-        helbredstilstandManager.updateHelbredstilstand(borger);
+        citizenManager.updateHelbredstilstand(borger);
     }
-
-    @Override
-    public void deleteHelbredstilstand(Borger borger) {
-        helbredstilstandManager.deleteHelbredstilstand(borger);
-    }
-
-    @Override
-    public List<String> getHelbredstilstandsList() {
-        return helbredstilstandManager.getHelbredstilstandsList();
-    }
-
-    @Override
-    public List<String> getHelbredstilstandsUnderkategoriList() {
-        return helbredstilstandsUnderkategoriManager.getHelbredstilstandsUnderkategoriList();
-    }
-
-    @Override
-    public void getTilstande(Borger borger) {
-        citizenManager.getTilstande(borger);
-    }
-
-
 }

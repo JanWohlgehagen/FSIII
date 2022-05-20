@@ -64,10 +64,6 @@ public interface IDatabaseFacade {
 
     public Case createCaseOnCitizen(Case newCase);
 
-    public List<String> getFunktionstilstand();
-
-    public List<String> getFunktionstilstandsUnderkategori();
-
     //Citizen DAL Functions
 
     public Borger createCitizen(Borger borger);
@@ -88,27 +84,26 @@ public interface IDatabaseFacade {
 
     //Tilstande Functions
 
-    public void getTilstandeOnCitizen(Borger borger);
+
+    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger);
 
     public void createEmptyFunktionstilstand(Borger borger);
 
     public void updateFunktiontilstand(Borger borger);
 
+    public Funktionstilstand getEmptyFunktionsTilstand();
+
     public void deleteFunktionstilstandOnCitizen(Borger borger);
 
+
+    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger);
 
     public void createEmptyHelbredstilstand(Borger borger);
 
     public void updateHelbredstilstand(Borger borger);
 
-    public void deleteHelbredstilstandOnCitizen(Borger borger);
-
-    public Funktionstilstand getEmptyFunktionsTilstand();
-
     public Helbredstilstand getEmptyHelbredsTilstand();
 
-    public List<String> getHelbredstilstand();
-
-    public List<String> getHelbredstilstandsUnderkategori();
+    public void deleteHelbredstilstandOnCitizen(Borger borger);
 
 }

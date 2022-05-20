@@ -1,6 +1,8 @@
 package bll;
 
 import be.Borger;
+import be.Funktionstilstand;
+import be.Helbredstilstand;
 import dal.DatabaseFacade;
 import dal.interfaces.IDatabaseFacade;
 
@@ -43,12 +45,22 @@ public class CitizenManager {
         databaseFacade.deleteCitizen(borger);
     }
 
+
+
+    public Borger getGenerelleOplysninger(Borger borger) {
+        return databaseFacade.getGenerelleOplysninger(borger);
+    }
+
     public void updateGenerelleOplysninger(Borger borger) {
         databaseFacade.updateGenerelleOplysninger(borger);
     }
 
-    public Borger getGenerelleOplysninger(Borger borger) {
-        return databaseFacade.getGenerelleOplysninger(borger);
+    public void updateHelbredstilstand(Borger borger) {
+        databaseFacade.updateHelbredstilstand(borger);
+    }
+
+    public void updateFunktionstilstand(Borger borger) {
+        databaseFacade.updateFunktiontilstand(borger);
     }
 
     public void createEmptyTilstande(Borger borger) {
@@ -56,7 +68,19 @@ public class CitizenManager {
         databaseFacade.createEmptyFunktionstilstand(borger);
     }
 
-    public void getTilstande(Borger borger) {
-        databaseFacade.getTilstandeOnCitizen(borger);
+    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger){
+        return databaseFacade.getHelbredstilstandOnCitizen(borger);
+    }
+
+    public Helbredstilstand getEmptyHelbredsTilstand(){
+        return databaseFacade.getEmptyHelbredsTilstand();
+    }
+
+    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger){
+        return databaseFacade.getFunktionstilstandOnCitizen(borger);
+    }
+
+    public Funktionstilstand getEmptyFunktionsTilstand(){
+        return databaseFacade.getEmptyFunktionsTilstand();
     }
 }

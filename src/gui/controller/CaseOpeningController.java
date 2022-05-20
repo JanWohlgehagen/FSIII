@@ -30,6 +30,7 @@ public class CaseOpeningController implements Initializable {
     private TextField overkategoriTxtField;
     @FXML
     private TextField underkategoriTxtField;
+
     @FXML
     private Label fornavnLbl;
     @FXML
@@ -42,14 +43,7 @@ public class CaseOpeningController implements Initializable {
     private Label lblHenvisning;
     @FXML
     private Label lblOpfolgningsTag;
-    @FXML
-    private Button opretSagBtn;
-    @FXML
-    private Button redigerSagBtn;
-    @FXML
-    private Button sletSagBtn;
-    @FXML
-    private Button videreBtn;
+
     @FXML
     private TextArea beskrivelseTxtArea;
     @FXML
@@ -64,18 +58,11 @@ public class CaseOpeningController implements Initializable {
     private Borger borger;
     private CaseModel caseModel;
     private CitizenModel citizenModel;
-    private FunktionstilstandModel funktionstilstandModel;
-    private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
     private DashboardController dashboardController;
-    private HelbredstilstandModel helbredstilstandModel;
-    private HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
 
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
@@ -121,22 +108,6 @@ public class CaseOpeningController implements Initializable {
         this.dashboardController = dashboardController;
     }
 
-    public void setFunktionstilstandModel(FunktionstilstandModel funktionstilstandModel) {
-        this.funktionstilstandModel = funktionstilstandModel;
-    }
-
-    public void setFunktionstilstandsUnderkategoriModel(FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel) {
-        this.funktionstilstandsUnderkategoriModel = funktionstilstandsUnderkategoriModel;
-    }
-
-    public void setHelbredstilstandModel(HelbredstilstandModel helbredstilstandModel) {
-        this.helbredstilstandModel = helbredstilstandModel;
-    }
-
-    public void setHelbredstilstandsUnderkategoriModel(HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel) {
-        this.helbredstilstandsUnderkategoriModel = helbredstilstandsUnderkategoriModel;
-    }
-
     public void handleOpretSag(ActionEvent actionEvent) throws IOException {
         ISceneLoader<CreateAndEditCaseController> createAndEditCaseScene = new CreateAndEditCaseScene();
         createAndEditCaseScene.loadNewScene(new Stage());
@@ -144,10 +115,6 @@ public class CaseOpeningController implements Initializable {
         createAndEditCaseController.setDashboardController(dashboardController);
         createAndEditCaseController.newCaseModeIsOn();
         createAndEditCaseController.setCaseModel(caseModel);
-        createAndEditCaseController.setFunktionstilstandModel(funktionstilstandModel);
-        createAndEditCaseController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
-        createAndEditCaseController.setHelbredstilstandModel(helbredstilstandModel);
-        createAndEditCaseController.setHelbredstilstandsUnderkategoriModel(helbredstilstandsUnderkategoriModel);
     }
 
     public void handleRedigerSag(ActionEvent actionEvent) throws IOException {
@@ -156,10 +123,6 @@ public class CaseOpeningController implements Initializable {
         CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
         createAndEditCaseController.setDashboardController(dashboardController);
         createAndEditCaseController.setCaseModel(caseModel);
-        createAndEditCaseController.setFunktionstilstandModel(funktionstilstandModel);
-        createAndEditCaseController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
-        createAndEditCaseController.setHelbredstilstandModel(helbredstilstandModel);
-        createAndEditCaseController.setHelbredstilstandsUnderkategoriModel(helbredstilstandsUnderkategoriModel);
         if (getSelectedCase() != null) {
             createAndEditCaseController.setEditThisCase(getSelectedCase());
             createAndEditCaseController.editCaseModeIsOn();
@@ -214,7 +177,7 @@ public class CaseOpeningController implements Initializable {
 
     public void handleMouseSagsoplysningsScene(MouseEvent mouseEvent) throws IOException {
         setSelectedCase();
-        citizenModel.getTilstande(dashboardController.getSelectedCitizen());
+        citizenModel.setTilstandeOnCitizen(dashboardController.getSelectedCitizen());
         citizenModel.getGenerelleOplysninger(dashboardController.getSelectedCitizen());
         ISceneLoader<SagsoplysningController> sagsoplysningsScene = new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(getStage());

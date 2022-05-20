@@ -1,6 +1,8 @@
 package gui.model;
 
 import be.Case;
+import be.Funktionstilstand;
+import be.Helbredstilstand;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 
@@ -34,5 +36,11 @@ public class CaseModel {
         return managerFacade.createCaseOnCitizen(newCase);
     }
 
+    public Helbredstilstand getTitleHelbredsTilstand(){
+        return managerFacade.getTitleHelbredsTilstand();
+    }
 
+    public Funktionstilstand getTitleFunktionsTilstand(){
+        return managerFacade.getTitleFunktionsTilstand();
+    }
 }

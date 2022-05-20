@@ -4,13 +4,11 @@ import be.*;
 import gui.model.CitizenModel;
 import gui.util.ISceneLoader;
 import gui.util.OpfoelgningScene;
-import gui.util.PlanlaegningScene;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -18,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class UdfoerelseIOgLeveringController implements Initializable {
@@ -45,7 +42,7 @@ public class UdfoerelseIOgLeveringController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             selectedCitizen = dashboardController.getSelectedCitizen();
-            citizenModel.getTilstande(selectedCitizen);
+            citizenModel.setTilstandeOnCitizen(selectedCitizen);
             selectedCitizen.getObservationer().clear();
             if (selectedCitizen.getObservationer().isEmpty()) {
                 for (String key : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())

@@ -1,6 +1,8 @@
 package bll;
 
 import be.Case;
+import be.Funktionstilstand;
+import be.Helbredstilstand;
 import dal.interfaces.IDatabaseFacade;
 
 import java.util.List;
@@ -31,5 +33,13 @@ public class CaseManager {
 
     public void deleteCaseOnCitizen(int citizenID, int caseID) {
         databaseFacade.deleteCaseOnCitizen(citizenID, caseID);
+    }
+
+    public Helbredstilstand getTitleHelbredsTilstand(){
+        return databaseFacade.getEmptyHelbredsTilstand();
+    }
+
+    public Funktionstilstand getTitleFunktionsTilstand(){
+        return databaseFacade.getEmptyFunktionsTilstand();
     }
 }

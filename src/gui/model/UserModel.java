@@ -23,7 +23,6 @@ public class UserModel {
     private List<User> allStudentCache = new ArrayList<>();
     private List<User> allTeacherCache = new ArrayList<>();
     private ObservableList<User> allTeacher = FXCollections.observableArrayList();
-    private ObservableList<User> allAdmin = FXCollections.observableArrayList();
     private ObservableList<WClass> allClass = FXCollections.observableArrayList();
     private ObservableList<User> studentInClass = FXCollections.observableArrayList();
     private ObservableList<User> teacherInClass = FXCollections.observableArrayList();
@@ -36,8 +35,8 @@ public class UserModel {
         userSearcher = new UserSearcher();
     }
 
-    public List<User> allUsers() {
-        return managerFacade.getAllUser();
+    public User checkCredential(String userName, String password) {
+        return managerFacade.loginCredential(userName, password);
     }
 
     public ObservableList<User> getStudentInClass() {
@@ -73,13 +72,6 @@ public class UserModel {
         }
         allTeacherCache.addAll(allTeacher);
         return allTeacher;
-    }
-
-    public ObservableList<User> getAllAdmin() {
-        if (allAdmin.isEmpty()) {
-            allAdmin.addAll(managerFacade.getAllAdmin());
-        }
-        return allAdmin;
     }
 
     public void studentInClass(WClass wClass) {

@@ -85,7 +85,8 @@ public class CitizenModel {
 
         // Set the Helbredstiltand and Funktionstilstands
         if (templateBorger.getHelbredstilstand() == null) {
-            managerFacade.getTilstande(templateBorger);
+            templateBorger.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(templateBorger));
+            templateBorger.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(templateBorger));
         }
 
         borger.setHelbredstilstand(templateBorger.getHelbredstilstand());
@@ -105,11 +106,6 @@ public class CitizenModel {
         managerFacade.updateSagsoplysninger(borger);
     }
 
-
-    public void updateCitizen(Borger borger) {
-        managerFacade.updateCitizen(borger);
-    }
-
     public void addStudentToCitizen(Borger borger) {
         managerFacade.addStudentToCitizen(borger);
     }
@@ -123,8 +119,9 @@ public class CitizenModel {
         managerFacade.updateSagsoplysninger(borger);
     }
 
-    public void getTilstande(Borger borger) {
-        managerFacade.getTilstande(borger);
+    public void setTilstandeOnCitizen(Borger borger) {
+       borger.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(borger));
+       borger.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(borger));
     }
 
     public void getGenerelleOplysninger(Borger borger) {

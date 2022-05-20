@@ -70,8 +70,6 @@ public interface IManagerFacade {
 
     public Borger createCitizen(Borger borger);
 
-    public void updateCitizen(Borger borger);
-
     public void addStudentToCitizen(Borger borger);
 
     public void deleteCitizen(Borger borger);
@@ -82,25 +80,22 @@ public interface IManagerFacade {
 
     public void createEmptyTilstande(Borger borger);
 
+
     //FUNKTIONSTILSTAND
-
-    public List<String> getFunktionstilstandsList();
-
-    public List<String> getFunktionstilstandsUnderkategoriList();
-
     public Funktionstilstand getEmptyFunktionsTilstand();
+
+    public Funktionstilstand getTitleFunktionsTilstand();
+
+    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger);
 
     //HELBREDSTILSTAND
 
     public Helbredstilstand getEmptyHelbredsTilstand();
 
+    public Helbredstilstand getTitleHelbredsTilstand();
+
+    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger);
+
     public void updateHelbredstilstand(Borger borger);
 
-    public void deleteHelbredstilstand(Borger borger);
-
-    public List<String> getHelbredstilstandsList();
-
-    public List<String> getHelbredstilstandsUnderkategoriList();
-
-    public void getTilstande(Borger borger);
 }

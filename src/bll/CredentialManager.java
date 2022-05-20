@@ -31,8 +31,6 @@ public class CredentialManager {
     protected void createNewLoginUser(Credential credential) {
         credential.setPassword(newHashPassword(credential.getPassword()));
         databaseFacade.createNewLoginUser(credential);
-
-
     }
 
     protected void editLoginUser(Credential credential) {

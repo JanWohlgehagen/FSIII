@@ -18,9 +18,7 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBCitizenDAO dbCitizenDAO;
     private DBGenerelInformationDAO dbGenerelInformationDAO;
     private DBFunktionstilstandDAO dbFunktionstilstandDAO;
-    private DBFunktionstilstandsUnderkategoriDAO dbFunktionstilstandsUnderkategoriDAO;
     private DBHelbredstilstandDAO dbHelbredstilstandDAO;
-    private DBHelbredstilstandsUnderkategoriDAO dbHelbredstilstandsUnderkategoriDAO;
     private DBClassDAO dbClassDAO;
 
 
@@ -33,9 +31,7 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
         dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
         dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
-        dbFunktionstilstandsUnderkategoriDAO = new DBFunktionstilstandsUnderkategoriDAO(dbConnecting);
         dbHelbredstilstandDAO = new DBHelbredstilstandDAO(dbConnecting);
-        dbHelbredstilstandsUnderkategoriDAO = new DBHelbredstilstandsUnderkategoriDAO(dbConnecting);
 
     }
 
@@ -164,16 +160,6 @@ public class DatabaseFacade implements IDatabaseFacade {
         return dbCaseDAO.createCaseOnCitizen(newCase);
     }
 
-    @Override
-    public List<String> getFunktionstilstand() {
-        return dbFunktionstilstandDAO.getFunktionstilstandList();
-    }
-
-    @Override
-    public List<String> getFunktionstilstandsUnderkategori() {
-        return dbFunktionstilstandsUnderkategoriDAO.getFunktionstilstandsUnderkategoriList();
-    }
-
 
     /***************************************************/
     /******************** Citizen **********************/
@@ -226,14 +212,20 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
 
+
+
     /***************************************************/
     /******************** Tilstande ********************/
     /***************************************************/
+
     @Override
-    public void getTilstandeOnCitizen(Borger borger) {
-        borger.setFunktionstilstand(dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger));
-        borger.setHelbredstilstand(dbHelbredstilstandDAO.getHelbredstilstandOnCitizen(borger));
-        //TODO Skal den hente Tilstand eller sætte den????
+    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger) {
+        return dbHelbredstilstandDAO.getHelbredstilstandOnCitizen(borger);
+    }
+
+    @Override
+    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger) {
+        return dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger);
     }
 
     @Override
@@ -276,22 +268,12 @@ public class DatabaseFacade implements IDatabaseFacade {
     /***************************************************/
     @Override
     public Funktionstilstand getEmptyFunktionsTilstand() {
-        return dbFunktionstilstandsUnderkategoriDAO.getEmptyFunktionstilstands();
+        return dbFunktionstilstandDAO.getEmptyFunktionstilstands();
     }
 
     @Override
     public Helbredstilstand getEmptyHelbredsTilstand() {
         return dbHelbredstilstandDAO.getEmptyHelbredstilstand();
-    }
-
-    @Override
-    public List<String> getHelbredstilstand() {
-        return dbHelbredstilstandDAO.getHelbredstilstandList();
-    }
-
-    @Override
-    public List<String> getHelbredstilstandsUnderkategori() {
-        return dbHelbredstilstandsUnderkategoriDAO.getHelbredstilstandsUnderkategoriList();
     }
 
 }

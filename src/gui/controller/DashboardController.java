@@ -3,13 +3,12 @@ package gui.controller;
 import be.Borger;
 import be.Case;
 import be.user.User;
-
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
-import gui.model.*;
+import gui.model.CaseModel;
+import gui.model.CitizenModel;
+import gui.model.UserModel;
 import gui.util.*;
-
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -85,10 +84,6 @@ public class DashboardController implements Initializable {
     private Case selectedCase;
     private Borger selectCitizen;
     private Borger selectCitizenTemplate;
-    private FunktionstilstandModel funktionstilstandModel;
-    private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
-    private HelbredstilstandModel helbredstilstandModel;
-    private HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel;
     private UserModel userModel;
 
 
@@ -99,10 +94,6 @@ public class DashboardController implements Initializable {
         try {
             caseModel = new CaseModel(new ManagerFacade(new DatabaseFacade()));
             citizenModel = new CitizenModel(new ManagerFacade(new DatabaseFacade()));
-            funktionstilstandModel = new FunktionstilstandModel(new ManagerFacade(new DatabaseFacade()));
-            funktionstilstandsUnderkategoriModel = new FunktionstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
-            helbredstilstandModel = new HelbredstilstandModel(new ManagerFacade(new DatabaseFacade()));
-            helbredstilstandsUnderkategoriModel = new HelbredstilstandsUnderkategoriModel(new ManagerFacade(new DatabaseFacade()));
             userModel = new UserModel(new ManagerFacade(new DatabaseFacade()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -153,10 +144,6 @@ public class DashboardController implements Initializable {
         CaseOpeningController caseOpeningController = caseOpeningScene.getController();
         caseOpeningController.setCaseModel(caseModel);
         caseOpeningController.setDashboardController(dashboardController);
-        caseOpeningController.setFunktionstilstandModel(funktionstilstandModel);
-        caseOpeningController.setFunktionstilstandsUnderkategoriModel(funktionstilstandsUnderkategoriModel);
-        caseOpeningController.setHelbredstilstandModel(helbredstilstandModel);
-        caseOpeningController.setHelbredstilstandsUnderkategoriModel(helbredstilstandsUnderkategoriModel);
         caseOpeningController.setCitizenModel(citizenModel);
     }
 
@@ -167,14 +154,14 @@ public class DashboardController implements Initializable {
             OpfoelgningController opfoelgningController = opfoelgningScene.getController();
             opfoelgningController.setDashboardController(dashboardController);
             opfoelgningController.setCaseModel(caseModel);
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
         }
     }
 
     public void handleButtonSagsoplysning(ActionEvent actionEvent) throws IOException {
-        citizenModel.getTilstande(selectCitizen);
+        citizenModel.setTilstandeOnCitizen(selectCitizen);
         citizenModel.getGenerelleOplysninger(selectCitizen);
         ISceneLoader<SagsoplysningController> sagsoplysningsScene = new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(new Stage());
@@ -277,7 +264,7 @@ public class DashboardController implements Initializable {
                     btnDeleteCitizen.setVisible(false);
 
                     for (Borger b : citizenModel.getAllCitizen()) {
-                        if (b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
+                        if (b.getStudent() != null && b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
                             lvCitizens.getItems().add(b);
                         }
                     }

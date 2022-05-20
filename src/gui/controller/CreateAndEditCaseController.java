@@ -1,7 +1,6 @@
 package gui.controller;
 
-import be.Borger;
-import be.Case;
+import be.*;
 import gui.model.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -52,19 +51,20 @@ public class CreateAndEditCaseController implements Initializable {
 
     private Case editThisCase;
     private DashboardController dashboardController;
-    private FunktionstilstandModel funktionstilstandModel;
-    private FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel;
-    private HelbredstilstandModel helbredstilstandModel;
-    private HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel;
+
+    private Helbredstilstand helbredstilstandTitle;
+    private Funktionstilstand funktionstilstandTitle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
+            funktionstilstandTitle = caseModel.getTitleFunktionsTilstand();
+            helbredstilstandTitle = caseModel.getTitleHelbredsTilstand();
 
-            overkategoriCbx.getItems().addAll(funktionstilstandModel.getFunktionstilstandsList());
-            overkategoriCbx.getItems().addAll(helbredstilstandModel.getHelbredstilstandsList());
+            setComboBoxOvercategory();
+
             comboboxCaseReference.getItems().addAll(caseReferences());
 
             if (editCaseMode) {
@@ -84,17 +84,34 @@ public class CreateAndEditCaseController implements Initializable {
 
     public void HandleOverkategoriCbx(ActionEvent actionEvent) {
         underkategoriCbx.getItems().clear();
-        var cbx = overkategoriCbx.getSelectionModel().getSelectedItem();
-        if (cbx.contains("Samfundsliv") || cbx.contains("Mobilitet") || cbx.contains("Mentale funktioner") || cbx.contains("Egenomsorg") || cbx.contains("Praktiske opgaver"))
-            underkategoriCbx.getItems().addAll(funktionstilstandsUnderkategoriModel.getFunktionstilstandsUnderkategoriList());
-        else
-            underkategoriCbx.getItems().addAll(helbredstilstandsUnderkategoriModel.getHelbredstilstandsUnderkategoriList());
+        String overcategory = overkategoriCbx.getSelectionModel().getSelectedItem();
+        List<HelbredstilstandsUnderkategori> subcategorysOfHelbredstilstand  = helbredstilstandTitle.getHelbredsTilstandsKort().get(overcategory);
+        List<FunktionstilstandsUnderkategori> subcategorysOfFunktionsTilstand = funktionstilstandTitle.getFunktionsTilstandsKort().get(overcategory);
+        
+        if(subcategorysOfHelbredstilstand != null){
+            for (HelbredstilstandsUnderkategori subcategory: subcategorysOfHelbredstilstand) {
+                underkategoriCbx.getItems().add(subcategory.toString());
+            }
+        }else if(subcategorysOfFunktionsTilstand != null){
+            for (FunktionstilstandsUnderkategori subcategory: subcategorysOfFunktionsTilstand) {
+                underkategoriCbx.getItems().add(subcategory.toString());
+            }
+        }
+    }
+
+    private void setComboBoxOvercategory(){
+        for (var overcategory: funktionstilstandTitle.getFunktionsTilstandsKort().keySet()) {
+            overkategoriCbx.getItems().add(overcategory);
+        };
+        for (var overcategory: helbredstilstandTitle.getHelbredsTilstandsKort().keySet()) {
+            overkategoriCbx.getItems().add(overcategory);
+        };
     }
 
     private List<String> caseReferences() {
         String[] caseReferences = {"Borger", "Pårørende", "Sagsbehandler - anden forvaltning", "Hjemmeplejen",
                 "Hjemmesygeplejen", "Træning", "Sundhedsfremme og forebyggelse", "Anden kommune",
-                "Egen læge/vagtlæge", "Speciallæge", "Sygehus - kirurgisk", " Sygehus - medicinsk",
+                "Egen læge/vagtlæge", "Speciallæge", "Sygehus - kirurgisk", "Sygehus - medicinsk",
                 "Sygehus – psykiatrisk", "Sygehus – akutmodtagelse", "Andre"};
 
         return Arrays.stream(caseReferences).toList();
@@ -114,22 +131,6 @@ public class CreateAndEditCaseController implements Initializable {
 
     public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
-    }
-
-    public void setFunktionstilstandModel(FunktionstilstandModel funktionstilstandModel) {
-        this.funktionstilstandModel = funktionstilstandModel;
-    }
-
-    public void setFunktionstilstandsUnderkategoriModel(FunktionstilstandsUnderkategoriModel funktionstilstandsUnderkategoriModel) {
-        this.funktionstilstandsUnderkategoriModel = funktionstilstandsUnderkategoriModel;
-    }
-
-    public void setHelbredstilstandModel(HelbredstilstandModel helbredstilstandModel) {
-        this.helbredstilstandModel = helbredstilstandModel;
-    }
-
-    public void setHelbredstilstandsUnderkategoriModel(HelbredstilstandsUnderkategoriModel helbredstilstandsUnderkategoriModel) {
-        this.helbredstilstandsUnderkategoriModel = helbredstilstandsUnderkategoriModel;
     }
 
     public void setCaseModel(CaseModel caseModel) {
