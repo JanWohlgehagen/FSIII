@@ -1,9 +1,6 @@
 package gui.controller;
 
-import be.Borger;
-import be.Case;
-import be.FunktionstilstandsUnderkategori;
-import be.Observation;
+import be.*;
 import gui.model.CitizenModel;
 import gui.util.ISceneLoader;
 import gui.util.OpfoelgningScene;
@@ -57,6 +54,12 @@ public class UdfoerelseIOgLeveringController implements Initializable {
                     for (FunktionstilstandsUnderkategori fuk : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                         if (fuk.getObservation().getTidspunkt() != null && fuk.getObservation().getDescriptionProperty().get() != null) {
                             selectedCitizen.getObservationer().add(fuk.getObservation());
+                        }
+                    }
+                for (String key : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet())
+                    for (HelbredstilstandsUnderkategori huk : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
+                        if (huk.getObservation().getTidspunkt() != null && huk.getObservation().getDescriptionProperty().get() != null) {
+                            selectedCitizen.getObservationer().add(huk.getObservation());
                         }
                     }
             }

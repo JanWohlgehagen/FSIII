@@ -327,6 +327,7 @@ public class DashboardController implements Initializable {
 
         lvCitizens.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                selectedCase = null;
                 selectCitizen = newValue;
                 lblAge.setText(newValue.getAgeProperty().get() + " år");
                 lblName.setText(newValue.getFirstNameProperty().get() + " " + selectCitizen.getLastNameProperty().get());
@@ -348,6 +349,7 @@ public class DashboardController implements Initializable {
 
         lvTemplates.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                selectedCase = null;
                 selectCitizenTemplate = newValue;
                 selectCitizen = newValue;
             }
@@ -356,6 +358,7 @@ public class DashboardController implements Initializable {
 
         lvStuderende.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                selectedCase = null;
                 lvStuderendesBorgere.getItems().clear();
                 for (Borger b : citizenModel.getAllCitizen()) {
                     if (b.getStudent() != null && b.getStudent().getIdProperty().get() == newValue.getIdProperty().get()) {
