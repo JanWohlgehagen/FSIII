@@ -161,11 +161,16 @@ public class DashboardController implements Initializable {
     }
 
     public void handleButtonOpfølgning(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<OpfoelgningController> opfoelgningScene = new OpfoelgningScene();
-        opfoelgningScene.loadNewScene(new Stage());
-        OpfoelgningController opfoelgningController = opfoelgningScene.getController();
-        opfoelgningController.setDashboardController(dashboardController);
-        opfoelgningController.setCaseModel(caseModel);
+        if (selectedCase != null) {
+            ISceneLoader<OpfoelgningController> opfoelgningScene = new OpfoelgningScene();
+            opfoelgningScene.loadNewScene(new Stage());
+            OpfoelgningController opfoelgningController = opfoelgningScene.getController();
+            opfoelgningController.setDashboardController(dashboardController);
+            opfoelgningController.setCaseModel(caseModel);
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void handleButtonSagsoplysning(ActionEvent actionEvent) throws IOException {
@@ -272,7 +277,7 @@ public class DashboardController implements Initializable {
                     btnDeleteCitizen.setVisible(false);
 
                     for (Borger b : citizenModel.getAllCitizen()) {
-                        if (b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
+                        if (b.getStudent() != null && b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
                             lvCitizens.getItems().add(b);
                         }
                     }

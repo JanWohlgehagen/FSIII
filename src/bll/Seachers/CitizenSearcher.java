@@ -11,8 +11,6 @@ public class CitizenSearcher {
 
     public List<Borger> search(List<Borger> searchBase, String query) {
         searchResult.clear();
-
-
         for (Borger borger : searchBase) {
             if (compareName(borger.getFirstNameProperty().get(), query) || compareName(borger.getLastNameProperty().get(), query)) {
                 searchResult.add(borger);

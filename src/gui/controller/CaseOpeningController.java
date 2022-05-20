@@ -73,6 +73,10 @@ public class CaseOpeningController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+
+
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
 
