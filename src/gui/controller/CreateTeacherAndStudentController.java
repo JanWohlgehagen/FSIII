@@ -66,7 +66,9 @@ public class CreateTeacherAndStudentController implements Initializable {
                 newUser.setUserType("STUDENT");
                 userModel.newUser(newUser);
             }
-            newUser.setCredential(new Credential(newUser.getIdProperty().get(), txtLoginName.getText(), txtPassword.getText()));
+            Credential credential = new Credential(newUser.getIdProperty().get(), txtLoginName.getText());
+            credential.setPassword(txtPassword.getText());
+            newUser.setCredential(credential);
             userModel.createNewLoginUser(newUser.getCredential());
             Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();
             stage.close();

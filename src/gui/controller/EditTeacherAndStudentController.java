@@ -66,6 +66,7 @@ public class EditTeacherAndStudentController implements Initializable {
         if (student != null) {
             student.setFirstName(txtFirstName.getText());
             student.setLastName(txtLastName.getText());
+            student.getCredential().setUserId(student.getIdProperty().get());
             student.getCredential().setUserName(txtLoginName.getText());
             student.getCredential().setPassword(txtPassword.getText());
             userModel.editUser(student);
@@ -73,8 +74,10 @@ public class EditTeacherAndStudentController implements Initializable {
         } else if (teacher != null) {
             teacher.setFirstName(txtFirstName.getText());
             teacher.setLastName(txtLastName.getText());
+            teacher.getCredential().setUserId(teacher.getIdProperty().get());
             teacher.getCredential().setUserName(txtLoginName.getText());
             teacher.getCredential().setPassword(txtPassword.getText());
+
             userModel.editUser(teacher);
             userModel.editLoginUser(teacher.getCredential());
         }

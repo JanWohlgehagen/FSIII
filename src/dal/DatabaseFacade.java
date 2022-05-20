@@ -126,8 +126,13 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public void editLoginUser(Credential credential) {
-        dbUserDAO.editLoginUser(credential);
+    public void updateLoginName(Credential credential) {
+        dbUserDAO.updateLoginName(credential);
+    }
+
+    @Override
+    public void updatePassword(Credential credential) {
+        dbUserDAO.updatePassword(credential);
     }
 
 

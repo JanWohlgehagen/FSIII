@@ -6,14 +6,17 @@ public class Credential {
     private String userName;
     private String password;
 
-    public Credential(int userId, String userName, String password) {
+    public Credential(int userId, String userName) {
         this.userId = userId;
         this.userName = userName;
-        this.password = password;
     }
 
     public int getUserId() {
         return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {

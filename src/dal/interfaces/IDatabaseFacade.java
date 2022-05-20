@@ -28,7 +28,9 @@ public interface IDatabaseFacade {
     void createNewLoginUser(Credential credential);
 
 
-    void editLoginUser(Credential credential);
+    void updateLoginName(Credential credential);
+
+    void updatePassword(Credential credential);
 
     // CLASS
 

@@ -34,9 +34,14 @@ public class CredentialManager {
     }
 
     protected void editLoginUser(Credential credential) {
-        credential.setPassword(newHashPassword(credential.getPassword()));
-        databaseFacade.editLoginUser(credential);
+        if(!credential.getPassword().isEmpty()){
+            System.out.println("klfdbmnsæpkdgmææååååååååååååå");
+            credential.setPassword(newHashPassword(credential.getPassword()));
+            databaseFacade.updatePassword(credential);
+        }
+        databaseFacade.updateLoginName(credential);
     }
+
 
     private boolean checkCredential(String userName, String userPassword) {
         credential = databaseFacade.checkCredential(userName);

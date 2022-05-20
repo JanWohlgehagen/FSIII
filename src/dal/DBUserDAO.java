@@ -31,10 +31,9 @@ public class DBUserDAO extends DBLoginDAO {
                 String lastName = resultSet.getString("LastName");
                 String role = resultSet.getString("Role");
                 String loginName = resultSet.getString("UserName");
-                String password = resultSet.getString("Password");
 
                 User user = new User(firstName, lastName);
-                user.setCredential(new Credential(user.getIdProperty().get(), loginName, password));
+                user.setCredential(new Credential(user.getIdProperty().get(), loginName));
                 user.setUserType(role);
                 user.setId(id);
                 return user;
@@ -61,10 +60,9 @@ public class DBUserDAO extends DBLoginDAO {
                 String lastName = resultSet.getString("LastName");
                 String role = resultSet.getString("Role");
                 String loginName = resultSet.getString("UserName");
-                String password = resultSet.getString("Password");
 
                 User user = new User(firstName, lastName);
-                user.setCredential(new Credential(user.getIdProperty().get(), loginName, password));
+                user.setCredential(new Credential(user.getIdProperty().get(), loginName));
                 user.setUserType(role);
                 user.setId(id);
                 allUsers.add(user);
