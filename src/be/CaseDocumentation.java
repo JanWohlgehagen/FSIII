@@ -16,8 +16,7 @@ public class CaseDocumentation {
     private StringProperty text = new SimpleStringProperty();
     private LocalDateTime timeStamp;
 
-    public CaseDocumentation(int caseID, int borgerID, String title, LocalDateTime timeStamp)
-    {
+    public CaseDocumentation(int caseID, int borgerID, String title, LocalDateTime timeStamp) {
         this.caseID.setValue(caseID);
         this.borgerID.setValue(borgerID);
         this.title.setValue(title);

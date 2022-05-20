@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class HelbredsTilstandOverviewScene implements ISceneLoader<AlleRelevanteHelbredstilstandeViewController>{
+public class HelbredsTilstandOverviewScene implements ISceneLoader<AlleRelevanteHelbredstilstandeViewController> {
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 
@@ -21,7 +21,6 @@ public class HelbredsTilstandOverviewScene implements ISceneLoader<AlleRelevante
         stage.getIcons().add(image);
         stage.setResizable(false);
         stage.show();
-
     }
 
     @Override

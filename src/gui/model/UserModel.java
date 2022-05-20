@@ -22,9 +22,9 @@ public class UserModel {
     private ObservableList<User> allStudent = FXCollections.observableArrayList();
     private List<User> allStudentCache = new ArrayList<>();
     private List<User> allTeacherCache = new ArrayList<>();
-    private ObservableList<User> allTeacher  = FXCollections.observableArrayList();
-    private ObservableList<User> allAdmin  = FXCollections.observableArrayList();
-    private ObservableList<WClass> allClass  = FXCollections.observableArrayList();
+    private ObservableList<User> allTeacher = FXCollections.observableArrayList();
+    private ObservableList<User> allAdmin = FXCollections.observableArrayList();
+    private ObservableList<WClass> allClass = FXCollections.observableArrayList();
     private ObservableList<User> studentInClass = FXCollections.observableArrayList();
     private ObservableList<User> teacherInClass = FXCollections.observableArrayList();
     private ObservableList<User> teacherAndStudentInClass = FXCollections.observableArrayList();
@@ -36,7 +36,7 @@ public class UserModel {
         userSearcher = new UserSearcher();
     }
 
-    public List<User> allUsers(){
+    public List<User> allUsers() {
         return managerFacade.getAllUser();
     }
 
@@ -52,15 +52,15 @@ public class UserModel {
         return teacherAndStudentInClass;
     }
 
-    public ObservableList<WClass> getAllClass(){
-        if(allClass.isEmpty()){
+    public ObservableList<WClass> getAllClass() {
+        if (allClass.isEmpty()) {
             allClass.addAll(managerFacade.getAllClass());
         }
         return allClass;
     }
 
     public ObservableList<User> getAllStudent() {
-        if(allStudent.isEmpty()){
+        if (allStudent.isEmpty()) {
             allStudent.addAll(managerFacade.getAllStudent());
         }
         allStudentCache.addAll(allStudent);
@@ -68,7 +68,7 @@ public class UserModel {
     }
 
     public ObservableList<User> getAllTeacher() {
-        if(allTeacher.isEmpty()){
+        if (allTeacher.isEmpty()) {
             allTeacher.addAll(managerFacade.getAllTeacher());
         }
         allTeacherCache.addAll(allTeacher);
@@ -76,23 +76,23 @@ public class UserModel {
     }
 
     public ObservableList<User> getAllAdmin() {
-        if(allAdmin.isEmpty()){
+        if (allAdmin.isEmpty()) {
             allAdmin.addAll(managerFacade.getAllAdmin());
         }
         return allAdmin;
     }
 
-    public void studentInClass(WClass wClass){
+    public void studentInClass(WClass wClass) {
         studentInClass.clear();
         studentInClass.addAll(managerFacade.getAllStudentInClass(wClass));
     }
 
-    public void teacherInClass(WClass wClass){
+    public void teacherInClass(WClass wClass) {
         teacherInClass.clear();
         teacherInClass.addAll(managerFacade.getAllTeacherInClass(wClass));
     }
 
-    public void teacherAndStudentInClass(WClass wClass){
+    public void teacherAndStudentInClass(WClass wClass) {
         teacherAndStudentInClass.clear();
         teacherAndStudentInClass.addAll(managerFacade.getAllTeacherInClass(wClass));
         teacherAndStudentInClass.addAll(managerFacade.getAllStudentInClass(wClass));
@@ -102,17 +102,18 @@ public class UserModel {
         try {
             managerFacade.addStudentToClass(user, wClass);
             studentInClass.add(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Denne person er allerede i klassen.", ButtonType.OK);
             alert.show();
         }
 
     }
-    public void addTeacherToClass(User teacher, WClass wClass){
+
+    public void addTeacherToClass(User teacher, WClass wClass) {
         try {
             managerFacade.addTeacherToClass(teacher, wClass);
             teacherInClass.add(teacher);
-        }catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Denne person er allerede i klassen.", ButtonType.OK);
             alert.show();
         }
@@ -129,25 +130,25 @@ public class UserModel {
     }
 
     public void newUser(User newUser) {
-        if(newUser.getUserType().equals(UserType.STUDENT)){
+        if (newUser.getUserType().equals(UserType.STUDENT)) {
             allStudent.add(managerFacade.newUser(newUser));
-        }else if(newUser.getUserType().equals(UserType.TEACHER)){
-           allTeacher.add(managerFacade.newUser(newUser));
+        } else if (newUser.getUserType().equals(UserType.TEACHER)) {
+            allTeacher.add(managerFacade.newUser(newUser));
         }
     }
 
-    public void createNewLoginUser(Credential credential){
+    public void createNewLoginUser(Credential credential) {
         managerFacade.createNewLoginUser(credential);
     }
 
-    public void editLoginUser(Credential credential){
+    public void editLoginUser(Credential credential) {
         managerFacade.editLoginUser(credential);
     }
 
-    public void removeUser(User user){
-        if(user.getUserType().equals(UserType.STUDENT)){
+    public void removeUser(User user) {
+        if (user.getUserType().equals(UserType.STUDENT)) {
             allStudent.remove(user);
-        }else if(user.getUserType().equals(UserType.TEACHER)){
+        } else if (user.getUserType().equals(UserType.TEACHER)) {
             allTeacher.remove(user);
         }
         managerFacade.deleteUser(user);
@@ -156,25 +157,25 @@ public class UserModel {
     public void editUser(User user) {
         managerFacade.editUser(user);
 
-        if(allTeacher.contains(user)){
+        if (allTeacher.contains(user)) {
             allTeacher.clear();
             allTeacher.addAll(managerFacade.getAllTeacher());
-        }else if (allStudent.contains(user)){
+        } else if (allStudent.contains(user)) {
             allStudent.clear();
             allStudent.addAll(managerFacade.getAllStudent());
         }
     }
 
-    public void createClass(WClass wClass){
+    public void createClass(WClass wClass) {
         allClass.add(managerFacade.createClass(wClass));
     }
 
-    public void deleteClass(WClass wClass){
+    public void deleteClass(WClass wClass) {
         managerFacade.deleteClass(wClass);
         allClass.remove(wClass);
     }
 
-    public void editClass(WClass wClass){
+    public void editClass(WClass wClass) {
         managerFacade.editClass(wClass);
         allClass.clear();
         allClass.addAll(managerFacade.getAllClass());

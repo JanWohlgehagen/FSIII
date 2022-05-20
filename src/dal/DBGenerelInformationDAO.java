@@ -32,7 +32,7 @@ public class DBGenerelInformationDAO {
                 preparedStatementInsert.setInt(2, i);
 
                 //If the property is not null, the row in DB is deleted, and if string is not blank or empty a new row is created as wel
-                switch (i){
+                switch (i) {
                     case (1) -> {
                         if (borger.getMestringProperty().get() != null) {
                             String tempString = borger.getMestringProperty().get();
@@ -152,19 +152,19 @@ public class DBGenerelInformationDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-               switch (resultSet.getInt("FK_GI_ID")){
-                   case (1) -> borger.setMestring(resultSet.getString("Description"));
-                   case (2) -> borger.setMotivation(resultSet.getString("Description"));
-                   case (3) -> borger.setRessourcer(resultSet.getString("Description"));
-                   case (4) -> borger.setRoller(resultSet.getString("Description"));
-                   case (5) -> borger.setVaner(resultSet.getString("Description"));
-                   case (6) -> borger.setUddannelse(resultSet.getString("Description"));
-                   case (7) -> borger.setLivshistorie(resultSet.getString("Description"));
-                   case (8) -> borger.setNetvaerk(resultSet.getString("Description"));
-                   case (9) -> borger.setHjaelpemidler(resultSet.getString("Description"));
-                   case (10) -> borger.setHelbredsoplysninger(resultSet.getString("Description"));
-                   case (11) -> borger.setBoligensIndretning(resultSet.getString("Description"));
-               }
+                switch (resultSet.getInt("FK_GI_ID")) {
+                    case (1) -> borger.setMestring(resultSet.getString("Description"));
+                    case (2) -> borger.setMotivation(resultSet.getString("Description"));
+                    case (3) -> borger.setRessourcer(resultSet.getString("Description"));
+                    case (4) -> borger.setRoller(resultSet.getString("Description"));
+                    case (5) -> borger.setVaner(resultSet.getString("Description"));
+                    case (6) -> borger.setUddannelse(resultSet.getString("Description"));
+                    case (7) -> borger.setLivshistorie(resultSet.getString("Description"));
+                    case (8) -> borger.setNetvaerk(resultSet.getString("Description"));
+                    case (9) -> borger.setHjaelpemidler(resultSet.getString("Description"));
+                    case (10) -> borger.setHelbredsoplysninger(resultSet.getString("Description"));
+                    case (11) -> borger.setBoligensIndretning(resultSet.getString("Description"));
+                }
             }
             return borger;
 

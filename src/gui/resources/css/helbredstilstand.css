@@ -1,21 +1,21 @@
-.scroll-bar:vertical .thumb{
-    -fx-background-color: rgba(125,152,171,1);
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(125, 152, 171, 1);
 }
 
 .scroll-bar:vertical *.increment-button,
-.scroll-bar:vertical *.decrement-button{
+.scroll-bar:vertical *.decrement-button {
     -fx-background-color: transparent;
     -fx-scale-x: 1.3;
     -fx-scale-y: 1.3;
 }
 
 .scroll-bar:vertical *.increment-arrow .content,
-.scroll-bar:vertical *.decrement-arrow .content{
+.scroll-bar:vertical *.decrement-arrow .content {
     -fx-background-color: transparent;
 }
 
 .scroll-bar:vertical *.increment-arrow,
-.scroll-bar:vertical *.decrement-arrow{
+.scroll-bar:vertical *.decrement-arrow {
     -fx-background-color: black;
 }
 
@@ -31,11 +31,11 @@
     -fx-opacity: 0;
 }
 
-.scroll-bar .scroll-bar:vertical{
+.scroll-bar .scroll-bar:vertical {
     -fx-background-color: transparent;
 }
 
-.scroll-pane-helbredsTilstande{
-    -fx-border-color: rgba(125,152,171,1);
+.scroll-pane-helbredsTilstande {
+    -fx-border-color: rgba(125, 152, 171, 1);
     -fx-border-width: 3;
 }

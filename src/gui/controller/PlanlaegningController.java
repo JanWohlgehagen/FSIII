@@ -49,7 +49,7 @@ public class PlanlaegningController implements Initializable {
         });
     }
 
-    public void setDashboardController(DashboardController dashboardController){
+    public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
 
@@ -85,7 +85,7 @@ public class PlanlaegningController implements Initializable {
         ListViewObservations.setItems(selectedCitizen.getObservationer());*/
     }
 
-    private Stage getStage(){
+    private Stage getStage() {
         return (Stage) parentPane.getScene().getWindow();
     }
 }

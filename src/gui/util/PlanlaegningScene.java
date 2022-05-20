@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class PlanlaegningScene implements ISceneLoader<PlanlaegningController>{
+public class PlanlaegningScene implements ISceneLoader<PlanlaegningController> {
 
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;

@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class FunktionsTilstandOverviewScene implements ISceneLoader<AlleRelevanteOplysningerViewController>{
+public class FunktionsTilstandOverviewScene implements ISceneLoader<AlleRelevanteOplysningerViewController> {
 
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
@@ -23,7 +23,6 @@ public class FunktionsTilstandOverviewScene implements ISceneLoader<AlleRelevant
         stage.getIcons().add(image);
         stage.setResizable(false);
         stage.show();
-
     }
 
     @Override

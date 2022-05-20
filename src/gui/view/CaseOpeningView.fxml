@@ -16,284 +16,333 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="parentGridPane" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CaseOpeningController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
-  </rowConstraints>
-   <children>
-      <VBox spacing="2.0" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <children>
-            <Label styleClass="labelTitle" text="Sagsåbning" />
-            <ComboBox fx:id="vaelgSagCbx" onMouseClicked="#handleMouseOpdateVaelgSagCbox" prefWidth="500.0" promptText="Vælg Sag">
-               <VBox.margin>
-                  <Insets bottom="5.0" right="20.0" />
-               </VBox.margin>
-            </ComboBox>
-            <Label text="Funktionsevnetilstande:">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin></Label>
-            <Label text="Overkategori:">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="overkategoriTxtField" editable="false" promptText="Overkategori" />
-            <Label text="Underkategori:">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="underkategoriTxtField" editable="false" promptText="Underkategori" />
-            <GridPane VBox.vgrow="SOMETIMES">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="175.0" prefWidth="175.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Borgers fornavn:" />
-                  <Label text="Borgers efternavn:" GridPane.rowIndex="1" />
-                  <Label text="Borgers alder:" GridPane.rowIndex="2" />
-                  <Label fx:id="fornavnLbl" text="Fornavn placeholder" GridPane.columnIndex="1" />
-                  <Label fx:id="efternavnLbl" text="Efternavn placeholder" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="alderLbl" text="Alder placeholder" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Sagsansvarlig:" GridPane.rowIndex="3" />
-                  <Label fx:id="sagsansvarligLbl" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Sagshenvisning:" GridPane.rowIndex="4" />
-                  <Label fx:id="lblHenvisning" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Opfølgning Tag:" GridPane.rowIndex="5" />
-                  <Label fx:id="lblOpfolgningsTag" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-               </children>
-            </GridPane>
-         </children>
-         <padding>
-            <Insets bottom="15.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <Label alignment="CENTER" text="Sagsinformation">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Beskrivelse:">
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="20.0" />
-               </VBox.margin>
-            </HBox>
-            <TextArea fx:id="beskrivelseTxtArea" editable="false" promptText="Henvisning og beskrivelse" wrapText="true">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextArea>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Årsagsfritekst:" />
-               </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="2.0" />
-               </VBox.margin>
-            </HBox>
-            <TextArea fx:id="aarsagsfritekstTxtArea" editable="false" promptText="Årsagsfritekst" wrapText="true">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextArea>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Årsagsdiagnose:" />
-               </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="2.0" />
-               </VBox.margin>
-            </HBox>
-            <TextArea fx:id="aarsagsdiagnoseTxtArea" editable="false" promptText="Årsagsdiagnose" wrapText="true">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextArea>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Årsagstilstand:" />
-               </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="2.0" />
-               </VBox.margin>
-            </HBox>
-            <TextArea fx:id="aarsagstilstandTxtArea" editable="false" promptText="Årsagstilstand" wrapText="true">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextArea>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Indsats og borgerens ønsker og mål:" />
-               </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="2.0" />
-               </VBox.margin>
-            </HBox>
-            <TextArea fx:id="borgerMaalTxtArea" editable="false" promptText="Indsats og borgerens ønsker og mål" wrapText="true">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextArea>
-         </children>
-         <GridPane.margin>
-            <Insets top="20.0" />
-         </GridPane.margin>
-         <padding>
-            <Insets bottom="15.0" left="20.0" />
-         </padding>
-      </VBox>
-      <HBox alignment="BOTTOM_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseDashboardScene" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
-               <children>
-                  <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
-                  <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="5.0" right="5.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseSagsoplysningsScene" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
-               <children>
-                  <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
-                  <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="5.0" right="5.0" />
-               </padding>
-            </HBox>
-         </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </HBox>
-      <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0" GridPane.rowIndex="2">
-         <children>
-            <Button fx:id="opretSagBtn" mnemonicParsing="false" onAction="#handleOpretSag" text="Opret Sag">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="redigerSagBtn" mnemonicParsing="false" onAction="#handleRedigerSag" text="Rediger Sag" />
-            <Button fx:id="sletSagBtn" mnemonicParsing="false" onAction="#handleSletSag" text="Slet Sag" />
-         </children>
-      </HBox>
-      <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
-         <children>
-            <HBox alignment="TOP_RIGHT">
-               <children>
-                  <GridPane alignment="TOP_RIGHT" minHeight="160.0" minWidth="160.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <StackPane styleClass="stackPane">
-                           <children>
-                              <Circle fill="DODGERBLUE" radius="62.5" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" styleClass="BackgroundCircle" />
-                              <Circle fill="DODGERBLUE" layoutX="430.0" layoutY="410.0" radius="46.75" stroke="BLACK" strokeType="INSIDE" styleClass="arrowCircle" />
-                              <Button fx:id="btnSagsaabning" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton1" text="1" textAlignment="CENTER" translateX="-26.25" translateY="-35.0" wrapText="true">
-                                 <font>
-                                    <Font name="Cambria Bold" size="96.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="btnSagsOplysning" alignment="CENTER" disable="true" layoutX="365.0" layoutY="345.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton2" text="2" textAlignment="CENTER" translateX="13.75" translateY="-41.25" wrapText="true">
-                                 <font>
-                                    <Font name="Cambria Bold" size="16.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="btnAfgorelseBestilling" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton3" text="3" textAlignment="CENTER" translateX="41.25" translateY="-16.25" wrapText="true">
-                                 <font>
-                                    <Font name="Cambria Bold" size="16.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton4" text="4" textAlignment="CENTER" translateX="31.25" translateY="30.0" wrapText="true">
-                                 <font>
-                                    <Font name="Cambria Bold" size="16.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <StackPane.margin>
-                                    <Insets />
-                                 </StackPane.margin>
-                              </Button>
-                              <Button fx:id="btnUdorelseLevering" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton5" text="5" textAlignment="CENTER" translateX="-13.75" translateY="41.25" wrapText="true">
-                                 <font>
-                                    <Font name="Cambria Bold" size="16.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </Button>
-                              <Button fx:id="btnOpfolgning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="middleButton" text="6" textAlignment="CENTER" translateX="-43.75" wrapText="true" />
-                              <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-12.5" />
-                              <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel" text="LEVERANDØR" translateY="12.5" />
-                           </children>
-                        </StackPane>
-                     </children>
-                  </GridPane>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
-   <stylesheets>
-      <URL value="@../resources/css/CommonTheme.css" />
-      <URL value="@../resources/css/CaseOpening.css" />
-   </stylesheets>
+<GridPane fx:id="parentGridPane" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" styleClass="ParentPane"
+          xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="gui.controller.CaseOpeningController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER"/>
+    </rowConstraints>
+    <children>
+        <VBox spacing="2.0" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+            <children>
+                <Label styleClass="labelTitle" text="Sagsåbning"/>
+                <ComboBox fx:id="vaelgSagCbx" onMouseClicked="#handleMouseOpdateVaelgSagCbox" prefWidth="500.0"
+                          promptText="Vælg Sag">
+                    <VBox.margin>
+                        <Insets bottom="5.0" right="20.0"/>
+                    </VBox.margin>
+                </ComboBox>
+                <Label text="Funktionsevnetilstande:">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <Label text="Overkategori:">
+                    <VBox.margin>
+                        <Insets top="5.0"/>
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="overkategoriTxtField" editable="false" promptText="Overkategori"/>
+                <Label text="Underkategori:">
+                    <VBox.margin>
+                        <Insets top="5.0"/>
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="underkategoriTxtField" editable="false" promptText="Underkategori"/>
+                <GridPane VBox.vgrow="SOMETIMES">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="175.0" prefWidth="175.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Label text="Borgers fornavn:"/>
+                        <Label text="Borgers efternavn:" GridPane.rowIndex="1"/>
+                        <Label text="Borgers alder:" GridPane.rowIndex="2"/>
+                        <Label fx:id="fornavnLbl" text="Fornavn placeholder" GridPane.columnIndex="1"/>
+                        <Label fx:id="efternavnLbl" text="Efternavn placeholder" GridPane.columnIndex="1"
+                               GridPane.rowIndex="1"/>
+                        <Label fx:id="alderLbl" text="Alder placeholder" GridPane.columnIndex="1"
+                               GridPane.rowIndex="2"/>
+                        <Label text="Sagsansvarlig:" GridPane.rowIndex="3"/>
+                        <Label fx:id="sagsansvarligLbl" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label text="Sagshenvisning:" GridPane.rowIndex="4"/>
+                        <Label fx:id="lblHenvisning" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Label text="Opfølgning Tag:" GridPane.rowIndex="5"/>
+                        <Label fx:id="lblOpfolgningsTag" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                    </children>
+                </GridPane>
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1"
+              GridPane.rowIndex="1">
+            <children>
+                <Label alignment="CENTER" text="Sagsinformation">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Beskrivelse:">
+                            <HBox.margin>
+                                <Insets top="10.0"/>
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="20.0"/>
+                    </VBox.margin>
+                </HBox>
+                <TextArea fx:id="beskrivelseTxtArea" editable="false" promptText="Henvisning og beskrivelse"
+                          wrapText="true">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </TextArea>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Årsagsfritekst:"/>
+                    </children>
+                    <padding>
+                        <Insets left="20.0"/>
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="2.0"/>
+                    </VBox.margin>
+                </HBox>
+                <TextArea fx:id="aarsagsfritekstTxtArea" editable="false" promptText="Årsagsfritekst" wrapText="true">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </TextArea>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Årsagsdiagnose:"/>
+                    </children>
+                    <padding>
+                        <Insets left="20.0"/>
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="2.0"/>
+                    </VBox.margin>
+                </HBox>
+                <TextArea fx:id="aarsagsdiagnoseTxtArea" editable="false" promptText="Årsagsdiagnose" wrapText="true">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </TextArea>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Årsagstilstand:"/>
+                    </children>
+                    <padding>
+                        <Insets left="20.0"/>
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="2.0"/>
+                    </VBox.margin>
+                </HBox>
+                <TextArea fx:id="aarsagstilstandTxtArea" editable="false" promptText="Årsagstilstand" wrapText="true">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </TextArea>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Indsats og borgerens ønsker og mål:"/>
+                    </children>
+                    <padding>
+                        <Insets left="20.0"/>
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="2.0"/>
+                    </VBox.margin>
+                </HBox>
+                <TextArea fx:id="borgerMaalTxtArea" editable="false" promptText="Indsats og borgerens ønsker og mål"
+                          wrapText="true">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </TextArea>
+            </children>
+            <GridPane.margin>
+                <Insets top="20.0"/>
+            </GridPane.margin>
+            <padding>
+                <Insets bottom="15.0" left="20.0"/>
+            </padding>
+        </VBox>
+        <HBox alignment="BOTTOM_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <children>
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity"
+                      onMouseReleased="#handleMouseDashboardScene" prefWidth="136.0" styleClass="saveBox"
+                      stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0"
+                               text="Gem &amp; Luk" wrapText="true"/>
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0"
+                                prefWidth="75.0" styleClass="saveButton">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets left="5.0" right="5.0"/>
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity"
+                      onMouseReleased="#handleMouseSagsoplysningsScene" prefWidth="136.0" styleClass="nextBox"
+                      stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0"
+                               text="Gem &amp; Næste" wrapText="true"/>
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0"
+                                prefWidth="75.0" styleClass="nextButton">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets left="5.0" right="5.0"/>
+                    </padding>
+                </HBox>
+            </children>
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+        </HBox>
+        <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0" GridPane.rowIndex="2">
+            <children>
+                <Button fx:id="opretSagBtn" mnemonicParsing="false" onAction="#handleOpretSag" text="Opret Sag">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="redigerSagBtn" mnemonicParsing="false" onAction="#handleRedigerSag" text="Rediger Sag"/>
+                <Button fx:id="sletSagBtn" mnemonicParsing="false" onAction="#handleSletSag" text="Slet Sag"/>
+            </children>
+        </HBox>
+        <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
+            <children>
+                <HBox alignment="TOP_RIGHT">
+                    <children>
+                        <GridPane alignment="TOP_RIGHT" minHeight="160.0" minWidth="160.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <StackPane styleClass="stackPane">
+                                    <children>
+                                        <Circle fill="DODGERBLUE" radius="62.5" stroke="BLACK" strokeMiterLimit="1.0"
+                                                strokeType="INSIDE" styleClass="BackgroundCircle"/>
+                                        <Circle fill="DODGERBLUE" layoutX="430.0" layoutY="410.0" radius="46.75"
+                                                stroke="BLACK" strokeType="INSIDE" styleClass="arrowCircle"/>
+                                        <Button fx:id="btnSagsaabning" alignment="CENTER" maxHeight="-Infinity"
+                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
+                                                styleClass="topButton1" text="1" textAlignment="CENTER"
+                                                translateX="-26.25" translateY="-35.0" wrapText="true">
+                                            <font>
+                                                <Font name="Cambria Bold" size="96.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="btnSagsOplysning" alignment="CENTER" disable="true"
+                                                layoutX="365.0" layoutY="345.0" maxHeight="-Infinity"
+                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
+                                                styleClass="topButton2" text="2" textAlignment="CENTER"
+                                                translateX="13.75" translateY="-41.25" wrapText="true">
+                                            <font>
+                                                <Font name="Cambria Bold" size="16.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="btnAfgorelseBestilling" alignment="CENTER" disable="true"
+                                                layoutX="373.0" layoutY="353.0" maxHeight="-Infinity"
+                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
+                                                styleClass="topButton3" text="3" textAlignment="CENTER"
+                                                translateX="41.25" translateY="-16.25" wrapText="true">
+                                            <font>
+                                                <Font name="Cambria Bold" size="16.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true"
+                                                layoutX="373.0" layoutY="353.0" maxHeight="-Infinity"
+                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
+                                                styleClass="bottomButton4" text="4" textAlignment="CENTER"
+                                                translateX="31.25" translateY="30.0" wrapText="true">
+                                            <font>
+                                                <Font name="Cambria Bold" size="16.0"/>
+                                            </font>
+                                            <opaqueInsets>
+                                                <Insets/>
+                                            </opaqueInsets>
+                                            <StackPane.margin>
+                                                <Insets/>
+                                            </StackPane.margin>
+                                        </Button>
+                                        <Button fx:id="btnUdorelseLevering" alignment="CENTER" disable="true"
+                                                layoutX="373.0" layoutY="353.0" maxHeight="-Infinity"
+                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
+                                                styleClass="bottomButton5" text="5" textAlignment="CENTER"
+                                                translateX="-13.75" translateY="41.25" wrapText="true">
+                                            <font>
+                                                <Font name="Cambria Bold" size="16.0"/>
+                                            </font>
+                                            <opaqueInsets>
+                                                <Insets/>
+                                            </opaqueInsets>
+                                        </Button>
+                                        <Button fx:id="btnOpfolgning" alignment="CENTER" disable="true" layoutX="373.0"
+                                                layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                                                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                                prefHeight="28.75" prefWidth="28.75" styleClass="middleButton" text="6"
+                                                textAlignment="CENTER" translateX="-43.75" wrapText="true"/>
+                                        <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-12.5"/>
+                                        <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel"
+                                               text="LEVERANDØR" translateY="12.5"/>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </GridPane>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <stylesheets>
+        <URL value="@../resources/css/CommonTheme.css"/>
+        <URL value="@../resources/css/CaseOpening.css"/>
+    </stylesheets>
 </GridPane>

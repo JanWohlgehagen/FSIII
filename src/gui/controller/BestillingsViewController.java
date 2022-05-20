@@ -50,12 +50,10 @@ public class BestillingsViewController implements Initializable {
     }
 
     public void handleSaveAndClose(MouseEvent mouseEvent) {
-        if(checkBoxBevilling.isSelected()){
-        currentCase.setIsBevilget(checkBoxBevilling.isSelected());
-        currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
-        }
-        else
-        {
+        if (checkBoxBevilling.isSelected()) {
+            currentCase.setIsBevilget(checkBoxBevilling.isSelected());
+            currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
+        } else {
             caseModel.deleteCaseOnCitizen(currentCitizen.getIDProperty().get(), currentCase.getCaseIDProperty().get());
         }
 
@@ -63,7 +61,7 @@ public class BestillingsViewController implements Initializable {
     }
 
     public void handleSaveAndNextScene(MouseEvent mouseEvent) throws IOException {
-        if(checkBoxBevilling.isSelected()){
+        if (checkBoxBevilling.isSelected()) {
             currentCase.setIsBevilget(checkBoxBevilling.isSelected());
             currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
             currentCase.setIsBevilget(checkBoxBevilling.isSelected());
@@ -72,9 +70,7 @@ public class BestillingsViewController implements Initializable {
             planlaegningScene.loadNewScene(getStage());
             PlanlaegningController planlaegningController = planlaegningScene.getController();
             planlaegningController.setDashboardController(dashBoardController);
-        }
-        else
-        {
+        } else {
             caseModel.deleteCaseOnCitizen(currentCitizen.getIDProperty().get(), currentCase.getCaseIDProperty().get());
             getStage().close();
         }
@@ -94,11 +90,11 @@ public class BestillingsViewController implements Initializable {
         this.caseModel = caseModel;
     }
 
-    private Stage getStage(){
+    private Stage getStage() {
         return (Stage) parentPane.getScene().getWindow();
     }
 
-    private void setBestillingsViewToLoginUserProfile(){
+    private void setBestillingsViewToLoginUserProfile() {
         if (this.loginUser != null) {
             switch (this.loginUser.getUserType()) {
                 case STUDENT -> {

@@ -49,7 +49,7 @@ public class OpfoelgningController implements Initializable {
 
     }
 
-    public void setDashboardController(DashboardController dashboardController){
+    public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
 
@@ -57,9 +57,9 @@ public class OpfoelgningController implements Initializable {
         this.caseModel = caseModel;
     }
 
-    private void setOpfoelgningTag(){
+    private void setOpfoelgningTag() {
         String opfoelgningstag = selectCase.getOpfoelgningstagProperty().get();
-        switch (opfoelgningstag){
+        switch (opfoelgningstag) {
             case "Afsluttes" -> {
                 checkBoxCloseCase.setSelected(true);
             }
@@ -112,7 +112,7 @@ public class OpfoelgningController implements Initializable {
         caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
     }
 
-    private Stage getStage(){
+    private Stage getStage() {
         return (Stage) parentPane.getScene().getWindow();
     }
 }

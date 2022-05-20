@@ -30,7 +30,7 @@ public class CreateAndEditClassController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         Platform.runLater(() -> {
-            if(wClass != null){
+            if (wClass != null) {
                 txtName.setText(wClass.getNameProperty().get());
             }
         });
@@ -46,11 +46,11 @@ public class CreateAndEditClassController implements Initializable {
     }
 
     public void btnSave(ActionEvent actionEvent) {
-        if(wClass != null){
+        if (wClass != null) {
             wClass.setName(txtName.getText());
             userModel.editClass(wClass);
-        }else{
-           WClass newClass = new WClass(txtName.getText());
+        } else {
+            WClass newClass = new WClass(txtName.getText());
             userModel.createClass(newClass);
         }
         Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();

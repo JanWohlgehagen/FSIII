@@ -32,9 +32,9 @@ public class ManagerFacade implements IManagerFacade {
 
     }
 
-                            /***************************************************/
-                            /****************** Credential/User ****************/
-                            /***************************************************/
+    /***************************************************/
+    /****************** Credential/User ****************/
+    /***************************************************/
 
     @Override
     public User loginCredential(String userName, String userPassword) {
@@ -86,9 +86,9 @@ public class ManagerFacade implements IManagerFacade {
         userManager.editUser(user);
     }
 
-                                    /***************************************************/
-                                    /********************* Class ***********************/
-                                    /***************************************************/
+    /***************************************************/
+    /********************* Class ***********************/
+    /***************************************************/
 
     @Override
     public WClass createClass(WClass wClass) {
@@ -100,6 +100,7 @@ public class ManagerFacade implements IManagerFacade {
         userManager.deleteClass(wClass);
 
     }
+
     @Override
     public void editClass(WClass wClass) {
         userManager.editClass(wClass);
@@ -137,13 +138,13 @@ public class ManagerFacade implements IManagerFacade {
 
     @Override
     public void removeTeacherFromClass(User teacher, WClass wClass) {
-        userManager.removeTeacherFromClass(teacher,wClass);
+        userManager.removeTeacherFromClass(teacher, wClass);
     }
 
 
     /***************************************************/
-                            /******************** Case *************************/
-                            /***************************************************/
+    /******************** Case *************************/
+    /***************************************************/
 
 
     @Override
@@ -157,7 +158,7 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public void updateCaseOnCitizen(int citizenID,Case selectCase) {
+    public void updateCaseOnCitizen(int citizenID, Case selectCase) {
         caseManager.updateCaseOnCitizen(citizenID, selectCase);
     }
 
@@ -171,9 +172,9 @@ public class ManagerFacade implements IManagerFacade {
         return caseManager.createCaseOnCitizen(newCase);
     }
 
-                                /***************************************************/
-                                /******************** Citizen **********************/
-                                /***************************************************/
+    /***************************************************/
+    /******************** Citizen **********************/
+    /***************************************************/
 
     @Override
     public List<Borger> getAllCitizen() {
@@ -206,7 +207,7 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public void updateSagsoplysninger(Borger borger){
+    public void updateSagsoplysninger(Borger borger) {
         citizenManager.updateGenerelleOplysninger(borger);
         citizenManager.updateCitizen(borger);
         helbredstilstandManager.updateHelbredstilstand(borger);
@@ -218,16 +219,16 @@ public class ManagerFacade implements IManagerFacade {
         return citizenManager.getGenerelleOplysninger(borger);
     }
 
-                                /***************************************************/
-                                /******************* Tilstande *********************/
-                                /***************************************************/
+    /***************************************************/
+    /******************* Tilstande *********************/
+    /***************************************************/
 
     @Override
     public void createEmptyTilstande(Borger borger) {
         citizenManager.createEmptyTilstande(borger);
     }
 
-    public List<String> getFunktionstilstandsList()  {
+    public List<String> getFunktionstilstandsList() {
         return funktionstilstandManager.getFunktionstilstandsList();
     }
 
@@ -257,7 +258,7 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public List<String> getHelbredstilstandsList()  {
+    public List<String> getHelbredstilstandsList() {
         return helbredstilstandManager.getHelbredstilstandsList();
     }
 

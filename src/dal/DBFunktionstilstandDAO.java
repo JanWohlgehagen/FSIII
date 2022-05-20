@@ -56,7 +56,7 @@ public class DBFunktionstilstandDAO {
                     preparedStatement.setString(8, funktionstilstandsUnderkategori.getAarsagProperty().get());
                     preparedStatement.setString(9, funktionstilstandsUnderkategori.getFagligNotatProperty().get());
                     preparedStatement.setInt(10, funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
-                    preparedStatement.setString(11,funktionstilstandsUnderkategori.getObservation().getDescriptionProperty().get());
+                    preparedStatement.setString(11, funktionstilstandsUnderkategori.getObservation().getDescriptionProperty().get());
                     preparedStatement.setTimestamp(12, funktionstilstandsUnderkategori.getObservation().getTidspunkt());
                     preparedStatement.setString(13, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
 

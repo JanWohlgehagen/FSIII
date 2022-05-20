@@ -18,8 +18,7 @@ public class HelbredstilstandsUnderkategori {
     private StringProperty fagligNotat = new SimpleStringProperty();
     private Observation observation = new Observation();
 
-    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori)
-    {
+    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori) {
         this.id.set(ID);
         this.tilstandsklassifikation.set(tilstandsklassifikation);
         this.overkategori.set(overkategori);
@@ -117,7 +116,7 @@ public class HelbredstilstandsUnderkategori {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.tilstandsklassifikation.get();
     }
 

@@ -14,6 +14,7 @@ public interface IDatabaseFacade {
     // USER
 
     Credential checkCredential(String userName);
+
     User getUserById(int id);
 
     public List<User> getAllUser();
@@ -89,14 +90,14 @@ public interface IDatabaseFacade {
 
     public void getTilstandeOnCitizen(Borger borger);
 
-    public void createEmptyFunktionstilstand (Borger borger);
+    public void createEmptyFunktionstilstand(Borger borger);
 
     public void updateFunktiontilstand(Borger borger);
 
     public void deleteFunktionstilstandOnCitizen(Borger borger);
 
 
-    public void createEmptyHelbredstilstand (Borger borger);
+    public void createEmptyHelbredstilstand(Borger borger);
 
     public void updateHelbredstilstand(Borger borger);
 

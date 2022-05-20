@@ -40,16 +40,14 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
         getStage().close();
     }
 
-    public void setModelsAndControllers(CitizenModel citizenModel, UserModel userModel, DashboardController dashboardController)
-    {
+    public void setModelsAndControllers(CitizenModel citizenModel, UserModel userModel, DashboardController dashboardController) {
         this.citizenModel = citizenModel;
         this.userModel = userModel;
         this.dashboardController = dashboardController;
 
     }
 
-    public void setBorger(Borger borger)
-    {
+    public void setBorger(Borger borger) {
         selectedBorger = borger;
     }
 
@@ -60,7 +58,7 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
         cboxClasses.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<WClass>() {
             @Override
             public void changed(ObservableValue<? extends WClass> observable, WClass oldValue, WClass newValue) {
-                if(newValue != null) {
+                if (newValue != null) {
                     userModel.studentInClass(newValue);
                     lvStudents.setItems(userModel.getStudentInClass());
                 }
@@ -72,7 +70,7 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
         cboxClasses.setItems(userModel.getAllClass());
     }
 
-    private Stage getStage(){
+    private Stage getStage() {
         return (Stage) parentPane.getScene().getWindow();
     }
 }

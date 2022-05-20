@@ -2,6 +2,7 @@ package dal;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -36,7 +37,8 @@ public class DBConnecting {
     }
 
     /**
-     *  Get the database connection.
+     * Get the database connection.
+     *
      * @return the database connection.
      * @throws SQLServerException
      */

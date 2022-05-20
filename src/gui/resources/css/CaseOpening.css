@@ -8,7 +8,7 @@
 
 .buttonVidere:hover,
 .buttonVidere:armed,
-.buttonVidere:focused{
+.buttonVidere:focused {
     -fx-border-color: transparent;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
@@ -25,24 +25,24 @@
     -purple: #b96990;
 */
 
-.stackPane{
+.stackPane {
     -fx-scale-y: 1.00;
     -fx-scale-x: 1.00;
 }
 
-.BackgroundCircle{
-    -fx-fill: linear-gradient(to top, rgba(185,105,144,1) 50%, rgba(119,161,131,1) 50%);
+.BackgroundCircle {
+    -fx-fill: linear-gradient(to top, rgba(185, 105, 144, 1) 50%, rgba(119, 161, 131, 1) 50%);
     -fx-stroke: transparent;
 }
 
-.arrowCircle{
+.arrowCircle {
     -fx-fill: transparent;
     -fx-stroke: white;
     -fx-stroke-width: 1;
 }
 
-.topButton1{
-    -fx-background-color: rgba(185,105,144,1);
+.topButton1 {
+    -fx-background-color: rgba(185, 105, 144, 1);
     -fx-border-width: 2;
     -fx-background-radius: 100;
     -fx-border-radius: 100;
@@ -58,8 +58,8 @@
     -fx-border-insets: -1 -1 -2 -1;
 }
 
-.topButton2{
-    -fx-background-color: rgba(119,161,131,1);
+.topButton2 {
+    -fx-background-color: rgba(119, 161, 131, 1);
     -fx-border-width: 1;
     -fx-border-color: white;
     -fx-background-radius: 100;
@@ -71,8 +71,8 @@
     -fx-text-alignment: justify;
 }
 
-.topButton3{
-    -fx-background-color: rgba(119,161,131,1);
+.topButton3 {
+    -fx-background-color: rgba(119, 161, 131, 1);
     -fx-border-width: 1;
     -fx-border-color: white;
     -fx-background-radius: 100;
@@ -84,8 +84,8 @@
     -fx-text-alignment: justify;
 }
 
-.middleButton{
-    -fx-background-color: linear-gradient(to right, rgba(185,105,144,1) 50%, rgba(119,161,131,1) 50%);
+.middleButton {
+    -fx-background-color: linear-gradient(to right, rgba(185, 105, 144, 1) 50%, rgba(119, 161, 131, 1) 50%);
     -fx-border-width: 1;
     -fx-border-color: white;
     -fx-background-radius: 100;
@@ -97,8 +97,8 @@
     -fx-text-alignment: justify;
 }
 
-.bottomButton4{
-    -fx-background-color: rgba(185,105,144,1);
+.bottomButton4 {
+    -fx-background-color: rgba(185, 105, 144, 1);
     -fx-border-width: 1;
     -fx-border-color: white;
     -fx-background-radius: 100;
@@ -110,8 +110,8 @@
     -fx-text-alignment: justify;
 }
 
-.bottomButton5{
-    -fx-background-color: rgba(185,105,144,1);
+.bottomButton5 {
+    -fx-background-color: rgba(185, 105, 144, 1);
     -fx-border-width: 1;
     -fx-border-color: white;
     -fx-background-radius: 100;
@@ -123,7 +123,7 @@
     -fx-text-alignment: justify;
 }
 
-.staticLabel{
+.staticLabel {
     -fx-text-fill: White;
     -fx-font-weight: bold;
     -fx-font-size: 4.5;

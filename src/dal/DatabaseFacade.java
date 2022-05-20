@@ -61,8 +61,8 @@ public class DatabaseFacade implements IDatabaseFacade {
 
 
     /***************************************************/
-                                /******************** Class ************************/
-                                /***************************************************/
+    /******************** Class ************************/
+    /***************************************************/
 
     @Override
     public WClass createClass(WClass wClass) {
@@ -136,8 +136,8 @@ public class DatabaseFacade implements IDatabaseFacade {
 
 
     /***************************************************/
-                            /******************** Case *************************/
-                            /***************************************************/
+    /******************** Case *************************/
+    /***************************************************/
 
     @Override
     public List<Case> getAllCasesOnCitizen(int citizenid) {
@@ -146,7 +146,7 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public Case getCaseOnCitizen(int citizenID, int caseID) {
-        return dbCaseDAO.getCaseOnCitizen(citizenID,caseID);
+        return dbCaseDAO.getCaseOnCitizen(citizenID, caseID);
     }
 
     @Override
@@ -175,9 +175,9 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
 
-                                /***************************************************/
-                                /******************** Citizen **********************/
-                                /***************************************************/
+    /***************************************************/
+    /******************** Citizen **********************/
+    /***************************************************/
 
     @Override
     public Borger createCitizen(Borger borger) {
@@ -211,9 +211,9 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     }
 
-                                /***************************************************/
-                                /******************** Citizen **********************/
-                                /***************************************************/
+    /***************************************************/
+    /******************** Citizen **********************/
+    /***************************************************/
 
     @Override
     public void updateGenerelleOplysninger(Borger borger) {
@@ -226,9 +226,9 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
 
-                                /***************************************************/
-                                /******************** Tilstande ********************/
-                                /***************************************************/
+    /***************************************************/
+    /******************** Tilstande ********************/
+    /***************************************************/
     @Override
     public void getTilstandeOnCitizen(Borger borger) {
         borger.setFunktionstilstand(dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger));
@@ -271,9 +271,9 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     }
 
-                                            /***************************************************/
-                                            /*************** Tilstandskategorier ***************/
-                                            /***************************************************/
+    /***************************************************/
+    /*************** Tilstandskategorier ***************/
+    /***************************************************/
     @Override
     public Funktionstilstand getEmptyFunktionsTilstand() {
         return dbFunktionstilstandsUnderkategoriDAO.getEmptyFunktionstilstands();
