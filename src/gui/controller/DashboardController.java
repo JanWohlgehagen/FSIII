@@ -358,7 +358,7 @@ public class DashboardController implements Initializable {
             if (newValue != null) {
                 lvStuderendesBorgere.getItems().clear();
                 for (Borger b : citizenModel.getAllCitizen()) {
-                    if (b.getStudent().getIdProperty().get() == newValue.getIdProperty().get()) {
+                    if (b.getStudent() != null && b.getStudent().getIdProperty().get() == newValue.getIdProperty().get()) {
                         lvStuderendesBorgere.getItems().add(b);
                     }
                 }
