@@ -18,49 +18,15 @@ public class DBFunktionstilstandDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void createEmptyFunktionstilstand(Borger borger) {
-        String sql = "INSERT INTO [F_Tilstandsvurdering] (FS_Borger_ID, FS_UK_ID) VALUES (?,?)";
-        try (Connection connection = dbConnecting.getConnection()) {
-            for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
-                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, borger.getIDProperty().get());
-                    preparedStatement.setInt(2, funktionstilstandsUnderkategori.getId().get());
-
-                    preparedStatement.execute();
-                }
-            }
-
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
     public void updateFunktionstilstand(Borger borger) {
-        String sql = "UPDATE [F_Tilstandsvurdering] SET FS_Borger_ID = (?), FS_UK_ID = (?), Udfoerelse = (?), Betydning = (?), Borger_Maal = (?), Niveau = (?)," +
-                " Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?), opfoelgning = (?)" +
-                "WHERE FS_Borger_ID = (?) AND FS_UK_ID = (?)";
+        String sqlInsert = "INSERT INTO FC_Assessment (FC_S_ID, FC_A_ID, Citizen_ID, [Description]) VALUES ((?),(?),(?),(?))";
         try (Connection connection = dbConnecting.getConnection()) {
             for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
                 for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, borger.getIDProperty().get());
-                    preparedStatement.setInt(2, funktionstilstandsUnderkategori.getId().get());
-                    preparedStatement.setString(3, funktionstilstandsUnderkategori.getUdførelseProperty().get());
-                    preparedStatement.setString(4, funktionstilstandsUnderkategori.getBetydningProperty().get());
-                    preparedStatement.setString(5, funktionstilstandsUnderkategori.getOenskerOgMaalProperty().get());
-                    preparedStatement.setInt(6, funktionstilstandsUnderkategori.getNiveauProperty().get());
-                    preparedStatement.setString(7, funktionstilstandsUnderkategori.getVurderingProperty().get());
-                    preparedStatement.setString(8, funktionstilstandsUnderkategori.getAarsagProperty().get());
-                    preparedStatement.setString(9, funktionstilstandsUnderkategori.getFagligNotatProperty().get());
-                    preparedStatement.setInt(10, funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
-                    preparedStatement.setString(11, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
+                    PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
 
-                    preparedStatement.setInt(12, borger.getIDProperty().get());
-                    preparedStatement.setInt(13, funktionstilstandsUnderkategori.getId().get());
 
-                    preparedStatement.execute();
+                    preparedStatementInsert.execute();
 
                 }
             }
