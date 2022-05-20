@@ -17,23 +17,123 @@ public class DBGenerelInformationDAO {
 
     public void updateGenerelleOplysninger(Borger borger) {
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "UPDATE Generelle_Oplysninger SET Mestring = (?), Motivation = (?), Ressourcer = (?), Roller = (?), Vaner = (?), Uddannelse = (?), Livshistorie = (?), Netvaerk = (?), Helbredsoplysninger = (?), hjaelpemidler = (?), Boligens_Indretning = (?) WHERE Borger_ID = (?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            String sqlDelete = "DELETE FROM GI_Assessment WHERE [FK_GI_ID] = (?) AND [Citizen_ID] = (?);";
+            String sqlInsert = "INSERT INTO GI_Assessment (Citizen_ID, FK_GI_ID, Description)VALUES ((?), (?), (?));";
+            PreparedStatement preparedStatementDelete = connection.prepareStatement(sqlDelete);
+            PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
 
-            preparedStatement.setString(1, borger.getMestringProperty().get());
-            preparedStatement.setString(2, borger.getMotivationProperty().get());
-            preparedStatement.setString(3, borger.getRessourcerProperty().get());
-            preparedStatement.setString(4, borger.getRollerProperty().get());
-            preparedStatement.setString(5, borger.getVanerProperty().get());
-            preparedStatement.setString(6, borger.getUddannelseProperty().get());
-            preparedStatement.setString(7, borger.getLivshistorieProperty().get());
-            preparedStatement.setString(8, borger.getNetvaerkProperty().get());
-            preparedStatement.setString(9, borger.getHelbredsoplysningerProperty().get());
-            preparedStatement.setString(10, borger.getHjaelpemidlerProperty().get());
-            preparedStatement.setString(11, borger.getBoligensIndretningProperty().get());
-            preparedStatement.setInt(12, borger.getIDProperty().get());
+            //Set the ID for the citizen in both preparedstatements, this is not dynamic and is therefore exempt from the loop
+            preparedStatementDelete.setInt(2, borger.getIDProperty().get());
+            preparedStatementInsert.setInt(1, borger.getIDProperty().get());
 
-            preparedStatement.execute();
+            for (int i = 1; i < 12; i++) {
+
+                preparedStatementDelete.setInt(1, i);
+                preparedStatementInsert.setInt(2, i);
+
+                //If the property is not null, the row in DB is deleted, and if string is not blank or empty a new row is created as wel
+                switch (i){
+                    case (1) -> {
+                        if (borger.getMestringProperty().get() != null) {
+                            String tempString = borger.getMestringProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (2) -> {
+                        if (borger.getMotivationProperty().get() != null) {
+                            String tempString = borger.getMotivationProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (3) -> {
+                        if (borger.getRessourcerProperty().get() != null) {
+                            String tempString = borger.getRessourcerProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (4) -> {
+                        if (borger.getRollerProperty().get() != null) {
+                            String tempString = borger.getRollerProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (5) -> {
+                        if (borger.getVanerProperty().get() != null) {
+                            String tempString = borger.getVanerProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (6) -> {
+                        if (borger.getUddannelseProperty().get() != null) {
+                            String tempString = borger.getUddannelseProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (7) -> {
+                        if (borger.getLivshistorieProperty().get() != null) {
+                            String tempString = borger.getLivshistorieProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (8) -> {
+                        if (borger.getNetvaerkProperty().get() != null) {
+                            String tempString = borger.getNetvaerkProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (9) -> {
+                        if (borger.getHjaelpemidlerProperty().get() != null) {
+                            String tempString = borger.getHjaelpemidlerProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (10) -> {
+                        if (borger.getHelbredsoplysningerProperty().get() != null) {
+                            String tempString = borger.getHelbredsoplysningerProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                    case (11) -> {
+                        if (borger.getBoligensIndretningProperty().get() != null) {
+                            String tempString = borger.getBoligensIndretningProperty().get();
+                            preparedStatementInsert.setString(3, tempString);
+                            preparedStatementDelete.execute();
+                            if (!tempString.isBlank() || !tempString.isEmpty())
+                                preparedStatementInsert.execute();
+                        }
+                    }
+                }
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke opdatere generelle oplysninger.", ButtonType.OK);
@@ -42,40 +142,29 @@ public class DBGenerelInformationDAO {
         }
     }
 
-    public void createGenerelleOplysninger(Borger borger) {
-        try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "INSERT INTO Generelle_Oplysninger (Borger_ID) VALUES (?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
-            preparedStatement.execute();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunne ikke oprette generelle oplysninger.", ButtonType.OK);
-            alert.setTitle("FSIII");
-            alert.show();
-        }
-    }
 
     public Borger getGenerelleOplysninger(Borger borger) {
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM Generelle_Oplysninger WHERE Borger_ID = (?)";
+            String sql = "SELECT [Description], [FK_GI_ID] FROM GI_Assessment WHERE [Citizen_ID] = (?);";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, borger.getIDProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-               borger.setMestring(resultSet.getString("Mestring"));
-               borger.setMotivation(resultSet.getString("Motivation"));
-               borger.setRessourcer(resultSet.getString("Ressourcer"));
-               borger.setRoller(resultSet.getString("Roller"));
-               borger.setVaner(resultSet.getString("Vaner"));
-               borger.setUddannelse(resultSet.getString("Uddannelse"));
-               borger.setLivshistorie(resultSet.getString("Livshistorie"));
-               borger.setNetvaerk(resultSet.getString("Netvaerk"));
-               borger.setHelbredsoplysninger(resultSet.getString("Helbredsoplysninger"));
-               borger.setHjaelpemidler(resultSet.getString("hjaelpemidler"));
-               borger.setBoligensIndretning(resultSet.getString("Boligens_Indretning"));
+            while (resultSet.next()) {
+               switch (resultSet.getInt("FK_GI_ID")){
+                   case (1) -> borger.setMestring(resultSet.getString("Description"));
+                   case (2) -> borger.setMotivation(resultSet.getString("Description"));
+                   case (3) -> borger.setRessourcer(resultSet.getString("Description"));
+                   case (4) -> borger.setRoller(resultSet.getString("Description"));
+                   case (5) -> borger.setVaner(resultSet.getString("Description"));
+                   case (6) -> borger.setUddannelse(resultSet.getString("Description"));
+                   case (7) -> borger.setLivshistorie(resultSet.getString("Description"));
+                   case (8) -> borger.setNetvaerk(resultSet.getString("Description"));
+                   case (9) -> borger.setHjaelpemidler(resultSet.getString("Description"));
+                   case (10) -> borger.setHelbredsoplysninger(resultSet.getString("Description"));
+                   case (11) -> borger.setBoligensIndretning(resultSet.getString("Description"));
+               }
             }
             return borger;
 

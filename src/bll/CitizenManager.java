@@ -53,10 +53,6 @@ public class CitizenManager {
         databaseFacade.updateGenerelleOplysninger(borger);
     }
 
-    public void createGenerelleOplysninger(Borger borger){
-        databaseFacade.createGenerelleOplysninger(borger);
-    }
-
     public Borger getGenerelleOplysninger(Borger borger){
         return databaseFacade.getGenerelleOplysninger(borger);
     }
