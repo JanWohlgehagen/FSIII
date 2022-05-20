@@ -22,7 +22,6 @@ public class HelbredstilstandsUnderkategori {
         this.id.set(ID);
         this.tilstandsklassifikation.set(tilstandsklassifikation);
         this.overkategori.set(overkategori);
-
     }
 
     public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori, String tilstand, String forventetTilstand, String vurdering, String aarsag, String fagligNotat, Observation observation) {

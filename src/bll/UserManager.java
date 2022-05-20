@@ -26,6 +26,10 @@ public class UserManager extends CredentialManager {
         allAdminInDatabase = new ArrayList<>();
     }
 
+    /**
+     * getAllUser method looks through all users and adds them into appropriate databases that are contained within the collective database.
+     * @return the collective database with all users.
+     */
     public List<User> getAllUser() {
         if (allUserInDatabase.isEmpty()) {
             allUserInDatabase = databaseFacade.getAllUser();

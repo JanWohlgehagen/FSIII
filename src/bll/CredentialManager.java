@@ -16,6 +16,10 @@ public class CredentialManager {
         this.databaseFacade = databaseFacade;
     }
 
+    /**
+     * loginCredential checks if Username and Password are correct, using the checkCredential method and then logs you in if they are.
+     * If incorrect, the method returns a window with an alert that tells you either Username or Password is wrong.
+     */
     protected User loginCredential(String userName, String userPassword) {
         if (checkCredential(userName, userPassword)) {
             return databaseFacade.getUserById(credential.getUserId());

@@ -15,10 +15,8 @@ import java.util.ResourceBundle;
 
 public class EditTeacherAndStudentController implements Initializable {
 
-
     @FXML
     private GridPane parentPaneGridPane;
-
     @FXML
     private TextField txtFirstName;
     @FXML
@@ -29,9 +27,7 @@ public class EditTeacherAndStudentController implements Initializable {
     private TextField txtPassword;
 
     private User student;
-
     private UserModel userModel;
-
     private User teacher;
 
     @Override
@@ -47,7 +43,6 @@ public class EditTeacherAndStudentController implements Initializable {
                 txtLoginName.setText(teacher.getCredential().getUserName());
             }
         });
-
     }
 
     public void setUserModel(UserModel userModel) {
@@ -84,6 +79,5 @@ public class EditTeacherAndStudentController implements Initializable {
 
         Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();
         stage.close();
-
     }
 }

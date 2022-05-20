@@ -21,7 +21,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBHelbredstilstandDAO dbHelbredstilstandDAO;
     private DBClassDAO dbClassDAO;
 
-
     public DatabaseFacade() throws IOException {
         dbConnecting = new DBConnecting();
         dbLoginDAO = new DBLoginDAO(dbConnecting);
@@ -32,7 +31,6 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
         dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
         dbHelbredstilstandDAO = new DBHelbredstilstandDAO(dbConnecting);
-
     }
 
     @Override
@@ -54,7 +52,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     public List<WClass> getAllClass() {
         return dbClassDAO.getAllClass();
     }
-
 
     /***************************************************/
     /******************** Class ************************/
@@ -135,7 +132,6 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbUserDAO.updatePassword(credential);
     }
 
-
     /***************************************************/
     /******************** Case *************************/
     /***************************************************/
@@ -188,7 +184,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public void updateCitizen(Borger borger) {
         dbCitizenDAO.updateCitizen(borger);
-
     }
 
     @Override
@@ -199,7 +194,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public void deleteCitizen(Borger borger) {
         dbCitizenDAO.deleteCitizen(borger);
-
     }
 
     /***************************************************/
@@ -215,9 +209,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     public Borger getGenerelleOplysninger(Borger borger) {
         return dbGenerelInformationDAO.getGenerelleOplysninger(borger);
     }
-
-
-
 
     /***************************************************/
     /******************** Tilstande ********************/
@@ -236,19 +227,16 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public void createEmptyFunktionstilstand(Borger borger) {
         dbFunktionstilstandDAO.createEmptyFunktionstilstand(borger);
-
     }
 
     @Override
     public void updateFunktiontilstand(Borger borger) {
         dbFunktionstilstandDAO.updateFunktionstilstand(borger);
-
     }
 
     @Override
     public void deleteFunktionstilstandOnCitizen(Borger borger) {
         dbFunktionstilstandDAO.deleteFunktionstilstandOnCitizen(borger);
-
     }
 
     @Override
@@ -259,18 +247,17 @@ public class DatabaseFacade implements IDatabaseFacade {
     @Override
     public void updateHelbredstilstand(Borger borger) {
         dbHelbredstilstandDAO.updateHelbredstilstand(borger);
-
     }
 
     @Override
     public void deleteHelbredstilstandOnCitizen(Borger borger) {
         dbHelbredstilstandDAO.deleteHelbredstilstand(borger);
-
     }
 
     /***************************************************/
     /*************** Tilstandskategorier ***************/
     /***************************************************/
+
     @Override
     public Funktionstilstand getEmptyFunktionsTilstand() {
         return dbFunktionstilstandDAO.getEmptyFunktionstilstands();

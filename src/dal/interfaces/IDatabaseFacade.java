@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface IDatabaseFacade {
 
-    // USER
+    /** USER */
 
     Credential checkCredential(String userName);
 
@@ -27,12 +27,11 @@ public interface IDatabaseFacade {
 
     void createNewLoginUser(Credential credential);
 
-
     void updateLoginName(Credential credential);
 
     void updatePassword(Credential credential);
 
-    // CLASS
+    /** CLASS */
 
     public List<WClass> getAllClass();
 
@@ -54,7 +53,7 @@ public interface IDatabaseFacade {
 
     public void removeTeacherFromClass(User teacher, WClass wClass);
 
-    // CASE
+    /** CASE */
 
     public List<Case> getAllCasesOnCitizen(int citizenid);
 
@@ -84,7 +83,7 @@ public interface IDatabaseFacade {
 
     public Borger getGenerelleOplysninger(Borger borger);
 
-    //Tilstande Functions
+    /** Tilstande Functions */
 
 
     public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger);
@@ -96,7 +95,6 @@ public interface IDatabaseFacade {
     public Funktionstilstand getEmptyFunktionsTilstand();
 
     public void deleteFunktionstilstandOnCitizen(Borger borger);
-
 
     public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger);
 

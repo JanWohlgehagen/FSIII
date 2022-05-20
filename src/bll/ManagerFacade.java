@@ -89,7 +89,6 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public void deleteClass(WClass wClass) {
         userManager.deleteClass(wClass);
-
     }
 
     @Override

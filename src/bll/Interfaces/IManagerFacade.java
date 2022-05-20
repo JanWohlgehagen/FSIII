@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface IManagerFacade {
 
-    // USER
+    /** USER */
+
     User loginCredential(String userName, String userPassword);
 
     void createNewLoginUser(Credential credential);
@@ -29,7 +30,7 @@ public interface IManagerFacade {
 
     void editUser(User user);
 
-    // Class
+    /** Class */
 
     public WClass createClass(WClass wClass);
 
@@ -52,7 +53,8 @@ public interface IManagerFacade {
     public void removeTeacherFromClass(User teacher, WClass wClass);
 
 
-    // CASE
+    /** CASE */
+
     public List<Case> getAllCasesOnCitizen(int citizenid);
 
     public Case getCaseOnCitizen(int citizenID, int caseID);
@@ -63,7 +65,8 @@ public interface IManagerFacade {
 
     public Case createCaseOnCitizen(Case newCase);
 
-    //CITIZEN
+    /** CITIZEN */
+
     public List<Borger> getAllCitizen();
 
     public List<Borger> getAllTemplates();
