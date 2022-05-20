@@ -14,12 +14,12 @@ public class DBCaseDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public List<Case> getAllCasesOnCitizen(int citizenid){
+    public List<Case> getAllCasesOnCitizen(int citizenid) {
         List<Case> allCases = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Case] WHERE Borger_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1,citizenid);
+            preparedStatement.setInt(1, citizenid);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -62,7 +62,7 @@ public class DBCaseDAO {
         return allCases;
     }
 
-    public Case getCaseOnCitizen(int citizenID, int caseID){
+    public Case getCaseOnCitizen(int citizenID, int caseID) {
         try (Connection connection = dbConnecting.getConnection()) {
             //TODO
             throw new UnsupportedOperationException();
@@ -73,7 +73,7 @@ public class DBCaseDAO {
         }
     }
 
-    public void updateCaseOnCitizen(int citizenID, Case selectCase){
+    public void updateCaseOnCitizen(int citizenID, Case selectCase) {
 
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "UPDATE [Case] SET " +
@@ -90,7 +90,7 @@ public class DBCaseDAO {
                     "[Plan] = (?), " +
                     "Opfoelgnings_Tag = (?), " +
                     "SagsAnsvarlig = (?)" +
-                         " WHERE Borger_ID = (?) AND Case_ID = (?)";
+                    " WHERE Borger_ID = (?) AND Case_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, selectCase.getOverkategoriTitleProperty().get());
             preparedStatement.setString(2, selectCase.getUnderkategoriTitleProperty().get());
@@ -114,7 +114,7 @@ public class DBCaseDAO {
         }
     }
 
-    public void deleteCaseOnCitizen(int citizenID, int caseID){
+    public void deleteCaseOnCitizen(int citizenID, int caseID) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "DELETE [Case] WHERE Borger_ID = (?) AND Case_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -127,7 +127,7 @@ public class DBCaseDAO {
         }
     }
 
-    public Case createCaseOnCitizen(Case newCase){
+    public Case createCaseOnCitizen(Case newCase) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "INSERT INTO [Case] (Borger_ID, OverkategoriTitle, UnderkategoriTitle, Henvisning,  Aasagsdiagnose,  Aasagsfritekst, Aasagstilstand, Borgerensonsker, Description, Bevilling, Bevillings_Tekst, [Plan], Opfoelgnings_Tag, SagsAnsvarlig)" +
                     " VALUES ( (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?) )";

@@ -9,15 +9,13 @@ import java.util.List;
 public class CitizenManager {
     private IDatabaseFacade databaseFacade;
 
-    public CitizenManager(DatabaseFacade databaseFacade)
-    {
+    public CitizenManager(DatabaseFacade databaseFacade) {
         this.databaseFacade = databaseFacade;
     }
 
-    public List<Borger> getAllCitizen(){
+    public List<Borger> getAllCitizen() {
         List<Borger> listOfCitizens = databaseFacade.getAllCitizens();
-        for(Borger borger:listOfCitizens)
-        {
+        for (Borger borger : listOfCitizens) {
             if (borger.getStudentIDProperty().get() != 0) {
                 borger.setStudent(databaseFacade.getUserById(borger.getStudentIDProperty().get()));
             }
@@ -25,27 +23,23 @@ public class CitizenManager {
         return listOfCitizens;
     }
 
-    public List<Borger> getAllTemplates()
-    {
+    public List<Borger> getAllTemplates() {
         return databaseFacade.getAllTemplates();
     }
 
-    public Borger createCitizen(Borger borger)
-    {
+    public Borger createCitizen(Borger borger) {
         return databaseFacade.createCitizen(borger);
     }
 
-    public void updateCitizen(Borger borger)
-    {
+    public void updateCitizen(Borger borger) {
         databaseFacade.updateCitizen(borger);
     }
 
-    public void addStudentToCitizen(Borger borger){
+    public void addStudentToCitizen(Borger borger) {
         databaseFacade.addStudentToCitizen(borger);
     }
 
-    public void deleteCitizen (Borger borger)
-    {
+    public void deleteCitizen(Borger borger) {
         databaseFacade.deleteCitizen(borger);
     }
 
@@ -53,12 +47,11 @@ public class CitizenManager {
         databaseFacade.updateGenerelleOplysninger(borger);
     }
 
-    public Borger getGenerelleOplysninger(Borger borger){
+    public Borger getGenerelleOplysninger(Borger borger) {
         return databaseFacade.getGenerelleOplysninger(borger);
     }
 
-    public void createEmptyTilstande(Borger borger)
-    {
+    public void createEmptyTilstande(Borger borger) {
         databaseFacade.createEmptyHelbredstilstand(borger);
         databaseFacade.createEmptyFunktionstilstand(borger);
     }

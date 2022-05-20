@@ -55,14 +55,14 @@ public class CreateTeacherAndStudentController implements Initializable {
     }
 
     public void btnSave(ActionEvent actionEvent) {
-        if(!txtFirstName.getText().isBlank() && !txtLastName.getText().isBlank() && !txtLoginName.getText().isBlank() && !txtPassword.getText().isBlank()){
+        if (!txtFirstName.getText().isBlank() && !txtLastName.getText().isBlank() && !txtLoginName.getText().isBlank() && !txtPassword.getText().isBlank()) {
             User newUser = new User(txtFirstName.getText(), txtLastName.getText());
 
 
-            if(isTeacher){
+            if (isTeacher) {
                 newUser.setUserType("TEACHER");
                 userModel.newUser(newUser);
-            }else if (isStudent){
+            } else if (isStudent) {
                 newUser.setUserType("STUDENT");
                 userModel.newUser(newUser);
             }
@@ -70,7 +70,7 @@ public class CreateTeacherAndStudentController implements Initializable {
             userModel.createNewLoginUser(newUser.getCredential());
             Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();
             stage.close();
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Der er ikke indsat et name.", ButtonType.OK);
             alert.show();
         }

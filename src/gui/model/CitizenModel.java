@@ -33,11 +33,11 @@ public class CitizenModel {
     }
 
     public ObservableList<Borger> getAllCitizen() {
-        allCitizens =  FXCollections.observableList(managerFacade.getAllCitizen());
+        allCitizens = FXCollections.observableList(managerFacade.getAllCitizen());
         return allCitizens;
     }
 
-    public ObservableList<Borger> getAllTemplates(){
+    public ObservableList<Borger> getAllTemplates() {
         allTemplates = FXCollections.observableList(managerFacade.getAllTemplates());
         return allTemplates;
     }
@@ -46,7 +46,7 @@ public class CitizenModel {
     public void createCitizen(Borger borger) {
         if (borger.isTemplateProperty().get()) {
             allTemplates.add(managerFacade.createCitizen(borger));
-        }else {
+        } else {
             allCitizens.add(managerFacade.createCitizen(borger));
         }
         borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
@@ -54,7 +54,7 @@ public class CitizenModel {
         managerFacade.createEmptyTilstande(borger);
     }
 
-    public void createCitizenFromTemplate(Borger templateBorger){
+    public void createCitizenFromTemplate(Borger templateBorger) {
 
 
         Borger borger = new Borger(templateBorger.getFirstNameProperty().get(), templateBorger.getLastNameProperty().get(),
@@ -66,8 +66,8 @@ public class CitizenModel {
         managerFacade.createEmptyTilstande(borger);
 
         // Add the data from Template
-        var cases  = managerFacade.getAllCasesOnCitizen(templateBorger.getIDProperty().get());
-        for (var aCase: cases) {
+        var cases = managerFacade.getAllCasesOnCitizen(templateBorger.getIDProperty().get());
+        for (var aCase : cases) {
             var newCase = new Case(borger.getIDProperty().get(), aCase.getOverkategoriTitleProperty().get(), aCase.getUnderkategoriTitleProperty().get());
             newCase.setIsBevilget(false);
             newCase.setHenvisning(aCase.getHenvisningProperty().get());
@@ -84,7 +84,7 @@ public class CitizenModel {
         }
 
         // Set the Helbredstiltand and Funktionstilstands
-        if(templateBorger.getHelbredstilstand() == null){
+        if (templateBorger.getHelbredstilstand() == null) {
             managerFacade.getTilstande(templateBorger);
         }
 
@@ -110,7 +110,7 @@ public class CitizenModel {
         managerFacade.updateCitizen(borger);
     }
 
-    public void addStudentToCitizen(Borger borger){
+    public void addStudentToCitizen(Borger borger) {
         managerFacade.addStudentToCitizen(borger);
     }
 
@@ -131,7 +131,7 @@ public class CitizenModel {
         managerFacade.getGenerelleOplysninger(borger);
     }
 
-    public void searchCitizen(String query){
+    public void searchCitizen(String query) {
         if (query.isBlank() || query.isEmpty()) {
             allCitizens.clear();
             allCitizens.addAll(allCitizensCache);
@@ -141,7 +141,7 @@ public class CitizenModel {
         }
     }
 
-    public void searchTemplates(String query){
+    public void searchTemplates(String query) {
         if (query.isBlank() || query.isEmpty()) {
             allTemplates.clear();
             allTemplates.addAll(allTemplatesCache);

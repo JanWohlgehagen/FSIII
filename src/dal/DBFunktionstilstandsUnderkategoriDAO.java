@@ -58,7 +58,7 @@ public class DBFunktionstilstandsUnderkategoriDAO {
             }
 
             for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
-                if(!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())){
+                if (!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())) {
                     funktionstilstandeHP.put(f.getOverKategoriProperty().get(), new ArrayList<FunktionstilstandsUnderkategori>());
                 }
                 funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);

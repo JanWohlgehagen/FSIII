@@ -22,15 +22,15 @@ public class User {
 
     private StringProperty fullName = new SimpleStringProperty();
 
-    private StringProperty type =  new SimpleStringProperty();
+    private StringProperty type = new SimpleStringProperty();
 
     public User(String firstName, String lastName) {
         this.firstName.set(firstName);
         this.lastName.set(lastName);
     }
 
-    public void setUserType(String userType){
-        switch (userType){
+    public void setUserType(String userType) {
+        switch (userType) {
             case "STUDENT" -> {
                 this.userType.add(UserType.STUDENT);
             }
@@ -43,25 +43,27 @@ public class User {
         }
     }
 
-    public boolean checkType(UserType userType){
+    public boolean checkType(UserType userType) {
         return this.userType.contains(userType);
     }
 
-    public UserType getUserType(){
-        if(!userType.isEmpty()){
-            for (UserType type: userType) {
+    public UserType getUserType() {
+        if (!userType.isEmpty()) {
+            for (UserType type : userType) {
                 return type;
             }
-        }return null;
+        }
+        return null;
     }
 
-    public StringProperty getUserTypeProperty(){
-        if(!userType.isEmpty()){
-            for (UserType type: userType) {
+    public StringProperty getUserTypeProperty() {
+        if (!userType.isEmpty()) {
+            for (UserType type : userType) {
                 this.type.set(type.name());
                 return this.type;
             }
-        }return null;
+        }
+        return null;
     }
 
     public IntegerProperty getIdProperty() {
@@ -88,7 +90,7 @@ public class User {
         this.lastName.set(lastName);
     }
 
-    public StringProperty getFullNameProperty(){
+    public StringProperty getFullNameProperty() {
         fullName.set(this.firstName.get() + " " + this.lastName.get());
         return this.fullName;
     }
@@ -103,6 +105,6 @@ public class User {
 
     @Override
     public String toString() {
-        return id.get() + ": "+ getFullNameProperty().get();
+        return id.get() + ": " + getFullNameProperty().get();
     }
 }

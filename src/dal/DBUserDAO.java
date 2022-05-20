@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBUserDAO extends DBLoginDAO{
+public class DBUserDAO extends DBLoginDAO {
 
     private DBConnecting dbConnecting;
 
@@ -17,12 +17,12 @@ public class DBUserDAO extends DBLoginDAO{
         this.dbConnecting = dbConnecting;
     }
 
-    public User getUserById(int id){
+    public User getUserById(int id) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Person] JOIN Credentials on Credentials.Person_ID = Person.Person_ID WHERE Person.Person_ID = (?) AND Credentials.Person_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1,id);
-            preparedStatement.setInt(2,id);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -33,7 +33,7 @@ public class DBUserDAO extends DBLoginDAO{
                 String loginName = resultSet.getString("UserName");
                 String password = resultSet.getString("Password");
 
-                User user = new User(firstName,lastName);
+                User user = new User(firstName, lastName);
                 user.setCredential(new Credential(user.getIdProperty().get(), loginName, password));
                 user.setUserType(role);
                 user.setId(id);
@@ -47,7 +47,7 @@ public class DBUserDAO extends DBLoginDAO{
         return null;
     }
 
-    public List<User> getAllUser(){
+    public List<User> getAllUser() {
         List<User> allUsers = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Person] JOIN Credentials on Credentials.Person_ID = Person.Person_ID";
@@ -63,7 +63,7 @@ public class DBUserDAO extends DBLoginDAO{
                 String loginName = resultSet.getString("UserName");
                 String password = resultSet.getString("Password");
 
-                User user = new User(firstName,lastName);
+                User user = new User(firstName, lastName);
                 user.setCredential(new Credential(user.getIdProperty().get(), loginName, password));
                 user.setUserType(role);
                 user.setId(id);
@@ -102,7 +102,7 @@ public class DBUserDAO extends DBLoginDAO{
     }
 
     public void deleteUser(User user) {
-        try(Connection connection = dbConnecting.getConnection()) {
+        try (Connection connection = dbConnecting.getConnection()) {
             String sql = "DELETE FROM [Person] WHERE Person_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, user.getIdProperty().get());
@@ -114,12 +114,12 @@ public class DBUserDAO extends DBLoginDAO{
     }
 
     public void editUser(User user) {
-        try(Connection connection = dbConnecting.getConnection()) {
+        try (Connection connection = dbConnecting.getConnection()) {
             String sql = "UPDATE [Person] SET FirstName = (?), LastName = (?) WHERE Person_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getFirstNameProperty().get());
             preparedStatement.setString(2, user.getLastNameProperty().get());
-            preparedStatement.setInt(3,user.getIdProperty().get());
+            preparedStatement.setInt(3, user.getIdProperty().get());
             preparedStatement.execute();
 
         } catch (SQLException SQLe) {

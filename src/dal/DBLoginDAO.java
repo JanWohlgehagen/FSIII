@@ -17,14 +17,14 @@ public class DBLoginDAO {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Credentials] WHERE UserName = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1,userName);
+            preparedStatement.setString(1, userName);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
                 int id = resultSet.getInt("Person_ID");
                 String userPassword = resultSet.getString("Password");
-                return new Credential(id,userName,userPassword);
+                return new Credential(id, userName, userPassword);
             }
 
         } catch (SQLException SQLe) {
@@ -33,7 +33,6 @@ public class DBLoginDAO {
         }
         return null;
     }
-
 
 
     public void createNewLoginUser(Credential credential) {
@@ -52,22 +51,22 @@ public class DBLoginDAO {
     }
 
     /**
-    public void deleteLoginUser(Credential credential){
-        try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "DELETE FROM Credentials WHERE Person_ID = (?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, credential.getUserId());
-
-            preparedStatement.execute();
-
-        } catch (SQLException SQLe) {
-            SQLe.printStackTrace();
-        }
-    }
+     * public void deleteLoginUser(Credential credential){
+     * try (Connection connection = dbConnecting.getConnection()) {
+     * String sql = "DELETE FROM Credentials WHERE Person_ID = (?)";
+     * PreparedStatement preparedStatement = connection.prepareStatement(sql);
+     * preparedStatement.setInt(1, credential.getUserId());
+     * <p>
+     * preparedStatement.execute();
+     * <p>
+     * } catch (SQLException SQLe) {
+     * SQLe.printStackTrace();
+     * }
+     * }
      **/
 
     public void editLoginUser(Credential credential) {
-        try(Connection connection = dbConnecting.getConnection()) {
+        try (Connection connection = dbConnecting.getConnection()) {
             String sql = "UPDATE [Credentials] SET UserName = (?), Password = (?) WHERE Person_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, credential.getUserName());

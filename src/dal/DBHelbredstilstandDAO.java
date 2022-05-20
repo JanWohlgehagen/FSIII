@@ -111,14 +111,12 @@ public class DBHelbredstilstandDAO {
                 //Overkategori
                 String overKategoriTitel = resultSet.getString("HS_Overkategori_Titel");
 
-                HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(ID,underKategoriTitel, overKategoriTitel, tilstand,forventetTilstand, vurdering,aarsag,fagligNotat, observation);
+                HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(ID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat, observation);
                 allHelbredstilstandeUK.add(helbredstilstandsUnderkategori);
 
             }
-            for (HelbredstilstandsUnderkategori h : allHelbredstilstandeUK)
-            {
-                if (!helbredstilstandeHP.containsKey(h.getOverkategoriProperty().get()))
-                {
+            for (HelbredstilstandsUnderkategori h : allHelbredstilstandeUK) {
+                if (!helbredstilstandeHP.containsKey(h.getOverkategoriProperty().get())) {
                     helbredstilstandeHP.put(h.getOverkategoriProperty().get(), new ArrayList<HelbredstilstandsUnderkategori>());
                 }
                 helbredstilstandeHP.get(h.getOverkategoriProperty().get()).add(h);
@@ -160,16 +158,14 @@ public class DBHelbredstilstandDAO {
             }
 
 
-                for (HelbredstilstandsUnderkategori h : allHelbredstilstandeUK)
-                {
-                    if (!helbredstilstandeHP.containsKey(h.getOverkategoriProperty().get()))
-                    {
-                        helbredstilstandeHP.put(h.getOverkategoriProperty().get(), new ArrayList<HelbredstilstandsUnderkategori>());
-                    }
-                    helbredstilstandeHP.get(h.getOverkategoriProperty().get()).add(h);
+            for (HelbredstilstandsUnderkategori h : allHelbredstilstandeUK) {
+                if (!helbredstilstandeHP.containsKey(h.getOverkategoriProperty().get())) {
+                    helbredstilstandeHP.put(h.getOverkategoriProperty().get(), new ArrayList<HelbredstilstandsUnderkategori>());
                 }
-                helbredstilstand.setHelbredstilstandskort(helbredstilstandeHP);
-                return helbredstilstand;
+                helbredstilstandeHP.get(h.getOverkategoriProperty().get()).add(h);
+            }
+            helbredstilstand.setHelbredstilstandskort(helbredstilstandeHP);
+            return helbredstilstand;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

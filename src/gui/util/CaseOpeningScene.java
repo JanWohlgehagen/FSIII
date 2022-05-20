@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class CaseOpeningScene implements ISceneLoader <CaseOpeningController> {
+public class CaseOpeningScene implements ISceneLoader<CaseOpeningController> {
 
     private static FXMLLoader loader;
     private final Image image = new Image("gui/resources/images/logo.png");

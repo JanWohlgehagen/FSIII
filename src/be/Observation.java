@@ -35,8 +35,7 @@ public class Observation {
         this.titel.set(titel);
     }
 
-    private String formattingOfTidspunkt()
-    {
+    private String formattingOfTidspunkt() {
         return new SimpleDateFormat("dd-MM-yyyy  HH:mm").format(tidspunkt.get());
     }
 

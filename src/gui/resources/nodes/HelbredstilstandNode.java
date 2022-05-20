@@ -15,8 +15,7 @@ public class HelbredstilstandNode extends VBox {
 
     private Label lbOKTitel;
 
-    public HelbredstilstandNode(String OKTitel)
-    {
+    public HelbredstilstandNode(String OKTitel) {
         lbOKTitel = new Label(OKTitel);
 
         lbOKTitel.setMinWidth(700);
@@ -26,16 +25,15 @@ public class HelbredstilstandNode extends VBox {
         lbOKTitel.getStyleClass().add("labelTitleHelbredsOplysninger");
 
         this.setStyle("-fx-alignment: center");
-        this.setPadding(new Insets(10,0,10,5));
+        this.setPadding(new Insets(10, 0, 10, 5));
         this.setSpacing(5);
         this.getChildren().add(lbOKTitel);
         this.setMaxWidth(-1);
-        this.helbredstilstandNode= this;
+        this.helbredstilstandNode = this;
 
     }
 
-    public void addUK(HelbredstilstandsUnderkategori huk)
-    {
+    public void addUK(HelbredstilstandsUnderkategori huk) {
         //VBox der indeholder hele UK
         VBox vBoxUK = new VBox();
         vBoxUK.setAlignment(Pos.CENTER);
@@ -44,15 +42,15 @@ public class HelbredstilstandNode extends VBox {
         Label lbUKTitel = new Label("Underkategori");
         Label lbNiveau = new Label("Niveau");
         Label lbforventetTilstand = new Label("Forventet Tilstand");
-        gridpaneUK_Tilstand_ForventetTilstand.setPadding(new Insets(12,10,5,5));
+        gridpaneUK_Tilstand_ForventetTilstand.setPadding(new Insets(12, 10, 5, 5));
         gridpaneUK_Tilstand_ForventetTilstand.setVgap(5);
         gridpaneUK_Tilstand_ForventetTilstand.setHgap(5);
         gridpaneUK_Tilstand_ForventetTilstand.setMaxWidth(800);
         gridpaneUK_Tilstand_ForventetTilstand.setMaxHeight(55);
 
-        gridpaneUK_Tilstand_ForventetTilstand.add(lbUKTitel,0,0);
-        gridpaneUK_Tilstand_ForventetTilstand.add(lbNiveau,1,0);
-        gridpaneUK_Tilstand_ForventetTilstand.add(lbforventetTilstand,2,0);
+        gridpaneUK_Tilstand_ForventetTilstand.add(lbUKTitel, 0, 0);
+        gridpaneUK_Tilstand_ForventetTilstand.add(lbNiveau, 1, 0);
+        gridpaneUK_Tilstand_ForventetTilstand.add(lbforventetTilstand, 2, 0);
 
         gridpaneUK_Tilstand_ForventetTilstand.add(createSmallTA(huk.getTilstandsklassifikationProperty().get()), 0, 1);
         gridpaneUK_Tilstand_ForventetTilstand.add(createSmallTA(huk.getTilstandProperty().get()), 1, 1);
@@ -60,7 +58,7 @@ public class HelbredstilstandNode extends VBox {
 
         //Andet gridpane der holder alle tekstfelter
         GridPane gridpaneTekstfelter = new GridPane();
-        gridpaneTekstfelter.setPadding(new Insets(12,0,5,5));
+        gridpaneTekstfelter.setPadding(new Insets(12, 0, 5, 5));
         gridpaneTekstfelter.setMaxWidth(800);
         gridpaneTekstfelter.setPrefWidth(800);
         gridpaneTekstfelter.setVgap(5);
@@ -68,7 +66,7 @@ public class HelbredstilstandNode extends VBox {
         //Første række
         Label lbVurdering = new Label("Vurdering");
         gridpaneTekstfelter.add(lbVurdering, 0, 0);
-        gridpaneTekstfelter.add(createTextArea(huk.getVurderingProperty().get()),0,1);
+        gridpaneTekstfelter.add(createTextArea(huk.getVurderingProperty().get()), 0, 1);
 
         //Anden række
         Label lbAarsag = new Label("Årsag");
@@ -78,11 +76,11 @@ public class HelbredstilstandNode extends VBox {
         //Tredje række
         Label lbFagligNotat = new Label("Fagligt Notat");
         gridpaneTekstfelter.add(lbFagligNotat, 0, 4);
-        gridpaneTekstfelter.add(createTextArea(huk.getFagligNotatProperty().get()), 0,5 );
+        gridpaneTekstfelter.add(createTextArea(huk.getFagligNotatProperty().get()), 0, 5);
 
         //Separator
         Separator separator = new Separator();
-        separator.setPadding(new Insets(5,0,0,0));
+        separator.setPadding(new Insets(5, 0, 0, 0));
         vBoxUK.getChildren().add(gridpaneUK_Tilstand_ForventetTilstand);
         vBoxUK.getChildren().add(gridpaneTekstfelter);
         vBoxUK.getChildren().add(separator);
@@ -91,8 +89,7 @@ public class HelbredstilstandNode extends VBox {
 
     }
 
-    private TextArea createSmallTA(String text)
-    {
+    private TextArea createSmallTA(String text) {
         TextArea txtArea = new TextArea(text);
         txtArea.setPromptText("Ikke udfyldt");
         txtArea.setWrapText(true);
@@ -102,8 +99,8 @@ public class HelbredstilstandNode extends VBox {
         txtArea.setStyle("-fx-font-weight: normal");
         return txtArea;
     }
-    private TextArea createTextArea(String text)
-    {
+
+    private TextArea createTextArea(String text) {
         TextArea txtArea = new TextArea(text);
         txtArea.setPromptText("Ikke udfyldt");
         txtArea.setWrapText(true);

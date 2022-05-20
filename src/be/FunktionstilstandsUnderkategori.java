@@ -25,14 +25,13 @@ public class FunktionstilstandsUnderkategori {
     private IntegerProperty forventetTilstand = new SimpleIntegerProperty();
     private Observation observation = new Observation();
 
-    public FunktionstilstandsUnderkategori(int id, String tilstandsklassifikation, String overKategori)
-    {
+    public FunktionstilstandsUnderkategori(int id, String tilstandsklassifikation, String overKategori) {
         this.id.set(id);
         this.tilstandsklassifikation.set(tilstandsklassifikation);
         this.overKategori.set(overKategori);
     }
 
-    public FunktionstilstandsUnderkategori(int id,String udførelse, String betydning, String oenskerOgMaal, String tilstandsklassifikation, String vurdering,
+    public FunktionstilstandsUnderkategori(int id, String udførelse, String betydning, String oenskerOgMaal, String tilstandsklassifikation, String vurdering,
                                            String aarsag, String fagligNotat, String opfølgning, String overKategori, int niveau, int forventetTilstand, Observation observation) {
         this.id.set(id);
         this.udførelse.set(udførelse);
@@ -50,7 +49,7 @@ public class FunktionstilstandsUnderkategori {
     }
 
     // This constructor is for use, if the user chooses that a subcategory is not relevant
-    public FunktionstilstandsUnderkategori(String overKategori, String tilstandsklassifikation, int niveau){
+    public FunktionstilstandsUnderkategori(String overKategori, String tilstandsklassifikation, int niveau) {
         this.tilstandsklassifikation.set(tilstandsklassifikation);
         this.niveau.set(niveau);
         this.setOverKategori(overKategori);
@@ -161,7 +160,7 @@ public class FunktionstilstandsUnderkategori {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.tilstandsklassifikation.get();
     }
 }

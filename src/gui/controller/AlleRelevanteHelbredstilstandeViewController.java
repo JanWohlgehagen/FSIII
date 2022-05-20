@@ -22,16 +22,14 @@ public class AlleRelevanteHelbredstilstandeViewController implements Initializab
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            for(String key : helbredstilstand.getHelbredsTilstandsKort().keySet())
-            {
+            for (String key : helbredstilstand.getHelbredsTilstandsKort().keySet()) {
                 HelbredstilstandNode helbredstilstandNode = new HelbredstilstandNode(key);
-                for (HelbredstilstandsUnderkategori huk: helbredstilstand.getHelbredsTilstandsKort().get(key))
-                {
-                    if(huk.getTilstandProperty().get() != null){
-                    if(!huk.getTilstandProperty().get().equals("Ingen aktuelle eller potentielle problemer") )
-                    {
-                        helbredstilstandNode.addUK(huk);
-                    }}
+                for (HelbredstilstandsUnderkategori huk : helbredstilstand.getHelbredsTilstandsKort().get(key)) {
+                    if (huk.getTilstandProperty().get() != null) {
+                        if (!huk.getTilstandProperty().get().equals("Ingen aktuelle eller potentielle problemer")) {
+                            helbredstilstandNode.addUK(huk);
+                        }
+                    }
                 }
                 vBoxMainbox.getChildren().add(helbredstilstandNode);
             }

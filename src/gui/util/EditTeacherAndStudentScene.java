@@ -14,7 +14,6 @@ public class EditTeacherAndStudentScene implements ISceneLoader<EditTeacherAndSt
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 
-
     @Override
     public void loadNewScene(Stage stage) throws IOException {
         loader = new FXMLLoader(new File("src/gui/view/EditTeacherAndStudentView.fxml").toURI().toURL());

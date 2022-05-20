@@ -5,7 +5,7 @@ import be.Borger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CitizenSearcher{
+public class CitizenSearcher {
 
     private List<Borger> searchResult = new ArrayList<>();
 
@@ -13,9 +13,8 @@ public class CitizenSearcher{
         searchResult.clear();
 
 
-        for (Borger borger: searchBase) {
-            if(compareName(borger.getFirstNameProperty().get(), query) || compareName(borger.getLastNameProperty().get(), query))
-            {
+        for (Borger borger : searchBase) {
+            if (compareName(borger.getFirstNameProperty().get(), query) || compareName(borger.getLastNameProperty().get(), query)) {
                 searchResult.add(borger);
             }
         }

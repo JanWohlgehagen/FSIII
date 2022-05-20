@@ -52,10 +52,10 @@ public class UdfoerelseIOgLeveringController implements Initializable {
             selectedCitizen = dashboardController.getSelectedCitizen();
             citizenModel.getTilstande(selectedCitizen);
             selectedCitizen.getObservationer().clear();
-            if(selectedCitizen.getObservationer().isEmpty()){
-                for (String key: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
-                    for (FunktionstilstandsUnderkategori fuk: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
-                        if (fuk.getObservation().getTidspunkt() != null && fuk.getObservation().getDescriptionProperty().get() != null ) {
+            if (selectedCitizen.getObservationer().isEmpty()) {
+                for (String key : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
+                    for (FunktionstilstandsUnderkategori fuk : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
+                        if (fuk.getObservation().getTidspunkt() != null && fuk.getObservation().getDescriptionProperty().get() != null) {
                             selectedCitizen.getObservationer().add(fuk.getObservation());
                         }
                     }
@@ -64,14 +64,14 @@ public class UdfoerelseIOgLeveringController implements Initializable {
 
             ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
             {
-                if(newValue!=null)
-                {
+                if (newValue != null) {
                     txtAreaDok.setText(newValue.getDescriptionProperty().get());
                 }
             });
         });
     }
-    public void setDashboardController(DashboardController dashboardController){
+
+    public void setDashboardController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
 
@@ -97,7 +97,7 @@ public class UdfoerelseIOgLeveringController implements Initializable {
         /// TODO: 09/05/2022
     }
 
-    private Stage getStage(){
+    private Stage getStage() {
         return (Stage) parentPane.getScene().getWindow();
     }
 
