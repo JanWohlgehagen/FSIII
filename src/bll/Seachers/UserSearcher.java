@@ -13,9 +13,8 @@ public class UserSearcher {
         searchResult.clear();
 
 
-        for (User user: searchBase) {
-            if(compareName(user.getFirstNameProperty().get(), query) || compareName(user.getLastNameProperty().get(), query))
-            {
+        for (User user : searchBase) {
+            if (compareName(user.getFirstNameProperty().get(), query) || compareName(user.getLastNameProperty().get(), query)) {
                 searchResult.add(user);
             }
         }

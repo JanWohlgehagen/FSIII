@@ -14,18 +14,15 @@ public class HelbredstilstandManager {
         this.databaseFacade = databaseFacade;
     }
 
-    public Helbredstilstand getEmptyHelbredstilstand()
-    {
+    public Helbredstilstand getEmptyHelbredstilstand() {
         return databaseFacade.getEmptyHelbredsTilstand();
     }
 
-    public void updateHelbredstilstand(Borger borger)
-    {
+    public void updateHelbredstilstand(Borger borger) {
         databaseFacade.updateHelbredstilstand(borger);
     }
 
-    public void deleteHelbredstilstand (Borger borger)
-    {
+    public void deleteHelbredstilstand(Borger borger) {
         databaseFacade.deleteHelbredstilstandOnCitizen(borger);
     }
 

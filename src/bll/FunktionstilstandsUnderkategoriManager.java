@@ -17,8 +17,7 @@ public class FunktionstilstandsUnderkategoriManager {
         return databaseFacade.getFunktionstilstandsUnderkategori();
     }
 
-    public Funktionstilstand getFunktionsTilstandUnderkategorier()
-    {
+    public Funktionstilstand getFunktionsTilstandUnderkategorier() {
         return databaseFacade.getEmptyFunktionsTilstand();
     }
 
