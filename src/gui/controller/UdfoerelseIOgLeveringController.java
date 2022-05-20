@@ -4,16 +4,14 @@ import be.*;
 import gui.model.CitizenModel;
 import gui.util.ISceneLoader;
 import gui.util.OpfoelgningScene;
+import gui.util.PlanlaegningScene;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -92,12 +90,16 @@ public class UdfoerelseIOgLeveringController implements Initializable {
     }
 
     public void handleMouseSaveAndNextScene(MouseEvent mouseEvent) throws IOException {
-        ISceneLoader<OpfoelgningController> opfoelgningScene = new OpfoelgningScene();
-        opfoelgningScene.loadNewScene(getStage());
-        OpfoelgningController opfoelgningController = opfoelgningScene.getController();
-        opfoelgningController.setDashboardController(dashboardController);
-        opfoelgningController.setCaseModel(dashboardController.getCaseModel());
-        /// TODO: 09/05/2022
+        if (dashboardController.getSelectedCase() != null) {
+            ISceneLoader<OpfoelgningController> opfoelgningScene = new OpfoelgningScene();
+            opfoelgningScene.loadNewScene(getStage());
+            OpfoelgningController opfoelgningController = opfoelgningScene.getController();
+            opfoelgningController.setDashboardController(dashboardController);
+            opfoelgningController.setCaseModel(dashboardController.getCaseModel());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
     }
 
     private Stage getStage() {

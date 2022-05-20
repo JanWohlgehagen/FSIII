@@ -10,6 +10,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class BestillingsViewController implements Initializable {
@@ -61,21 +64,31 @@ public class BestillingsViewController implements Initializable {
     }
 
     public void handleSaveAndNextScene(MouseEvent mouseEvent) throws IOException {
-        if (checkBoxBevilling.isSelected()) {
-            currentCase.setIsBevilget(checkBoxBevilling.isSelected());
-            currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
-            currentCase.setIsBevilget(checkBoxBevilling.isSelected());
-            currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
-            ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
-            planlaegningScene.loadNewScene(getStage());
-            PlanlaegningController planlaegningController = planlaegningScene.getController();
-            planlaegningController.setDashboardController(dashBoardController);
+        if (currentCase != null) {
+            if (checkBoxBevilling.isSelected()) {
+                currentCase.setIsBevilget(checkBoxBevilling.isSelected());
+                currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
+                currentCase.setIsBevilget(checkBoxBevilling.isSelected());
+                currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
+                ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
+                planlaegningScene.loadNewScene(getStage());
+                PlanlaegningController planlaegningController = planlaegningScene.getController();
+                planlaegningController.setDashboardController(dashBoardController);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sagen er ikke bevilget, derfor bliver den slettet. Tryk YES hvis sagen skal slettes og NO hvis du ikke vil slette sagen", ButtonType.YES, ButtonType.NO);
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get().equals(ButtonType.YES)) {
+                    caseModel.deleteCaseOnCitizen(currentCitizen.getIDProperty().get(), currentCase.getCaseIDProperty().get());
+                    dashBoardController.setSelectedCase(null);
+                    getStage().close();
+                }
+                getStage().close();
+
+            }
         } else {
-            caseModel.deleteCaseOnCitizen(currentCitizen.getIDProperty().get(), currentCase.getCaseIDProperty().get());
-            getStage().close();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
         }
-
-
     }
 
     public void setDashboardController(DashboardController dashboardController) {

@@ -12,7 +12,6 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +22,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -152,7 +150,7 @@ public class SagsoplysningController implements Initializable {
     private TabPane tabPaneParent;
 
     private DashboardController dashboardController;
-    private TooltipBank tooltipBank = new TooltipBank();
+    private final TooltipBank tooltipBank = new TooltipBank();
     private Borger borger;
     private CitizenModel citizenModel;
     private HelbredstilstandsUnderkategori oldValueOfHelbredstilstandsUnderkategori;
@@ -215,10 +213,15 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-        updateBorger(borger);
-        goToNextScene();
+        if (dashboardController.getSelectedCase() != null) {
+            updateHelbredstilstandsUnderkategori();
+            updateFunktionstilstandsUnderkategori();
+            updateBorger(borger);
+            goToNextScene();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
