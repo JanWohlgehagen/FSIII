@@ -122,45 +122,45 @@ CREATE TABLE [H_Tilstandsvurdering]
     )
 
 
-CREATE TABLE [FS_Overkategori]
+CREATE TABLE [FC_Category]
 (
-    [FS_Overkategori_ID]    INT IDENTITY  NOT NULL,
-    [FS_Overkategori_Titel] NVARCHAR(200) NULL,
+    [FC_C_ID]    INT IDENTITY  NOT NULL,
+    [FC_C_Title] NVARCHAR(200) NULL,
 
-    CONSTRAINT PK_FSID PRIMARY KEY ([FS_Overkategori_ID]),
+    CONSTRAINT PK_FCID PRIMARY KEY ([FC_C_ID]),
     )
 
-CREATE TABLE [FS_Underkategori]
+CREATE TABLE [FC_Subcategory]
 (
-    [FS_Underkategori_ID]    INT IDENTITY  NOT NULL,
-    [FS_Underkategori_Title] NVARCHAR(200) NULL,
-    [FS_OK_ID]               INT           NOT NULL,
+    [FC_SC_ID]    INT IDENTITY  NOT NULL,
+    [FC_SC_Title] NVARCHAR(200) NULL,
+    [FC_C_ID]               INT           NOT NULL,
 
-    CONSTRAINT PK_FS_UK_ID PRIMARY KEY ([FS_Underkategori_ID]),
-    CONSTRAINT FK_FS_OK_ID FOREIGN KEY (FS_OK_ID) REFERENCES FS_Overkategori ([FS_Overkategori_ID])
+    CONSTRAINT PK_FC_SC_ID PRIMARY KEY ([FC_SC_ID]),
+    CONSTRAINT FK_FS_OK_ID FOREIGN KEY (FC_C_ID) REFERENCES FC_Category ([FC_C_ID])
 
     )
 
+CREATE TABLE [FC_Assessments](
+                                 FC_A_ID INT IDENTITY NOT NULL,
+                                 FC_A_Title NVARCHAR (200),
 
-CREATE TABLE [F_Tilstandsvurdering]
+    CONSTRAINT PK_FC_A_ID PRIMARY KEY ([FC_A_ID])
+    )
+
+
+CREATE TABLE [FC_Assessment]
 (
 
-    [FS_Borger_ID]       INT            NOT NULL,
-    [FS_UK_ID]           INT            NOT NULL,
-    [Udfoerelse]         VARCHAR(4000)  NULL,
-    [Betydning]          VARCHAR(4000)  NULL,
-    [Borger_Maal]        VARCHAR(4000)  NULL,
-    [Niveau]             INT            DEFAULT -1,
-    [Vurdering]          VARCHAR(4000)  NULL,
-    [Aarsag]             VARCHAR(4000)  NULL,
-    [Faglig_Notat]       VARCHAR(4000)  NULL,
-    [Forventet_Tilstand] INT            NULL,
-    [Opfoelgning]        NVARCHAR(4000) NULL,
+    [FC_S_ID] INT NOT NULL,
+    [FC_A_ID] INT NOT NULL,
+    [Citizen_ID] INT NOT NULL,
+    [Description] NVARCHAR (4000),
 
-
-    CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_UK_ID, FS_Borger_ID),
-    CONSTRAINT FK_HS_IDFSV FOREIGN KEY (FS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
-    CONSTRAINT FK_UK_IDFSV FOREIGN KEY (FS_UK_ID) REFERENCES FS_Underkategori ([FS_Underkategori_ID])
+    CONSTRAINT [PK_FC_Assessment_ID] PRIMARY KEY (FC_S_ID, FC_A_ID, Citizen_ID),
+    CONSTRAINT [FK_FC_S_ID] FOREIGN KEY ([FC_S_ID]) REFERENCES FC_Subcategory ([FC_SC_ID]),
+    CONSTRAINT [FC_A_ID] FOREIGN KEY (FC_A_ID) REFERENCES FC_Assessments ([FC_A_ID]),
+    CONSTRAINT [FK_A_Citizen_ID] FOREIGN KEY (Citizen_ID) REFERENCES Borger ([Borger_ID])
     )
 
 
