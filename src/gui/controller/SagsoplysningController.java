@@ -524,7 +524,9 @@ public class SagsoplysningController implements Initializable {
         if (oldValueOfFunktionstilstandsUnderkategori != null) {
             oldValueOfFunktionstilstandsUnderkategori.setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
 
-            if (comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem() != null) // in case the user chooses 9 in the first dropdown
+            if (comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem() == null) // in case the user chooses 9 in the first dropdown or the user hasnt opened the assesment.
+                oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(-1); // -1 is the standard value so we dont save this in the database.
+            else
                 oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
 
             oldValueOfFunktionstilstandsUnderkategori.setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());
