@@ -1,4 +1,4 @@
-USE CSe21A_FSIII_Simulator2
+USE CSe21A_FSIII_Simulator
 GO
 
 -- Elever
