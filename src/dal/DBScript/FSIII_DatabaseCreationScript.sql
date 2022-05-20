@@ -1,10 +1,10 @@
 USE MASTER
 GO
-ALTER DATABASE [CSe21A_FSIII_Simulator2] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-DROP DATABASE [CSe21A_FSIII_Simulator2]
+ALTER DATABASE [CSe21A_FSIII_Simulator] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+DROP DATABASE [CSe21A_FSIII_Simulator]
 GO
 
-CREATE DATABASE CSe21A_FSIII_Simulator2
+CREATE DATABASE CSe21A_FSIII_Simulator
 GO
 USE CSe21A_FSIII_Simulator2
 GO
@@ -85,16 +85,6 @@ CREATE TABLE [GI_Assessment](
     )
 
 
-
-CREATE TABLE [Helbredstilstand]
-(
-    [Helbredstislstand_ID]INT IDENTITY NOT NULL,
-    [Borger_ID]           INT          NOT NULL,
-
-     CONSTRAINT PK_HS_IDHS PRIMARY KEY (Helbredstislstand_ID, [Borger_ID]),
-    CONSTRAINT FK_Borger_IDHS FOREIGN KEY ([Borger_ID]) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE
-    )
-
 CREATE TABLE [HS_Overkategori]
 (
     [HS_Overkategori_ID]    INT IDENTITY NOT NULL,
@@ -131,14 +121,6 @@ CREATE TABLE [H_Tilstandsvurdering]
     CONSTRAINT FK_HS_UK_IDHSV FOREIGN KEY (HS_UK_ID) REFERENCES HS_Underkategori ([HS_Underkategori_ID])
     )
 
-CREATE TABLE [Funktionstilstand]
-(
-    [Funktionstilstand_ID] INT IDENTITY NOT NULL,
-    [Borger_ID]            INT          NOT NULL,
-
-     CONSTRAINT PK_FS_IDFS PRIMARY KEY (Funktionstilstand_ID, Borger_ID),
-    CONSTRAINT FK_Borger_IDFS FOREIGN KEY (Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE
-    )
 
 CREATE TABLE [FS_Overkategori]
 (

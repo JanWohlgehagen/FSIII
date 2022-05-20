@@ -1,6 +1,6 @@
 USE MASTER
 GO
-USE CSe21A_FSIII_Simulator2
+USE CSe21A_FSIII_Simulator
 GO
 
 INSERT INTO General_Information (Title) VALUES ('Mestring')
