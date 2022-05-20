@@ -79,6 +79,10 @@ public class CaseOpeningController implements Initializable {
             fornavnLbl.setText(borger.getFirstNameProperty().get());
             efternavnLbl.setText(borger.getLastNameProperty().get());
             alderLbl.setText(String.valueOf(borger.getAgeProperty().get()));
+
+            if (dashboardController.getSelectedCase() != null) {
+                vaelgSagCbx.getSelectionModel().select(dashboardController.getSelectedCase());
+            }
         });
 
         vaelgSagCbx.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {

@@ -51,6 +51,7 @@ public class UdfoerelseIOgLeveringController implements Initializable {
         Platform.runLater(() -> {
             selectedCitizen = dashboardController.getSelectedCitizen();
             citizenModel.getTilstande(selectedCitizen);
+            selectedCitizen.getObservationer().clear();
             if(selectedCitizen.getObservationer().isEmpty()){
                 for (String key: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
                     for (FunktionstilstandsUnderkategori fuk: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
@@ -60,6 +61,7 @@ public class UdfoerelseIOgLeveringController implements Initializable {
                     }
             }
             ListViewObservations.setItems(selectedCitizen.getObservationer());
+
             ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
             {
                 if(newValue!=null)

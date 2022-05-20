@@ -191,15 +191,22 @@ public class DashboardController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
         }
-
     }
 
     public void handleButtonPlanlaegning(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
-        planlaegningScene.loadNewScene(new Stage());
-        PlanlaegningController planlaegningController = planlaegningScene.getController();
-        planlaegningController.setDashboardController(dashboardController);
+        if (selectedCase != null) {
+            ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
+            planlaegningScene.loadNewScene(new Stage());
+            PlanlaegningController planlaegningController = planlaegningScene.getController();
+            planlaegningController.setDashboardController(dashboardController);
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
     }
+
+
 
     public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
             ISceneLoader<UdfoerelseIOgLeveringController> caseDocumentationScene = new CaseDocumentationScene();

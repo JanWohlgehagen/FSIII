@@ -6,7 +6,7 @@ GO
 
 CREATE DATABASE CSe21A_FSIII_Simulator
 GO
-USE CSe21A_FSIII_Simulator2
+USE CSe21A_FSIII_Simulator
 GO
 CREATE TABLE [Person]
 (
