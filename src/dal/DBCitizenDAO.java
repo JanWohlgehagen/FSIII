@@ -56,7 +56,7 @@ public class DBCitizenDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, borger.getStudent().getIdProperty().get());
-            preparedStatement.setInt(2, borger.getStudent().getIdProperty().get());
+            preparedStatement.setInt(2, borger.getIDProperty().get());
             preparedStatement.execute();
 
         } catch (SQLException throwables) {

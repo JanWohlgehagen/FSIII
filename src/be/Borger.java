@@ -14,7 +14,6 @@ public class Borger {
     private StringProperty lastName= new SimpleStringProperty();
     private BooleanProperty isTemplate = new SimpleBooleanProperty();
     private IntegerProperty studentID = new SimpleIntegerProperty();
-    private User student;
 
     //Generelle oplysninger
     private StringProperty mestring = new SimpleStringProperty();
@@ -33,6 +32,7 @@ public class Borger {
     private ObservableList<Observation> observationer = FXCollections.observableArrayList();
     private Funktionstilstand funktionstilstand;
     private Helbredstilstand helbredstilstand;
+    private User student;
 
     public Borger(String firstName, String lastName, boolean isTemplate, int age) {
         this.firstName.set(firstName);
