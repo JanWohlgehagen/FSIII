@@ -20,10 +20,6 @@ public class CaseModel {
         return managerFacade.getAllCasesOnCitizen(id);
     }
 
-    public Case getCaseOnCitizen(int citizenID, int caseID) {
-        return managerFacade.getCaseOnCitizen(citizenID, caseID);
-    }
-
     public void updateCaseOnCitizen(int citizenID, Case selectCase) {
         managerFacade.updateCaseOnCitizen(citizenID, selectCase);
     }
