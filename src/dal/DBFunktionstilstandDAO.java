@@ -19,13 +19,152 @@ public class DBFunktionstilstandDAO {
     }
 
     public void updateFunktionstilstand(Borger borger) {
-        String sqlInsert = "INSERT INTO FC_Assessment (FC_S_ID, FC_A_ID, Citizen_ID, [Description]) VALUES ((?),(?),(?),(?))";
         try (Connection connection = dbConnecting.getConnection()) {
+            String sqlDelete = "DELETE FROM FC_Assessment WHERE FC_S_ID = (?) AND FC_A_ID = (?) AND Citizen_ID = (?);";
+            String sqlInsert = "INSERT INTO FC_Assessment (FC_S_ID, FC_A_ID, Citizen_ID, [Description]) VALUES ((?),(?),(?),(?));";
+
+            PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
+            PreparedStatement preparedStatementDelete = connection.prepareStatement(sqlDelete);
+
+            preparedStatementDelete.setInt(3, borger.getIDProperty().get());
+            preparedStatementInsert.setInt(3, borger.getIDProperty().get());
+
+            String tempString = "";
+
             for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
                 for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
-                    PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
+                    preparedStatementDelete.setInt(1, funktionstilstandsUnderkategori.getId().get());
+                    preparedStatementInsert.setInt(1, funktionstilstandsUnderkategori.getId().get());
+                    if(funktionstilstandsUnderkategori.getNiveauProperty().get() != 9) {
+                        for (int i = 1; i < 11; i++) {
+                            switch (i) {
+                                case (1) -> {
+                                    if (funktionstilstandsUnderkategori.getUdførelseProperty().get() != null) {
+                                        tempString = funktionstilstandsUnderkategori.getUdførelseProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        if (!tempString.isEmpty() || !tempString.isBlank()) {
+                                            preparedStatementInsert.setInt(2, i);
+                                            preparedStatementInsert.setString(4, tempString);
+                                            preparedStatementInsert.execute();
+                                        }
+                                    }
+                                }
+                                case (2) -> {
+                                    if (funktionstilstandsUnderkategori.getBetydningProperty().get() != null) {
+                                        tempString = funktionstilstandsUnderkategori.getBetydningProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        if (!tempString.isEmpty() || !tempString.isBlank()) {
+                                            preparedStatementInsert.setInt(2, i);
+                                            preparedStatementInsert.setString(4, tempString);
+                                            preparedStatementInsert.execute();
+                                        }
+                                    }
+                                }
+                                case (3) -> {
+                                    if (funktionstilstandsUnderkategori.getOenskerOgMaalProperty().get() != null) {
+                                        tempString = funktionstilstandsUnderkategori.getOenskerOgMaalProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        if (!tempString.isEmpty() || !tempString.isBlank()) {
+                                            preparedStatementInsert.setInt(2, i);
+                                            preparedStatementInsert.setString(4, tempString);
+                                            preparedStatementInsert.execute();
+                                        }
+                                    }
+                                }
+                                case (4) -> {
+                                    if (funktionstilstandsUnderkategori.getNiveauProperty().get() != -1) {
+                                        tempString = String.valueOf(funktionstilstandsUnderkategori.getNiveauProperty().get());
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        preparedStatementInsert.setInt(2, i);
+                                        preparedStatementInsert.setString(4, tempString);
+                                        preparedStatementInsert.execute();
+                                    }
+                                }
+                                case (5) -> {
+                                    if (funktionstilstandsUnderkategori.getVurderingProperty().get() != null) {
+                                        tempString = funktionstilstandsUnderkategori.getVurderingProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        if (!tempString.isEmpty() || !tempString.isBlank()) {
+                                            preparedStatementInsert.setInt(2, i);
+                                            preparedStatementInsert.setString(4, tempString);
+                                            preparedStatementInsert.execute();
+                                        }
+                                    }
+                                }
+                                case (6) -> {
+                                    if (funktionstilstandsUnderkategori.getAarsagProperty().get() != null) {
+                                        tempString = funktionstilstandsUnderkategori.getAarsagProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        if (!tempString.isEmpty() || !tempString.isBlank()) {
+                                            preparedStatementInsert.setInt(2, i);
+                                            preparedStatementInsert.setString(4, tempString);
+                                            preparedStatementInsert.execute();
+                                        }
+                                    }
+                                }
+                                case (7) -> {
+                                    if (funktionstilstandsUnderkategori.getFagligNotatProperty().get() != null) {
+                                        tempString = funktionstilstandsUnderkategori.getFagligNotatProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        if (!tempString.isEmpty() || !tempString.isBlank()) {
+                                            preparedStatementInsert.setInt(2, i);
+                                            preparedStatementInsert.setString(4, tempString);
+                                            preparedStatementInsert.execute();
+                                        }
+                                    }
+                                }
+                                case (8) -> {
+                                    if (funktionstilstandsUnderkategori.getForventetTilstandProperty().get() != -1) {
+                                        tempString = funktionstilstandsUnderkategori.getUdførelseProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        preparedStatementInsert.setInt(2, i);
+                                        preparedStatementInsert.setString(4, tempString);
+                                        preparedStatementInsert.execute();
+                                    }
+                                }
+                                case (9) -> {
+                                    if (funktionstilstandsUnderkategori.().get() != null) {
+                                        tempString = funktionstilstandsUnderkategori.getUdførelseProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        if (!tempString.isEmpty() || !tempString.isBlank()) {
+                                            preparedStatementInsert.setInt(2, i);
+                                            preparedStatementInsert.setString(4, tempString);
+                                            preparedStatementInsert.execute();
+                                        }
+                                    }
+                                }
+                                case (10) -> {
+                                    if (funktionstilstandsUnderkategori.getOpfølgningProperty().get() != null) {
+                                        tempString = funktionstilstandsUnderkategori.getOpfølgningProperty().get();
+                                        preparedStatementDelete.setInt(2, i);
+                                        preparedStatementDelete.execute();
+                                        if (!tempString.isEmpty() || !tempString.isBlank()) {
+                                            preparedStatementInsert.setInt(2, i);
+                                            preparedStatementInsert.setString(4, tempString);
+                                            preparedStatementInsert.execute();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        for (int i = 1; i < 11; i++) {
+                            preparedStatementDelete.setInt(2, i);
+                            preparedStatementDelete.execute();
+                        }
+                    }
 
 
+                    preparedStatementDelete.execute();
                     preparedStatementInsert.execute();
 
                 }
