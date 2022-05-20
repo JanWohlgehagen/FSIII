@@ -19,14 +19,18 @@ public class DBFunktionstilstandsUnderkategoriDAO {
     public List<String> getFunktionstilstandsUnderkategoriList() {
         List<String> funktionstilstandsUnderkategoriList = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [FS_Underkategori]";
+            String sql = "SELECT * FROM [FC_Subcategory]";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String underkategori = rs.getString("FS_Underkategori_Title");
+                String underkategori = rs.getString("FS_SC_Title");
                 funktionstilstandsUnderkategoriList.add(underkategori);
+            }
+            for(String uk : funktionstilstandsUnderkategoriList)
+            {
+                System.out.println(uk);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -41,16 +45,16 @@ public class DBFunktionstilstandsUnderkategoriDAO {
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
 
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT FS_Underkategori.FS_Underkategori_ID, FS_Underkategori.FS_Underkategori_Title, FS_Overkategori.FS_Overkategori_Titel FROM [FS_Underkategori]" +
-                    "FULL JOIN [FS_Overkategori] ON FS_Underkategori.FS_OK_ID = FS_Overkategori.FS_Overkategori_ID";
+            String sql = "SELECT FC_Subcategory.FC_SC_ID, FC_Subcategory.FC_SC_Title, FC_Category.FC_C_Title FROM [FC_Subcategory]" +
+                    "FULL JOIN [FC_Category] ON FC_Subcategory.FC_SC_ID = FC_Category.FC_C_ID";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int UKID = rs.getInt("FS_Underkategori_ID");
-                String tilstandsKlassifikation = rs.getString("FS_Underkategori_Title");
-                String overkategoriNavn = rs.getString("FS_Overkategori_Titel");
+                int UKID = rs.getInt("FC_SC_ID");
+                String tilstandsKlassifikation = rs.getString("FC_SC_Title");
+                String overkategoriNavn = rs.getString("FC_C_Title");
 
 
                 FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation, overkategoriNavn);
@@ -64,6 +68,14 @@ public class DBFunktionstilstandsUnderkategoriDAO {
                 funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
             }
             funktionstilstand.setFunktionsTilstande(funktionstilstandeHP);
+            for (String key :funktionstilstandeHP.keySet())
+            {
+                for (FunktionstilstandsUnderkategori fuk : funktionstilstandeHP.get(key))
+                {
+                    System.out.println(fuk);
+                }
+
+            }
             return funktionstilstand;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
