@@ -11,8 +11,6 @@ public class UserSearcher {
 
     public List<User> search(List<User> searchBase, String query) {
         searchResult.clear();
-
-
         for (User user : searchBase) {
             if (compareName(user.getFirstNameProperty().get(), query) || compareName(user.getLastNameProperty().get(), query)) {
                 searchResult.add(user);
