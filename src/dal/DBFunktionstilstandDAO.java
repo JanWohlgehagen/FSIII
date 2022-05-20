@@ -37,7 +37,7 @@ public class DBFunktionstilstandDAO {
                 for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                     preparedStatementDelete.setInt(1, funktionstilstandsUnderkategori.getId().get());
                     preparedStatementInsert.setInt(1, funktionstilstandsUnderkategori.getId().get());
-                    if(funktionstilstandsUnderkategori.getNiveauProperty().get() != 9) {
+                    if(funktionstilstandsUnderkategori.getNiveauProperty().get() != -1) {
                         for (int i = 1; i < 11; i++) {
                             switch (i) {
                                 case (1) -> {
@@ -124,7 +124,7 @@ public class DBFunktionstilstandDAO {
                                 }
                                 case (8) -> {
                                     if (funktionstilstandsUnderkategori.getForventetTilstandProperty().get() != -1) {
-                                        tempString = funktionstilstandsUnderkategori.getUdførelseProperty().get();
+                                        tempString = String.valueOf(funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
                                         preparedStatementDelete.setInt(2, i);
                                         preparedStatementDelete.execute();
                                         preparedStatementInsert.setInt(2, i);
@@ -134,7 +134,7 @@ public class DBFunktionstilstandDAO {
                                 }
                                 case (9) -> {
                                     if (funktionstilstandsUnderkategori.getObservation().getDescriptionProperty().get() != null) {
-                                        tempString = funktionstilstandsUnderkategori.getUdførelseProperty().get();
+                                        tempString = funktionstilstandsUnderkategori.getObservation().getDescriptionProperty().get();
                                         preparedStatementDelete.setInt(2, i);
                                         preparedStatementDelete.execute();
                                         if (!tempString.isEmpty() || !tempString.isBlank()) {
@@ -158,14 +158,7 @@ public class DBFunktionstilstandDAO {
                                 }
                             }
                         }
-                    } else {
-                        for (int i = 1; i < 11; i++) {
-                            preparedStatementDelete.setInt(2, i);
-                            preparedStatementDelete.execute();
-                        }
                     }
-                    preparedStatementDelete.execute();
-                    preparedStatementInsert.execute();
                 }
             }
 
@@ -200,6 +193,7 @@ public class DBFunktionstilstandDAO {
                 FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation, overkategoriNavn);
 
                 funktionstilstandsUnderkategori.setNiveau(-1);
+                funktionstilstandsUnderkategori.setForventetTilstand(-1);
                 preparedStatementAssessments.setInt(2, UKID);
                 ResultSet resultSet = preparedStatementAssessments.executeQuery();
 

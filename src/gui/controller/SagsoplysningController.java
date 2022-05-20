@@ -323,13 +323,6 @@ public class SagsoplysningController implements Initializable {
         txtAreaVurderingHelbredstilstand.setDisable(able);
         txtAreaAarsagHelbredstilstand.setDisable(able);
         txtAreaFagligtNotatHelbredstilstand.setDisable(able);
-
-        if (able) { // clears the fields if its not a relevant problem
-            comboBoxForventetTilstandHelbredstilstand.getSelectionModel().clearSelection();
-            txtAreaVurderingHelbredstilstand.clear();
-            txtAreaAarsagHelbredstilstand.clear();
-            txtAreaFagligtNotatHelbredstilstand.clear();
-        }
     }
 
     private void changeAbilityFunktionstilstandsFields(boolean able) {
@@ -341,17 +334,6 @@ public class SagsoplysningController implements Initializable {
         txtAreaAarsagFunktionstilstand.setDisable(able);
         txtAreaFagligtNotatFunktionstilstand.setDisable(able);
         txtOpfoelgningFunktionstilstand.setDisable(able);
-
-        if (able) {
-            comboBoxForventetTilstandFunktionstilstand.getSelectionModel().clearSelection();
-            txtAreaUdfoerelseFunktionstilstand.clear();
-            txtAreaBetydningFunktionstilstand.clear();
-            txtAreaOenskerOgMålFunktionstilstand.clear();
-            txtAreaVurderingFunktionstilstand.clear();
-            txtAreaAarsagFunktionstilstand.clear();
-            txtAreaFagligtNotatFunktionstilstand.clear();
-            txtOpfoelgningFunktionstilstand.clear();
-        }
     }
 
     private void populateGenerelleOplysninger() {
