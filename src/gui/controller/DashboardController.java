@@ -277,7 +277,7 @@ public class DashboardController implements Initializable {
                     btnDeleteCitizen.setVisible(false);
 
                     for (Borger b : citizenModel.getAllCitizen()) {
-                        if (b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
+                        if (b.getStudent() != null && b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
                             lvCitizens.getItems().add(b);
                         }
                     }
