@@ -53,7 +53,6 @@ public class CitizenManager {
 
     public void createEmptyTilstande(Borger borger) {
         databaseFacade.createEmptyHelbredstilstand(borger);
-        databaseFacade.createEmptyFunktionstilstand(borger);
     }
 
     public void getTilstande(Borger borger) {

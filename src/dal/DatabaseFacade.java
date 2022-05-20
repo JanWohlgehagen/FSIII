@@ -237,22 +237,11 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public void createEmptyFunktionstilstand(Borger borger) {
-        dbFunktionstilstandDAO.createEmptyFunktionstilstand(borger);
-
-    }
-
-    @Override
     public void updateFunktiontilstand(Borger borger) {
         dbFunktionstilstandDAO.updateFunktionstilstand(borger);
 
     }
 
-    @Override
-    public void deleteFunktionstilstandOnCitizen(Borger borger) {
-        dbFunktionstilstandDAO.deleteFunktionstilstandOnCitizen(borger);
-
-    }
 
     @Override
     public void createEmptyHelbredstilstand(Borger borger) {

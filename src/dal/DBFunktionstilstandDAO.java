@@ -4,6 +4,7 @@ import be.Borger;
 import be.Funktionstilstand;
 import be.FunktionstilstandsUnderkategori;
 import be.Observation;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -132,7 +133,7 @@ public class DBFunktionstilstandDAO {
                                     }
                                 }
                                 case (9) -> {
-                                    if (funktionstilstandsUnderkategori.().get() != null) {
+                                    if (funktionstilstandsUnderkategori.getObservation().getDescriptionProperty().get() != null) {
                                         tempString = funktionstilstandsUnderkategori.getUdførelseProperty().get();
                                         preparedStatementDelete.setInt(2, i);
                                         preparedStatementDelete.execute();
@@ -163,26 +164,12 @@ public class DBFunktionstilstandDAO {
                             preparedStatementDelete.execute();
                         }
                     }
-
                     preparedStatementDelete.execute();
                     preparedStatementInsert.execute();
-
                 }
             }
 
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    public void deleteFunktionstilstandOnCitizen(Borger borger) {
-        String sql = "DELETE FROM [F_Tilstandsvurdering] WHERE FS_Borger_ID = (?)";
-        try (Connection connection = dbConnecting.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
-
-            preparedStatement.executeQuery();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -193,43 +180,67 @@ public class DBFunktionstilstandDAO {
         Funktionstilstand funktionstilstand = new Funktionstilstand();
         List<FunktionstilstandsUnderkategori> allFunktionstilstande = new ArrayList<>();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
+
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [F_Tilstandsvurdering]" +
-                    "FULL JOIN [FS_Underkategori] ON F_Tilstandsvurdering.FS_UK_ID= FS_Underkategori.FS_Underkategori_ID " +
-                    "FULL JOIN [FS_Overkategori] on FS_Underkategori.FS_OK_ID = FS_Overkategori.FS_Overkategori_ID " +
-                    "WHERE FS_Borger_ID = (?)";
+            String sqlCategories = "SELECT FC_Subcategory.FC_SC_ID, FC_Subcategory.FC_SC_Title, FC_Category.FC_C_Title FROM FC_Subcategory " +
+                    "JOIN [FC_Category] ON FC_Subcategory.FC_C_ID = FC_Category.FC_C_ID;";
+            String sqlAssessments = "SELECT * FROM FC_Assessment WHERE Citizen_ID = (?) AND FC_S_ID = (?);";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
+            PreparedStatement preparedStatementCategories = connection.prepareStatement(sqlCategories);
+            PreparedStatement preparedStatementAssessments = connection.prepareStatement(sqlAssessments);
+            preparedStatementAssessments.setInt(1, borger.getIDProperty().get());
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                //Tilstandsvurdering
-                int id = resultSet.getInt("FS_UK_ID");
-                String udfoerelse = resultSet.getString("Udfoerelse");
-                String betydning = resultSet.getString("Betydning");
-                String borgerMaal = resultSet.getString("Borger_Maal");
-                int niveau = resultSet.getInt("Niveau");
-                String vurdering = resultSet.getString("Vurdering");
-                String aarsag = resultSet.getString("Aarsag");
-                String fagligNotat = resultSet.getString("Faglig_Notat");
-                int forventetTilstand = resultSet.getInt("Forventet_Tilstand");
-                String observationDescription = resultSet.getString("Observation");
-                Timestamp tidspunkt = resultSet.getTimestamp("ObservationTime");
-                String opfoelgning = resultSet.getString("Opfoelgning");
+            ResultSet resultSetCategory = preparedStatementCategories.executeQuery();
+            while (resultSetCategory.next())
+            {
+                int UKID = resultSetCategory.getInt("FC_SC_ID");
+                String tilstandsKlassifikation = resultSetCategory.getString("FC_SC_Title");
+                String overkategoriNavn = resultSetCategory.getString("FC_C_Title");
 
-                Observation observation = new Observation();
-                observation.setDescription(observationDescription);
-                observation.setTidspunkt(tidspunkt);
+                FunktionstilstandsUnderkategori funktionstilstandsUnderkategori = new FunktionstilstandsUnderkategori(UKID, tilstandsKlassifikation, overkategoriNavn);
 
-                // Underkategori
-                String underkategoriTitel = resultSet.getString("FS_Underkategori_Title");
-                observation.setTitel(underkategoriTitel);
+                funktionstilstandsUnderkategori.setNiveau(-1);
+                preparedStatementAssessments.setInt(2, UKID);
+                ResultSet resultSet = preparedStatementAssessments.executeQuery();
 
-                //Overkategori
-                String overKategoriTitel = resultSet.getString("FS_Overkategori_Titel");
-                FunktionstilstandsUnderkategori f = new FunktionstilstandsUnderkategori(id, udfoerelse, betydning, borgerMaal, underkategoriTitel, vurdering, aarsag, fagligNotat, opfoelgning, overKategoriTitel, niveau, forventetTilstand, observation);
-                allFunktionstilstande.add(f);
+                while (resultSet.next()){
+                    switch (resultSet.getInt("FC_A_ID")){
+                        case (1) ->{
+                            funktionstilstandsUnderkategori.setUdførelse(resultSet.getString("Description"));
+                        }
+                        case (2) ->{
+                            funktionstilstandsUnderkategori.setBetydning(resultSet.getString("Description"));
+                        }
+                        case (3) ->{
+                            funktionstilstandsUnderkategori.setOenskerOgMaal(resultSet.getString("Description"));
+                        }
+                        case (4) ->{
+                            funktionstilstandsUnderkategori.setNiveau(Integer.parseInt(resultSet.getString("Description")));
+                        }
+                        case (5) ->{
+                            funktionstilstandsUnderkategori.setVurdering(resultSet.getString("Description"));
+                        }
+                        case (6) ->{
+                            funktionstilstandsUnderkategori.setAarsag(resultSet.getString("Description"));
+                        }
+                        case (7) ->{
+                            funktionstilstandsUnderkategori.setFagligNotat(resultSet.getString("Description"));
+                        }
+                        case (8) ->{
+                            funktionstilstandsUnderkategori.setForventetTilstand(Integer.parseInt(resultSet.getString("Description")));
+                        }
+                        case (9) ->{
+                            Observation observation = new Observation();
+                            observation.setDescription(resultSet.getString("Description"));
+                            funktionstilstandsUnderkategori.setObservation(observation);
+                        }
+                        case (10) ->{
+                            funktionstilstandsUnderkategori.setOpfølgning(resultSet.getString("Description"));
+                        }
+                    }
+                }
+
+                allFunktionstilstande.add(funktionstilstandsUnderkategori);
             }
 
             for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
@@ -252,13 +263,13 @@ public class DBFunktionstilstandDAO {
     public List<String> getFunktionstilstandList() {
         List<String> funktionstilstandList = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [FS_Overkategori]";
+            String sql = "SELECT * FROM [FC_Category]";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String overkategori = rs.getString("FS_Overkategori_Titel");
+                String overkategori = rs.getString("FC_C_Title");
                 funktionstilstandList.add(overkategori);
             }
         } catch (SQLException throwables) {

@@ -6,7 +6,7 @@ GO
 
 CREATE DATABASE CSe21A_FSIII_Simulator2
 GO
-USE CSe21A_FSIII_Simulator
+USE CSe21A_FSIII_Simulator2
 GO
 CREATE TABLE [Person]
 (
@@ -108,15 +108,13 @@ CREATE TABLE [HS_Underkategori]
 
 CREATE TABLE [H_Tilstandsvurdering]
 (
-    [HS_Borger_ID]       INT            NOT NULL,
-    [HS_UK_ID]           INT            NOT NULL,
-    [Tilstand]           NVARCHAR(200)  NULL,
-    [Vurdering]          NVARCHAR(4000) NULL,
-    [Aarsag]             NVARCHAR(4000) NULL,
-    [Faglig_Notat]       NVARCHAR(4000) NULL,
-    [Forventet_Tilstand] NVARCHAR(200)  NULL,
-    [Observation]        NVARCHAR(4000) NULL,
-    [ObservationTime]    DATETIME       NULL,
+    [HS_Borger_ID]       INT           NOT NULL,
+    [HS_UK_ID]           INT           NOT NULL,
+    [Tilstand]           VARCHAR(200)  NULL,
+    [Vurdering]          VARCHAR(4000) NULL,
+    [Aarsag]             VARCHAR(4000) NULL,
+    [Faglig_Notat]       VARCHAR(4000) NULL,
+    [Forventet_Tilstand] VARCHAR(200)  NULL,
 
     CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_UK_ID, HS_Borger_ID),
     CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
@@ -153,6 +151,7 @@ CREATE TABLE [FC_Assessments](
 
 CREATE TABLE [FC_Assessment]
 (
+
     [FC_S_ID] INT NOT NULL,
     [FC_A_ID] INT NOT NULL,
     [Citizen_ID] INT NOT NULL,
@@ -161,7 +160,7 @@ CREATE TABLE [FC_Assessment]
     CONSTRAINT [PK_FC_Assessment_ID] PRIMARY KEY (FC_S_ID, FC_A_ID, Citizen_ID),
     CONSTRAINT [FK_FC_S_ID] FOREIGN KEY ([FC_S_ID]) REFERENCES FC_Subcategory ([FC_SC_ID]),
     CONSTRAINT [FC_A_ID] FOREIGN KEY (FC_A_ID) REFERENCES FC_Assessments ([FC_A_ID]),
-    CONSTRAINT [FK_A_Citizen_ID] FOREIGN KEY (Citizen_ID) REFERENCES Borger ([Borger_ID])
+    CONSTRAINT [FK_A_Citizen_ID] FOREIGN KEY (Citizen_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE
     )
 
 
@@ -196,8 +195,8 @@ CREATE TABLE [ClassStudents]
 
 CREATE TABLE [Credentials]
 (
-    [Person_ID] INT            NOT NULL,
-    [UserName]  NVARCHAR(100)  NOT NULL,
+    [Person_ID] INT           NOT NULL,
+    [UserName]  NVARCHAR(100) NOT NULL,
     [Password]  NVARCHAR(500)  NOT NULL,
 
     CONSTRAINT PK_ID PRIMARY KEY ([Person_ID]),
