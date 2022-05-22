@@ -15,59 +15,122 @@ public class DBHelbredstilstandDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void createEmptyHelbredstilstandOnCitizen(Borger borger) {
-        String sql = "INSERT INTO [H_Tilstandsvurdering] (HS_Borger_ID, HS_UK_ID) VALUES (?,?)";
-        try (Connection connection = dbConnecting.getConnection()) {
-            for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
-                for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, borger.getIDProperty().get());
-                    preparedStatement.setInt(2, helbredstilstandsUnderkategori.getId().get());
-
-                    preparedStatement.execute();
-                }
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
     public void updateHelbredstilstand(Borger borger) {
-        String sql = "UPDATE [H_Tilstandsvurdering] SET HS_Borger_ID = (?), HS_UK_ID = (?), Tilstand = (?), Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?), Observation = (?), ObservationTime = (?) " +
-                "WHERE HS_Borger_ID = (?) AND HS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
+            String sqlDelete = "DELETE FROM HC_Assessment WHERE HC_SC_ID = (?) AND HC_A_ID = (?) AND Citizen_ID = (?);";
+            String sqlInsert = "INSERT INTO HC_Assessment (HC_SC_ID, HC_A_ID, Citizen_ID, [Description]) VALUES ((?),(?),(?),(?));";
+
+            PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
+            PreparedStatement preparedStatementDelete = connection.prepareStatement(sqlDelete);
+
+            preparedStatementDelete.setInt(3, borger.getIDProperty().get());
+            preparedStatementInsert.setInt(3, borger.getIDProperty().get());
+
+            String tempString = "";
+
             for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
-                for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, borger.getIDProperty().get());
-                    preparedStatement.setInt(2, helbredstilstandsUnderkategori.getId().get());
-                    preparedStatement.setString(3, helbredstilstandsUnderkategori.getTilstandProperty().get());
-                    preparedStatement.setString(4, helbredstilstandsUnderkategori.getVurderingProperty().get());
-                    preparedStatement.setString(5, helbredstilstandsUnderkategori.getAarsagProperty().get());
-                    preparedStatement.setString(6, helbredstilstandsUnderkategori.getFagligNotatProperty().get());
-                    preparedStatement.setString(7, helbredstilstandsUnderkategori.getForventetTilstandProperty().get());
-                    preparedStatement.setString(8, helbredstilstandsUnderkategori.getObservation().getDescriptionProperty().get());
-                    preparedStatement.setTimestamp(9, helbredstilstandsUnderkategori.getObservation().getTidspunkt());
+                for (HelbredstilstandsUnderkategori huk : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
+                    preparedStatementDelete.setInt(1, huk.getId().get());
+                    preparedStatementInsert.setInt(1, huk.getId().get());
+                    for (int i = 1; i<6; i++)
+                    {
+                        switch (i){
+                            case(1)->{
+                                if (huk.getTilstandProperty().get()!= null)
+                                {
+                                    tempString = huk.getTilstandProperty().get();
+                                    preparedStatementDelete.setInt(2,i);
+                                    preparedStatementDelete.execute();
+                                    if(!tempString.isEmpty() || !tempString.isBlank())
+                                    {
+                                        preparedStatementInsert.setInt(2,i);
+                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setString(4,tempString);
+                                        preparedStatementInsert.execute();
+                                    }
+                                }
 
-                    preparedStatement.setInt(10, borger.getIDProperty().get());
-                    preparedStatement.setInt(11, helbredstilstandsUnderkategori.getId().get());
-                    preparedStatement.execute();
 
+                            }case(2)->{
+                                if (huk.getForventetTilstandProperty().get()!= null)
+                                {
+                                    tempString = huk.getForventetTilstandProperty().get();
+                                    preparedStatementDelete.setInt(2,i);
+                                    preparedStatementDelete.execute();
+                                    if(!tempString.isEmpty() || !tempString.isBlank())
+                                    {
+                                        preparedStatementInsert.setInt(2,i);
+                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setString(4,tempString);
+                                        preparedStatementInsert.execute();
+                                    }
+                                }
+
+                            }case(3)->{
+                                if (huk.getVurderingProperty().get()!= null)
+                                {
+                                    tempString = huk.getVurderingProperty().get();
+                                    preparedStatementDelete.setInt(2,i);
+                                    preparedStatementDelete.execute();
+                                    if(!tempString.isEmpty() || !tempString.isBlank())
+                                    {
+                                        preparedStatementInsert.setInt(2,i);
+                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setString(4,tempString);
+                                        preparedStatementInsert.execute();
+                                    }
+                                }
+
+                            }case(4)->{
+                                if (huk.getAarsagProperty().get()!= null)
+                                {
+                                    tempString = huk.getAarsagProperty().get();
+                                    preparedStatementDelete.setInt(2,i);
+                                    preparedStatementDelete.execute();
+                                    if(!tempString.isEmpty() || !tempString.isBlank())
+                                    {
+                                        preparedStatementInsert.setInt(2,i);
+                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setString(4,tempString);
+                                        preparedStatementInsert.execute();
+                                    }
+                                }
+
+                            }case(5)->{
+                                if (huk.getFagligNotatProperty().get()!= null)
+                                {
+                                    tempString = huk.getFagligNotatProperty().get();
+                                    preparedStatementDelete.setInt(2,i);
+                                    preparedStatementDelete.execute();
+                                    if(!tempString.isEmpty() || !tempString.isBlank())
+                                    {
+                                        preparedStatementInsert.setInt(2,i);
+                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setString(4,tempString);
+                                        preparedStatementInsert.execute();
+                                    }
+                                }
+
+                            }case(6)->{
+                                if (huk.getObservation().getDescriptionProperty().get()!= null)
+                                {
+                                    tempString = huk.getObservation().getDescriptionProperty().get();
+                                    preparedStatementDelete.setInt(2,i);
+                                    preparedStatementDelete.execute();
+                                    if(!tempString.isEmpty() || !tempString.isBlank())
+                                    {
+                                        preparedStatementInsert.setInt(2,i);
+                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setString(4,tempString);
+                                        preparedStatementInsert.execute();
+                                    }
+                                }
+
+                            }
+                        }
+                    }
                 }
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    public void deleteHelbredstilstand(Borger borger) {
-        String sql = "DELETE FROM [H_Tilstandsvurdering] WHERE HS_Borger_ID = (?)";
-        try (Connection connection = dbConnecting.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
-
-            preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -81,37 +144,51 @@ public class DBHelbredstilstandDAO {
         List<HelbredstilstandsUnderkategori> allHelbredstilstandeUK = new ArrayList<>();
 
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [H_Tilstandsvurdering]" +
-                    "FULL JOIN [HS_Underkategori] ON H_Tilstandsvurdering.HS_UK_ID = HS_Underkategori.HS_Underkategori_ID " +
-                    "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.HS_Overkategori_ID " +
-                    "WHERE HS_Borger_ID = (?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
+            String sqlCategories = "SELECT HC_Subcategory.HC_SC_ID, HC_Subcategory.HC_SC_Title, HC_Category.HC_C_Title FROM HC_Subcategory " +
+                    "JOIN [HC_Category] ON HC_Subcategory.HC_C_ID = HC_Category.HC_C_ID;";
+            String sqlAssessments = "SELECT * FROM HC_Assessment WHERE Citizen_ID = (?) AND HC_SC_ID = (?);";
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                //tilstandsvurdering
-                int ID = resultSet.getInt("HS_UK_ID");
-                String tilstand = resultSet.getString("Tilstand");
-                String vurdering = resultSet.getString("Vurdering");
-                String aarsag = resultSet.getString("Aarsag");
-                String fagligNotat = resultSet.getString("Faglig_Notat");
-                String forventetTilstand = resultSet.getString("Forventet_Tilstand");
-                String observationDescription = resultSet.getString("Observation");
-                Timestamp tidspunkt = resultSet.getTimestamp("ObservationTime");
+            PreparedStatement preparedStatementCategories = connection.prepareStatement(sqlCategories);
+            PreparedStatement preparedStatementAssessments = connection.prepareStatement(sqlAssessments);
+            preparedStatementAssessments.setInt(1, borger.getIDProperty().get());
 
-                Observation observation = new Observation();
-                observation.setDescription(observationDescription);
-                observation.setTidspunkt(tidspunkt);
+            ResultSet resultSetCategories = preparedStatementCategories.executeQuery();
+            while (resultSetCategories.next()) {
 
-                //Underkategori
-                String underKategoriTitel = resultSet.getString("HS_Underkategori_Titel");
-                observation.setTitel(underKategoriTitel);
+                int ID = resultSetCategories.getInt("HC_SC_ID");
 
-                //Overkategori
-                String overKategoriTitel = resultSet.getString("HS_Overkategori_Titel");
+                String underKategoriTitel = resultSetCategories.getString("HC_SC_Title");
 
-                HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(ID, underKategoriTitel, overKategoriTitel, tilstand, forventetTilstand, vurdering, aarsag, fagligNotat, observation);
+                String overKategoriTitel = resultSetCategories.getString("HC_C_Title");
+
+                HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(ID, underKategoriTitel, overKategoriTitel);
+                preparedStatementAssessments.setInt(2, ID);
+                ResultSet resultSet = preparedStatementAssessments.executeQuery();
+                while (resultSet.next()) {
+                    switch (resultSet.getInt("HC_A_ID")) {
+                        case(1) ->{
+                            helbredstilstandsUnderkategori.setTilstand(resultSet.getString("Description"));
+                        }
+                        case(2) ->{
+                            helbredstilstandsUnderkategori.setForventetTilstand(resultSet.getString("Description"));
+                                                }
+                        case(3) ->{
+                            helbredstilstandsUnderkategori.setVurdering(resultSet.getString("Description"));
+                                                }
+                        case(4) ->{
+                            helbredstilstandsUnderkategori.setAarsag(resultSet.getString("Description"));
+                                                }
+                        case(5) ->{
+                            helbredstilstandsUnderkategori.setFagligNotat(resultSet.getString("Description"));
+                                                }
+                        case(6) ->{
+                            Observation observation = new Observation();
+                            observation.setDescription(resultSet.getString("Description"));
+                            observation.setTitel(underKategoriTitel);
+                            helbredstilstandsUnderkategori.setObservation(observation);
+                                                }
+                    }
+                }
                 allHelbredstilstandeUK.add(helbredstilstandsUnderkategori);
 
             }
@@ -138,19 +215,19 @@ public class DBHelbredstilstandDAO {
         List<HelbredstilstandsUnderkategori> allHelbredstilstandeUK = new ArrayList<>();
 
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT HS_Underkategori.HS_Underkategori_ID, HS_Underkategori.HS_Underkategori_Titel, HS_Overkategori.HS_Overkategori_Titel, HS_Overkategori.HS_Overkategori_ID FROM [HS_Underkategori]" +
-                    "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.HS_Overkategori_ID";
+            String sql = "SELECT HC_Subcategory.HC_SC_ID, HC_Subcategory.HC_SC_Title, HC_Category.HC_C_Title, HC_Category.HC_C_ID FROM [HC_Subcategory]" +
+                    "FULL JOIN [HC_Category] ON HC_Subcategory.HC_C_ID = HC_Category.HC_C_ID";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int UKID = resultSet.getInt("HS_Underkategori_ID");
+                int UKID = resultSet.getInt("HC_SC_ID");
 
                 //Underkategori
-                String underKategoriTitel = resultSet.getString("HS_Underkategori_Titel");
+                String underKategoriTitel = resultSet.getString("HC_SC_Title");
 
                 //Overkategori
-                String overKategoriTitel = resultSet.getString("HS_Overkategori_Titel");
+                String overKategoriTitel = resultSet.getString("HC_C_Title");
 
                 HelbredstilstandsUnderkategori h = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
                 allHelbredstilstandeUK.add(h);

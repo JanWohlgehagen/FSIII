@@ -93,11 +93,8 @@ public interface IDatabaseFacade {
     public void updateFunktiontilstand(Borger borger);
 
 
-    public void createEmptyHelbredstilstand(Borger borger);
-
     public void updateHelbredstilstand(Borger borger);
 
-    public void deleteHelbredstilstandOnCitizen(Borger borger);
 
     public Funktionstilstand getEmptyFunktionsTilstand();
 

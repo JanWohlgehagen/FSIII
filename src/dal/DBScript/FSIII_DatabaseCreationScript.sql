@@ -85,43 +85,45 @@ CREATE TABLE [GI_Assessment](
     )
 
 
-CREATE TABLE [HS_Overkategori]
+CREATE TABLE [HC_Category]
 (
-    [HS_Overkategori_ID]    INT IDENTITY NOT NULL,
-    [HS_Overkategori_Titel] NVARCHAR(200),
+    [HC_C_ID]    INT IDENTITY NOT NULL,
+    [HC_C_Title] NVARCHAR(200),
 
 
-    CONSTRAINT PK_HSID PRIMARY KEY (HS_Overkategori_ID),
+    CONSTRAINT PK_HC_ID PRIMARY KEY (HC_C_ID),
 
     )
 
-CREATE TABLE [HS_Underkategori]
+CREATE TABLE [HC_Subcategory]
 (
-    [HS_Underkategori_ID]    INT IDENTITY  NOT NULL,
-    [HS_Underkategori_Titel] NVARCHAR(200) NOT NULL,
-    [HS_OK_ID]               INT           NOT NULL,
+    [HC_SC_ID]    INT IDENTITY  NOT NULL,
+    [HC_SC_Title] NVARCHAR(200) NOT NULL,
+    [HC_C_ID]               INT           NOT NULL,
 
-    CONSTRAINT PK_HS_IDUK PRIMARY KEY ([HS_Underkategori_ID]),
-    CONSTRAINT FK_HS_OK_ID FOREIGN KEY (HS_OK_ID) REFERENCES HS_Overkategori (HS_Overkategori_ID)
+    CONSTRAINT PK_HC_SC_ID PRIMARY KEY ([HC_SC_ID]),
+    CONSTRAINT FK_HC_C_ID FOREIGN KEY (HC_C_ID) REFERENCES HC_Category (HC_C_ID)
     )
 
 
-CREATE TABLE [H_Tilstandsvurdering]
-(
-    [HS_Borger_ID]       INT           NOT NULL,
-    [HS_UK_ID]           INT           NOT NULL,
-    [Tilstand]           VARCHAR(200)  NULL,
-    [Vurdering]          VARCHAR(4000) NULL,
-    [Aarsag]             VARCHAR(4000) NULL,
-    [Faglig_Notat]       VARCHAR(4000) NULL,
-    [Forventet_Tilstand] VARCHAR(200)  NULL,
+CREATE TABLE [HC_Assessments]
+(   HC_A_ID INT IDENTITY  NOT NULL,
+    HC_A_Title NVARCHAR(200),
 
-    CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_UK_ID, HS_Borger_ID),
-    CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
-    CONSTRAINT FK_HS_UK_IDHSV FOREIGN KEY (HS_UK_ID) REFERENCES HS_Underkategori ([HS_Underkategori_ID])
+    CONSTRAINT PK_HC_A_ID PRIMARY KEY (HC_A_ID)
+
     )
 
-
+CREATE TABLE [HC_Assessment](
+    HC_SC_ID INT NOT NULL,
+    HC_A_ID INT NOT NULL,
+    Citizen_ID INT NOT NULL,
+    [Description] NVARCHAR(4000),
+    CONSTRAINT [PK_HC_Assessment_ID] PRIMARY KEY (HC_SC_ID, HC_A_ID, Citizen_ID),
+    CONSTRAINT [FK_HC_SC_ID] FOREIGN KEY  (HC_SC_ID) REFERENCES HC_Subcategory (HC_SC_ID),
+    CONSTRAINT [FK_HC_A_ID] FOREIGN KEY (HC_A_ID) REFERENCES HC_Assessments (HC_A_ID),
+    CONSTRAINT [FK_HCA_Citizen_ID] FOREIGN KEY (Citizen_ID) REFERENCES Borger (Borger_ID) ON DELETE CASCADE
+    )
 CREATE TABLE [FC_Category]
 (
     [FC_C_ID]    INT IDENTITY  NOT NULL,
@@ -142,8 +144,8 @@ CREATE TABLE [FC_Subcategory]
     )
 
 CREATE TABLE [FC_Assessments](
-                                 FC_A_ID INT IDENTITY NOT NULL,
-                                 FC_A_Title NVARCHAR (200),
+    FC_A_ID INT IDENTITY NOT NULL,
+    FC_A_Title NVARCHAR (200),
 
     CONSTRAINT PK_FC_A_ID PRIMARY KEY ([FC_A_ID])
     )

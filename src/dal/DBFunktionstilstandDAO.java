@@ -227,6 +227,7 @@ public class DBFunktionstilstandDAO {
                             Observation observation = new Observation();
                             observation.setDescription(resultSet.getString("Description"));
                             funktionstilstandsUnderkategori.setObservation(observation);
+                            funktionstilstandsUnderkategori.getObservation().setTitel(tilstandsKlassifikation);
                         }
                         case (10) ->{
                             funktionstilstandsUnderkategori.setOpfølgning(resultSet.getString("Description"));

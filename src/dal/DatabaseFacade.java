@@ -244,21 +244,11 @@ public class DatabaseFacade implements IDatabaseFacade {
 
 
     @Override
-    public void createEmptyHelbredstilstand(Borger borger) {
-        dbHelbredstilstandDAO.createEmptyHelbredstilstandOnCitizen(borger);
-    }
-
-    @Override
     public void updateHelbredstilstand(Borger borger) {
         dbHelbredstilstandDAO.updateHelbredstilstand(borger);
 
     }
 
-    @Override
-    public void deleteHelbredstilstandOnCitizen(Borger borger) {
-        dbHelbredstilstandDAO.deleteHelbredstilstand(borger);
-
-    }
 
     /***************************************************/
     /*************** Tilstandskategorier ***************/

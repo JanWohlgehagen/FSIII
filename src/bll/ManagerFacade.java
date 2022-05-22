@@ -223,10 +223,7 @@ public class ManagerFacade implements IManagerFacade {
     /******************* Tilstande *********************/
     /***************************************************/
 
-    @Override
-    public void createEmptyTilstande(Borger borger) {
-        citizenManager.createEmptyTilstande(borger);
-    }
+
 
     public List<String> getFunktionstilstandsList() {
         return funktionstilstandManager.getFunktionstilstandsList();
@@ -252,10 +249,7 @@ public class ManagerFacade implements IManagerFacade {
         helbredstilstandManager.updateHelbredstilstand(borger);
     }
 
-    @Override
-    public void deleteHelbredstilstand(Borger borger) {
-        helbredstilstandManager.deleteHelbredstilstand(borger);
-    }
+
 
     @Override
     public List<String> getHelbredstilstandsList() {
