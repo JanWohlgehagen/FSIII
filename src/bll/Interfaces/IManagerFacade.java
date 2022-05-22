@@ -1,7 +1,7 @@
 package bll.Interfaces;
 
 import be.*;
-import be.user.User;
+import be.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
@@ -85,19 +85,19 @@ public interface IManagerFacade {
 
 
     //FUNKTIONSTILSTAND
-    public Funktionstilstand getEmptyFunktionsTilstand();
+    public FunctionAssessment getEmptyFunktionsTilstand();
 
-    public Funktionstilstand getTitleFunktionsTilstand();
+    public FunctionAssessment getTitleFunktionsTilstand();
 
-    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger);
+    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger);
 
     //HELBREDSTILSTAND
 
-    public Helbredstilstand getEmptyHelbredsTilstand();
+    public HealthAssessment getEmptyHelbredsTilstand();
 
-    public Helbredstilstand getTitleHelbredsTilstand();
+    public HealthAssessment getTitleHelbredsTilstand();
 
-    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger);
 
     public void updateHelbredstilstand(Borger borger);
 

@@ -1,7 +1,6 @@
 package dal;
 
 import be.Borger;
-import be.user.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

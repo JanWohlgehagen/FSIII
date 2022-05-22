@@ -1,37 +1,20 @@
 package be;
 
-import be.user.User;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 public class Borger {
-    private IntegerProperty ID = new SimpleIntegerProperty();
-    private IntegerProperty age = new SimpleIntegerProperty();
-    private StringProperty firstName = new SimpleStringProperty();
-    private StringProperty lastName = new SimpleStringProperty();
-    private BooleanProperty isTemplate = new SimpleBooleanProperty();
-    private IntegerProperty studentID = new SimpleIntegerProperty();
-
-    //Generelle oplysninger
-    private StringProperty mestring = new SimpleStringProperty();
-    private StringProperty motivation = new SimpleStringProperty();
-    private StringProperty ressourcer = new SimpleStringProperty();
-    private StringProperty roller = new SimpleStringProperty();
-    private StringProperty vaner = new SimpleStringProperty();
-    private StringProperty uddannelse = new SimpleStringProperty();
-    private StringProperty livshistorie = new SimpleStringProperty();
-    private StringProperty netvaerk = new SimpleStringProperty();
-    private StringProperty helbredsoplysninger = new SimpleStringProperty();
-    private StringProperty hjaelpemidler = new SimpleStringProperty();
-    private StringProperty boligensIndretning = new SimpleStringProperty();
-
-    private ArrayList<Case> listOfCases = new ArrayList<>();
-    private ObservableList<Observation> observationer = FXCollections.observableArrayList();
-    private Funktionstilstand funktionstilstand;
-    private Helbredstilstand helbredstilstand;
+    private final IntegerProperty ID = new SimpleIntegerProperty();
+    private final IntegerProperty age = new SimpleIntegerProperty();
+    private final StringProperty firstName = new SimpleStringProperty();
+    private final StringProperty lastName = new SimpleStringProperty();
+    private final BooleanProperty isTemplate = new SimpleBooleanProperty();
+    private int studentID;
+    private ObservableList<Observation> observations = FXCollections.observableArrayList();
+    private FunctionAssessment functionAssessment;
+    private HealthAssessment healthAssessment;
+    private Generalinformation generalinformation;
     private User student;
 
     public Borger(String firstName, String lastName, boolean isTemplate, int age) {
@@ -39,26 +22,19 @@ public class Borger {
         this.lastName.set(lastName);
         this.isTemplate.set(isTemplate);
         this.age.set(age);
+        generalinformation = new Generalinformation();
     }
 
-    public ObservableList<Observation> getObservationer() {
-        return observationer;
+    public ObservableList<Observation> getObservations() {
+        return observations;
     }
 
-    public void setObservationer(ObservableList<Observation> observationer) {
-        this.observationer = observationer;
-    }
-
-    public void setAge(int age) {
-        this.age.set(age);
+    public void setObservations(ObservableList<Observation> observations) {
+        this.observations = observations;
     }
 
     public IntegerProperty getAgeProperty() {
         return age;
-    }
-
-    public void setIsTemplate(boolean isTemplate) {
-        this.isTemplate.set(isTemplate);
     }
 
     public BooleanProperty isTemplateProperty() {
@@ -77,137 +53,32 @@ public class Borger {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
-    }
-
-
     public StringProperty getLastNameProperty() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
+    public FunctionAssessment getFunktionstilstand() {
+        return functionAssessment;
     }
 
-    public StringProperty getMestringProperty() {
-        return mestring;
+    public void setFunktionstilstand(FunctionAssessment functionAssessment) {
+        this.functionAssessment = functionAssessment;
     }
 
-    public void setMestring(String mestring) {
-        this.mestring.set(mestring);
+    public HealthAssessment getHelbredstilstand() {
+        return healthAssessment;
     }
 
-    public StringProperty getMotivationProperty() {
-        return motivation;
+    public void setHelbredstilstand(HealthAssessment healthAssessment) {
+        this.healthAssessment = healthAssessment;
     }
 
-    public void setMotivation(String motivation) {
-        this.motivation.set(motivation);
+    public Generalinformation getGeneralinformation() {
+        return generalinformation;
     }
 
-    public StringProperty getRessourcerProperty() {
-        return ressourcer;
-    }
-
-    public void setRessourcer(String ressourcer) {
-        this.ressourcer.set(ressourcer);
-    }
-
-    public StringProperty getRollerProperty() {
-        return roller;
-    }
-
-    public void setRoller(String roller) {
-        this.roller.set(roller);
-    }
-
-    public StringProperty getVanerProperty() {
-        return vaner;
-    }
-
-    public void setVaner(String vaner) {
-        this.vaner.set(vaner);
-    }
-
-    public StringProperty getUddannelseProperty() {
-        return uddannelse;
-    }
-
-    public void setUddannelse(String uddannelse) {
-        this.uddannelse.set(uddannelse);
-    }
-
-    public StringProperty getLivshistorieProperty() {
-        return livshistorie;
-    }
-
-    public void setLivshistorie(String livshistorie) {
-        this.livshistorie.set(livshistorie);
-    }
-
-    public StringProperty getNetvaerkProperty() {
-        return netvaerk;
-    }
-
-    public void setNetvaerk(String netvaerk) {
-        this.netvaerk.set(netvaerk);
-    }
-
-    public StringProperty getHelbredsoplysningerProperty() {
-        return helbredsoplysninger;
-    }
-
-    public void setHelbredsoplysninger(String helbredsoplysninger) {
-        this.helbredsoplysninger.set(helbredsoplysninger);
-    }
-
-    public StringProperty getHjaelpemidlerProperty() {
-        return hjaelpemidler;
-    }
-
-    public void setHjaelpemidler(String hjaelpemidler) {
-        this.hjaelpemidler.set(hjaelpemidler);
-    }
-
-    public StringProperty getBoligensIndretningProperty() {
-        return boligensIndretning;
-    }
-
-    public void setBoligensIndretning(String boligensIndretning) {
-        this.boligensIndretning.set(boligensIndretning);
-    }
-
-    public ArrayList<Case> getListOfCases() {
-        return listOfCases;
-    }
-
-    public void setListOfCases(ArrayList<Case> listOfCases) {
-        this.listOfCases = listOfCases;
-    }
-
-    public Funktionstilstand getFunktionstilstand() {
-        return funktionstilstand;
-    }
-
-    public void setFunktionstilstand(Funktionstilstand funktionstilstand) {
-        this.funktionstilstand = funktionstilstand;
-    }
-
-    public Helbredstilstand getHelbredstilstand() {
-        return helbredstilstand;
-    }
-
-    public void setHelbredstilstand(Helbredstilstand helbredstilstand) {
-        this.helbredstilstand = helbredstilstand;
-    }
-
-    public void setStudentID(int studentID) {
-        this.studentID.set(studentID);
-    }
-
-    public IntegerProperty getStudentIDProperty() {
-        return studentID;
+    public void setGeneralinformation(Generalinformation generalinformation) {
+        this.generalinformation = generalinformation;
     }
 
     public void setStudent(User student) {
@@ -216,6 +87,14 @@ public class Borger {
 
     public User getStudent() {
         return student;
+    }
+
+    public void setStudentID(int studentID) {
+        this.studentID = studentID;
+    }
+
+    public int getStudentID() {
+        return studentID;
     }
 
     @Override

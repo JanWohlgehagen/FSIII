@@ -2,7 +2,7 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import be.user.User;
+import be.User;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
 import gui.model.CaseModel;
@@ -290,11 +290,6 @@ public class DashboardController implements Initializable {
         createCitizenViewController.setCitizenModel(citizenModel);
     }
 
-    public void updateCitizenList() {
-        lvCitizens.getItems().clear();
-        lvCitizens.setItems(citizenModel.getAllCitizen());
-    }
-
     public void btnConnectStudent(ActionEvent actionEvent) throws IOException {
         ISceneLoader<TilfoejStuderendePaaBorgerController> tilfoejStuderendePaaBorgerControllerSceneLoader = new TilfoejStuderendeScene();
         tilfoejStuderendePaaBorgerControllerSceneLoader.loadNewScene(new Stage());
@@ -309,7 +304,6 @@ public class DashboardController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get().equals(ButtonType.YES)) {
                 citizenModel.deleteCitizen(selectCitizen);
-                updateCitizenList();
 
             }
         }

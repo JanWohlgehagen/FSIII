@@ -1,15 +1,8 @@
-import be.Helbredstilstand;
-import be.HelbredstilstandsUnderkategori;
-import gui.controller.AdminDashboardController;
 import gui.controller.LoginController;
-import gui.util.AdminDashboardScene;
 import gui.util.ISceneLoader;
 import gui.util.LoginScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class App extends Application {
 

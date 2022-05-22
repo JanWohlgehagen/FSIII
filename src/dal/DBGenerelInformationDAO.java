@@ -34,8 +34,8 @@ public class DBGenerelInformationDAO {
                 //If the property is not null, the row in DB is deleted, and if string is not blank or empty a new row is created as wel
                 switch (i) {
                     case (1) -> {
-                        if (borger.getMestringProperty().get() != null) {
-                            String tempString = borger.getMestringProperty().get();
+                        if (borger.getGeneralinformation().getMestringProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getMestringProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -43,8 +43,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (2) -> {
-                        if (borger.getMotivationProperty().get() != null) {
-                            String tempString = borger.getMotivationProperty().get();
+                        if (borger.getGeneralinformation().getMotivationProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getMotivationProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -52,8 +52,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (3) -> {
-                        if (borger.getRessourcerProperty().get() != null) {
-                            String tempString = borger.getRessourcerProperty().get();
+                        if (borger.getGeneralinformation().getRessourcerProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getRessourcerProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -61,8 +61,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (4) -> {
-                        if (borger.getRollerProperty().get() != null) {
-                            String tempString = borger.getRollerProperty().get();
+                        if (borger.getGeneralinformation().getRollerProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getRollerProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -70,8 +70,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (5) -> {
-                        if (borger.getVanerProperty().get() != null) {
-                            String tempString = borger.getVanerProperty().get();
+                        if (borger.getGeneralinformation().getVanerProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getVanerProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -79,8 +79,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (6) -> {
-                        if (borger.getUddannelseProperty().get() != null) {
-                            String tempString = borger.getUddannelseProperty().get();
+                        if (borger.getGeneralinformation().getUddannelseProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getUddannelseProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -88,8 +88,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (7) -> {
-                        if (borger.getLivshistorieProperty().get() != null) {
-                            String tempString = borger.getLivshistorieProperty().get();
+                        if (borger.getGeneralinformation().getLivshistorieProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getLivshistorieProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -97,8 +97,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (8) -> {
-                        if (borger.getNetvaerkProperty().get() != null) {
-                            String tempString = borger.getNetvaerkProperty().get();
+                        if (borger.getGeneralinformation().getNetvaerkProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getNetvaerkProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -106,8 +106,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (9) -> {
-                        if (borger.getHjaelpemidlerProperty().get() != null) {
-                            String tempString = borger.getHjaelpemidlerProperty().get();
+                        if (borger.getGeneralinformation().getHjaelpemidlerProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getHjaelpemidlerProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -115,8 +115,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (10) -> {
-                        if (borger.getHelbredsoplysningerProperty().get() != null) {
-                            String tempString = borger.getHelbredsoplysningerProperty().get();
+                        if (borger.getGeneralinformation().getHelbredsoplysningerProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getHelbredsoplysningerProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -124,8 +124,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (11) -> {
-                        if (borger.getBoligensIndretningProperty().get() != null) {
-                            String tempString = borger.getBoligensIndretningProperty().get();
+                        if (borger.getGeneralinformation().getBoligensIndretningProperty().get() != null) {
+                            String tempString = borger.getGeneralinformation().getBoligensIndretningProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -153,17 +153,17 @@ public class DBGenerelInformationDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 switch (resultSet.getInt("FK_GI_ID")) {
-                    case (1) -> borger.setMestring(resultSet.getString("Description"));
-                    case (2) -> borger.setMotivation(resultSet.getString("Description"));
-                    case (3) -> borger.setRessourcer(resultSet.getString("Description"));
-                    case (4) -> borger.setRoller(resultSet.getString("Description"));
-                    case (5) -> borger.setVaner(resultSet.getString("Description"));
-                    case (6) -> borger.setUddannelse(resultSet.getString("Description"));
-                    case (7) -> borger.setLivshistorie(resultSet.getString("Description"));
-                    case (8) -> borger.setNetvaerk(resultSet.getString("Description"));
-                    case (9) -> borger.setHjaelpemidler(resultSet.getString("Description"));
-                    case (10) -> borger.setHelbredsoplysninger(resultSet.getString("Description"));
-                    case (11) -> borger.setBoligensIndretning(resultSet.getString("Description"));
+                    case (1) -> borger.getGeneralinformation().setMestring(resultSet.getString("Description"));
+                    case (2) -> borger.getGeneralinformation().setMotivation(resultSet.getString("Description"));
+                    case (3) -> borger.getGeneralinformation().setRessourcer(resultSet.getString("Description"));
+                    case (4) -> borger.getGeneralinformation().setRoller(resultSet.getString("Description"));
+                    case (5) -> borger.getGeneralinformation().setVaner(resultSet.getString("Description"));
+                    case (6) -> borger.getGeneralinformation().setUddannelse(resultSet.getString("Description"));
+                    case (7) -> borger.getGeneralinformation().setLivshistorie(resultSet.getString("Description"));
+                    case (8) -> borger.getGeneralinformation().setNetvaerk(resultSet.getString("Description"));
+                    case (9) -> borger.getGeneralinformation().setHjaelpemidler(resultSet.getString("Description"));
+                    case (10) -> borger.getGeneralinformation().setHelbredsoplysninger(resultSet.getString("Description"));
+                    case (11) -> borger.getGeneralinformation().setBoligensIndretning(resultSet.getString("Description"));
                 }
             }
             return borger;

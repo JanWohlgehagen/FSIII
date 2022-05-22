@@ -2,8 +2,7 @@ package gui.model;
 
 import be.Credential;
 import be.WClass;
-import be.user.User;
-import be.user.UserType;
+import be.User;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 import bll.Seachers.UserSearcher;
@@ -122,9 +121,9 @@ public class UserModel {
     }
 
     public void newUser(User newUser) {
-        if (newUser.getUserType().equals(UserType.STUDENT)) {
+        if (newUser.getUserType().equals(User.UserType.STUDENT)) {
             allStudent.add(managerFacade.newUser(newUser));
-        } else if (newUser.getUserType().equals(UserType.TEACHER)) {
+        } else if (newUser.getUserType().equals(User.UserType.TEACHER)) {
             allTeacher.add(managerFacade.newUser(newUser));
         }
     }
@@ -138,9 +137,9 @@ public class UserModel {
     }
 
     public void removeUser(User user) {
-        if (user.getUserType().equals(UserType.STUDENT)) {
+        if (user.getUserType().equals(User.UserType.STUDENT)) {
             allStudent.remove(user);
-        } else if (user.getUserType().equals(UserType.TEACHER)) {
+        } else if (user.getUserType().equals(User.UserType.TEACHER)) {
             allTeacher.remove(user);
         }
         managerFacade.deleteUser(user);

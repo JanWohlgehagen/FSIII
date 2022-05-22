@@ -1,10 +1,8 @@
 package dal;
 
 import be.WClass;
-import be.user.User;
+import be.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 import java.sql.*;
 import java.util.ArrayList;

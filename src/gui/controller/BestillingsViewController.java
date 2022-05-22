@@ -2,12 +2,11 @@ package gui.controller;
 
 import be.Borger;
 import be.Case;
-import be.user.User;
+import be.User;
 import gui.model.CaseModel;
 import gui.util.ISceneLoader;
 import gui.util.PlanlaegningScene;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -45,17 +44,17 @@ public class BestillingsViewController implements Initializable {
             loginUser = dashBoardController.getLoginUser();
             setBestillingsViewToLoginUserProfile();
 
-            if (currentCase.isBevilgetProperty().get()) {
+            if (currentCase.isGrantedProperty().get()) {
                 checkBoxBevilling.setSelected(true);
             }
-            txtAreaBestillingsText.setText(currentCase.getBevillingstekstProperty().get());
+            txtAreaBestillingsText.setText(currentCase.getGrantedTextProperty().get());
         });
     }
 
     public void handleSaveAndClose(MouseEvent mouseEvent) {
         if (checkBoxBevilling.isSelected()) {
-            currentCase.setIsBevilget(checkBoxBevilling.isSelected());
-            currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
+            currentCase.setIsGranted(checkBoxBevilling.isSelected());
+            currentCase.setGrantedText(txtAreaBestillingsText.getText());
         } else {
             caseModel.deleteCaseOnCitizen(currentCitizen.getIDProperty().get(), currentCase.getCaseIDProperty().get());
         }
@@ -66,10 +65,10 @@ public class BestillingsViewController implements Initializable {
     public void handleSaveAndNextScene(MouseEvent mouseEvent) throws IOException {
         if (currentCase != null) {
             if (checkBoxBevilling.isSelected()) {
-                currentCase.setIsBevilget(checkBoxBevilling.isSelected());
-                currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
-                currentCase.setIsBevilget(checkBoxBevilling.isSelected());
-                currentCase.setBevillingstekst(txtAreaBestillingsText.getText());
+                currentCase.setIsGranted(checkBoxBevilling.isSelected());
+                currentCase.setGrantedText(txtAreaBestillingsText.getText());
+                currentCase.setIsGranted(checkBoxBevilling.isSelected());
+                currentCase.setGrantedText(txtAreaBestillingsText.getText());
                 ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
                 planlaegningScene.loadNewScene(getStage());
                 PlanlaegningController planlaegningController = planlaegningScene.getController();

@@ -1,17 +1,16 @@
 package dal;
 
 import be.*;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DBHelbredstilstandDAO {
+public class DBHealthAssessmentDAO {
     private DBConnecting dbConnecting;
 
-    public DBHelbredstilstandDAO(DBConnecting dbConnecting) {
+    public DBHealthAssessmentDAO(DBConnecting dbConnecting) {
         this.dbConnecting = dbConnecting;
     }
 
@@ -48,7 +47,7 @@ public class DBHelbredstilstandDAO {
                     preparedStatement.setString(6, helbredstilstandsUnderkategori.getFagligNotatProperty().get());
                     preparedStatement.setString(7, helbredstilstandsUnderkategori.getForventetTilstandProperty().get());
                     preparedStatement.setString(8, helbredstilstandsUnderkategori.getObservation().getDescriptionProperty().get());
-                    preparedStatement.setTimestamp(9, helbredstilstandsUnderkategori.getObservation().getTidspunkt());
+                    preparedStatement.setTimestamp(9, helbredstilstandsUnderkategori.getObservation().getTime());
 
                     preparedStatement.setInt(10, borger.getIDProperty().get());
                     preparedStatement.setInt(11, helbredstilstandsUnderkategori.getId().get());
@@ -74,8 +73,8 @@ public class DBHelbredstilstandDAO {
     }
 
 
-    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger) {
-        Helbredstilstand helbredstilstand = new Helbredstilstand();
+    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger) {
+        HealthAssessment healthAssessment = new HealthAssessment();
 
         HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandeHP = new HashMap<>();
         List<HelbredstilstandsUnderkategori> allHelbredstilstandeUK = new ArrayList<>();
@@ -102,11 +101,11 @@ public class DBHelbredstilstandDAO {
 
                 Observation observation = new Observation();
                 observation.setDescription(observationDescription);
-                observation.setTidspunkt(tidspunkt);
+                observation.setTime(tidspunkt);
 
                 //Underkategori
                 String underKategoriTitel = resultSet.getString("HS_Underkategori_Titel");
-                observation.setTitel(underKategoriTitel);
+                observation.setTitle(underKategoriTitel);
 
                 //Overkategori
                 String overKategoriTitel = resultSet.getString("HS_Overkategori_Titel");
@@ -121,19 +120,19 @@ public class DBHelbredstilstandDAO {
                 }
                 helbredstilstandeHP.get(h.getOverkategoriProperty().get()).add(h);
             }
-            helbredstilstand.setHelbredstilstandskort(helbredstilstandeHP);
-            return helbredstilstand;
+            healthAssessment.setHelbredstilstandskort(helbredstilstandeHP);
+            return healthAssessment;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return helbredstilstand;
+        return healthAssessment;
 
 
     }
 
-    public Helbredstilstand getEmptyHelbredstilstand() {
-        Helbredstilstand helbredstilstand = new Helbredstilstand();
+    public HealthAssessment getEmptyHelbredstilstand() {
+        HealthAssessment healthAssessment = new HealthAssessment();
         HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandeHP = new HashMap<>();
         List<HelbredstilstandsUnderkategori> allHelbredstilstandeUK = new ArrayList<>();
 
@@ -164,8 +163,8 @@ public class DBHelbredstilstandDAO {
                 }
                 helbredstilstandeHP.get(h.getOverkategoriProperty().get()).add(h);
             }
-            helbredstilstand.setHelbredstilstandskort(helbredstilstandeHP);
-            return helbredstilstand;
+            healthAssessment.setHelbredstilstandskort(helbredstilstandeHP);
+            return healthAssessment;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

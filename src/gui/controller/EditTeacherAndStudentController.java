@@ -1,6 +1,6 @@
 package gui.controller;
 
-import be.user.User;
+import be.User;
 import gui.model.UserModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

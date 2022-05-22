@@ -1,38 +1,31 @@
 package gui.controller;
 
-import be.Funktionstilstand;
+import be.FunctionAssessment;
 import be.FunktionstilstandsUnderkategori;
 import gui.resources.nodes.FunktionstilstandNode;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.security.Key;
 import java.util.ResourceBundle;
 
-public class AlleRelevanteOplysningerViewController implements Initializable {
+public class RelevantFunctionAssessmentViewController implements Initializable {
 
     @FXML
     private GridPane parentPane;
     @FXML
     private VBox vBoxAllCategories;
-    private Funktionstilstand funktionstilstand;
-
-
-    public AlleRelevanteOplysningerViewController() {
-
-    }
+    private FunctionAssessment functionAssessment;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            for (String key : funktionstilstand.getFunktionsTilstandsKort().keySet()) {
+            for (String key : functionAssessment.getFunktionsTilstandsKort().keySet()) {
                 FunktionstilstandNode funktionstilstandNode = new FunktionstilstandNode(key);
-                for (FunktionstilstandsUnderkategori fuk : funktionstilstand.getFunktionsTilstandsKort().get(key)) {
+                for (FunktionstilstandsUnderkategori fuk : functionAssessment.getFunktionsTilstandsKort().get(key)) {
                     if (fuk.getNiveauProperty().get() != 9 && fuk.getNiveauProperty().get() != -1) {
                         funktionstilstandNode.addUK(fuk);
                     }
@@ -43,7 +36,7 @@ public class AlleRelevanteOplysningerViewController implements Initializable {
         });
     }
 
-    public void setFunktionstilstand(Funktionstilstand funktionstilstand) {
-        this.funktionstilstand = funktionstilstand;
+    public void setFunctionAssessment(FunctionAssessment functionAssessment) {
+        this.functionAssessment = functionAssessment;
     }
 }

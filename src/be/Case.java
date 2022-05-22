@@ -2,50 +2,33 @@ package be;
 
 import javafx.beans.property.*;
 
-import java.util.ArrayList;
-
 public class Case {
     //Istedet for personID kunne case evt. holde en borger så casen ved hvilken borger den er tilknyttet?
-    private IntegerProperty citizenID = new SimpleIntegerProperty();
-    private IntegerProperty caseID = new SimpleIntegerProperty();
-    private StringProperty overkategoriTitle = new SimpleStringProperty();
-    private StringProperty underkategoriTitle = new SimpleStringProperty();
-    private StringProperty caseDescription = new SimpleStringProperty();
-    private BooleanProperty isBevilget = new SimpleBooleanProperty();
-    private StringProperty Bevillingstekst = new SimpleStringProperty();
-    private StringProperty plan = new SimpleStringProperty();
-    private StringProperty opfoelgningstag = new SimpleStringProperty();
-    private StringProperty henvisning = new SimpleStringProperty();
-    private StringProperty aasagsfritekst = new SimpleStringProperty();
-    private StringProperty aasagsdiagnose = new SimpleStringProperty();
-    private StringProperty aasagstilstand = new SimpleStringProperty();
-    private StringProperty borgerensonsker = new SimpleStringProperty();
+    private final IntegerProperty citizenID = new SimpleIntegerProperty();
+    private final IntegerProperty caseID = new SimpleIntegerProperty();
+    private final StringProperty overCategoryTitle = new SimpleStringProperty();
+    private final StringProperty subcategoryTitle = new SimpleStringProperty();
+    private final StringProperty description = new SimpleStringProperty();
+    private final BooleanProperty isGranted = new SimpleBooleanProperty();
+    private final StringProperty grantedText = new SimpleStringProperty();
+    private final StringProperty plan = new SimpleStringProperty();
+    private final StringProperty followUpTag = new SimpleStringProperty();
+    private final StringProperty reference = new SimpleStringProperty();
+    private final StringProperty cause = new SimpleStringProperty();
+    private final StringProperty causeDiagnosis = new SimpleStringProperty();
+    private final StringProperty causeCondition = new SimpleStringProperty();
+    private final StringProperty citizenWishes = new SimpleStringProperty();
+    private final StringProperty caseResponsible = new SimpleStringProperty();
 
-    private StringProperty sagsansvarlig = new SimpleStringProperty();
-    private ArrayList<CaseDocumentation> listOfDocumentations = new ArrayList<>();
-
-    public Case(int citizenID, String overkategoriTitle, String underkategoriTitle) {
+    public Case(int citizenID, String overCategoryTitle, String subcategoryTitle) {
         this.citizenID.set(citizenID);
-        this.overkategoriTitle.set(overkategoriTitle);
-        this.underkategoriTitle.set(underkategoriTitle);
-    }
-
-    public ArrayList<CaseDocumentation> getListOfDocumentations() {
-        return listOfDocumentations;
-    }
-
-    public void setListOfDocumentations(ArrayList<CaseDocumentation> listOfDocumentations) {
-        this.listOfDocumentations = listOfDocumentations;
+        this.overCategoryTitle.set(overCategoryTitle);
+        this.subcategoryTitle.set(subcategoryTitle);
     }
 
     public IntegerProperty getCitizenIDProperty() {
         return citizenID;
     }
-
-    public void setCitizenID(int citizenID) {
-        this.citizenID.set(citizenID);
-    }
-
 
     public IntegerProperty getCaseIDProperty() {
         return caseID;
@@ -55,94 +38,94 @@ public class Case {
         this.caseID.set(caseID);
     }
 
-    public StringProperty getOverkategoriTitleProperty() {
-        return overkategoriTitle;
+    public StringProperty getOverCategoryTitleProperty() {
+        return overCategoryTitle;
     }
 
-    public void setOverkategoriTitle(String overkategoriTitle) {
-        this.overkategoriTitle.set(overkategoriTitle);
+    public void setOverCategoryTitle(String overCategoryTitle) {
+        this.overCategoryTitle.set(overCategoryTitle);
     }
 
-    public StringProperty getUnderkategoriTitleProperty() {
-        return underkategoriTitle;
+    public StringProperty getSubcategoryTitleProperty() {
+        return subcategoryTitle;
     }
 
-    public void setUnderkategoriTitle(String underkategoriTitle) {
-        this.underkategoriTitle.set(underkategoriTitle);
+    public void setSubcategoryTitle(String subcategoryTitle) {
+        this.subcategoryTitle.set(subcategoryTitle);
     }
 
-    public StringProperty getSagsansvarligProperty() {
-        return sagsansvarlig;
+    public StringProperty getCaseResponsibleProperty() {
+        return caseResponsible;
     }
 
-    public void setSagsansvarlig(String sagsansvarlig) {
-        this.sagsansvarlig.set(sagsansvarlig);
+    public void setCaseResponsible(String caseResponsible) {
+        this.caseResponsible.set(caseResponsible);
     }
 
-    public StringProperty getHenvisningProperty() {
-        return henvisning;
+    public StringProperty getReferenceProperty() {
+        return reference;
     }
 
-    public void setHenvisning(String henvisning) {
-        this.henvisning.set(henvisning);
+    public void setReference(String reference) {
+        this.reference.set(reference);
     }
 
-    public StringProperty getAasagsfritekstProperty() {
-        return aasagsfritekst;
+    public StringProperty getCauseProperty() {
+        return cause;
     }
 
-    public void setAasagsfritekst(String aasagsfritekst) {
-        this.aasagsfritekst.set(aasagsfritekst);
+    public void setCause(String cause) {
+        this.cause.set(cause);
     }
 
-    public StringProperty getAasagsdiagnoseProperty() {
-        return aasagsdiagnose;
+    public StringProperty getCauseDiagnosisProperty() {
+        return causeDiagnosis;
     }
 
-    public void setAasagsdiagnose(String aasagsdiagnose) {
-        this.aasagsdiagnose.set(aasagsdiagnose);
+    public void setCauseDiagnosis(String causeDiagnosis) {
+        this.causeDiagnosis.set(causeDiagnosis);
     }
 
-    public StringProperty getAasagstilstandProperty() {
-        return aasagstilstand;
+    public StringProperty getCauseConditionProperty() {
+        return causeCondition;
     }
 
-    public void setAasagstilstand(String aasagstilstand) {
-        this.aasagstilstand.set(aasagstilstand);
+    public void setCauseCondition(String causeCondition) {
+        this.causeCondition.set(causeCondition);
     }
 
-    public StringProperty getBorgerensonskerProperty() {
-        return borgerensonsker;
+    public StringProperty getCitizenWishesProperty() {
+        return citizenWishes;
     }
 
-    public void setBorgerensonsker(String borgerensonsker) {
-        this.borgerensonsker.set(borgerensonsker);
+    public void setCitizenWishes(String citizenWishes) {
+        this.citizenWishes.set(citizenWishes);
     }
 
-    public StringProperty getCaseDescriptionProperty() {
-        return caseDescription;
+    public StringProperty getDescriptionProperty() {
+        return description;
     }
 
-    public void setCaseDescription(String caseDescription) {
-        this.caseDescription.set(caseDescription);
-    }
-
-
-    public BooleanProperty isBevilgetProperty() {
-        return isBevilget;
-    }
-
-    public void setIsBevilget(boolean isBevilget) {
-        this.isBevilget.set(isBevilget);
+    public void setDescription(String description) {
+        this.description.set(description);
     }
 
 
-    public StringProperty getBevillingstekstProperty() {
-        return Bevillingstekst;
+    public BooleanProperty isGrantedProperty() {
+        return isGranted;
     }
 
-    public void setBevillingstekst(String bevillingstekst) {
-        this.Bevillingstekst.set(bevillingstekst);
+    public void setIsGranted(boolean isGranted) {
+        this.isGranted.set(isGranted);
+    }
+
+
+    public StringProperty getGrantedTextProperty() {
+        return grantedText;
+    }
+
+    public void setGrantedText(String grantedText) {
+        this.grantedText.set(grantedText);
     }
 
     public StringProperty getPlanProperty() {
@@ -154,16 +137,16 @@ public class Case {
     }
 
 
-    public StringProperty getOpfoelgningstagProperty() {
-        return opfoelgningstag;
+    public StringProperty getFollowUpTagProperty() {
+        return followUpTag;
     }
 
-    public void setOpfoelgningstag(String opfoelgningstag) {
-        this.opfoelgningstag.set(opfoelgningstag);
+    public void setFollowUpTag(String followUpTag) {
+        this.followUpTag.set(followUpTag);
     }
 
     @Override
     public String toString() {
-        return this.overkategoriTitle.get() + " -> " + this.underkategoriTitle.get();
+        return this.overCategoryTitle.get() + " -> " + this.subcategoryTitle.get();
     }
 }

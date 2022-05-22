@@ -2,8 +2,6 @@ package gui.model;
 
 import be.Borger;
 import be.Case;
-import be.Funktionstilstand;
-import be.Helbredstilstand;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 import bll.Seachers.CitizenSearcher;
@@ -68,41 +66,34 @@ public class CitizenModel {
         // Add the data from Template
         var cases = managerFacade.getAllCasesOnCitizen(templateBorger.getIDProperty().get());
         for (var aCase : cases) {
-            var newCase = new Case(borger.getIDProperty().get(), aCase.getOverkategoriTitleProperty().get(), aCase.getUnderkategoriTitleProperty().get());
-            newCase.setIsBevilget(false);
-            newCase.setHenvisning(aCase.getHenvisningProperty().get());
-            newCase.setSagsansvarlig(aCase.getSagsansvarligProperty().get());
-            newCase.setCaseDescription(aCase.getCaseDescriptionProperty().get());
-            newCase.setAasagsfritekst(aCase.getAasagsfritekstProperty().get());
-            newCase.setAasagsdiagnose(aCase.getAasagsdiagnoseProperty().get());
-            newCase.setAasagstilstand(aCase.getAasagstilstandProperty().get());
-            newCase.setBorgerensonsker(aCase.getBorgerensonskerProperty().get());
-            newCase.setBevillingstekst(aCase.getBevillingstekstProperty().get());
+            var newCase = new Case(borger.getIDProperty().get(), aCase.getOverCategoryTitleProperty().get(), aCase.getSubcategoryTitleProperty().get());
+            newCase.setIsGranted(false);
+            newCase.setReference(aCase.getReferenceProperty().get());
+            newCase.setCaseResponsible(aCase.getCaseResponsibleProperty().get());
+            newCase.setDescription(aCase.getDescriptionProperty().get());
+            newCase.setCause(aCase.getCauseProperty().get());
+            newCase.setCauseDiagnosis(aCase.getCauseDiagnosisProperty().get());
+            newCase.setCauseCondition(aCase.getCauseConditionProperty().get());
+            newCase.setCitizenWishes(aCase.getCitizenWishesProperty().get());
+            newCase.setGrantedText(aCase.getGrantedTextProperty().get());
             newCase.setPlan(aCase.getPlanProperty().get());
-            newCase.setOpfoelgningstag(aCase.getOpfoelgningstagProperty().get());
+            newCase.setFollowUpTag(aCase.getFollowUpTagProperty().get());
             managerFacade.createCaseOnCitizen(newCase);
         }
 
         // Set the Helbredstiltand and Funktionstilstands
-        if (templateBorger.getHelbredstilstand() == null) {
+        if (templateBorger.getHelbredstilstand() == null ) {
             templateBorger.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(templateBorger));
             templateBorger.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(templateBorger));
+        }
+        if(templateBorger.getGeneralinformation() == null){
+            managerFacade.getGenerelleOplysninger(templateBorger); // TODO laves om til at man får en Generalinformation og ikke en borger
         }
 
         borger.setHelbredstilstand(templateBorger.getHelbredstilstand());
         borger.setFunktionstilstand(templateBorger.getFunktionstilstand());
+        borger.setGeneralinformation(templateBorger.getGeneralinformation());
 
-        borger.setMestring(templateBorger.getMestringProperty().get());
-        borger.setMotivation(templateBorger.getMotivationProperty().get());
-        borger.setRessourcer(templateBorger.getRessourcerProperty().get());
-        borger.setRoller(templateBorger.getRollerProperty().get());
-        borger.setVaner(templateBorger.getVanerProperty().get());
-        borger.setUddannelse(templateBorger.getUddannelseProperty().get());
-        borger.setLivshistorie(templateBorger.getLivshistorieProperty().get());
-        borger.setNetvaerk(templateBorger.getNetvaerkProperty().get());
-        borger.setHelbredsoplysninger(templateBorger.getHelbredsoplysningerProperty().get());
-        borger.setHjaelpemidler(templateBorger.getHjaelpemidlerProperty().get());
-        borger.setBoligensIndretning(templateBorger.getBoligensIndretningProperty().get());
         managerFacade.updateSagsoplysninger(borger);
     }
 
@@ -113,6 +104,7 @@ public class CitizenModel {
 
     public void deleteCitizen(Borger borger) {
         managerFacade.deleteCitizen(borger);
+        allCitizens.remove(borger);
     }
 
     public void updateSagsoplysninger(Borger borger) {

@@ -1,7 +1,7 @@
 package bll;
 
 import be.Credential;
-import be.user.User;
+import be.User;
 import bll.util.BCrypt;
 import dal.interfaces.IDatabaseFacade;
 import javafx.scene.control.Alert;

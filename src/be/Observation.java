@@ -3,13 +3,12 @@ package be;
 import javafx.beans.property.*;
 
 import java.sql.Timestamp;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 
 public class Observation {
-    private ObjectProperty<Timestamp> tidspunkt = new SimpleObjectProperty<>();
+    private ObjectProperty<Timestamp> time = new SimpleObjectProperty<>();
     private StringProperty description = new SimpleStringProperty();
-    private StringProperty titel = new SimpleStringProperty();
+    private StringProperty title = new SimpleStringProperty();
 
     public StringProperty getDescriptionProperty() {
         return description;
@@ -19,28 +18,28 @@ public class Observation {
         this.description.set(description);
     }
 
-    public Timestamp getTidspunkt() {
-        return tidspunkt.get();
+    public Timestamp getTime() {
+        return time.get();
     }
 
-    public void setTidspunkt(Timestamp tidspunkt) {
-        this.tidspunkt.set(tidspunkt);
+    public void setTime(Timestamp newTime) {
+        this.time.set(newTime);
     }
 
-    public StringProperty getTitelProperty() {
-        return titel;
+    public StringProperty getTitleProperty() {
+        return title;
     }
 
-    public void setTitel(String titel) {
-        this.titel.set(titel);
+    public void setTitle(String title) {
+        this.title.set(title);
     }
 
-    private String formattingOfTidspunkt() {
-        return new SimpleDateFormat("dd-MM-yyyy  HH:mm").format(tidspunkt.get());
+    private String formattingOfTime() {
+        return new SimpleDateFormat("dd-MM-yyyy  HH:mm").format(this.time);
     }
 
     @Override
     public String toString() {
-        return formattingOfTidspunkt() + " : " + titel.get();
+        return formattingOfTime() + " : " + title.get();
     }
 }

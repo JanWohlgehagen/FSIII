@@ -1,7 +1,7 @@
 package bll;
 
 import be.*;
-import be.user.User;
+import be.User;
 import bll.Interfaces.IManagerFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
@@ -214,32 +214,32 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public Funktionstilstand getEmptyFunktionsTilstand() {
+    public FunctionAssessment getEmptyFunktionsTilstand() {
         return citizenManager.getEmptyFunktionsTilstand();
     }
 
     @Override
-    public Funktionstilstand getTitleFunktionsTilstand() {
-        return caseManager.getTitleFunktionsTilstand();
+    public FunctionAssessment getTitleFunktionsTilstand() {
+        return caseManager.getFunctionAssessmentTitle();
     }
 
     @Override
-    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger) {
+    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger) {
         return citizenManager.getFunktionstilstandOnCitizen(borger);
     }
 
     @Override
-    public Helbredstilstand getEmptyHelbredsTilstand() {
+    public HealthAssessment getEmptyHelbredsTilstand() {
         return citizenManager.getEmptyHelbredsTilstand();
     }
 
     @Override
-    public Helbredstilstand getTitleHelbredsTilstand() {
-        return caseManager.getTitleHelbredsTilstand();
+    public HealthAssessment getTitleHelbredsTilstand() {
+        return caseManager.getHealthAssessmentTitle();
     }
 
     @Override
-    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger) {
+    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger) {
         return citizenManager.getHelbredstilstandOnCitizen(borger);
     }
 

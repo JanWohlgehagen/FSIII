@@ -2,7 +2,7 @@ package gui.controller;
 
 import be.Borger;
 import be.WClass;
-import be.user.User;
+import be.User;
 import gui.model.CitizenModel;
 import gui.model.UserModel;
 import javafx.application.Platform;

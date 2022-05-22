@@ -1,21 +1,20 @@
 package dal;
 
 import be.Borger;
-import be.Funktionstilstand;
+import be.FunctionAssessment;
 import be.FunktionstilstandsUnderkategori;
 import be.Observation;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DBFunktionstilstandDAO {
+public class DBFunctionAssessmentDAO {
 
     private DBConnecting dbConnecting;
 
-    public DBFunktionstilstandDAO(DBConnecting dbConnecting) {
+    public DBFunctionAssessmentDAO(DBConnecting dbConnecting) {
         this.dbConnecting = dbConnecting;
     }
 
@@ -57,7 +56,7 @@ public class DBFunktionstilstandDAO {
                     preparedStatement.setString(9, funktionstilstandsUnderkategori.getFagligNotatProperty().get());
                     preparedStatement.setInt(10, funktionstilstandsUnderkategori.getForventetTilstandProperty().get());
                     preparedStatement.setString(11, funktionstilstandsUnderkategori.getObservation().getDescriptionProperty().get());
-                    preparedStatement.setTimestamp(12, funktionstilstandsUnderkategori.getObservation().getTidspunkt());
+                    preparedStatement.setTimestamp(12, funktionstilstandsUnderkategori.getObservation().getTime());
                     preparedStatement.setString(13, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
 
                     preparedStatement.setInt(14, borger.getIDProperty().get());
@@ -87,8 +86,8 @@ public class DBFunktionstilstandDAO {
     }
 
 
-    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger) {
-        Funktionstilstand funktionstilstand = new Funktionstilstand();
+    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger) {
+        FunctionAssessment functionAssessment = new FunctionAssessment();
         List<FunktionstilstandsUnderkategori> allFunktionstilstande = new ArrayList<>();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
         try (Connection connection = dbConnecting.getConnection()) {
@@ -118,11 +117,11 @@ public class DBFunktionstilstandDAO {
 
                 Observation observation = new Observation();
                 observation.setDescription(observationDescription);
-                observation.setTidspunkt(tidspunkt);
+                observation.setTime(tidspunkt);
 
                 // Underkategori
                 String underkategoriTitel = resultSet.getString("FS_Underkategori_Title");
-                observation.setTitel(underkategoriTitel);
+                observation.setTitle(underkategoriTitel);
 
                 //Overkategori
                 String overKategoriTitel = resultSet.getString("FS_Overkategori_Titel");
@@ -137,16 +136,16 @@ public class DBFunktionstilstandDAO {
                 funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
             }
 
-            funktionstilstand.setFunktionsTilstande(funktionstilstandeHP);
-            return funktionstilstand;
+            functionAssessment.setFunktionsTilstande(funktionstilstandeHP);
+            return functionAssessment;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return funktionstilstand;
+        return functionAssessment;
     }
-    public Funktionstilstand getEmptyFunktionstilstands() {
-        Funktionstilstand funktionstilstand = new Funktionstilstand();
+    public FunctionAssessment getEmptyFunktionstilstands() {
+        FunctionAssessment functionAssessment = new FunctionAssessment();
         List<FunktionstilstandsUnderkategori> allFunktionstilstande = new ArrayList<>();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
 
@@ -173,8 +172,8 @@ public class DBFunktionstilstandDAO {
                 }
                 funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
             }
-            funktionstilstand.setFunktionsTilstande(funktionstilstandeHP);
-            return funktionstilstand;
+            functionAssessment.setFunktionsTilstande(funktionstilstandeHP);
+            return functionAssessment;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;

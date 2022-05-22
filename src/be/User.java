@@ -1,7 +1,6 @@
-package be.user;
+package be;
 
 import be.Credential;
-import be.user.UserType;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,19 +13,21 @@ public class User {
     private IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty firstName = new SimpleStringProperty();
     private StringProperty lastName = new SimpleStringProperty();
+    private StringProperty fullName = new SimpleStringProperty();
     private EnumSet<UserType> userType = EnumSet.noneOf(UserType.class);
     private Credential credential;
-
-    private StringProperty loginName = new SimpleStringProperty();
-    private StringProperty password = new SimpleStringProperty();
-
-    private StringProperty fullName = new SimpleStringProperty();
 
     private StringProperty type = new SimpleStringProperty();
 
     public User(String firstName, String lastName) {
         this.firstName.set(firstName);
         this.lastName.set(lastName);
+    }
+
+    public enum UserType {
+        TEACHER,
+        STUDENT,
+        ADMIN
     }
 
     public void setUserType(String userType) {
@@ -43,10 +44,6 @@ public class User {
         }
     }
 
-    public boolean checkType(UserType userType) {
-        return this.userType.contains(userType);
-    }
-
     public UserType getUserType() {
         if (!userType.isEmpty()) {
             for (UserType type : userType) {
@@ -56,7 +53,7 @@ public class User {
         return null;
     }
 
-    public StringProperty getUserTypeProperty() {
+    public StringProperty getUserTypeStringProperty() {
         if (!userType.isEmpty()) {
             for (UserType type : userType) {
                 this.type.set(type.name());

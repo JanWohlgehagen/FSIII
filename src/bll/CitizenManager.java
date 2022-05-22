@@ -1,8 +1,8 @@
 package bll;
 
 import be.Borger;
-import be.Funktionstilstand;
-import be.Helbredstilstand;
+import be.FunctionAssessment;
+import be.HealthAssessment;
 import dal.DatabaseFacade;
 import dal.interfaces.IDatabaseFacade;
 
@@ -18,8 +18,8 @@ public class CitizenManager {
     public List<Borger> getAllCitizen() {
         List<Borger> listOfCitizens = databaseFacade.getAllCitizens();
         for (Borger borger : listOfCitizens) {
-            if (borger.getStudentIDProperty().get() != 0) {
-                borger.setStudent(databaseFacade.getUserById(borger.getStudentIDProperty().get()));
+            if (borger.getStudentID() != 0) {
+                borger.setStudent(databaseFacade.getUserById(borger.getStudentID()));
             }
         }
         return listOfCitizens;
@@ -68,19 +68,19 @@ public class CitizenManager {
         databaseFacade.createEmptyFunktionstilstand(borger);
     }
 
-    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger){
+    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger){
         return databaseFacade.getHelbredstilstandOnCitizen(borger);
     }
 
-    public Helbredstilstand getEmptyHelbredsTilstand(){
+    public HealthAssessment getEmptyHelbredsTilstand(){
         return databaseFacade.getEmptyHelbredsTilstand();
     }
 
-    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger){
+    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger){
         return databaseFacade.getFunktionstilstandOnCitizen(borger);
     }
 
-    public Funktionstilstand getEmptyFunktionsTilstand(){
+    public FunctionAssessment getEmptyFunktionsTilstand(){
         return databaseFacade.getEmptyFunktionsTilstand();
     }
 }

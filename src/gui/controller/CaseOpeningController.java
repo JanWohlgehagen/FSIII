@@ -78,19 +78,19 @@ public class CaseOpeningController implements Initializable {
 
         vaelgSagCbx.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                overkategoriTxtField.setText(newValue.getOverkategoriTitleProperty().get());
-                underkategoriTxtField.setText(newValue.getUnderkategoriTitleProperty().get());
+                overkategoriTxtField.setText(newValue.getOverCategoryTitleProperty().get());
+                underkategoriTxtField.setText(newValue.getSubcategoryTitleProperty().get());
                 fornavnLbl.setText(borger.getFirstNameProperty().get());
                 efternavnLbl.setText(borger.getLastNameProperty().get());
                 alderLbl.setText(String.valueOf(borger.getAgeProperty().get()));
-                sagsansvarligLbl.setText(newValue.getSagsansvarligProperty().get());
-                lblHenvisning.setText(newValue.getHenvisningProperty().get());
-                lblOpfolgningsTag.setText(newValue.getOpfoelgningstagProperty().get());
-                beskrivelseTxtArea.setText(newValue.getCaseDescriptionProperty().get());
-                aarsagsfritekstTxtArea.setText(newValue.getAasagsfritekstProperty().get());
-                aarsagsdiagnoseTxtArea.setText(newValue.getAasagsdiagnoseProperty().get());
-                aarsagstilstandTxtArea.setText(newValue.getAasagstilstandProperty().get());
-                borgerMaalTxtArea.setText(newValue.getBorgerensonskerProperty().get());
+                sagsansvarligLbl.setText(newValue.getCaseResponsibleProperty().get());
+                lblHenvisning.setText(newValue.getReferenceProperty().get());
+                lblOpfolgningsTag.setText(newValue.getFollowUpTagProperty().get());
+                beskrivelseTxtArea.setText(newValue.getDescriptionProperty().get());
+                aarsagsfritekstTxtArea.setText(newValue.getCauseProperty().get());
+                aarsagsdiagnoseTxtArea.setText(newValue.getCauseDiagnosisProperty().get());
+                aarsagstilstandTxtArea.setText(newValue.getCauseConditionProperty().get());
+                borgerMaalTxtArea.setText(newValue.getCitizenWishesProperty().get());
             }
         });
 

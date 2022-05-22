@@ -1,8 +1,7 @@
 package dal;
 
 import be.Credential;
-import be.user.User;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+import be.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -81,7 +80,7 @@ public class DBUserDAO extends DBLoginDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, newUser.getFirstNameProperty().get());
             preparedStatement.setString(2, newUser.getLastNameProperty().get());
-            preparedStatement.setString(3, newUser.getUserTypeProperty().get());
+            preparedStatement.setString(3, newUser.getUserTypeStringProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

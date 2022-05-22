@@ -1,7 +1,7 @@
 package dal.interfaces;
 
 import be.*;
-import be.user.User;
+import be.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
@@ -86,23 +86,23 @@ public interface IDatabaseFacade {
     /** Tilstande Functions */
 
 
-    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger);
+    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger);
 
     public void createEmptyFunktionstilstand(Borger borger);
 
     public void updateFunktiontilstand(Borger borger);
 
-    public Funktionstilstand getEmptyFunktionsTilstand();
+    public FunctionAssessment getEmptyFunktionsTilstand();
 
     public void deleteFunktionstilstandOnCitizen(Borger borger);
 
-    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger);
 
     public void createEmptyHelbredstilstand(Borger borger);
 
     public void updateHelbredstilstand(Borger borger);
 
-    public Helbredstilstand getEmptyHelbredsTilstand();
+    public HealthAssessment getEmptyHelbredsTilstand();
 
     public void deleteHelbredstilstandOnCitizen(Borger borger);
 

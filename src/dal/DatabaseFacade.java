@@ -2,7 +2,7 @@ package dal;
 
 
 import be.*;
-import be.user.User;
+import be.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.interfaces.IDatabaseFacade;
 
@@ -17,8 +17,8 @@ public class DatabaseFacade implements IDatabaseFacade {
     private DBCaseDAO dbCaseDAO;
     private DBCitizenDAO dbCitizenDAO;
     private DBGenerelInformationDAO dbGenerelInformationDAO;
-    private DBFunktionstilstandDAO dbFunktionstilstandDAO;
-    private DBHelbredstilstandDAO dbHelbredstilstandDAO;
+    private DBFunctionAssessmentDAO dbFunctionAssessmentDAO;
+    private DBHealthAssessmentDAO dbHealthAssessmentDAO;
     private DBClassDAO dbClassDAO;
 
     public DatabaseFacade() throws IOException {
@@ -29,8 +29,8 @@ public class DatabaseFacade implements IDatabaseFacade {
         dbCaseDAO = new DBCaseDAO(dbConnecting);
         dbCitizenDAO = new DBCitizenDAO(dbConnecting);
         dbGenerelInformationDAO = new DBGenerelInformationDAO(dbConnecting);
-        dbFunktionstilstandDAO = new DBFunktionstilstandDAO(dbConnecting);
-        dbHelbredstilstandDAO = new DBHelbredstilstandDAO(dbConnecting);
+        dbFunctionAssessmentDAO = new DBFunctionAssessmentDAO(dbConnecting);
+        dbHealthAssessmentDAO = new DBHealthAssessmentDAO(dbConnecting);
     }
 
     @Override
@@ -215,43 +215,43 @@ public class DatabaseFacade implements IDatabaseFacade {
     /***************************************************/
 
     @Override
-    public Helbredstilstand getHelbredstilstandOnCitizen(Borger borger) {
-        return dbHelbredstilstandDAO.getHelbredstilstandOnCitizen(borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger) {
+        return dbHealthAssessmentDAO.getHelbredstilstandOnCitizen(borger);
     }
 
     @Override
-    public Funktionstilstand getFunktionstilstandOnCitizen(Borger borger) {
-        return dbFunktionstilstandDAO.getFunktionstilstandOnCitizen(borger);
+    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger) {
+        return dbFunctionAssessmentDAO.getFunktionstilstandOnCitizen(borger);
     }
 
     @Override
     public void createEmptyFunktionstilstand(Borger borger) {
-        dbFunktionstilstandDAO.createEmptyFunktionstilstand(borger);
+        dbFunctionAssessmentDAO.createEmptyFunktionstilstand(borger);
     }
 
     @Override
     public void updateFunktiontilstand(Borger borger) {
-        dbFunktionstilstandDAO.updateFunktionstilstand(borger);
+        dbFunctionAssessmentDAO.updateFunktionstilstand(borger);
     }
 
     @Override
     public void deleteFunktionstilstandOnCitizen(Borger borger) {
-        dbFunktionstilstandDAO.deleteFunktionstilstandOnCitizen(borger);
+        dbFunctionAssessmentDAO.deleteFunktionstilstandOnCitizen(borger);
     }
 
     @Override
     public void createEmptyHelbredstilstand(Borger borger) {
-        dbHelbredstilstandDAO.createEmptyHelbredstilstandOnCitizen(borger);
+        dbHealthAssessmentDAO.createEmptyHelbredstilstandOnCitizen(borger);
     }
 
     @Override
     public void updateHelbredstilstand(Borger borger) {
-        dbHelbredstilstandDAO.updateHelbredstilstand(borger);
+        dbHealthAssessmentDAO.updateHelbredstilstand(borger);
     }
 
     @Override
     public void deleteHelbredstilstandOnCitizen(Borger borger) {
-        dbHelbredstilstandDAO.deleteHelbredstilstand(borger);
+        dbHealthAssessmentDAO.deleteHelbredstilstand(borger);
     }
 
     /***************************************************/
@@ -259,13 +259,13 @@ public class DatabaseFacade implements IDatabaseFacade {
     /***************************************************/
 
     @Override
-    public Funktionstilstand getEmptyFunktionsTilstand() {
-        return dbFunktionstilstandDAO.getEmptyFunktionstilstands();
+    public FunctionAssessment getEmptyFunktionsTilstand() {
+        return dbFunctionAssessmentDAO.getEmptyFunktionstilstands();
     }
 
     @Override
-    public Helbredstilstand getEmptyHelbredsTilstand() {
-        return dbHelbredstilstandDAO.getEmptyHelbredstilstand();
+    public HealthAssessment getEmptyHelbredsTilstand() {
+        return dbHealthAssessmentDAO.getEmptyHelbredstilstand();
     }
 
 }

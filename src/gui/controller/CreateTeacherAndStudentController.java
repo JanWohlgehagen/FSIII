@@ -1,7 +1,7 @@
 package gui.controller;
 
 import be.Credential;
-import be.user.User;
+import be.User;
 import gui.model.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

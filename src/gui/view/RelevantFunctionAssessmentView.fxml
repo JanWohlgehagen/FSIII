@@ -9,7 +9,7 @@
 
 <GridPane fx:id="parentPane" prefHeight="800.0" prefWidth="900.0" styleClass="ParentPane"
           stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/17"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AlleRelevanteOplysningerViewController">
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.RelevantFunctionAssessmentViewController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
     </columnConstraints>

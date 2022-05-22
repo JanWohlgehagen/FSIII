@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -52,31 +51,31 @@ public class CreateAndEditCaseController implements Initializable {
     private Case editThisCase;
     private DashboardController dashboardController;
 
-    private Helbredstilstand helbredstilstandTitle;
-    private Funktionstilstand funktionstilstandTitle;
+    private HealthAssessment healthAssessmentTitle;
+    private FunctionAssessment functionAssessmentTitle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         Platform.runLater(() -> {
             borger = dashboardController.getSelectedCitizen();
-            funktionstilstandTitle = caseModel.getTitleFunktionsTilstand();
-            helbredstilstandTitle = caseModel.getTitleHelbredsTilstand();
+            functionAssessmentTitle = caseModel.getTitleFunktionsTilstand();
+            healthAssessmentTitle = caseModel.getTitleHelbredsTilstand();
 
             setComboBoxOvercategory();
 
             comboboxCaseReference.getItems().addAll(caseReferences());
 
             if (editCaseMode) {
-                overkategoriCbx.setPromptText(editThisCase.getOverkategoriTitleProperty().get());
-                underkategoriCbx.setPromptText(editThisCase.getUnderkategoriTitleProperty().get());
-                lblSagsansvarlig.setText(editThisCase.getSagsansvarligProperty().get());
-                comboboxCaseReference.getSelectionModel().select(editThisCase.getHenvisningProperty().get());
-                beskrivelseTxtArea.setText(editThisCase.getCaseDescriptionProperty().get());
-                aarsagsfritekstTxtArea.setText(editThisCase.getAasagsfritekstProperty().get());
-                aarsagsdiagnoseTxtArea.setText(editThisCase.getAasagsdiagnoseProperty().get());
-                aarsagstilstandTxtArea.setText(editThisCase.getAasagstilstandProperty().get());
-                borgerMaalTxtArea.setText(editThisCase.getBorgerensonskerProperty().get());
+                overkategoriCbx.setPromptText(editThisCase.getOverCategoryTitleProperty().get());
+                underkategoriCbx.setPromptText(editThisCase.getSubcategoryTitleProperty().get());
+                lblSagsansvarlig.setText(editThisCase.getCaseResponsibleProperty().get());
+                comboboxCaseReference.getSelectionModel().select(editThisCase.getReferenceProperty().get());
+                beskrivelseTxtArea.setText(editThisCase.getDescriptionProperty().get());
+                aarsagsfritekstTxtArea.setText(editThisCase.getCauseProperty().get());
+                aarsagsdiagnoseTxtArea.setText(editThisCase.getCauseDiagnosisProperty().get());
+                aarsagstilstandTxtArea.setText(editThisCase.getCauseConditionProperty().get());
+                borgerMaalTxtArea.setText(editThisCase.getCitizenWishesProperty().get());
 
             }
         });
@@ -85,8 +84,8 @@ public class CreateAndEditCaseController implements Initializable {
     public void HandleOverkategoriCbx(ActionEvent actionEvent) {
         underkategoriCbx.getItems().clear();
         String overcategory = overkategoriCbx.getSelectionModel().getSelectedItem();
-        List<HelbredstilstandsUnderkategori> subcategorysOfHelbredstilstand  = helbredstilstandTitle.getHelbredsTilstandsKort().get(overcategory);
-        List<FunktionstilstandsUnderkategori> subcategorysOfFunktionsTilstand = funktionstilstandTitle.getFunktionsTilstandsKort().get(overcategory);
+        List<HelbredstilstandsUnderkategori> subcategorysOfHelbredstilstand  = healthAssessmentTitle.getHelbredsTilstandsKort().get(overcategory);
+        List<FunktionstilstandsUnderkategori> subcategorysOfFunktionsTilstand = functionAssessmentTitle.getFunktionsTilstandsKort().get(overcategory);
         
         if(subcategorysOfHelbredstilstand != null){
             for (HelbredstilstandsUnderkategori subcategory: subcategorysOfHelbredstilstand) {
@@ -100,10 +99,10 @@ public class CreateAndEditCaseController implements Initializable {
     }
 
     private void setComboBoxOvercategory(){
-        for (var overcategory: funktionstilstandTitle.getFunktionsTilstandsKort().keySet()) {
+        for (var overcategory: functionAssessmentTitle.getFunktionsTilstandsKort().keySet()) {
             overkategoriCbx.getItems().add(overcategory);
         };
-        for (var overcategory: helbredstilstandTitle.getHelbredsTilstandsKort().keySet()) {
+        for (var overcategory: healthAssessmentTitle.getHelbredsTilstandsKort().keySet()) {
             overkategoriCbx.getItems().add(overcategory);
         };
     }
@@ -140,34 +139,34 @@ public class CreateAndEditCaseController implements Initializable {
     public void handleGem(ActionEvent actionEvent) {
         if (newCaseMode) {
             Case newCase = new Case(borger.getIDProperty().get(), overkategoriCbx.getSelectionModel().getSelectedItem(), underkategoriCbx.getSelectionModel().getSelectedItem());
-            newCase.setIsBevilget(false);
-            newCase.setHenvisning(comboboxCaseReference.getSelectionModel().getSelectedItem());
-            newCase.setSagsansvarlig(lblSagsansvarlig.getText());
-            newCase.setCaseDescription(beskrivelseTxtArea.getText());
-            newCase.setAasagsfritekst(aarsagsfritekstTxtArea.getText());
-            newCase.setAasagsdiagnose(aarsagsdiagnoseTxtArea.getText());
-            newCase.setAasagstilstand(aarsagstilstandTxtArea.getText());
-            newCase.setBorgerensonsker(borgerMaalTxtArea.getText());
-            newCase.setBevillingstekst("");
+            newCase.setIsGranted(false);
+            newCase.setReference(comboboxCaseReference.getSelectionModel().getSelectedItem());
+            newCase.setCaseResponsible(lblSagsansvarlig.getText());
+            newCase.setDescription(beskrivelseTxtArea.getText());
+            newCase.setCause(aarsagsfritekstTxtArea.getText());
+            newCase.setCauseDiagnosis(aarsagsdiagnoseTxtArea.getText());
+            newCase.setCauseCondition(aarsagstilstandTxtArea.getText());
+            newCase.setCitizenWishes(borgerMaalTxtArea.getText());
+            newCase.setGrantedText("");
             newCase.setPlan("");
-            newCase.setOpfoelgningstag("");
+            newCase.setFollowUpTag("");
 
             caseModel.createCaseOnCitizen(newCase);
             closeStage();
         } else if (editCaseMode) {
             if (overkategoriCbx.getSelectionModel().getSelectedItem() != null) {
-                editThisCase.setOverkategoriTitle(overkategoriCbx.getSelectionModel().getSelectedItem());
+                editThisCase.setOverCategoryTitle(overkategoriCbx.getSelectionModel().getSelectedItem());
             }
             if (underkategoriCbx.getSelectionModel().getSelectedItem() != null) {
-                editThisCase.setUnderkategoriTitle(underkategoriCbx.getSelectionModel().getSelectedItem());
+                editThisCase.setSubcategoryTitle(underkategoriCbx.getSelectionModel().getSelectedItem());
             }
-            editThisCase.setSagsansvarlig(lblSagsansvarlig.getText());
-            editThisCase.setHenvisning(comboboxCaseReference.getSelectionModel().getSelectedItem());
-            editThisCase.setCaseDescription(beskrivelseTxtArea.getText());
-            editThisCase.setAasagsfritekst(aarsagsfritekstTxtArea.getText());
-            editThisCase.setAasagsdiagnose(aarsagsdiagnoseTxtArea.getText());
-            editThisCase.setAasagstilstand(aarsagstilstandTxtArea.getText());
-            editThisCase.setBorgerensonsker(borgerMaalTxtArea.getText());
+            editThisCase.setCaseResponsible(lblSagsansvarlig.getText());
+            editThisCase.setReference(comboboxCaseReference.getSelectionModel().getSelectedItem());
+            editThisCase.setDescription(beskrivelseTxtArea.getText());
+            editThisCase.setCause(aarsagsfritekstTxtArea.getText());
+            editThisCase.setCauseDiagnosis(aarsagsdiagnoseTxtArea.getText());
+            editThisCase.setCauseCondition(aarsagstilstandTxtArea.getText());
+            editThisCase.setCitizenWishes(borgerMaalTxtArea.getText());
 
             caseModel.updateCaseOnCitizen(borger.getIDProperty().get(), editThisCase);
             closeStage();

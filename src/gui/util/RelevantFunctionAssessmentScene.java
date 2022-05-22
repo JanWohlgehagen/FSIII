@@ -1,7 +1,6 @@
 package gui.util;
 
-import gui.controller.AlleRelevanteOplysningerViewController;
-import gui.controller.CreateCitizenViewController;
+import gui.controller.RelevantFunctionAssessmentViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -10,14 +9,14 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class FunktionsTilstandOverviewScene implements ISceneLoader<AlleRelevanteOplysningerViewController> {
+public class RelevantFunctionAssessmentScene implements ISceneLoader<RelevantFunctionAssessmentViewController> {
 
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 
     @Override
     public void loadNewScene(Stage stage) throws IOException {
-        loader = new FXMLLoader(new File("src/gui/view/AlleRelevanteFunktionstilstandeView.fxml").toURI().toURL());
+        loader = new FXMLLoader(new File("src/gui/view/RelevantFunctionAssessmentView.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("FSIII Learning Platform");
         stage.getIcons().add(image);
@@ -26,7 +25,7 @@ public class FunktionsTilstandOverviewScene implements ISceneLoader<AlleRelevant
     }
 
     @Override
-    public AlleRelevanteOplysningerViewController getController() {
+    public RelevantFunctionAssessmentViewController getController() {
         return loader.getController();
     }
 }

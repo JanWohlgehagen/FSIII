@@ -3,11 +3,11 @@ package be;
 import java.util.HashMap;
 import java.util.List;
 
-public class Funktionstilstand {
+public class FunctionAssessment {
     // Hashmap that holds the chart of health categrories, the String signifies the Main category and the HelbredstilstandsUnderkategory object holds the information the student have to fill out
     HashMap<String, List<FunktionstilstandsUnderkategori>> tilstandsKortet = new HashMap<>();
 
-    public Funktionstilstand() {
+    public FunctionAssessment() {
     }
 
     public void addCategoryField(String overkategori, List<FunktionstilstandsUnderkategori> underkategorier) {

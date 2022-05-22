@@ -1,7 +1,7 @@
 package bll;
 
 import be.WClass;
-import be.user.User;
+import be.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
 import dal.interfaces.IDatabaseFacade;

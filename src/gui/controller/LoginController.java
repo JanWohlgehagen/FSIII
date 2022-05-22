@@ -1,7 +1,6 @@
 package gui.controller;
 
-import be.user.User;
-import be.user.UserType;
+import be.User;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
 import gui.model.UserModel;
@@ -44,14 +43,14 @@ public class LoginController implements Initializable {
     public void handleLoginButton(ActionEvent actionEvent) throws IOException {
         User user = userModel.checkCredential(txtUsername.getText(), txtPassword.getText());
         if (user != null) {
-            if (user.getUserType().equals(UserType.STUDENT) || user.getUserType().equals(UserType.TEACHER)) {
+            if (user.getUserType().equals(User.UserType.STUDENT) || user.getUserType().equals(User.UserType.TEACHER)) {
                 ISceneLoader<DashboardController> dashboardScene = new DashboardScene();
                 dashboardScene.loadNewScene((Stage) parentPaneGridPane.getScene().getWindow());
                 DashboardController dashboardSceneController = dashboardScene.getController();
                 dashboardSceneController.setDashboardController(dashboardSceneController);
                 dashboardSceneController.setLoginPerson(user);
 
-            } else if (user.getUserType().equals(UserType.ADMIN)) {
+            } else if (user.getUserType().equals(User.UserType.ADMIN)) {
                 ISceneLoader<AdminDashboardController> adminDashboardScene = new AdminDashboardScene();
                 adminDashboardScene.loadNewScene((Stage) parentPaneGridPane.getScene().getWindow());
 

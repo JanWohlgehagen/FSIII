@@ -43,7 +43,7 @@ public class OpfoelgningController implements Initializable {
             selectCase = dashboardController.getSelectedCase();
             selectCitizen = dashboardController.getSelectedCitizen();
 
-            txtAreaOpfoelgning.setText(selectCase.getOpfoelgningstagProperty().get());
+            txtAreaOpfoelgning.setText(selectCase.getFollowUpTagProperty().get());
             setOpfoelgningTag();
         });
 
@@ -58,7 +58,7 @@ public class OpfoelgningController implements Initializable {
     }
 
     private void setOpfoelgningTag() {
-        String opfoelgningstag = selectCase.getOpfoelgningstagProperty().get();
+        String opfoelgningstag = selectCase.getFollowUpTagProperty().get();
         switch (opfoelgningstag) {
             case "Afsluttes" -> {
                 checkBoxCloseCase.setSelected(true);
@@ -76,28 +76,28 @@ public class OpfoelgningController implements Initializable {
     }
 
     public void handleCBClose(ActionEvent actionEvent) {
-        selectCase.getOpfoelgningstagProperty().set("Afsluttes");
+        selectCase.getFollowUpTagProperty().set("Afsluttes");
         checkBoxRevisitationCase.setSelected(false);
         checkBoxChangeCase.setSelected(false);
         checkBoxContinueCase.setSelected(false);
     }
 
     public void handleCBContinue(ActionEvent actionEvent) {
-        selectCase.getOpfoelgningstagProperty().set("Fortsættes");
+        selectCase.getFollowUpTagProperty().set("Fortsættes");
         checkBoxCloseCase.setSelected(false);
         checkBoxRevisitationCase.setSelected(false);
         checkBoxChangeCase.setSelected(false);
     }
 
     public void handleCBChange(ActionEvent actionEvent) {
-        selectCase.getOpfoelgningstagProperty().set("Ændres");
+        selectCase.getFollowUpTagProperty().set("Ændres");
         checkBoxRevisitationCase.setSelected(false);
         checkBoxContinueCase.setSelected(false);
         checkBoxCloseCase.setSelected(false);
     }
 
     public void handleCBRevisitation(ActionEvent actionEvent) {
-        selectCase.getOpfoelgningstagProperty().set("Revisitation");
+        selectCase.getFollowUpTagProperty().set("Revisitation");
         checkBoxChangeCase.setSelected(false);
         checkBoxContinueCase.setSelected(false);
         checkBoxCloseCase.setSelected(false);

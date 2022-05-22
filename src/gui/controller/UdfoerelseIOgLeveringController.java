@@ -43,22 +43,22 @@ public class UdfoerelseIOgLeveringController implements Initializable {
         Platform.runLater(() -> {
             selectedCitizen = dashboardController.getSelectedCitizen();
             citizenModel.setTilstandeOnCitizen(selectedCitizen);
-            selectedCitizen.getObservationer().clear();
-            if (selectedCitizen.getObservationer().isEmpty()) {
+            selectedCitizen.getObservations().clear();
+            if (selectedCitizen.getObservations().isEmpty()) {
                 for (String key : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
                     for (FunktionstilstandsUnderkategori fuk : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
-                        if (fuk.getObservation().getTidspunkt() != null && fuk.getObservation().getDescriptionProperty().get() != null) {
-                            selectedCitizen.getObservationer().add(fuk.getObservation());
+                        if (fuk.getObservation().getTime() != null && fuk.getObservation().getDescriptionProperty().get() != null) {
+                            selectedCitizen.getObservations().add(fuk.getObservation());
                         }
                     }
                 for (String key : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet())
                     for (HelbredstilstandsUnderkategori huk : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
-                        if (huk.getObservation().getTidspunkt() != null && huk.getObservation().getDescriptionProperty().get() != null) {
-                            selectedCitizen.getObservationer().add(huk.getObservation());
+                        if (huk.getObservation().getTime() != null && huk.getObservation().getDescriptionProperty().get() != null) {
+                            selectedCitizen.getObservations().add(huk.getObservation());
                         }
                     }
             }
-            ListViewObservations.setItems(selectedCitizen.getObservationer());
+            ListViewObservations.setItems(selectedCitizen.getObservations());
 
             ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
             {

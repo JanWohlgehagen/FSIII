@@ -1,7 +1,6 @@
 package dal;
 
 import be.Credential;
-import be.user.User;
 
 import java.sql.*;
 

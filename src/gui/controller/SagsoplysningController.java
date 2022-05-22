@@ -4,8 +4,8 @@ import be.*;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.util.BestillingsScene;
-import gui.util.FunktionsTilstandOverviewScene;
-import gui.util.HelbredsTilstandOverviewScene;
+import gui.util.RelevantFunctionAssessmentScene;
+import gui.util.RelevantHealthAssessmentScene;
 import gui.util.ISceneLoader;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -276,33 +276,33 @@ public class SagsoplysningController implements Initializable {
 
 
     public void openFOverviewHandle(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<AlleRelevanteOplysningerViewController> funktionstilstandOverviewScene = new FunktionsTilstandOverviewScene();
+        ISceneLoader<RelevantFunctionAssessmentViewController> funktionstilstandOverviewScene = new RelevantFunctionAssessmentScene();
         funktionstilstandOverviewScene.loadNewScene(new Stage());
-        AlleRelevanteOplysningerViewController alleRelevanteOplysningerViewController = funktionstilstandOverviewScene.getController();
-        alleRelevanteOplysningerViewController.setFunktionstilstand(borger.getFunktionstilstand());
+        RelevantFunctionAssessmentViewController relevantFunctionAssessmentViewController = funktionstilstandOverviewScene.getController();
+        relevantFunctionAssessmentViewController.setFunctionAssessment(borger.getFunktionstilstand());
     }
 
     public void openHOverviewHandle(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<AlleRelevanteHelbredstilstandeViewController> helbredstilstandOverviewScene = new HelbredsTilstandOverviewScene();
+        ISceneLoader<RelevantHealthAssessmentViewController> helbredstilstandOverviewScene = new RelevantHealthAssessmentScene();
         helbredstilstandOverviewScene.loadNewScene(new Stage());
-        AlleRelevanteHelbredstilstandeViewController alleRelevanteHelbredstilstandeViewController = helbredstilstandOverviewScene.getController();
-        alleRelevanteHelbredstilstandeViewController.setHelbredstilstand(borger.getHelbredstilstand());
+        RelevantHealthAssessmentViewController relevantHealthAssessmentViewController = helbredstilstandOverviewScene.getController();
+        relevantHealthAssessmentViewController.setHelbredstilstand(borger.getHelbredstilstand());
     }
 
 
     private void updateBorger(Borger borger) {
         //Update generelle oplysninger on citizen object
-        borger.setMestring(txtAreaMestring.getText());
-        borger.setMotivation(txtAreaMotivaton.getText());
-        borger.setRessourcer(txtAreaRessourcer.getText());
-        borger.setRoller(txtAreaRoller.getText());
-        borger.setVaner(txtAreaVaner.getText());
-        borger.setUddannelse(txtAreaUddOgJob.getText());
-        borger.setLivshistorie(txtAreaLivshistorie.getText());
-        borger.setNetvaerk(txtAreaNetvaerk.getText());
-        borger.setHelbredsoplysninger(txtAreaHelbredsoplysninger.getText());
-        borger.setHjaelpemidler(txtAreaHjaelpemidler.getText());
-        borger.setBoligensIndretning(txtAreaBoligensIndretning.getText());
+        borger.getGeneralinformation().setMestring(txtAreaMestring.getText());
+        borger.getGeneralinformation().setMotivation(txtAreaMotivaton.getText());
+        borger.getGeneralinformation().setRessourcer(txtAreaRessourcer.getText());
+        borger.getGeneralinformation().setRoller(txtAreaRoller.getText());
+        borger.getGeneralinformation().setVaner(txtAreaVaner.getText());
+        borger.getGeneralinformation().setUddannelse(txtAreaUddOgJob.getText());
+        borger.getGeneralinformation().setLivshistorie(txtAreaLivshistorie.getText());
+        borger.getGeneralinformation().setNetvaerk(txtAreaNetvaerk.getText());
+        borger.getGeneralinformation().setHelbredsoplysninger(txtAreaHelbredsoplysninger.getText());
+        borger.getGeneralinformation().setHjaelpemidler(txtAreaHjaelpemidler.getText());
+        borger.getGeneralinformation().setBoligensIndretning(txtAreaBoligensIndretning.getText());
 
         citizenModel.updateSagsoplysninger(borger);
     }
@@ -358,17 +358,17 @@ public class SagsoplysningController implements Initializable {
     }
 
     private void populateGenerelleOplysninger() {
-        txtAreaMestring.setText(borger.getMestringProperty().get());
-        txtAreaMotivaton.setText(borger.getMotivationProperty().get());
-        txtAreaRessourcer.setText(borger.getRessourcerProperty().get());
-        txtAreaRoller.setText(borger.getRollerProperty().get());
-        txtAreaVaner.setText(borger.getVanerProperty().get());
-        txtAreaUddOgJob.setText(borger.getUddannelseProperty().get());
-        txtAreaLivshistorie.setText(borger.getLivshistorieProperty().get());
-        txtAreaNetvaerk.setText(borger.getNetvaerkProperty().get());
-        txtAreaHelbredsoplysninger.setText(borger.getHelbredsoplysningerProperty().get());
-        txtAreaHjaelpemidler.setText(borger.getHjaelpemidlerProperty().get());
-        txtAreaBoligensIndretning.setText(borger.getBoligensIndretningProperty().get());
+        txtAreaMestring.setText(borger.getGeneralinformation().getMestringProperty().get());
+        txtAreaMotivaton.setText(borger.getGeneralinformation().getMotivationProperty().get());
+        txtAreaRessourcer.setText(borger.getGeneralinformation().getRessourcerProperty().get());
+        txtAreaRoller.setText(borger.getGeneralinformation().getRollerProperty().get());
+        txtAreaVaner.setText(borger.getGeneralinformation().getVanerProperty().get());
+        txtAreaUddOgJob.setText(borger.getGeneralinformation().getUddannelseProperty().get());
+        txtAreaLivshistorie.setText(borger.getGeneralinformation().getLivshistorieProperty().get());
+        txtAreaNetvaerk.setText(borger.getGeneralinformation().getNetvaerkProperty().get());
+        txtAreaHelbredsoplysninger.setText(borger.getGeneralinformation().getHelbredsoplysningerProperty().get());
+        txtAreaHjaelpemidler.setText(borger.getGeneralinformation().getHjaelpemidlerProperty().get());
+        txtAreaBoligensIndretning.setText(borger.getGeneralinformation().getBoligensIndretningProperty().get());
     }
 
     private void populateHelbredstilstandsCombobox() {
@@ -403,11 +403,11 @@ public class SagsoplysningController implements Initializable {
     private void populateTilstande() {
         int insertionCounter = 0;
 
-        Helbredstilstand helbredstilstand = borger.getHelbredstilstand();
-        Funktionstilstand funktionstilstand = borger.getFunktionstilstand();
+        HealthAssessment healthAssessment = borger.getHelbredstilstand();
+        FunctionAssessment functionAssessment = borger.getFunktionstilstand();
 
-        HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandsKort = helbredstilstand.getHelbredsTilstandsKort();
-        HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = funktionstilstand.getFunktionsTilstandsKort();
+        HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandsKort = healthAssessment.getHelbredsTilstandsKort();
+        HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = functionAssessment.getFunktionsTilstandsKort();
 
 
         for (String klassifikation : helbredstilstandsKort.keySet()) {
@@ -541,7 +541,7 @@ public class SagsoplysningController implements Initializable {
             Observation observation = new Observation();
             observation.setDescription(txtAreaObservationFunktionstilstand1.getText());
             //observation.setTidspunkt(LocalDateTime.now());
-            observation.setTidspunkt(Timestamp.valueOf(LocalDateTime.now()));
+            observation.setTime(Timestamp.valueOf(LocalDateTime.now()));
 
             oldValueOfFunktionstilstandsUnderkategori.setObservation(observation);
         }
@@ -558,7 +558,7 @@ public class SagsoplysningController implements Initializable {
             Observation observation = new Observation();
             observation.setDescription(txtAreaObservationHelbredstilstand1.getText());
             //observation.setTidspunkt(LocalDateTime.now());
-            observation.setTidspunkt(Timestamp.valueOf(LocalDateTime.now()));
+            observation.setTime(Timestamp.valueOf(LocalDateTime.now()));
 
             oldValueOfHelbredstilstandsUnderkategori.setObservation(observation);
         }

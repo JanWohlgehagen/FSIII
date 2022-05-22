@@ -1,15 +1,11 @@
 package gui.controller;
 
 import be.Borger;
-import be.Funktionstilstand;
-import be.Helbredstilstand;
-import bll.ManagerFacade;
 import gui.model.CitizenModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
@@ -17,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -64,11 +59,7 @@ public class CreateCitizenViewController implements Initializable {
         boolean isTemplate = checkButtonTemplate.isSelected();
         int age = Integer.parseInt(txtAge.getText());
         Borger borger = new Borger(firstName, lastName, isTemplate, age);
-        borger.setFunktionstilstand(new Funktionstilstand());
-        borger.setHelbredstilstand(new Helbredstilstand());
         citizenModel.createCitizen(borger);
-
-        dashboardController.updateCitizenList();
 
         Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();
         stage.close();
