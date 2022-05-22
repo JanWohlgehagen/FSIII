@@ -54,8 +54,14 @@ public class CitizenModel {
 
     }
 
-    public void createCitizenFromTemplate(Borger templateBorger) {
 
+    public void createTemplateFromCitizen (Borger borger)
+    {
+        allTemplates.add(managerFacade.createCitizen(borger));
+        //TODO Vent på DB Fix ..
+    }
+
+    public void createCitizenFromTemplate(Borger templateBorger){
 
         Borger borger = new Borger(templateBorger.getFirstNameProperty().get(), templateBorger.getLastNameProperty().get(),
                 false, templateBorger.getAgeProperty().get());
