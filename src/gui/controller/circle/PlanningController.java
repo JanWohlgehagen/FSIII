@@ -54,35 +54,19 @@ public class PlanningController implements Initializable {
     }
 
     public void handleMouseSaveAndClose(MouseEvent mouseEvent) {
+        selectCase.setPlan(txtAreaPlanlaegning.getText());
         caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
         getStage().close();
     }
 
     public void handleMouseSaveAndNextScene(MouseEvent mouseEvent) throws IOException {
+        selectCase.setPlan(txtAreaPlanlaegning.getText());
         caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
         ISceneLoader<ExecutionAndDeliveryController> caseDocumentationScene = new CaseDocumentationScene();
         caseDocumentationScene.loadNewScene(getStage());
         ExecutionAndDeliveryController executionAndDeliveryController = caseDocumentationScene.getController();
         executionAndDeliveryController.setDashboardController(dashboardController);
         executionAndDeliveryController.setCitizenModel(citizenModel);
-       /* selectedCitizen = dashboardController.getSelectedCitizen();
-        citizenModel.getTilstande(selectedCitizen);
-        if(selectedCitizen.getObservationer().isEmpty()){
-            for (String key: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
-                for (FunktionstilstandsUnderkategori fuk: selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
-                    if (fuk.getObservation().getTidspunkt() != null) {
-                        selectedCitizen.getObservationer().add(fuk.getObservation());
-                    }
-                }
-            ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-            {
-                if(newValue!=null)
-                {
-                    txtAreaDok.setText(newValue.getDescriptionProperty().get());
-                }
-            });
-        }
-        ListViewObservations.setItems(selectedCitizen.getObservationer());*/
     }
 
     private Stage getStage() {
