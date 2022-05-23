@@ -15,13 +15,13 @@ public class DBHelbredstilstandsUnderkategoriDAO {
     public List<String> getHelbredstilstandsUnderkategoriList() {
         List<String> helbredstilstandsUnderkategoriList = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [HS_Underkategori]";
+            String sql = "SELECT * FROM [HC_Subcategory]";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String underkategori = rs.getString("HS_Underkategori_Titel");
+                String underkategori = rs.getString("HC_SC_Title");
                 helbredstilstandsUnderkategoriList.add(underkategori);
             }
         } catch (SQLException throwables) {

@@ -326,13 +326,6 @@ public class SagsoplysningController implements Initializable {
         txtAreaVurderingHelbredstilstand.setDisable(able);
         txtAreaAarsagHelbredstilstand.setDisable(able);
         txtAreaFagligtNotatHelbredstilstand.setDisable(able);
-
-        if (able) { // clears the fields if its not a relevant problem
-            comboBoxForventetTilstandHelbredstilstand.getSelectionModel().clearSelection();
-            txtAreaVurderingHelbredstilstand.clear();
-            txtAreaAarsagHelbredstilstand.clear();
-            txtAreaFagligtNotatHelbredstilstand.clear();
-        }
     }
 
     private void changeAbilityFunktionstilstandsFields(boolean able) {
@@ -344,17 +337,6 @@ public class SagsoplysningController implements Initializable {
         txtAreaAarsagFunktionstilstand.setDisable(able);
         txtAreaFagligtNotatFunktionstilstand.setDisable(able);
         txtOpfoelgningFunktionstilstand.setDisable(able);
-
-        if (able) {
-            comboBoxForventetTilstandFunktionstilstand.getSelectionModel().clearSelection();
-            txtAreaUdfoerelseFunktionstilstand.clear();
-            txtAreaBetydningFunktionstilstand.clear();
-            txtAreaOenskerOgMålFunktionstilstand.clear();
-            txtAreaVurderingFunktionstilstand.clear();
-            txtAreaAarsagFunktionstilstand.clear();
-            txtAreaFagligtNotatFunktionstilstand.clear();
-            txtOpfoelgningFunktionstilstand.clear();
-        }
     }
 
     private void populateGenerelleOplysninger() {
@@ -527,7 +509,9 @@ public class SagsoplysningController implements Initializable {
         if (oldValueOfFunktionstilstandsUnderkategori != null) {
             oldValueOfFunktionstilstandsUnderkategori.setNiveau(comboBoxTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
 
-            if (comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem() != null) // in case the user chooses 9 in the first dropdown
+            if (comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem() == null) // in case the user chooses 9 in the first dropdown or the user hasnt opened the assesment.
+                oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(-1); // -1 is the standard value so we dont save this in the database.
+            else
                 oldValueOfFunktionstilstandsUnderkategori.setForventetTilstand(comboBoxForventetTilstandFunktionstilstand.getSelectionModel().getSelectedItem());
 
             oldValueOfFunktionstilstandsUnderkategori.setUdførelse(txtAreaUdfoerelseFunktionstilstand.getText());

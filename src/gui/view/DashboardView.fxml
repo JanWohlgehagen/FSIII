@@ -18,96 +18,67 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-          prefWidth="1200.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/18"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.DashboardController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.DashboardController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="320.0" prefWidth="320.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="497.0" minHeight="0.0" prefHeight="417.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="584.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="323.0" minHeight="10.0" prefHeight="196.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="497.0" minHeight="0.0" prefHeight="417.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="584.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="323.0" minHeight="10.0" prefHeight="196.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="stackPane" GridPane.columnIndex="2"
-                   GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+        <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="stackPane" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
             <children>
-                <Circle fill="DODGERBLUE" radius="250.0" stroke="BLACK" strokeType="INSIDE"
-                        styleClass="BackgroundCircle"/>
-                <Circle fill="DODGERBLUE" layoutX="430.0" layoutY="410.0" radius="185.0" stroke="BLACK"
-                        strokeType="INSIDE" styleClass="arrowCircle"/>
-                <Button fx:id="btnSagsaabning" alignment="CENTER" disable="true" maxHeight="-Infinity"
-                        maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-                        onAction="#handleButtonSagsåbning" prefHeight="115.0" prefWidth="115.0" styleClass="topButton"
-                        text="1. Sagsåbning" textAlignment="CENTER" translateX="-105.0" translateY="-140.0"
-                        wrapText="true">
+                <Circle fill="DODGERBLUE" radius="250.0" stroke="BLACK" strokeType="INSIDE" styleClass="BackgroundCircle" />
+                <Circle fill="DODGERBLUE" layoutX="430.0" layoutY="410.0" radius="185.0" stroke="BLACK" strokeType="INSIDE" styleClass="arrowCircle" />
+                <Button fx:id="btnSagsaabning" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonSagsåbning" prefHeight="115.0" prefWidth="115.0" styleClass="topButton" text="1. Sagsåbning" textAlignment="CENTER" translateX="-105.0" translateY="-140.0" wrapText="true">
                     <font>
-                        <Font name="Cambria Bold" size="16.0"/>
+                        <Font name="Cambria Bold" size="16.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnSagsOplysning" alignment="CENTER" disable="true" layoutX="365.0" layoutY="345.0"
-                        maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#handleButtonSagsoplysning" prefHeight="115.0"
-                        prefWidth="115.0" styleClass="topButton" text="2. Sags- oplysning" textAlignment="CENTER"
-                        translateX="55.0" translateY="-165.0" wrapText="true">
+                <Button fx:id="btnSagsOplysning" alignment="CENTER" disable="true" layoutX="365.0" layoutY="345.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonSagsoplysning" prefHeight="115.0" prefWidth="115.0" styleClass="topButton" text="2. Sags- oplysning" textAlignment="CENTER" translateX="55.0" translateY="-165.0" wrapText="true">
                     <font>
-                        <Font name="Cambria Bold" size="16.0"/>
+                        <Font name="Cambria Bold" size="16.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnAfgorelseBestilling" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0"
-                        maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#handleButtonBestilling" prefHeight="115.0" prefWidth="115.0"
-                        styleClass="topButton" text="3. Afgørelse/ bestilling" textAlignment="CENTER" translateX="165.0"
-                        translateY="-65.0" wrapText="true">
+                <Button fx:id="btnAfgorelseBestilling" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonBestilling" prefHeight="115.0" prefWidth="115.0" styleClass="topButton" text="3. Afgørelse/ bestilling" textAlignment="CENTER" translateX="165.0" translateY="-65.0" wrapText="true">
                     <font>
-                        <Font name="Cambria Bold" size="16.0"/>
+                        <Font name="Cambria Bold" size="16.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0"
-                        maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#handleButtonPlanlaegning" prefHeight="115.0"
-                        prefWidth="115.0" styleClass="bottomButton" text="4. Planlægning" textAlignment="CENTER"
-                        translateX="125.0" translateY="120.0" wrapText="true">
+                <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonPlanlaegning" prefHeight="115.0" prefWidth="115.0" styleClass="bottomButton" text="4. Planlægning" textAlignment="CENTER" translateX="125.0" translateY="120.0" wrapText="true">
                     <font>
-                        <Font name="Cambria Bold" size="16.0"/>
+                        <Font name="Cambria Bold" size="16.0" />
                     </font>
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <StackPane.margin>
-                        <Insets/>
+                        <Insets />
                     </StackPane.margin>
                     <padding>
-                        <Insets left="5.0"/>
+                        <Insets left="5.0" />
                     </padding>
                 </Button>
-                <Button fx:id="btnUdorelseLevering" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0"
-                        maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#handleButtonLevering" prefHeight="115.0" prefWidth="115.0"
-                        styleClass="bottomButton" text="5. Udørelse/ levering" textAlignment="CENTER" translateX="-55.0"
-                        translateY="165.0" wrapText="true">
+                <Button fx:id="btnUdorelseLevering" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonLevering" prefHeight="115.0" prefWidth="115.0" styleClass="bottomButton" text="5. Udørelse/ levering" textAlignment="CENTER" translateX="-55.0" translateY="165.0" wrapText="true">
                     <font>
-                        <Font name="Cambria Bold" size="16.0"/>
+                        <Font name="Cambria Bold" size="16.0" />
                     </font>
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                 </Button>
-                <Button fx:id="btnOpfolgning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0"
-                        maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#handleButtonOpfølgning" prefHeight="115.0" prefWidth="115.0"
-                        styleClass="middleButton" text="6. Opfølgning" textAlignment="CENTER" translateX="-175.0"
-                        wrapText="true"/>
-                <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-50.0"/>
-                <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel" text="LEVERANDØR" translateY="50.0"/>
+                <Button fx:id="btnOpfolgning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonOpfølgning" prefHeight="115.0" prefWidth="115.0" styleClass="middleButton" text="6. Opfølgning" textAlignment="CENTER" translateX="-175.0" wrapText="true" />
+                <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-50.0" />
+                <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel" text="LEVERANDØR" translateY="50.0" />
             </children>
         </StackPane>
         <TabPane fx:id="tabpaneDBView" maxWidth="310.0" GridPane.rowSpan="2147483647">
             <GridPane.margin>
-                <Insets left="8.0" right="5.0" top="5.0"/>
+                <Insets left="8.0" right="5.0" top="5.0" />
             </GridPane.margin>
             <tabs>
                 <Tab closable="false" onSelectionChanged="#handleChangeTab" text="Borgere">
@@ -116,60 +87,52 @@
                             <children>
                                 <TextField fx:id="txtSearchBarBorgere" promptText="Søg efter borgere">
                                     <VBox.margin>
-                                        <Insets top="5.0"/>
+                                        <Insets top="5.0" />
                                     </VBox.margin>
                                 </TextField>
                                 <ListView fx:id="lvCitizens" prefHeight="390.0" prefWidth="313.0">
                                     <opaqueInsets>
-                                        <Insets/>
+                                        <Insets />
                                     </opaqueInsets>
                                     <VBox.margin>
-                                        <Insets top="6.0"/>
+                                        <Insets top="6.0" />
                                     </VBox.margin>
                                 </ListView>
                                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
                                     <children>
                                         <GridPane prefHeight="100.0" prefWidth="307.0" HBox.hgrow="SOMETIMES">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0"
-                                                                vgrow="SOMETIMES"/>
-                                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0"
-                                                                vgrow="SOMETIMES"/>
-                                                <RowConstraints minHeight="10.0" percentHeight="60.0" prefHeight="30.0"
-                                                                valignment="TOP" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" percentHeight="60.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Label text="Navn"/>
-                                                <Label text="Alder" GridPane.rowIndex="1"/>
-                                                <Label text="Studerende" GridPane.rowIndex="2"/>
-                                                <Label fx:id="lblName" GridPane.columnIndex="1"/>
-                                                <Label fx:id="lblAge" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                                                <Label fx:id="lblStudent" wrapText="true" GridPane.columnIndex="1"
-                                                       GridPane.rowIndex="2"/>
+                                                <Label text="Navn" />
+                                                <Label text="Alder" GridPane.rowIndex="1" />
+                                                <Label text="Studerende" GridPane.rowIndex="2" />
+                                                <Label fx:id="lblName" GridPane.columnIndex="1" />
+                                                <Label fx:id="lblAge" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label fx:id="lblStudent" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                             </children>
                                             <HBox.margin>
-                                                <Insets top="10.0"/>
+                                                <Insets top="10.0" />
                                             </HBox.margin>
                                         </GridPane>
                                     </children>
                                 </HBox>
                                 <VBox alignment="BOTTOM_CENTER" spacing="15.0" VBox.vgrow="SOMETIMES">
                                     <children>
-                                        <Button fx:id="btnAddStudent" mnemonicParsing="false"
-                                                onAction="#btnConnectStudent" prefWidth="227.0"
-                                                text="Tilføj Studerende"/>
-                                        <Button fx:id="btnNewCitizen" mnemonicParsing="false" onAction="#createCitizen"
-                                                prefWidth="227.0" text="Ny Borger"/>
-                                        <Button fx:id="btnDeleteCitizen" layoutX="50.0" layoutY="143.0"
-                                                mnemonicParsing="false" onAction="#btnDeleteCitizen" prefWidth="227.0"
-                                                text="Slet Borger"/>
+                                        <Button fx:id="btnAddStudent" mnemonicParsing="false" onAction="#btnConnectStudent" prefWidth="227.0" text="Tilføj Studerende" />
+                                        <Button fx:id="btnNewCitizen" mnemonicParsing="false" onAction="#createCitizen" prefWidth="227.0" text="Ny Borger" />
+                                        <Button fx:id="btnDeleteCitizen" layoutX="50.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnDeleteCitizen" prefWidth="227.0" text="Slet Borger" />
+                              <Button fx:id="btnCitizenToTemplate" layoutX="50.0" layoutY="52.0" mnemonicParsing="false" onAction="#btnCitizenToTemplate" prefWidth="227.0" text="Kopier til Template" />
                                     </children>
                                     <padding>
-                                        <Insets bottom="15.0"/>
+                                        <Insets bottom="15.0" />
                                     </padding>
                                 </VBox>
                             </children>
@@ -184,30 +147,27 @@
                                     <children>
                                         <TextField fx:id="txtSearchBarTemplates" promptText="Søg efter borgere">
                                             <VBox.margin>
-                                                <Insets top="5.0"/>
+                                                <Insets top="5.0" />
                                             </VBox.margin>
                                         </TextField>
                                         <ListView fx:id="lvTemplates" prefHeight="390.0" prefWidth="313.0">
                                             <opaqueInsets>
-                                                <Insets/>
+                                                <Insets />
                                             </opaqueInsets>
                                             <VBox.margin>
-                                                <Insets top="6.0"/>
+                                                <Insets top="6.0" />
                                             </VBox.margin>
                                         </ListView>
                                     </children>
                                 </VBox>
                                 <VBox alignment="BOTTOM_CENTER" spacing="15.0" VBox.vgrow="SOMETIMES">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleBtnNewCitizenTemplate"
-                                                prefWidth="227.0" text="Ny Borger Template"/>
-                                        <Button mnemonicParsing="false" onAction="#handleBtnDeleteCitizenTemplate"
-                                                prefWidth="227.0" text="Slet Borger Template"/>
-                                        <Button mnemonicParsing="false" onAction="#handleBtnGenerateCitizenFromTemplate"
-                                                prefWidth="227.0" text="Generer Borger Fra Template"/>
+                                        <Button mnemonicParsing="false" onAction="#handleBtnNewCitizenTemplate" prefWidth="227.0" text="Ny Borger Template" />
+                                        <Button mnemonicParsing="false" onAction="#handleBtnDeleteCitizenTemplate" prefWidth="227.0" text="Slet Borger Template" />
+                                        <Button mnemonicParsing="false" onAction="#handleBtnGenerateCitizenFromTemplate" prefWidth="227.0" text="Generer Borger Fra Template" />
                                     </children>
                                     <padding>
-                                        <Insets bottom="15.0"/>
+                                        <Insets bottom="15.0" />
                                     </padding>
                                 </VBox>
                             </children>
@@ -222,48 +182,48 @@
                                     <children>
                                         <TextField fx:id="txtSearchBarStudentBorgere" promptText="Søg efter sturende">
                                             <VBox.margin>
-                                                <Insets top="5.0"/>
+                                                <Insets top="5.0" />
                                             </VBox.margin>
                                         </TextField>
                                         <ListView fx:id="lvStuderende" prefHeight="390.0" prefWidth="313.0">
                                             <opaqueInsets>
-                                                <Insets/>
+                                                <Insets />
                                             </opaqueInsets>
                                             <VBox.margin>
-                                                <Insets top="6.0"/>
+                                                <Insets top="6.0" />
                                             </VBox.margin>
                                         </ListView>
                                     </children>
                                 </VBox>
                                 <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
                                     <children>
-                                        <Label text="Den studerendes borgere"/>
+                                        <Label text="Den studerendes borgere" />
                                         <ListView fx:id="lvStuderendesBorgere" prefHeight="390.0" prefWidth="313.0">
                                             <opaqueInsets>
-                                                <Insets/>
+                                                <Insets />
                                             </opaqueInsets>
                                             <VBox.margin>
-                                                <Insets top="6.0"/>
+                                                <Insets top="6.0" />
                                             </VBox.margin>
                                         </ListView>
                                     </children>
                                     <padding>
-                                        <Insets top="10.0"/>
+                                        <Insets top="10.0" />
                                     </padding>
                                 </VBox>
                             </children>
                             <padding>
-                                <Insets bottom="10.0"/>
+                                <Insets bottom="10.0" />
                             </padding>
                         </VBox>
                     </content>
                 </Tab>
             </tabs>
         </TabPane>
-        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowSpan="3"/>
+        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowSpan="3" />
     </children>
     <stylesheets>
-        <URL value="@../resources/css/CommonTheme.css"/>
-        <URL value="@../resources/css/Dashboard.css"/>
+        <URL value="@../resources/css/CommonTheme.css" />
+        <URL value="@../resources/css/Dashboard.css" />
     </stylesheets>
 </GridPane>

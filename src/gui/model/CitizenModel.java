@@ -51,11 +51,18 @@ public class CitizenModel {
         }
         borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
         borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
-        managerFacade.createEmptyTilstande(borger);
+
     }
 
-    public void createCitizenFromTemplate(Borger templateBorger) {
 
+    public void createTemplateFromCitizen (Borger borger)
+    {
+        allTemplates.add(managerFacade.createCitizen(borger));
+        updateSagsoplysninger(borger);
+        //TODO Vent på DB Fix ..
+    }
+
+    public void createCitizenFromTemplate(Borger templateBorger){
 
         Borger borger = new Borger(templateBorger.getFirstNameProperty().get(), templateBorger.getLastNameProperty().get(),
                 false, templateBorger.getAgeProperty().get());
@@ -63,7 +70,6 @@ public class CitizenModel {
         allCitizens.add(managerFacade.createCitizen(borger));
         borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
         borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
-        managerFacade.createEmptyTilstande(borger);
 
         // Add the data from Template
         var cases = managerFacade.getAllCasesOnCitizen(templateBorger.getIDProperty().get());

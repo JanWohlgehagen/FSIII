@@ -22,9 +22,6 @@ public class HelbredstilstandManager {
         databaseFacade.updateHelbredstilstand(borger);
     }
 
-    public void deleteHelbredstilstand(Borger borger) {
-        databaseFacade.deleteHelbredstilstandOnCitizen(borger);
-    }
 
     public List<String> getHelbredstilstandsList() {
         return databaseFacade.getHelbredstilstand();

@@ -229,35 +229,16 @@ public class DatabaseFacade implements IDatabaseFacade {
         //TODO Skal den hente Tilstand eller sætte den????
     }
 
-    @Override
-    public void createEmptyFunktionstilstand(Borger borger) {
-        dbFunktionstilstandDAO.createEmptyFunktionstilstand(borger);
-    }
-
-    @Override
     public void updateFunktiontilstand(Borger borger) {
         dbFunktionstilstandDAO.updateFunktionstilstand(borger);
     }
 
-    @Override
-    public void deleteFunktionstilstandOnCitizen(Borger borger) {
-        dbFunktionstilstandDAO.deleteFunktionstilstandOnCitizen(borger);
-    }
-
-    @Override
-    public void createEmptyHelbredstilstand(Borger borger) {
-        dbHelbredstilstandDAO.createEmptyHelbredstilstandOnCitizen(borger);
-    }
 
     @Override
     public void updateHelbredstilstand(Borger borger) {
         dbHelbredstilstandDAO.updateHelbredstilstand(borger);
     }
 
-    @Override
-    public void deleteHelbredstilstandOnCitizen(Borger borger) {
-        dbHelbredstilstandDAO.deleteHelbredstilstand(borger);
-    }
 
     /***************************************************/
     /*************** Tilstandskategorier ***************/

@@ -83,7 +83,6 @@ public interface IManagerFacade {
 
     public Borger getGenerelleOplysninger(Borger borger);
 
-    public void createEmptyTilstande(Borger borger);
 
     /** FUNKTIONSTILSTAND */
 
@@ -98,8 +97,6 @@ public interface IManagerFacade {
     public Helbredstilstand getEmptyHelbredsTilstand();
 
     public void updateHelbredstilstand(Borger borger);
-
-    public void deleteHelbredstilstand(Borger borger);
 
     public List<String> getHelbredstilstandsList();
 

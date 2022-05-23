@@ -1,12 +1,12 @@
 USE MASTER
 GO
-ALTER DATABASE [CSe21A_FSIII_Simulator] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-DROP DATABASE [CSe21A_FSIII_Simulator]
+ALTER DATABASE [CSe21A_FSIII_Simulator2] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+DROP DATABASE [CSe21A_FSIII_Simulator2]
 GO
 
-CREATE DATABASE CSe21A_FSIII_Simulator
+CREATE DATABASE CSe21A_FSIII_Simulator2
 GO
-USE CSe21A_FSIII_Simulator
+USE CSe21A_FSIII_Simulator2
 GO
 CREATE TABLE [Person]
 (
@@ -85,86 +85,84 @@ CREATE TABLE [GI_Assessment](
     )
 
 
-CREATE TABLE [HS_Overkategori]
+CREATE TABLE [HC_Category]
 (
-    [HS_Overkategori_ID]    INT IDENTITY NOT NULL,
-    [HS_Overkategori_Titel] NVARCHAR(200),
+    [HC_C_ID]    INT IDENTITY NOT NULL,
+    [HC_C_Title] NVARCHAR(200),
 
 
-    CONSTRAINT PK_HSID PRIMARY KEY (HS_Overkategori_ID),
+    CONSTRAINT PK_HC_ID PRIMARY KEY (HC_C_ID),
 
     )
 
-CREATE TABLE [HS_Underkategori]
+CREATE TABLE [HC_Subcategory]
 (
-    [HS_Underkategori_ID]    INT IDENTITY  NOT NULL,
-    [HS_Underkategori_Titel] NVARCHAR(200) NOT NULL,
-    [HS_OK_ID]               INT           NOT NULL,
+    [HC_SC_ID]    INT IDENTITY  NOT NULL,
+    [HC_SC_Title] NVARCHAR(200) NOT NULL,
+    [HC_C_ID]               INT           NOT NULL,
 
-    CONSTRAINT PK_HS_IDUK PRIMARY KEY ([HS_Underkategori_ID]),
-    CONSTRAINT FK_HS_OK_ID FOREIGN KEY (HS_OK_ID) REFERENCES HS_Overkategori (HS_Overkategori_ID)
+    CONSTRAINT PK_HC_SC_ID PRIMARY KEY ([HC_SC_ID]),
+    CONSTRAINT FK_HC_C_ID FOREIGN KEY (HC_C_ID) REFERENCES HC_Category (HC_C_ID)
     )
 
 
-CREATE TABLE [H_Tilstandsvurdering]
-(
-    [HS_Borger_ID]       INT            NOT NULL,
-    [HS_UK_ID]           INT            NOT NULL,
-    [Tilstand]           NVARCHAR(200)  NULL,
-    [Vurdering]          NVARCHAR(4000) NULL,
-    [Aarsag]             NVARCHAR(4000) NULL,
-    [Faglig_Notat]       NVARCHAR(4000) NULL,
-    [Forventet_Tilstand] NVARCHAR(200)  NULL,
-    [Observation]        NVARCHAR(4000) NULL,
-    [ObservationTime]    DATETIME       NULL,
+CREATE TABLE [HC_Assessments]
+(   HC_A_ID INT IDENTITY  NOT NULL,
+    HC_A_Title NVARCHAR(200),
 
-    CONSTRAINT PK_H_Tilstands_ID PRIMARY KEY (HS_UK_ID, HS_Borger_ID),
-    CONSTRAINT FK_HS_IDHSV FOREIGN KEY (HS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
-    CONSTRAINT FK_HS_UK_IDHSV FOREIGN KEY (HS_UK_ID) REFERENCES HS_Underkategori ([HS_Underkategori_ID])
-    )
-
-
-CREATE TABLE [FS_Overkategori]
-(
-    [FS_Overkategori_ID]    INT IDENTITY  NOT NULL,
-    [FS_Overkategori_Titel] NVARCHAR(200) NULL,
-
-    CONSTRAINT PK_FSID PRIMARY KEY ([FS_Overkategori_ID]),
-    )
-
-CREATE TABLE [FS_Underkategori]
-(
-    [FS_Underkategori_ID]    INT IDENTITY  NOT NULL,
-    [FS_Underkategori_Title] NVARCHAR(200) NULL,
-    [FS_OK_ID]               INT           NOT NULL,
-
-    CONSTRAINT PK_FS_UK_ID PRIMARY KEY ([FS_Underkategori_ID]),
-    CONSTRAINT FK_FS_OK_ID FOREIGN KEY (FS_OK_ID) REFERENCES FS_Overkategori ([FS_Overkategori_ID])
+    CONSTRAINT PK_HC_A_ID PRIMARY KEY (HC_A_ID)
 
     )
 
+CREATE TABLE [HC_Assessment](
+    HC_SC_ID INT NOT NULL,
+    HC_A_ID INT NOT NULL,
+    Citizen_ID INT NOT NULL,
+    [Description] NVARCHAR(4000),
+    CONSTRAINT [PK_HC_Assessment_ID] PRIMARY KEY (HC_SC_ID, HC_A_ID, Citizen_ID),
+    CONSTRAINT [FK_HC_SC_ID] FOREIGN KEY  (HC_SC_ID) REFERENCES HC_Subcategory (HC_SC_ID),
+    CONSTRAINT [FK_HC_A_ID] FOREIGN KEY (HC_A_ID) REFERENCES HC_Assessments (HC_A_ID),
+    CONSTRAINT [FK_HCA_Citizen_ID] FOREIGN KEY (Citizen_ID) REFERENCES Borger (Borger_ID) ON DELETE CASCADE
+    )
+CREATE TABLE [FC_Category]
+(
+    [FC_C_ID]    INT IDENTITY  NOT NULL,
+    [FC_C_Title] NVARCHAR(200) NULL,
 
-CREATE TABLE [F_Tilstandsvurdering]
+    CONSTRAINT PK_FCID PRIMARY KEY ([FC_C_ID]),
+    )
+
+CREATE TABLE [FC_Subcategory]
+(
+    [FC_SC_ID]    INT IDENTITY  NOT NULL,
+    [FC_SC_Title] NVARCHAR(200) NULL,
+    [FC_C_ID]               INT           NOT NULL,
+
+    CONSTRAINT PK_FC_SC_ID PRIMARY KEY ([FC_SC_ID]),
+    CONSTRAINT FK_FS_OK_ID FOREIGN KEY (FC_C_ID) REFERENCES FC_Category ([FC_C_ID])
+
+    )
+
+CREATE TABLE [FC_Assessments](
+    FC_A_ID INT IDENTITY NOT NULL,
+    FC_A_Title NVARCHAR (200),
+
+    CONSTRAINT PK_FC_A_ID PRIMARY KEY ([FC_A_ID])
+    )
+
+
+CREATE TABLE [FC_Assessment]
 (
 
-    [FS_Borger_ID]       INT             NOT NULL,
-    [FS_UK_ID]           INT             NOT NULL,
-    [Udfoerelse]         NVARCHAR(4000)  NULL,
-    [Betydning]          NVARCHAR(4000)  NULL,
-    [Borger_Maal]        NVARCHAR(4000)  NULL,
-    [Niveau]             INT             DEFAULT -1,
-    [Vurdering]          NVARCHAR(4000)  NULL,
-    [Aarsag]             NVARCHAR(4000)  NULL,
-    [Faglig_Notat]       NVARCHAR(4000)  NULL,
-    [Forventet_Tilstand] INT             NULL,
-    [Observation]        NVARCHAR(4000)  NULL,
-    [ObservationTime]    DATETIME        NULL,
-    [Opfoelgning]        NVARCHAR(4000)  NULL,
+    [FC_S_ID] INT NOT NULL,
+    [FC_A_ID] INT NOT NULL,
+    [Citizen_ID] INT NOT NULL,
+    [Description] NVARCHAR (4000),
 
-
-    CONSTRAINT PK_F_Tilstands_ID PRIMARY KEY (FS_UK_ID, FS_Borger_ID),
-    CONSTRAINT FK_HS_IDFSV FOREIGN KEY (FS_Borger_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE,
-    CONSTRAINT FK_UK_IDFSV FOREIGN KEY (FS_UK_ID) REFERENCES FS_Underkategori ([FS_Underkategori_ID])
+    CONSTRAINT [PK_FC_Assessment_ID] PRIMARY KEY (FC_S_ID, FC_A_ID, Citizen_ID),
+    CONSTRAINT [FK_FC_S_ID] FOREIGN KEY ([FC_S_ID]) REFERENCES FC_Subcategory ([FC_SC_ID]),
+    CONSTRAINT [FC_A_ID] FOREIGN KEY (FC_A_ID) REFERENCES FC_Assessments ([FC_A_ID]),
+    CONSTRAINT [FK_A_Citizen_ID] FOREIGN KEY (Citizen_ID) REFERENCES Borger ([Borger_ID]) ON DELETE CASCADE
     )
 
 
@@ -199,8 +197,8 @@ CREATE TABLE [ClassStudents]
 
 CREATE TABLE [Credentials]
 (
-    [Person_ID] INT            NOT NULL,
-    [UserName]  NVARCHAR(100)  NOT NULL,
+    [Person_ID] INT           NOT NULL,
+    [UserName]  NVARCHAR(100) NOT NULL,
     [Password]  NVARCHAR(500)  NOT NULL,
 
     CONSTRAINT PK_ID PRIMARY KEY ([Person_ID]),

@@ -27,6 +27,8 @@ public class DashboardController implements Initializable {
 
 
     @FXML
+    private Button btnCitizenToTemplate;
+    @FXML
     private Button btnDeleteCitizen;
     @FXML
     private Button btnAddStudent;
@@ -275,6 +277,7 @@ public class DashboardController implements Initializable {
                     btnAddStudent.setVisible(false);
                     btnNewCitizen.setVisible(false);
                     btnDeleteCitizen.setVisible(false);
+                    btnCitizenToTemplate.setVisible(false);
 
                     for (Borger b : citizenModel.getAllCitizen()) {
                         if (b.getStudent() != null && b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
@@ -387,5 +390,19 @@ public class DashboardController implements Initializable {
         txtSearchBarStudentBorgere.textProperty().addListener((observableValue, oldValue, newValue) -> {
             userModel.searchStudent(newValue);
         });
+    }
+
+    public void btnCitizenToTemplate(ActionEvent actionEvent) {
+
+        if (selectCitizen.getHelbredstilstand() == null && selectCitizen.getFunktionstilstand() == null)
+        {
+            citizenModel.getTilstande(selectCitizen);
+        }
+        Borger citizenToTemplate = new Borger(selectCitizen.getFirstNameProperty().get(), selectCitizen.getLastNameProperty().get(), true, selectCitizen.getAgeProperty().get());
+        citizenToTemplate.setHelbredstilstand(selectCitizen.getHelbredstilstand());
+        citizenToTemplate.setFunktionstilstand(selectCitizen.getFunktionstilstand());
+        citizenToTemplate.setListOfCases(selectCitizen.getListOfCases());
+        citizenToTemplate.setObservationer(selectCitizen.getObservationer());
+        citizenModel.createTemplateFromCitizen(citizenToTemplate);
     }
 }
