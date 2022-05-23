@@ -208,14 +208,14 @@ public class AssessmentInformationController implements Initializable {
         this.caseModel = caseModel;
     }
 
-    public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
+    public void handleSaveAndExitBtn(MouseEvent mouseEvent) {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
         updateBorger(citizen);
         closeStage();
     }
 
-    public void generelleOplysningerHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
+    public void handleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         if (dashboardController.getSelectedCase() != null) {
             updateHelbredstilstandsUnderkategori();
             updateFunktionstilstandsUnderkategori();
@@ -226,71 +226,6 @@ public class AssessmentInformationController implements Initializable {
             alert.show();
         }
     }
-
-    public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-        updateBorger(citizen);
-        closeStage();
-    }
-
-    public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        if (dashboardController.getSelectedCase() != null) {
-            updateHelbredstilstandsUnderkategori();
-            updateFunktionstilstandsUnderkategori();
-            updateBorger(citizen);
-            goToNextScene();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
-            alert.show();
-        }
-    }
-
-    public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-        updateBorger(citizen);
-        closeStage();
-    }
-
-    public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        if (dashboardController.getSelectedCase() != null) {
-            updateHelbredstilstandsUnderkategori();
-            updateFunktionstilstandsUnderkategori();
-            updateBorger(citizen);
-            goToNextScene();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
-            alert.show();
-        }
-    }
-
-    public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-        extractMedicineList(); //TODO
-        updateBorger(citizen);
-        closeStage();
-    }
-
-    public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        if (dashboardController.getSelectedCase() != null) {
-            updateHelbredstilstandsUnderkategori();
-            updateFunktionstilstandsUnderkategori();
-            updateBorger(citizen);
-            goToNextScene();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
-            alert.show();
-        }
-    }
-
-    public void handleAddTxtFieldMedicineList(ActionEvent actionEvent) {
-        vBoxMedicinliste.getChildren().add(new TextField());
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-    }
-
 
     public void openFOverviewHandle(ActionEvent actionEvent) throws IOException {
         ISceneLoader<RelevantFunctionAssessmentViewController> funktionstilstandOverviewScene = new RelevantFunctionAssessmentScene();
@@ -627,6 +562,8 @@ public class AssessmentInformationController implements Initializable {
         }
         return medicineList;
     }
+
+
 
 
     private class TooltipBank {

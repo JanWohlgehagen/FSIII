@@ -226,7 +226,7 @@ public class DatabaseFacade implements IDatabaseFacade {
 
     @Override
     public void updateHelbredstilstand(Citizen citizen) {
-
+        dbHealthAssessmentDAO.updateHealthAssessment(citizen);
     }
 
     public void updateFunktiontilstand(Citizen citizen) {
