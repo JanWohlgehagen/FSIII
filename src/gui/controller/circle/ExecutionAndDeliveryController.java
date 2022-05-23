@@ -1,6 +1,7 @@
-package gui.controller;
+package gui.controller.circle;
 
 import be.*;
+import gui.controller.DashboardController;
 import gui.model.CitizenModel;
 import gui.util.ISceneLoader;
 import gui.util.OpfoelgningScene;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UdfoerelseIOgLeveringController implements Initializable {
+public class ExecutionAndDeliveryController implements Initializable {
 
     @FXML
     private ListView<Observation> ListViewObservations;
@@ -27,8 +28,8 @@ public class UdfoerelseIOgLeveringController implements Initializable {
     @FXML
     private TextArea txtAreaDok;
 
-    private UdfoerelseIOgLeveringController udfoerelseIOgLeveringController;
-    private Borger selectedCitizen;
+    private ExecutionAndDeliveryController executionAndDeliveryController;
+    private Citizen selectedCitizen;
     private CitizenModel citizenModel;
     private DashboardController dashboardController;
     private ObservableList<Observation> observationList;
@@ -88,11 +89,11 @@ public class UdfoerelseIOgLeveringController implements Initializable {
 
     public void handleMouseSaveAndNextScene(MouseEvent mouseEvent) throws IOException {
         if (dashboardController.getSelectedCase() != null) {
-            ISceneLoader<OpfoelgningController> opfoelgningScene = new OpfoelgningScene();
+            ISceneLoader<FollowUpController> opfoelgningScene = new OpfoelgningScene();
             opfoelgningScene.loadNewScene(getStage());
-            OpfoelgningController opfoelgningController = opfoelgningScene.getController();
-            opfoelgningController.setDashboardController(dashboardController);
-            opfoelgningController.setCaseModel(dashboardController.getCaseModel());
+            FollowUpController followUpController = opfoelgningScene.getController();
+            followUpController.setDashboardController(dashboardController);
+            followUpController.setCaseModel(dashboardController.getCaseModel());
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();

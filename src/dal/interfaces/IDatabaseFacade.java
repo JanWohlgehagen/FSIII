@@ -67,43 +67,43 @@ public interface IDatabaseFacade {
 
     //Citizen DAL Functions
 
-    public Borger createCitizen(Borger borger);
+    public Citizen createCitizen(Citizen citizen);
 
-    public List<Borger> getAllCitizens();
+    public List<Citizen> getAllCitizens();
 
-    public List<Borger> getAllTemplates();
+    public List<Citizen> getAllTemplates();
 
-    public void updateCitizen(Borger borger);
+    public void updateCitizen(Citizen citizen);
 
-    public void addStudentToCitizen(Borger borger);
+    public void addStudentToCitizen(Citizen citizen);
 
-    public void deleteCitizen(Borger borger);
+    public void deleteCitizen(Citizen citizen);
 
-    public void updateGenerelleOplysninger(Borger borger);
+    public void updateGenerelleOplysninger(Citizen citizen);
 
-    public Borger getGenerelleOplysninger(Borger borger);
+    public Citizen getGenerelleOplysninger(Citizen citizen);
 
     /** Tilstande Functions */
 
 
-    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger);
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen);
 
-    public void createEmptyFunktionstilstand(Borger borger);
+    public void createEmptyFunktionstilstand(Citizen citizen);
 
-    public void updateFunktiontilstand(Borger borger);
+    public void updateFunktiontilstand(Citizen citizen);
 
     public FunctionAssessment getEmptyFunktionsTilstand();
 
-    public void deleteFunktionstilstandOnCitizen(Borger borger);
+    public void deleteFunktionstilstandOnCitizen(Citizen citizen);
 
-    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen);
 
-    public void createEmptyHelbredstilstand(Borger borger);
+    public void createEmptyHelbredstilstand(Citizen citizen);
 
-    public void updateHelbredstilstand(Borger borger);
+    public void updateHelbredstilstand(Citizen citizen);
 
     public HealthAssessment getEmptyHelbredsTilstand();
 
-    public void deleteHelbredstilstandOnCitizen(Borger borger);
+    public void deleteHelbredstilstandOnCitizen(Citizen citizen);
 
 }

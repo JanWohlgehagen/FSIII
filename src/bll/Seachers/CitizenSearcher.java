@@ -1,19 +1,19 @@
 package bll.Seachers;
 
-import be.Borger;
+import be.Citizen;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CitizenSearcher {
 
-    private List<Borger> searchResult = new ArrayList<>();
+    private List<Citizen> searchResult = new ArrayList<>();
 
-    public List<Borger> search(List<Borger> searchBase, String query) {
+    public List<Citizen> search(List<Citizen> searchBase, String query) {
         searchResult.clear();
-        for (Borger borger : searchBase) {
-            if (compareName(borger.getFirstNameProperty().get(), query) || compareName(borger.getLastNameProperty().get(), query)) {
-                searchResult.add(borger);
+        for (Citizen citizen : searchBase) {
+            if (compareName(citizen.getFirstNameProperty().get(), query) || compareName(citizen.getLastNameProperty().get(), query)) {
+                searchResult.add(citizen);
             }
         }
         return searchResult;

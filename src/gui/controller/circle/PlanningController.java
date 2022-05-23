@@ -1,10 +1,10 @@
-package gui.controller;
+package gui.controller.circle;
 
-import be.Borger;
+import be.Citizen;
 import be.Case;
-import be.FunktionstilstandsUnderkategori;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
+import gui.controller.DashboardController;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.util.CaseDocumentationScene;
@@ -21,13 +21,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PlanlaegningController implements Initializable {
+public class PlanningController implements Initializable {
 
     private DashboardController dashboardController;
     private CaseModel caseModel;
     private CitizenModel citizenModel;
     private Case selectCase;
-    private Borger selectCitizen;
+    private Citizen selectCitizen;
 
     @FXML
     private GridPane parentPane;
@@ -60,11 +60,11 @@ public class PlanlaegningController implements Initializable {
 
     public void handleMouseSaveAndNextScene(MouseEvent mouseEvent) throws IOException {
         caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
-        ISceneLoader<UdfoerelseIOgLeveringController> caseDocumentationScene = new CaseDocumentationScene();
+        ISceneLoader<ExecutionAndDeliveryController> caseDocumentationScene = new CaseDocumentationScene();
         caseDocumentationScene.loadNewScene(getStage());
-        UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
-        udfoerelseIOgLeveringController.setDashboardController(dashboardController);
-        udfoerelseIOgLeveringController.setCitizenModel(citizenModel);
+        ExecutionAndDeliveryController executionAndDeliveryController = caseDocumentationScene.getController();
+        executionAndDeliveryController.setDashboardController(dashboardController);
+        executionAndDeliveryController.setCitizenModel(citizenModel);
        /* selectedCitizen = dashboardController.getSelectedCitizen();
         citizenModel.getTilstande(selectedCitizen);
         if(selectedCitizen.getObservationer().isEmpty()){

@@ -1,6 +1,6 @@
 package dal;
 
-import be.Borger;
+import be.Citizen;
 import be.FunctionAssessment;
 import be.FunktionstilstandsUnderkategori;
 import be.Observation;
@@ -18,13 +18,13 @@ public class DBFunctionAssessmentDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void createEmptyFunktionstilstand(Borger borger) {
+    public void createEmptyFunktionstilstand(Citizen citizen) {
         String sql = "INSERT INTO [F_Tilstandsvurdering] (FS_Borger_ID, FS_UK_ID) VALUES (?,?)";
         try (Connection connection = dbConnecting.getConnection()) {
-            for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
-                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
+            for (String key : citizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
+                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : citizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, borger.getIDProperty().get());
+                    preparedStatement.setInt(1, citizen.getIDProperty().get());
                     preparedStatement.setInt(2, funktionstilstandsUnderkategori.getId().get());
 
                     preparedStatement.execute();
@@ -37,15 +37,15 @@ public class DBFunctionAssessmentDAO {
         }
     }
 
-    public void updateFunktionstilstand(Borger borger) {
+    public void updateFunktionstilstand(Citizen citizen) {
         String sql = "UPDATE [F_Tilstandsvurdering] SET FS_Borger_ID = (?), FS_UK_ID = (?), Udfoerelse = (?), Betydning = (?), Borger_Maal = (?), Niveau = (?)," +
                 " Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?), Observation = (?), ObservationTime = (?), Opfoelgning = (?)" +
                 "WHERE FS_Borger_ID = (?) AND FS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
-            for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
-                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
+            for (String key : citizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
+                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : citizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, borger.getIDProperty().get());
+                    preparedStatement.setInt(1, citizen.getIDProperty().get());
                     preparedStatement.setInt(2, funktionstilstandsUnderkategori.getId().get());
                     preparedStatement.setString(3, funktionstilstandsUnderkategori.getUdførelseProperty().get());
                     preparedStatement.setString(4, funktionstilstandsUnderkategori.getBetydningProperty().get());
@@ -59,7 +59,7 @@ public class DBFunctionAssessmentDAO {
                     preparedStatement.setTimestamp(12, funktionstilstandsUnderkategori.getObservation().getTime());
                     preparedStatement.setString(13, funktionstilstandsUnderkategori.getOpfølgningProperty().get());
 
-                    preparedStatement.setInt(14, borger.getIDProperty().get());
+                    preparedStatement.setInt(14, citizen.getIDProperty().get());
                     preparedStatement.setInt(15, funktionstilstandsUnderkategori.getId().get());
 
                     preparedStatement.execute();
@@ -73,11 +73,11 @@ public class DBFunctionAssessmentDAO {
         }
     }
 
-    public void deleteFunktionstilstandOnCitizen(Borger borger) {
+    public void deleteFunktionstilstandOnCitizen(Citizen citizen) {
         String sql = "DELETE FROM [F_Tilstandsvurdering] WHERE FS_Borger_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
+            preparedStatement.setInt(1, citizen.getIDProperty().get());
 
             preparedStatement.executeQuery();
         } catch (SQLException throwables) {
@@ -86,7 +86,7 @@ public class DBFunctionAssessmentDAO {
     }
 
 
-    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger) {
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen) {
         FunctionAssessment functionAssessment = new FunctionAssessment();
         List<FunktionstilstandsUnderkategori> allFunktionstilstande = new ArrayList<>();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
@@ -97,7 +97,7 @@ public class DBFunctionAssessmentDAO {
                     "WHERE FS_Borger_ID = (?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
+            preparedStatement.setInt(1, citizen.getIDProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

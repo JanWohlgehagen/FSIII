@@ -17,7 +17,7 @@
 
 <GridPane fx:id="parentPane" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane"
           xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="gui.controller.BestillingsViewController">
+          fx:controller="gui.controller.circle.OrderViewController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
     </columnConstraints>

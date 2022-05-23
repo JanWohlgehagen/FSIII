@@ -1,8 +1,9 @@
-package gui.controller;
+package gui.controller.circle;
 
-import be.Borger;
+import be.Citizen;
 import be.Case;
 import be.User;
+import gui.controller.DashboardController;
 import gui.model.CaseModel;
 import gui.util.ISceneLoader;
 import gui.util.PlanlaegningScene;
@@ -22,7 +23,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class BestillingsViewController implements Initializable {
+public class OrderViewController implements Initializable {
 
     @FXML
     private GridPane parentPane;
@@ -35,7 +36,7 @@ public class BestillingsViewController implements Initializable {
     private User loginUser;
     private DashboardController dashBoardController;
     private CaseModel caseModel;
-    private Borger currentCitizen;
+    private Citizen currentCitizen;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,10 +70,10 @@ public class BestillingsViewController implements Initializable {
                 currentCase.setGrantedText(txtAreaBestillingsText.getText());
                 currentCase.setIsGranted(checkBoxBevilling.isSelected());
                 currentCase.setGrantedText(txtAreaBestillingsText.getText());
-                ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
+                ISceneLoader<PlanningController> planlaegningScene = new PlanlaegningScene();
                 planlaegningScene.loadNewScene(getStage());
-                PlanlaegningController planlaegningController = planlaegningScene.getController();
-                planlaegningController.setDashboardController(dashBoardController);
+                PlanningController planningController = planlaegningScene.getController();
+                planningController.setDashboardController(dashBoardController);
             } else {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sagen er ikke bevilget, derfor bliver den slettet. Tryk YES hvis sagen skal slettes og NO hvis du ikke vil slette sagen", ButtonType.YES, ButtonType.NO);
                 Optional<ButtonType> result = alert.showAndWait();
@@ -94,7 +95,7 @@ public class BestillingsViewController implements Initializable {
         this.dashBoardController = dashboardController;
     }
 
-    public void setCurrentCitizen(Borger currentCitizen) {
+    public void setCurrentCitizen(Citizen currentCitizen) {
         this.currentCitizen = currentCitizen;
     }
 

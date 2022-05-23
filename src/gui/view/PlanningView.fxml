@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,102 +14,72 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="parentPane" alignment="CENTER" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane"
+<GridPane fx:id="parentPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" styleClass="ParentPane"
           xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="gui.controller.OpfoelgningController">
+          fx:controller="gui.controller.circle.PlanningController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints percentHeight="36.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" percentHeight="36.0" vgrow="SOMETIMES"/>
         <RowConstraints vgrow="SOMETIMES"/>
-        <RowConstraints vgrow="SOMETIMES"/>
-        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" percentHeight="15.0"/>
     </rowConstraints>
     <children>
-        <Label alignment="CENTER" styleClass="labelTitle" text="Opfølgning" GridPane.valignment="BOTTOM">
+        <Label alignment="CENTER" styleClass="labelTitle" text="Planlægning" GridPane.valignment="BOTTOM">
             <font>
                 <Font size="40.0"/>
             </font>
             <GridPane.margin>
                 <Insets/>
             </GridPane.margin>
+            <padding>
+                <Insets bottom="5.0"/>
+            </padding>
         </Label>
-        <VBox alignment="BOTTOM_RIGHT" GridPane.rowIndex="3">
+        <TextArea fx:id="txtAreaPlanlaegning" GridPane.rowIndex="1"/>
+        <HBox alignment="BOTTOM_RIGHT" spacing="15.0" GridPane.rowIndex="2">
             <children>
-                <HBox alignment="BOTTOM_RIGHT" spacing="15.0">
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity"
+                      onMouseReleased="#handleMouseSaveAndClose" prefWidth="136.0" styleClass="saveBox"
+                      stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
                     <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity"
-                              onMouseReleased="#handleMouseGemOgNæsteScene" prefWidth="136.0" styleClass="nextBox"
-                              stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css" visible="false">
-                            <children>
-                                <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0"
-                                       prefWidth="68.0" text="Gem &amp; Næste" wrapText="true"/>
-                                <Button disable="true" focusTraversable="false" mnemonicParsing="false"
-                                        prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
-                                    <HBox.margin>
-                                        <Insets/>
-                                    </HBox.margin>
-                                </Button>
-                            </children>
-                            <padding>
-                                <Insets left="5.0" right="5.0"/>
-                            </padding>
-                        </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity"
-                              onMouseReleased="#handleMouseGemOgLukScene" prefWidth="136.0" styleClass="saveBox"
-                              stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
-                            <children>
-                                <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0"
-                                       prefWidth="68.0" text="Gem &amp; Luk" wrapText="true"/>
-                                <Button disable="true" focusTraversable="false" mnemonicParsing="false"
-                                        prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
-                                    <HBox.margin>
-                                        <Insets/>
-                                    </HBox.margin>
-                                </Button>
-                            </children>
-                            <padding>
-                                <Insets left="5.0" right="5.0"/>
-                            </padding>
-                        </HBox>
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0"
+                               text="Gem &amp; Luk" wrapText="true"/>
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0"
+                                prefWidth="75.0" styleClass="saveButton">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                        </Button>
                     </children>
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
                     <padding>
-                        <Insets top="15.0"/>
+                        <Insets left="5.0" right="5.0"/>
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity"
+                      onMouseReleased="#handleMouseSaveAndNextScene" prefWidth="136.0" styleClass="nextBox"
+                      stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0"
+                               text="Gem &amp; Næste" wrapText="true"/>
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0"
+                                prefWidth="75.0" styleClass="nextButton">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets left="5.0" right="5.0"/>
                     </padding>
                 </HBox>
             </children>
-            <GridPane.margin>
-                <Insets/>
-            </GridPane.margin>
-        </VBox>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-            <children>
-                <CheckBox fx:id="checkBoxCloseCase" mnemonicParsing="false" onAction="#handleCBClose" text="Afsluttes">
-                    <HBox.margin>
-                        <Insets right="10.0"/>
-                    </HBox.margin>
-                </CheckBox>
-                <CheckBox fx:id="checkBoxContinueCase" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
-                          onAction="#handleCBContinue" text="Fortsættes">
-                    <HBox.margin>
-                        <Insets right="10.0"/>
-                    </HBox.margin>
-                </CheckBox>
-                <CheckBox fx:id="checkBoxChangeCase" layoutX="83.0" layoutY="10.0" mnemonicParsing="false"
-                          onAction="#handleCBChange" text="Ændres ">
-                    <HBox.margin>
-                        <Insets/>
-                    </HBox.margin>
-                </CheckBox>
-                <CheckBox fx:id="checkBoxRevisitationCase" mnemonicParsing="false" onAction="#handleCBRevisitation"
-                          text="Revisitation"/>
-            </children>
+            <padding>
+                <Insets top="15.0"/>
+            </padding>
         </HBox>
-        <TextArea fx:id="txtAreaOpfoelgning" promptText="Tanker?" GridPane.rowIndex="2"/>
         <VBox alignment="TOP_RIGHT">
             <children>
                 <HBox alignment="TOP_RIGHT">
@@ -159,12 +128,12 @@
                                                 <Font name="Cambria Bold" size="16.0"/>
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true"
-                                                layoutX="373.0" layoutY="353.0" maxHeight="-Infinity"
-                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
-                                                styleClass="bottomButton4" text="4" textAlignment="CENTER"
-                                                translateX="31.25" translateY="30.0" wrapText="true">
+                                        <Button fx:id="btnPlanlaegning" alignment="CENTER" layoutX="373.0"
+                                                layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                                                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                                prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton4" text="4"
+                                                textAlignment="CENTER" translateX="31.25" translateY="30.0"
+                                                wrapText="true">
                                             <font>
                                                 <Font name="Cambria Bold" size="16.0"/>
                                             </font>
@@ -188,10 +157,10 @@
                                                 <Insets/>
                                             </opaqueInsets>
                                         </Button>
-                                        <Button fx:id="btnOpfolgning" alignment="CENTER" layoutX="373.0" layoutY="353.0"
-                                                maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                                minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75"
-                                                prefWidth="28.75" styleClass="middleButton" text="6"
+                                        <Button fx:id="btnOpfolgning" alignment="CENTER" disable="true" layoutX="373.0"
+                                                layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                                                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                                prefHeight="28.75" prefWidth="28.75" styleClass="middleButton" text="6"
                                                 textAlignment="CENTER" translateX="-43.75" wrapText="true"/>
                                         <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-12.5"/>
                                         <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel"
@@ -203,6 +172,9 @@
                     </children>
                 </HBox>
             </children>
+            <padding>
+                <Insets bottom="10.0"/>
+            </padding>
         </VBox>
     </children>
     <padding>
@@ -210,6 +182,6 @@
     </padding>
     <stylesheets>
         <URL value="@../resources/css/CommonTheme.css"/>
-        <URL value="@../resources/css/OpfoelgningView.css"/>
+        <URL value="@../resources/css/PlanlægningView.css"/>
     </stylesheets>
 </GridPane>

@@ -167,41 +167,41 @@ public class ManagerFacade implements IManagerFacade {
     /***************************************************/
 
     @Override
-    public List<Borger> getAllCitizen() {
+    public List<Citizen> getAllCitizen() {
         return citizenManager.getAllCitizen();
     }
 
     @Override
-    public List<Borger> getAllTemplates() {
+    public List<Citizen> getAllTemplates() {
         return citizenManager.getAllTemplates();
     }
 
     @Override
-    public Borger createCitizen(Borger borger) {
-        return citizenManager.createCitizen(borger);
+    public Citizen createCitizen(Citizen citizen) {
+        return citizenManager.createCitizen(citizen);
     }
 
     @Override
-    public void addStudentToCitizen(Borger borger) {
-        citizenManager.addStudentToCitizen(borger);
+    public void addStudentToCitizen(Citizen citizen) {
+        citizenManager.addStudentToCitizen(citizen);
     }
 
     @Override
-    public void deleteCitizen(Borger borger) {
-        citizenManager.deleteCitizen(borger);
+    public void deleteCitizen(Citizen citizen) {
+        citizenManager.deleteCitizen(citizen);
     }
 
     @Override
-    public void updateSagsoplysninger(Borger borger) {
-        citizenManager.updateGenerelleOplysninger(borger);
-        citizenManager.updateCitizen(borger);
-        citizenManager.updateFunktionstilstand(borger);
-        citizenManager.updateHelbredstilstand(borger);
+    public void updateSagsoplysninger(Citizen citizen) {
+        citizenManager.updateGenerelleOplysninger(citizen);
+        citizenManager.updateCitizen(citizen);
+        citizenManager.updateFunktionstilstand(citizen);
+        citizenManager.updateHelbredstilstand(citizen);
     }
 
     @Override
-    public Borger getGenerelleOplysninger(Borger borger) {
-        return citizenManager.getGenerelleOplysninger(borger);
+    public Citizen getGenerelleOplysninger(Citizen citizen) {
+        return citizenManager.getGenerelleOplysninger(citizen);
     }
 
     /***************************************************/
@@ -209,8 +209,8 @@ public class ManagerFacade implements IManagerFacade {
     /***************************************************/
 
     @Override
-    public void createEmptyTilstande(Borger borger) {
-        citizenManager.createEmptyTilstande(borger);
+    public void createEmptyTilstande(Citizen citizen) {
+        citizenManager.createEmptyTilstande(citizen);
     }
 
     @Override
@@ -224,8 +224,8 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger) {
-        return citizenManager.getFunktionstilstandOnCitizen(borger);
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen) {
+        return citizenManager.getFunktionstilstandOnCitizen(citizen);
     }
 
     @Override
@@ -239,12 +239,12 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger) {
-        return citizenManager.getHelbredstilstandOnCitizen(borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen) {
+        return citizenManager.getHelbredstilstandOnCitizen(citizen);
     }
 
     @Override
-    public void updateHelbredstilstand(Borger borger) {
-        citizenManager.updateHelbredstilstand(borger);
+    public void updateHelbredstilstand(Citizen citizen) {
+        citizenManager.updateHelbredstilstand(citizen);
     }
 }

@@ -17,7 +17,7 @@
 
 <GridPane fx:id="parentPane" alignment="CENTER" prefWidth="800.0" styleClass="ParentPane"
           xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="gui.controller.UdfoerelseIOgLeveringController">
+          fx:controller="gui.controller.circle.ExecutionAndDeliveryController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="300.0" prefWidth="300.0"/>
         <ColumnConstraints hgrow="SOMETIMES"/>

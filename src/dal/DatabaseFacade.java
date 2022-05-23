@@ -167,33 +167,33 @@ public class DatabaseFacade implements IDatabaseFacade {
     /***************************************************/
 
     @Override
-    public Borger createCitizen(Borger borger) {
-        return dbCitizenDAO.createCitizen(borger);
+    public Citizen createCitizen(Citizen citizen) {
+        return dbCitizenDAO.createCitizen(citizen);
     }
 
     @Override
-    public List<Borger> getAllCitizens() {
+    public List<Citizen> getAllCitizens() {
         return dbCitizenDAO.getAllCitizens();
     }
 
     @Override
-    public List<Borger> getAllTemplates() {
+    public List<Citizen> getAllTemplates() {
         return dbCitizenDAO.getAllTemplates();
     }
 
     @Override
-    public void updateCitizen(Borger borger) {
-        dbCitizenDAO.updateCitizen(borger);
+    public void updateCitizen(Citizen citizen) {
+        dbCitizenDAO.updateCitizen(citizen);
     }
 
     @Override
-    public void addStudentToCitizen(Borger borger) {
-        dbCitizenDAO.addStudentToCitizen(borger);
+    public void addStudentToCitizen(Citizen citizen) {
+        dbCitizenDAO.addStudentToCitizen(citizen);
     }
 
     @Override
-    public void deleteCitizen(Borger borger) {
-        dbCitizenDAO.deleteCitizen(borger);
+    public void deleteCitizen(Citizen citizen) {
+        dbCitizenDAO.deleteCitizen(citizen);
     }
 
     /***************************************************/
@@ -201,13 +201,13 @@ public class DatabaseFacade implements IDatabaseFacade {
     /***************************************************/
 
     @Override
-    public void updateGenerelleOplysninger(Borger borger) {
-        dbGenerelInformationDAO.updateGenerelleOplysninger(borger);
+    public void updateGenerelleOplysninger(Citizen citizen) {
+        dbGenerelInformationDAO.updateGenerelleOplysninger(citizen);
     }
 
     @Override
-    public Borger getGenerelleOplysninger(Borger borger) {
-        return dbGenerelInformationDAO.getGenerelleOplysninger(borger);
+    public Citizen getGenerelleOplysninger(Citizen citizen) {
+        return dbGenerelInformationDAO.getGenerelleOplysninger(citizen);
     }
 
     /***************************************************/
@@ -215,43 +215,43 @@ public class DatabaseFacade implements IDatabaseFacade {
     /***************************************************/
 
     @Override
-    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger) {
-        return dbHealthAssessmentDAO.getHelbredstilstandOnCitizen(borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen) {
+        return dbHealthAssessmentDAO.getHelbredstilstandOnCitizen(citizen);
     }
 
     @Override
-    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger) {
-        return dbFunctionAssessmentDAO.getFunktionstilstandOnCitizen(borger);
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen) {
+        return dbFunctionAssessmentDAO.getFunktionstilstandOnCitizen(citizen);
     }
 
     @Override
-    public void createEmptyFunktionstilstand(Borger borger) {
-        dbFunctionAssessmentDAO.createEmptyFunktionstilstand(borger);
+    public void createEmptyFunktionstilstand(Citizen citizen) {
+        dbFunctionAssessmentDAO.createEmptyFunktionstilstand(citizen);
     }
 
     @Override
-    public void updateFunktiontilstand(Borger borger) {
-        dbFunctionAssessmentDAO.updateFunktionstilstand(borger);
+    public void updateFunktiontilstand(Citizen citizen) {
+        dbFunctionAssessmentDAO.updateFunktionstilstand(citizen);
     }
 
     @Override
-    public void deleteFunktionstilstandOnCitizen(Borger borger) {
-        dbFunctionAssessmentDAO.deleteFunktionstilstandOnCitizen(borger);
+    public void deleteFunktionstilstandOnCitizen(Citizen citizen) {
+        dbFunctionAssessmentDAO.deleteFunktionstilstandOnCitizen(citizen);
     }
 
     @Override
-    public void createEmptyHelbredstilstand(Borger borger) {
-        dbHealthAssessmentDAO.createEmptyHelbredstilstandOnCitizen(borger);
+    public void createEmptyHelbredstilstand(Citizen citizen) {
+        dbHealthAssessmentDAO.createEmptyHelbredstilstandOnCitizen(citizen);
     }
 
     @Override
-    public void updateHelbredstilstand(Borger borger) {
-        dbHealthAssessmentDAO.updateHelbredstilstand(borger);
+    public void updateHelbredstilstand(Citizen citizen) {
+        dbHealthAssessmentDAO.updateHelbredstilstand(citizen);
     }
 
     @Override
-    public void deleteHelbredstilstandOnCitizen(Borger borger) {
-        dbHealthAssessmentDAO.deleteHelbredstilstand(borger);
+    public void deleteHelbredstilstandOnCitizen(Citizen citizen) {
+        dbHealthAssessmentDAO.deleteHelbredstilstand(citizen);
     }
 
     /***************************************************/

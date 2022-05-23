@@ -1,6 +1,6 @@
 package gui.model;
 
-import be.Borger;
+import be.Citizen;
 import be.Case;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CitizenModel {
-    private ObservableList<Borger> allCitizens;
-    private ObservableList<Borger> allTemplates;
-    private List<Borger> allCitizensCache = new ArrayList<>();
-    private List<Borger> allTemplatesCache = new ArrayList<>();
+    private ObservableList<Citizen> allCitizens;
+    private ObservableList<Citizen> allTemplates;
+    private List<Citizen> allCitizensCache = new ArrayList<>();
+    private List<Citizen> allTemplatesCache = new ArrayList<>();
     private CitizenSearcher citizenSearcher;
 
     private final IManagerFacade managerFacade;
@@ -30,43 +30,43 @@ public class CitizenModel {
         citizenSearcher = new CitizenSearcher();
     }
 
-    public ObservableList<Borger> getAllCitizen() {
+    public ObservableList<Citizen> getAllCitizen() {
         allCitizens = FXCollections.observableList(managerFacade.getAllCitizen());
         return allCitizens;
     }
 
-    public ObservableList<Borger> getAllTemplates() {
+    public ObservableList<Citizen> getAllTemplates() {
         allTemplates = FXCollections.observableList(managerFacade.getAllTemplates());
         return allTemplates;
     }
 
 
-    public void createCitizen(Borger borger) {
-        if (borger.isTemplateProperty().get()) {
-            allTemplates.add(managerFacade.createCitizen(borger));
+    public void createCitizen(Citizen citizen) {
+        if (citizen.isTemplateProperty().get()) {
+            allTemplates.add(managerFacade.createCitizen(citizen));
         } else {
-            allCitizens.add(managerFacade.createCitizen(borger));
+            allCitizens.add(managerFacade.createCitizen(citizen));
         }
-        borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
-        borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
-        managerFacade.createEmptyTilstande(borger);
+        citizen.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
+        citizen.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
+        managerFacade.createEmptyTilstande(citizen);
     }
 
-    public void createCitizenFromTemplate(Borger templateBorger) {
+    public void createCitizenFromTemplate(Citizen templateCitizen) {
 
 
-        Borger borger = new Borger(templateBorger.getFirstNameProperty().get(), templateBorger.getLastNameProperty().get(),
-                false, templateBorger.getAgeProperty().get());
+        Citizen citizen = new Citizen(templateCitizen.getFirstNameProperty().get(), templateCitizen.getLastNameProperty().get(),
+                false, templateCitizen.getAgeProperty().get());
 
-        allCitizens.add(managerFacade.createCitizen(borger));
-        borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
-        borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
-        managerFacade.createEmptyTilstande(borger);
+        allCitizens.add(managerFacade.createCitizen(citizen));
+        citizen.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
+        citizen.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
+        managerFacade.createEmptyTilstande(citizen);
 
         // Add the data from Template
-        var cases = managerFacade.getAllCasesOnCitizen(templateBorger.getIDProperty().get());
+        var cases = managerFacade.getAllCasesOnCitizen(templateCitizen.getIDProperty().get());
         for (var aCase : cases) {
-            var newCase = new Case(borger.getIDProperty().get(), aCase.getOverCategoryTitleProperty().get(), aCase.getSubcategoryTitleProperty().get());
+            var newCase = new Case(citizen.getIDProperty().get(), aCase.getOverCategoryTitleProperty().get(), aCase.getSubcategoryTitleProperty().get());
             newCase.setIsGranted(false);
             newCase.setReference(aCase.getReferenceProperty().get());
             newCase.setCaseResponsible(aCase.getCaseResponsibleProperty().get());
@@ -82,42 +82,42 @@ public class CitizenModel {
         }
 
         // Set the Helbredstiltand and Funktionstilstands
-        if (templateBorger.getHelbredstilstand() == null ) {
-            templateBorger.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(templateBorger));
-            templateBorger.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(templateBorger));
+        if (templateCitizen.getHelbredstilstand() == null ) {
+            templateCitizen.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(templateCitizen));
+            templateCitizen.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(templateCitizen));
         }
-        if(templateBorger.getGeneralinformation() == null){
-            managerFacade.getGenerelleOplysninger(templateBorger); // TODO laves om til at man får en Generalinformation og ikke en borger
+        if(templateCitizen.getGeneralinformation() == null){
+            managerFacade.getGenerelleOplysninger(templateCitizen); // TODO laves om til at man får en Generalinformation og ikke en borger
         }
 
-        borger.setHelbredstilstand(templateBorger.getHelbredstilstand());
-        borger.setFunktionstilstand(templateBorger.getFunktionstilstand());
-        borger.setGeneralinformation(templateBorger.getGeneralinformation());
+        citizen.setHelbredstilstand(templateCitizen.getHelbredstilstand());
+        citizen.setFunktionstilstand(templateCitizen.getFunktionstilstand());
+        citizen.setGeneralinformation(templateCitizen.getGeneralinformation());
 
-        managerFacade.updateSagsoplysninger(borger);
+        managerFacade.updateSagsoplysninger(citizen);
     }
 
-    public void addStudentToCitizen(Borger borger) {
-        managerFacade.addStudentToCitizen(borger);
+    public void addStudentToCitizen(Citizen citizen) {
+        managerFacade.addStudentToCitizen(citizen);
     }
 
 
-    public void deleteCitizen(Borger borger) {
-        managerFacade.deleteCitizen(borger);
-        allCitizens.remove(borger);
+    public void deleteCitizen(Citizen citizen) {
+        managerFacade.deleteCitizen(citizen);
+        allCitizens.remove(citizen);
     }
 
-    public void updateSagsoplysninger(Borger borger) {
-        managerFacade.updateSagsoplysninger(borger);
+    public void updateSagsoplysninger(Citizen citizen) {
+        managerFacade.updateSagsoplysninger(citizen);
     }
 
-    public void setTilstandeOnCitizen(Borger borger) {
-       borger.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(borger));
-       borger.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(borger));
+    public void setTilstandeOnCitizen(Citizen citizen) {
+       citizen.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(citizen));
+       citizen.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(citizen));
     }
 
-    public void getGenerelleOplysninger(Borger borger) {
-        managerFacade.getGenerelleOplysninger(borger);
+    public void getGenerelleOplysninger(Citizen citizen) {
+        managerFacade.getGenerelleOplysninger(citizen);
     }
 
     public void searchCitizen(String query) {

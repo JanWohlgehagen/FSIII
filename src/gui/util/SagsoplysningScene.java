@@ -1,6 +1,6 @@
 package gui.util;
 
-import gui.controller.SagsoplysningController;
+import gui.controller.circle.AssessmentInformationController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -9,13 +9,13 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class SagsoplysningScene implements ISceneLoader<SagsoplysningController> {
+public class SagsoplysningScene implements ISceneLoader<AssessmentInformationController> {
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 
     @Override
     public void loadNewScene(Stage stage) throws IOException {
-        loader = new FXMLLoader(new File("src/gui/view/SagsoplysningsView.fxml").toURI().toURL());
+        loader = new FXMLLoader(new File("src/gui/view/AssessmentInformationView.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("FSIII Sagsoplysninger");
         stage.getIcons().add(image);
@@ -23,7 +23,7 @@ public class SagsoplysningScene implements ISceneLoader<SagsoplysningController>
     }
 
     @Override
-    public SagsoplysningController getController() {
+    public AssessmentInformationController getController() {
         return loader.getController();
     }
 }

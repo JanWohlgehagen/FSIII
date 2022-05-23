@@ -1,6 +1,9 @@
-package gui.controller;
+package gui.controller.circle;
 
 import be.*;
+import gui.controller.DashboardController;
+import gui.controller.RelevantFunctionAssessmentViewController;
+import gui.controller.RelevantHealthAssessmentViewController;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.util.BestillingsScene;
@@ -33,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class SagsoplysningController implements Initializable {
+public class AssessmentInformationController implements Initializable {
 
     @FXML
     private Label lblOverkategoriFunktionstilstand;
@@ -151,7 +154,7 @@ public class SagsoplysningController implements Initializable {
 
     private DashboardController dashboardController;
     private final TooltipBank tooltipBank = new TooltipBank();
-    private Borger borger;
+    private Citizen citizen;
     private CitizenModel citizenModel;
     private HelbredstilstandsUnderkategori oldValueOfHelbredstilstandsUnderkategori;
     private FunktionstilstandsUnderkategori oldValueOfFunktionstilstandsUnderkategori;
@@ -160,7 +163,7 @@ public class SagsoplysningController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            borger = dashboardController.getSelectedCitizen();
+            citizen = dashboardController.getSelectedCitizen();
             setGenerelleOplysningerTooltips();
             setFunktionstilstandsTooltips();
             populateTilstande();
@@ -208,7 +211,7 @@ public class SagsoplysningController implements Initializable {
     public void generelleOplysningerHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
-        updateBorger(borger);
+        updateBorger(citizen);
         closeStage();
     }
 
@@ -216,7 +219,7 @@ public class SagsoplysningController implements Initializable {
         if (dashboardController.getSelectedCase() != null) {
             updateHelbredstilstandsUnderkategori();
             updateFunktionstilstandsUnderkategori();
-            updateBorger(borger);
+            updateBorger(citizen);
             goToNextScene();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
@@ -227,28 +230,28 @@ public class SagsoplysningController implements Initializable {
     public void helbredstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
-        updateBorger(borger);
+        updateBorger(citizen);
         closeStage();
     }
 
     public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
-        updateBorger(borger);
+        updateBorger(citizen);
         goToNextScene();
     }
 
     public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
-        updateBorger(borger);
+        updateBorger(citizen);
         closeStage();
     }
 
     public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
         updateFunktionstilstandsUnderkategori();
         updateHelbredstilstandsUnderkategori();
-        updateBorger(borger);
+        updateBorger(citizen);
         goToNextScene();
     }
 
@@ -256,7 +259,7 @@ public class SagsoplysningController implements Initializable {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
         extractMedicineList(); //TODO
-        updateBorger(borger);
+        updateBorger(citizen);
         closeStage();
     }
 
@@ -264,7 +267,7 @@ public class SagsoplysningController implements Initializable {
         updateHelbredstilstandsUnderkategori();
         updateFunktionstilstandsUnderkategori();
         extractMedicineList(); //TODO
-        updateBorger(borger);
+        updateBorger(citizen);
         goToNextScene();
     }
 
@@ -279,41 +282,41 @@ public class SagsoplysningController implements Initializable {
         ISceneLoader<RelevantFunctionAssessmentViewController> funktionstilstandOverviewScene = new RelevantFunctionAssessmentScene();
         funktionstilstandOverviewScene.loadNewScene(new Stage());
         RelevantFunctionAssessmentViewController relevantFunctionAssessmentViewController = funktionstilstandOverviewScene.getController();
-        relevantFunctionAssessmentViewController.setFunctionAssessment(borger.getFunktionstilstand());
+        relevantFunctionAssessmentViewController.setFunctionAssessment(citizen.getFunktionstilstand());
     }
 
     public void openHOverviewHandle(ActionEvent actionEvent) throws IOException {
         ISceneLoader<RelevantHealthAssessmentViewController> helbredstilstandOverviewScene = new RelevantHealthAssessmentScene();
         helbredstilstandOverviewScene.loadNewScene(new Stage());
         RelevantHealthAssessmentViewController relevantHealthAssessmentViewController = helbredstilstandOverviewScene.getController();
-        relevantHealthAssessmentViewController.setHelbredstilstand(borger.getHelbredstilstand());
+        relevantHealthAssessmentViewController.setHelbredstilstand(citizen.getHelbredstilstand());
     }
 
 
-    private void updateBorger(Borger borger) {
+    private void updateBorger(Citizen citizen) {
         //Update generelle oplysninger on citizen object
-        borger.getGeneralinformation().setMestring(txtAreaMestring.getText());
-        borger.getGeneralinformation().setMotivation(txtAreaMotivaton.getText());
-        borger.getGeneralinformation().setRessourcer(txtAreaRessourcer.getText());
-        borger.getGeneralinformation().setRoller(txtAreaRoller.getText());
-        borger.getGeneralinformation().setVaner(txtAreaVaner.getText());
-        borger.getGeneralinformation().setUddannelse(txtAreaUddOgJob.getText());
-        borger.getGeneralinformation().setLivshistorie(txtAreaLivshistorie.getText());
-        borger.getGeneralinformation().setNetvaerk(txtAreaNetvaerk.getText());
-        borger.getGeneralinformation().setHelbredsoplysninger(txtAreaHelbredsoplysninger.getText());
-        borger.getGeneralinformation().setHjaelpemidler(txtAreaHjaelpemidler.getText());
-        borger.getGeneralinformation().setBoligensIndretning(txtAreaBoligensIndretning.getText());
+        citizen.getGeneralinformation().setMastery(txtAreaMestring.getText());
+        citizen.getGeneralinformation().setMotivation(txtAreaMotivaton.getText());
+        citizen.getGeneralinformation().setResources(txtAreaRessourcer.getText());
+        citizen.getGeneralinformation().setRoles(txtAreaRoller.getText());
+        citizen.getGeneralinformation().setHabits(txtAreaVaner.getText());
+        citizen.getGeneralinformation().setEducation(txtAreaUddOgJob.getText());
+        citizen.getGeneralinformation().setLifeStory(txtAreaLivshistorie.getText());
+        citizen.getGeneralinformation().setNetwork(txtAreaNetvaerk.getText());
+        citizen.getGeneralinformation().setHealthInformation(txtAreaHelbredsoplysninger.getText());
+        citizen.getGeneralinformation().setAssistiveDevices(txtAreaHjaelpemidler.getText());
+        citizen.getGeneralinformation().setHomeDecor(txtAreaBoligensIndretning.getText());
 
-        citizenModel.updateSagsoplysninger(borger);
+        citizenModel.updateSagsoplysninger(citizen);
     }
 
     private void goToNextScene() throws IOException {
-        ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
+        ISceneLoader<OrderViewController> bestillingsScene = new BestillingsScene();
         bestillingsScene.loadNewScene((Stage) tabPaneParent.getScene().getWindow());
-        BestillingsViewController bestillingsViewController = bestillingsScene.getController();
-        bestillingsViewController.setDashboardController(dashboardController);
-        bestillingsViewController.setCaseModel(caseModel);
-        bestillingsViewController.setCurrentCitizen(borger);
+        OrderViewController orderViewController = bestillingsScene.getController();
+        orderViewController.setDashboardController(dashboardController);
+        orderViewController.setCaseModel(caseModel);
+        orderViewController.setCurrentCitizen(citizen);
     }
 
     private void closeStage() {
@@ -358,17 +361,17 @@ public class SagsoplysningController implements Initializable {
     }
 
     private void populateGenerelleOplysninger() {
-        txtAreaMestring.setText(borger.getGeneralinformation().getMestringProperty().get());
-        txtAreaMotivaton.setText(borger.getGeneralinformation().getMotivationProperty().get());
-        txtAreaRessourcer.setText(borger.getGeneralinformation().getRessourcerProperty().get());
-        txtAreaRoller.setText(borger.getGeneralinformation().getRollerProperty().get());
-        txtAreaVaner.setText(borger.getGeneralinformation().getVanerProperty().get());
-        txtAreaUddOgJob.setText(borger.getGeneralinformation().getUddannelseProperty().get());
-        txtAreaLivshistorie.setText(borger.getGeneralinformation().getLivshistorieProperty().get());
-        txtAreaNetvaerk.setText(borger.getGeneralinformation().getNetvaerkProperty().get());
-        txtAreaHelbredsoplysninger.setText(borger.getGeneralinformation().getHelbredsoplysningerProperty().get());
-        txtAreaHjaelpemidler.setText(borger.getGeneralinformation().getHjaelpemidlerProperty().get());
-        txtAreaBoligensIndretning.setText(borger.getGeneralinformation().getBoligensIndretningProperty().get());
+        txtAreaMestring.setText(citizen.getGeneralinformation().getMasteryProperty().get());
+        txtAreaMotivaton.setText(citizen.getGeneralinformation().getMotivationProperty().get());
+        txtAreaRessourcer.setText(citizen.getGeneralinformation().getResourcesProperty().get());
+        txtAreaRoller.setText(citizen.getGeneralinformation().getRolesProperty().get());
+        txtAreaVaner.setText(citizen.getGeneralinformation().getHabitsProperty().get());
+        txtAreaUddOgJob.setText(citizen.getGeneralinformation().getEducationProperty().get());
+        txtAreaLivshistorie.setText(citizen.getGeneralinformation().getLifeStoryProperty().get());
+        txtAreaNetvaerk.setText(citizen.getGeneralinformation().getNetworkProperty().get());
+        txtAreaHelbredsoplysninger.setText(citizen.getGeneralinformation().getHealthInformationProperty().get());
+        txtAreaHjaelpemidler.setText(citizen.getGeneralinformation().getAssistiveDevicesProperty().get());
+        txtAreaBoligensIndretning.setText(citizen.getGeneralinformation().getHomeDecorProperty().get());
     }
 
     private void populateHelbredstilstandsCombobox() {
@@ -403,8 +406,8 @@ public class SagsoplysningController implements Initializable {
     private void populateTilstande() {
         int insertionCounter = 0;
 
-        HealthAssessment healthAssessment = borger.getHelbredstilstand();
-        FunctionAssessment functionAssessment = borger.getFunktionstilstand();
+        HealthAssessment healthAssessment = citizen.getHelbredstilstand();
+        FunctionAssessment functionAssessment = citizen.getFunktionstilstand();
 
         HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandsKort = healthAssessment.getHelbredsTilstandsKort();
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandsKort = functionAssessment.getFunktionsTilstandsKort();

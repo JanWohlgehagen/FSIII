@@ -67,21 +67,21 @@ public interface IManagerFacade {
 
     /** CITIZEN */
 
-    public List<Borger> getAllCitizen();
+    public List<Citizen> getAllCitizen();
 
-    public List<Borger> getAllTemplates();
+    public List<Citizen> getAllTemplates();
 
-    public Borger createCitizen(Borger borger);
+    public Citizen createCitizen(Citizen citizen);
 
-    public void addStudentToCitizen(Borger borger);
+    public void addStudentToCitizen(Citizen citizen);
 
-    public void deleteCitizen(Borger borger);
+    public void deleteCitizen(Citizen citizen);
 
-    public void updateSagsoplysninger(Borger borger);
+    public void updateSagsoplysninger(Citizen citizen);
 
-    public Borger getGenerelleOplysninger(Borger borger);
+    public Citizen getGenerelleOplysninger(Citizen citizen);
 
-    public void createEmptyTilstande(Borger borger);
+    public void createEmptyTilstande(Citizen citizen);
 
 
     //FUNKTIONSTILSTAND
@@ -89,7 +89,7 @@ public interface IManagerFacade {
 
     public FunctionAssessment getTitleFunktionsTilstand();
 
-    public FunctionAssessment getFunktionstilstandOnCitizen(Borger borger);
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen);
 
     //HELBREDSTILSTAND
 
@@ -97,8 +97,8 @@ public interface IManagerFacade {
 
     public HealthAssessment getTitleHelbredsTilstand();
 
-    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen);
 
-    public void updateHelbredstilstand(Borger borger);
+    public void updateHelbredstilstand(Citizen citizen);
 
 }

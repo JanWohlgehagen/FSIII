@@ -1,7 +1,8 @@
-package gui.controller;
+package gui.controller.circle;
 
-import be.Borger;
+import be.Citizen;
 import be.Case;
+import gui.controller.DashboardController;
 import gui.model.CaseModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OpfoelgningController implements Initializable {
+public class FollowUpController implements Initializable {
 
     @FXML
     private GridPane parentPane;
@@ -32,7 +33,7 @@ public class OpfoelgningController implements Initializable {
     private CheckBox checkBoxRevisitationCase;
 
     private Case selectCase;
-    private Borger selectCitizen;
+    private Citizen selectCitizen;
     private DashboardController dashboardController;
     private CaseModel caseModel;
 

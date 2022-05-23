@@ -5,27 +5,27 @@ import javafx.beans.property.StringProperty;
 
 public class Generalinformation {
 
-    private final StringProperty mestring = new SimpleStringProperty();
+    private final StringProperty mastery = new SimpleStringProperty();
     private final StringProperty motivation = new SimpleStringProperty();
-    private final StringProperty ressourcer = new SimpleStringProperty();
-    private final StringProperty roller = new SimpleStringProperty();
-    private final StringProperty vaner = new SimpleStringProperty();
-    private final StringProperty uddannelse = new SimpleStringProperty();
-    private final StringProperty livshistorie = new SimpleStringProperty();
-    private final StringProperty netvaerk = new SimpleStringProperty();
-    private final StringProperty helbredsoplysninger = new SimpleStringProperty();
-    private final StringProperty hjaelpemidler = new SimpleStringProperty();
-    private final StringProperty boligensIndretning = new SimpleStringProperty();
+    private final StringProperty resources = new SimpleStringProperty();
+    private final StringProperty roles = new SimpleStringProperty();
+    private final StringProperty habits = new SimpleStringProperty();
+    private final StringProperty education = new SimpleStringProperty();
+    private final StringProperty lifeStory = new SimpleStringProperty();
+    private final StringProperty network = new SimpleStringProperty();
+    private final StringProperty healthInformation = new SimpleStringProperty();
+    private final StringProperty assistiveDevices = new SimpleStringProperty();
+    private final StringProperty homeDecor = new SimpleStringProperty();
 
     public Generalinformation() {
     }
 
-    public StringProperty getMestringProperty() {
-        return mestring;
+    public StringProperty getMasteryProperty() {
+        return mastery;
     }
 
-    public void setMestring(String mestring) {
-        this.mestring.set(mestring);
+    public void setMastery(String mastery) {
+        this.mastery.set(mastery);
     }
 
     public StringProperty getMotivationProperty() {
@@ -36,73 +36,74 @@ public class Generalinformation {
         this.motivation.set(motivation);
     }
 
-    public StringProperty getRessourcerProperty() {
-        return ressourcer;
+    public StringProperty getResourcesProperty() {
+        return resources;
     }
 
-    public void setRessourcer(String ressourcer) {
-        this.ressourcer.set(ressourcer);
+    public void setResources(String resources) {
+        this.resources.set(resources);
     }
 
-    public StringProperty getRollerProperty() {
-        return roller;
+    public StringProperty getRolesProperty() {
+        return roles;
     }
 
-    public void setRoller(String roller) {
-        this.roller.set(roller);
+    public void setRoles(String roles) {
+        this.roles.set(roles);
     }
 
-    public StringProperty getVanerProperty() {
-        return vaner;
+    public StringProperty getHabitsProperty() {
+        return habits;
     }
 
-    public void setVaner(String vaner) {
-        this.vaner.set(vaner);
+    public void setHabits(String habits) {
+        this.habits.set(habits);
     }
 
-    public StringProperty getUddannelseProperty() {
-        return uddannelse;
+    public StringProperty getEducationProperty() {
+        return education;
     }
 
-    public void setUddannelse(String uddannelse) {
-        this.uddannelse.set(uddannelse);
+    public void setEducation(String education) {
+        this.education.set(education);
     }
 
-    public StringProperty getLivshistorieProperty() {
-        return livshistorie;
+    public StringProperty getLifeStoryProperty() {
+        return lifeStory;
     }
 
-    public void setLivshistorie(String livshistorie) {
-        this.livshistorie.set(livshistorie);
+    public void setLifeStory(String lifeStory) {
+        this.lifeStory.set(lifeStory);
     }
 
-    public StringProperty getNetvaerkProperty() {
-        return netvaerk;
+    public StringProperty getNetworkProperty() {
+        return network;
     }
 
-    public void setNetvaerk(String netvaerk) {
-        this.netvaerk.set(netvaerk);
+    public void setNetwork(String network) {
+        this.network.set(network);
     }
 
-    public StringProperty getHelbredsoplysningerProperty() {
-        return helbredsoplysninger;
+    public StringProperty getHealthInformationProperty() {
+        return healthInformation;
     }
 
-    public void setHelbredsoplysninger(String helbredsoplysninger) {
-        this.helbredsoplysninger.set(helbredsoplysninger);
+    public void setHealthInformation(String healthInformation) {
+        this.healthInformation.set(healthInformation);
     }
-    public StringProperty getHjaelpemidlerProperty() {
-        return hjaelpemidler;
-    }
-    public void setHjaelpemidler(String hjaelpemidler) {
-        this.hjaelpemidler.set(hjaelpemidler);
+    public StringProperty getAssistiveDevicesProperty() {
+        return assistiveDevices;
     }
 
-    public StringProperty getBoligensIndretningProperty() {
-        return boligensIndretning;
+    public void setAssistiveDevices(String assistiveDevices) {
+        this.assistiveDevices.set(assistiveDevices);
     }
 
-    public void setBoligensIndretning(String boligensIndretning) {
-        this.boligensIndretning.set(boligensIndretning);
+    public StringProperty getHomeDecorProperty() {
+        return homeDecor;
+    }
+
+    public void setHomeDecor(String homeDecor) {
+        this.homeDecor.set(homeDecor);
     }
 }

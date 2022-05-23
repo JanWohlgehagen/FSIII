@@ -1,6 +1,7 @@
-package gui.controller;
+package gui.controller.create_edit;
 
-import be.Borger;
+import be.Citizen;
+import gui.controller.DashboardController;
 import gui.model.CitizenModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -58,8 +59,8 @@ public class CreateCitizenViewController implements Initializable {
         String lastName = txtLastName.getText();
         boolean isTemplate = checkButtonTemplate.isSelected();
         int age = Integer.parseInt(txtAge.getText());
-        Borger borger = new Borger(firstName, lastName, isTemplate, age);
-        citizenModel.createCitizen(borger);
+        Citizen citizen = new Citizen(firstName, lastName, isTemplate, age);
+        citizenModel.createCitizen(citizen);
 
         Stage stage = (Stage) parentPaneGridPane.getScene().getWindow();
         stage.close();

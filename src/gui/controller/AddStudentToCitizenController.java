@@ -1,6 +1,6 @@
 package gui.controller;
 
-import be.Borger;
+import be.Citizen;
 import be.WClass;
 import be.User;
 import gui.model.CitizenModel;
@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TilfoejStuderendePaaBorgerController implements Initializable {
+public class AddStudentToCitizenController implements Initializable {
 
     @FXML
     private GridPane parentPane;
@@ -29,14 +29,14 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
     private ListView<User> lvStudents;
 
     private CitizenModel citizenModel;
-    private Borger selectedBorger;
+    private Citizen selectedCitizen;
     private UserModel userModel;
     private DashboardController dashboardController;
 
 
     public void btnAddStudent(ActionEvent actionEvent) {
-        selectedBorger.setStudent(lvStudents.getSelectionModel().getSelectedItem());
-        citizenModel.addStudentToCitizen(selectedBorger);
+        selectedCitizen.setStudent(lvStudents.getSelectionModel().getSelectedItem());
+        citizenModel.addStudentToCitizen(selectedCitizen);
         getStage().close();
     }
 
@@ -47,8 +47,8 @@ public class TilfoejStuderendePaaBorgerController implements Initializable {
 
     }
 
-    public void setBorger(Borger borger) {
-        selectedBorger = borger;
+    public void setBorger(Citizen citizen) {
+        selectedCitizen = citizen;
     }
 
     @Override

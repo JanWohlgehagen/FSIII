@@ -4,7 +4,8 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Borger {
+public class Citizen {
+
     private final IntegerProperty ID = new SimpleIntegerProperty();
     private final IntegerProperty age = new SimpleIntegerProperty();
     private final StringProperty firstName = new SimpleStringProperty();
@@ -17,7 +18,7 @@ public class Borger {
     private Generalinformation generalinformation;
     private User student;
 
-    public Borger(String firstName, String lastName, boolean isTemplate, int age) {
+    public Citizen(String firstName, String lastName, boolean isTemplate, int age) {
         this.firstName.set(firstName);
         this.lastName.set(lastName);
         this.isTemplate.set(isTemplate);

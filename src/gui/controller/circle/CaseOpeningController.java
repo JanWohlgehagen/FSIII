@@ -1,7 +1,9 @@
-package gui.controller;
+package gui.controller.circle;
 
-import be.Borger;
+import be.Citizen;
 import be.Case;
+import gui.controller.create_edit.CreateAndEditCaseController;
+import gui.controller.DashboardController;
 import gui.model.*;
 import gui.util.CreateAndEditCaseScene;
 import gui.util.ISceneLoader;
@@ -55,7 +57,7 @@ public class CaseOpeningController implements Initializable {
     @FXML
     private TextArea borgerMaalTxtArea;
 
-    private Borger borger;
+    private Citizen citizen;
     private CaseModel caseModel;
     private CitizenModel citizenModel;
     private DashboardController dashboardController;
@@ -65,11 +67,11 @@ public class CaseOpeningController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         Platform.runLater(() -> {
-            borger = dashboardController.getSelectedCitizen();
+            citizen = dashboardController.getSelectedCitizen();
 
-            fornavnLbl.setText(borger.getFirstNameProperty().get());
-            efternavnLbl.setText(borger.getLastNameProperty().get());
-            alderLbl.setText(String.valueOf(borger.getAgeProperty().get()));
+            fornavnLbl.setText(citizen.getFirstNameProperty().get());
+            efternavnLbl.setText(citizen.getLastNameProperty().get());
+            alderLbl.setText(String.valueOf(citizen.getAgeProperty().get()));
 
             if (dashboardController.getSelectedCase() != null) {
                 vaelgSagCbx.getSelectionModel().select(dashboardController.getSelectedCase());
@@ -80,9 +82,9 @@ public class CaseOpeningController implements Initializable {
             if (newValue != null) {
                 overkategoriTxtField.setText(newValue.getOverCategoryTitleProperty().get());
                 underkategoriTxtField.setText(newValue.getSubcategoryTitleProperty().get());
-                fornavnLbl.setText(borger.getFirstNameProperty().get());
-                efternavnLbl.setText(borger.getLastNameProperty().get());
-                alderLbl.setText(String.valueOf(borger.getAgeProperty().get()));
+                fornavnLbl.setText(citizen.getFirstNameProperty().get());
+                efternavnLbl.setText(citizen.getLastNameProperty().get());
+                alderLbl.setText(String.valueOf(citizen.getAgeProperty().get()));
                 sagsansvarligLbl.setText(newValue.getCaseResponsibleProperty().get());
                 lblHenvisning.setText(newValue.getReferenceProperty().get());
                 lblOpfolgningsTag.setText(newValue.getFollowUpTagProperty().get());
@@ -136,7 +138,7 @@ public class CaseOpeningController implements Initializable {
 
     public void handleSletSag(ActionEvent actionEvent) {
         if (displayWarning()) {
-            caseModel.deleteCaseOnCitizen(borger.getIDProperty().get(),
+            caseModel.deleteCaseOnCitizen(citizen.getIDProperty().get(),
                     getSelectedCase().getCaseIDProperty().get());
 
             vaelgSagCbx.getItems().clear();
@@ -167,7 +169,7 @@ public class CaseOpeningController implements Initializable {
 
     public void handleMouseOpdateVaelgSagCbox(MouseEvent mouseEvent) {
         vaelgSagCbx.getItems().clear();
-        vaelgSagCbx.getItems().addAll(caseModel.getAllCasesOnCitizen(borger.getIDProperty().get()));
+        vaelgSagCbx.getItems().addAll(caseModel.getAllCasesOnCitizen(citizen.getIDProperty().get()));
     }
 
     public void handleMouseDashboardScene(MouseEvent mouseEvent) {
@@ -179,9 +181,9 @@ public class CaseOpeningController implements Initializable {
         setSelectedCase();
         citizenModel.setTilstandeOnCitizen(dashboardController.getSelectedCitizen());
         citizenModel.getGenerelleOplysninger(dashboardController.getSelectedCitizen());
-        ISceneLoader<SagsoplysningController> sagsoplysningsScene = new SagsoplysningScene();
+        ISceneLoader<AssessmentInformationController> sagsoplysningsScene = new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(getStage());
-        SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
+        AssessmentInformationController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
         sagsoplysningController.setCitizenModel(citizenModel);
         sagsoplysningController.setCaseModel(caseModel);

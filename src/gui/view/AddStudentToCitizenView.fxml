@@ -12,7 +12,7 @@
 
 <GridPane fx:id="parentPane" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css"
           xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="gui.controller.TilfoejStuderendePaaBorgerController">
+          fx:controller="gui.controller.AddStudentToCitizenController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
     </columnConstraints>

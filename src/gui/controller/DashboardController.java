@@ -1,10 +1,12 @@
 package gui.controller;
 
-import be.Borger;
+import be.Citizen;
 import be.Case;
 import be.User;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
+import gui.controller.create_edit.CreateCitizenViewController;
+import gui.controller.circle.*;
 import gui.model.CaseModel;
 import gui.model.CitizenModel;
 import gui.model.UserModel;
@@ -52,13 +54,13 @@ public class DashboardController implements Initializable {
     private TextField txtSearchBarTemplates;
 
     @FXML
-    private ListView<Borger> lvCitizens;
+    private ListView<Citizen> lvCitizens;
     @FXML
-    private ListView<Borger> lvTemplates;
+    private ListView<Citizen> lvTemplates;
     @FXML
     private ListView<User> lvStuderende;
     @FXML
-    private ListView<Borger> lvStuderendesBorgere;
+    private ListView<Citizen> lvStuderendesBorgere;
 
     @FXML
     private TabPane tabpaneDBView;
@@ -82,8 +84,8 @@ public class DashboardController implements Initializable {
     private CaseModel caseModel;
     private CitizenModel citizenModel;
     private Case selectedCase;
-    private Borger selectCitizen;
-    private Borger selectCitizenTemplate;
+    private Citizen selectCitizen;
+    private Citizen selectCitizenTemplate;
     private UserModel userModel;
 
 
@@ -126,7 +128,7 @@ public class DashboardController implements Initializable {
         return selectedCase;
     }
 
-    public Borger getSelectedCitizen() {
+    public Citizen getSelectedCitizen() {
         return selectCitizen;
     }
 
@@ -149,11 +151,11 @@ public class DashboardController implements Initializable {
 
     public void handleButtonOpfølgning(ActionEvent actionEvent) throws IOException {
         if (selectedCase != null) {
-            ISceneLoader<OpfoelgningController> opfoelgningScene = new OpfoelgningScene();
+            ISceneLoader<FollowUpController> opfoelgningScene = new OpfoelgningScene();
             opfoelgningScene.loadNewScene(new Stage());
-            OpfoelgningController opfoelgningController = opfoelgningScene.getController();
-            opfoelgningController.setDashboardController(dashboardController);
-            opfoelgningController.setCaseModel(caseModel);
+            FollowUpController followUpController = opfoelgningScene.getController();
+            followUpController.setDashboardController(dashboardController);
+            followUpController.setCaseModel(caseModel);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
@@ -163,9 +165,9 @@ public class DashboardController implements Initializable {
     public void handleButtonSagsoplysning(ActionEvent actionEvent) throws IOException {
         citizenModel.setTilstandeOnCitizen(selectCitizen);
         citizenModel.getGenerelleOplysninger(selectCitizen);
-        ISceneLoader<SagsoplysningController> sagsoplysningsScene = new SagsoplysningScene();
+        ISceneLoader<AssessmentInformationController> sagsoplysningsScene = new SagsoplysningScene();
         sagsoplysningsScene.loadNewScene(new Stage());
-        SagsoplysningController sagsoplysningController = sagsoplysningsScene.getController();
+        AssessmentInformationController sagsoplysningController = sagsoplysningsScene.getController();
         sagsoplysningController.setDashboardController(dashboardController);
         sagsoplysningController.setCitizenModel(citizenModel);
         sagsoplysningController.setCaseModel(caseModel);
@@ -173,12 +175,12 @@ public class DashboardController implements Initializable {
 
     public void handleButtonBestilling(ActionEvent actionEvent) throws IOException {
         if (selectedCase != null) {
-            ISceneLoader<BestillingsViewController> bestillingsScene = new BestillingsScene();
+            ISceneLoader<OrderViewController> bestillingsScene = new BestillingsScene();
             bestillingsScene.loadNewScene(new Stage());
-            BestillingsViewController bestillingsViewController = bestillingsScene.getController();
-            bestillingsViewController.setDashboardController(dashboardController);
-            bestillingsViewController.setCaseModel(caseModel);
-            bestillingsViewController.setCurrentCitizen(selectCitizen);
+            OrderViewController orderViewController = bestillingsScene.getController();
+            orderViewController.setDashboardController(dashboardController);
+            orderViewController.setCaseModel(caseModel);
+            orderViewController.setCurrentCitizen(selectCitizen);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
@@ -187,10 +189,10 @@ public class DashboardController implements Initializable {
 
     public void handleButtonPlanlaegning(ActionEvent actionEvent) throws IOException {
         if (selectedCase != null) {
-            ISceneLoader<PlanlaegningController> planlaegningScene = new PlanlaegningScene();
+            ISceneLoader<PlanningController> planlaegningScene = new PlanlaegningScene();
             planlaegningScene.loadNewScene(new Stage());
-            PlanlaegningController planlaegningController = planlaegningScene.getController();
-            planlaegningController.setDashboardController(dashboardController);
+            PlanningController planningController = planlaegningScene.getController();
+            planningController.setDashboardController(dashboardController);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
             alert.show();
@@ -199,11 +201,11 @@ public class DashboardController implements Initializable {
 
 
     public void handleButtonLevering(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<UdfoerelseIOgLeveringController> caseDocumentationScene = new CaseDocumentationScene();
+        ISceneLoader<ExecutionAndDeliveryController> caseDocumentationScene = new CaseDocumentationScene();
         caseDocumentationScene.loadNewScene(new Stage());
-        UdfoerelseIOgLeveringController udfoerelseIOgLeveringController = caseDocumentationScene.getController();
-        udfoerelseIOgLeveringController.setDashboardController(dashboardController);
-        udfoerelseIOgLeveringController.setCitizenModel(citizenModel);
+        ExecutionAndDeliveryController executionAndDeliveryController = caseDocumentationScene.getController();
+        executionAndDeliveryController.setDashboardController(dashboardController);
+        executionAndDeliveryController.setCitizenModel(citizenModel);
     }
 
     public void handleBtnNewCitizenTemplate(ActionEvent actionEvent) throws IOException {
@@ -263,7 +265,7 @@ public class DashboardController implements Initializable {
                     btnNewCitizen.setVisible(false);
                     btnDeleteCitizen.setVisible(false);
 
-                    for (Borger b : citizenModel.getAllCitizen()) {
+                    for (Citizen b : citizenModel.getAllCitizen()) {
                         if (b.getStudent() != null && b.getStudent().getIdProperty().get() == loginUser.getIdProperty().get()) {
                             lvCitizens.getItems().add(b);
                         }
@@ -291,11 +293,11 @@ public class DashboardController implements Initializable {
     }
 
     public void btnConnectStudent(ActionEvent actionEvent) throws IOException {
-        ISceneLoader<TilfoejStuderendePaaBorgerController> tilfoejStuderendePaaBorgerControllerSceneLoader = new TilfoejStuderendeScene();
+        ISceneLoader<AddStudentToCitizenController> tilfoejStuderendePaaBorgerControllerSceneLoader = new TilfoejStuderendeScene();
         tilfoejStuderendePaaBorgerControllerSceneLoader.loadNewScene(new Stage());
-        TilfoejStuderendePaaBorgerController tilfoejStuderendePaaBorgerController = tilfoejStuderendePaaBorgerControllerSceneLoader.getController();
-        tilfoejStuderendePaaBorgerController.setBorger(selectCitizen);
-        tilfoejStuderendePaaBorgerController.setModelsAndControllers(citizenModel, userModel, this);
+        AddStudentToCitizenController addStudentToCitizenController = tilfoejStuderendePaaBorgerControllerSceneLoader.getController();
+        addStudentToCitizenController.setBorger(selectCitizen);
+        addStudentToCitizenController.setModelsAndControllers(citizenModel, userModel, this);
     }
 
     public void btnDeleteCitizen(ActionEvent actionEvent) {
@@ -346,7 +348,7 @@ public class DashboardController implements Initializable {
             if (newValue != null) {
                 selectedCase = null;
                 lvStuderendesBorgere.getItems().clear();
-                for (Borger b : citizenModel.getAllCitizen()) {
+                for (Citizen b : citizenModel.getAllCitizen()) {
                     if (b.getStudent() != null && b.getStudent().getIdProperty().get() == newValue.getIdProperty().get()) {
                         lvStuderendesBorgere.getItems().add(b);
                     }

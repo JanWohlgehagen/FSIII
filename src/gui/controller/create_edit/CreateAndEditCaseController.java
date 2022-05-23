@@ -1,6 +1,7 @@
-package gui.controller;
+package gui.controller.create_edit;
 
 import be.*;
+import gui.controller.DashboardController;
 import gui.model.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -46,7 +47,7 @@ public class CreateAndEditCaseController implements Initializable {
     private boolean editCaseMode;
 
     private CaseModel caseModel;
-    private Borger borger;
+    private Citizen citizen;
 
     private Case editThisCase;
     private DashboardController dashboardController;
@@ -58,7 +59,7 @@ public class CreateAndEditCaseController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         Platform.runLater(() -> {
-            borger = dashboardController.getSelectedCitizen();
+            citizen = dashboardController.getSelectedCitizen();
             functionAssessmentTitle = caseModel.getTitleFunktionsTilstand();
             healthAssessmentTitle = caseModel.getTitleHelbredsTilstand();
 
@@ -138,7 +139,7 @@ public class CreateAndEditCaseController implements Initializable {
 
     public void handleGem(ActionEvent actionEvent) {
         if (newCaseMode) {
-            Case newCase = new Case(borger.getIDProperty().get(), overkategoriCbx.getSelectionModel().getSelectedItem(), underkategoriCbx.getSelectionModel().getSelectedItem());
+            Case newCase = new Case(citizen.getIDProperty().get(), overkategoriCbx.getSelectionModel().getSelectedItem(), underkategoriCbx.getSelectionModel().getSelectedItem());
             newCase.setIsGranted(false);
             newCase.setReference(comboboxCaseReference.getSelectionModel().getSelectedItem());
             newCase.setCaseResponsible(lblSagsansvarlig.getText());
@@ -168,7 +169,7 @@ public class CreateAndEditCaseController implements Initializable {
             editThisCase.setCauseCondition(aarsagstilstandTxtArea.getText());
             editThisCase.setCitizenWishes(borgerMaalTxtArea.getText());
 
-            caseModel.updateCaseOnCitizen(borger.getIDProperty().get(), editThisCase);
+            caseModel.updateCaseOnCitizen(citizen.getIDProperty().get(), editThisCase);
             closeStage();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -1,4 +1,4 @@
-package gui.controller;
+package gui.controller.create_edit;
 
 import be.User;
 import gui.model.UserModel;

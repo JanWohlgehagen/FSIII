@@ -14,13 +14,13 @@ public class DBHealthAssessmentDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void createEmptyHelbredstilstandOnCitizen(Borger borger) {
+    public void createEmptyHelbredstilstandOnCitizen(Citizen citizen) {
         String sql = "INSERT INTO [H_Tilstandsvurdering] (HS_Borger_ID, HS_UK_ID) VALUES (?,?)";
         try (Connection connection = dbConnecting.getConnection()) {
-            for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
-                for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
+            for (String key : citizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
+                for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : citizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, borger.getIDProperty().get());
+                    preparedStatement.setInt(1, citizen.getIDProperty().get());
                     preparedStatement.setInt(2, helbredstilstandsUnderkategori.getId().get());
 
                     preparedStatement.execute();
@@ -32,14 +32,14 @@ public class DBHealthAssessmentDAO {
         }
     }
 
-    public void updateHelbredstilstand(Borger borger) {
+    public void updateHelbredstilstand(Citizen citizen) {
         String sql = "UPDATE [H_Tilstandsvurdering] SET HS_Borger_ID = (?), HS_UK_ID = (?), Tilstand = (?), Vurdering = (?), Aarsag = (?), Faglig_Notat = (?), Forventet_Tilstand = (?), Observation = (?), ObservationTime = (?) " +
                 "WHERE HS_Borger_ID = (?) AND HS_UK_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
-            for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
-                for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
+            for (String key : citizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
+                for (HelbredstilstandsUnderkategori helbredstilstandsUnderkategori : citizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, borger.getIDProperty().get());
+                    preparedStatement.setInt(1, citizen.getIDProperty().get());
                     preparedStatement.setInt(2, helbredstilstandsUnderkategori.getId().get());
                     preparedStatement.setString(3, helbredstilstandsUnderkategori.getTilstandProperty().get());
                     preparedStatement.setString(4, helbredstilstandsUnderkategori.getVurderingProperty().get());
@@ -49,7 +49,7 @@ public class DBHealthAssessmentDAO {
                     preparedStatement.setString(8, helbredstilstandsUnderkategori.getObservation().getDescriptionProperty().get());
                     preparedStatement.setTimestamp(9, helbredstilstandsUnderkategori.getObservation().getTime());
 
-                    preparedStatement.setInt(10, borger.getIDProperty().get());
+                    preparedStatement.setInt(10, citizen.getIDProperty().get());
                     preparedStatement.setInt(11, helbredstilstandsUnderkategori.getId().get());
                     preparedStatement.execute();
 
@@ -60,11 +60,11 @@ public class DBHealthAssessmentDAO {
         }
     }
 
-    public void deleteHelbredstilstand(Borger borger) {
+    public void deleteHelbredstilstand(Citizen citizen) {
         String sql = "DELETE FROM [H_Tilstandsvurdering] WHERE HS_Borger_ID = (?)";
         try (Connection connection = dbConnecting.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
+            preparedStatement.setInt(1, citizen.getIDProperty().get());
 
             preparedStatement.execute();
         } catch (SQLException throwables) {
@@ -73,7 +73,7 @@ public class DBHealthAssessmentDAO {
     }
 
 
-    public HealthAssessment getHelbredstilstandOnCitizen(Borger borger) {
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen) {
         HealthAssessment healthAssessment = new HealthAssessment();
 
         HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandeHP = new HashMap<>();
@@ -85,7 +85,7 @@ public class DBHealthAssessmentDAO {
                     "FULL JOIN [HS_Overkategori] ON HS_Underkategori.HS_OK_ID = HS_Overkategori.HS_Overkategori_ID " +
                     "WHERE HS_Borger_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, borger.getIDProperty().get());
+            preparedStatement.setInt(1, citizen.getIDProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
