@@ -50,13 +50,13 @@ public class UdfoerelseIOgLeveringController implements Initializable {
             if (selectedCitizen.getObservationer().isEmpty()) {
                 for (String key : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
                     for (FunktionstilstandsUnderkategori fuk : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
-                        if (fuk.getObservation().getTidspunkt() != null && fuk.getObservation().getDescriptionProperty().get() != null) {
+                        if (fuk.getObservation().getDescriptionProperty().get() != null) {
                             selectedCitizen.getObservationer().add(fuk.getObservation());
                         }
                     }
                 for (String key : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet())
                     for (HelbredstilstandsUnderkategori huk : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
-                        if (huk.getObservation().getTidspunkt() != null && huk.getObservation().getDescriptionProperty().get() != null) {
+                        if (huk.getObservation().getDescriptionProperty().get() != null) {
                             selectedCitizen.getObservationer().add(huk.getObservation());
                         }
                     }

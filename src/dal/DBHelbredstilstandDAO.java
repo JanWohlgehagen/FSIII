@@ -32,7 +32,7 @@ public class DBHelbredstilstandDAO {
                 for (HelbredstilstandsUnderkategori huk : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
                     preparedStatementDelete.setInt(1, huk.getId().get());
                     preparedStatementInsert.setInt(1, huk.getId().get());
-                    for (int i = 1; i<6; i++)
+                    for (int i = 1; i<7; i++)
                     {
                         switch (i){
                             case(1)->{
@@ -253,13 +253,13 @@ public class DBHelbredstilstandDAO {
     public List<String> getHelbredstilstandList() {
         List<String> helbredstilstandList = new ArrayList<>();
         try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [HS_Overkategori]";
+            String sql = "SELECT * FROM [HC_Category]";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String overkategori = rs.getString("HS_Overkategori_Titel");
+                String overkategori = rs.getString("HC_C_Title");
                 helbredstilstandList.add(overkategori);
             }
         } catch (SQLException throwables) {

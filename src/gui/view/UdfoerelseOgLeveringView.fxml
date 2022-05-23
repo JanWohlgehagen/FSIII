@@ -15,94 +15,81 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="parentPane" alignment="CENTER" prefWidth="800.0" styleClass="ParentPane"
-          xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="gui.controller.UdfoerelseIOgLeveringController">
+<GridPane fx:id="parentPane" alignment="CENTER" prefWidth="800.0" styleClass="ParentPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.UdfoerelseIOgLeveringController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="300.0" prefWidth="300.0"/>
-        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="300.0" prefWidth="300.0" />
+        <ColumnConstraints hgrow="SOMETIMES" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints/>
-        <RowConstraints vgrow="ALWAYS"/>
-        <RowConstraints valignment="CENTER" vgrow="SOMETIMES"/>
+        <RowConstraints />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
         <ListView fx:id="ListViewObservations" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647">
             <GridPane.margin>
-                <Insets right="-7.0" top="32.0"/>
+                <Insets right="-7.0" top="32.0" />
             </GridPane.margin>
         </ListView>
         <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
             <children>
                 <Label text="Dokumentation">
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                 </Label>
-                <TextArea fx:id="txtAreaDok" editable="false" onMouseReleased="#handleMouseReleasedDokumentationArea"
-                          VBox.vgrow="ALWAYS">
+                <TextArea fx:id="txtAreaDok" editable="false" onMouseReleased="#handleMouseReleasedDokumentationArea" wrapText="true" VBox.vgrow="ALWAYS">
                     <VBox.margin>
-                        <Insets bottom="-5.0"/>
+                        <Insets bottom="-5.0" />
                     </VBox.margin>
                 </TextArea>
             </children>
             <padding>
-                <Insets left="15.0"/>
+                <Insets left="15.0" />
             </padding>
         </VBox>
-        <HBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-              GridPane.rowIndex="2" GridPane.valignment="CENTER">
+        <HBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
             <children>
-                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity"
-                      onMouseReleased="#handleMouseSaveAndClose" prefWidth="136.0" styleClass="saveBox"
-                      stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseSaveAndClose" prefWidth="136.0" styleClass="saveBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
                     <children>
-                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0"
-                               text="Gem &amp; Luk" wrapText="true"/>
-                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0"
-                                prefWidth="75.0" styleClass="saveButton">
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Luk" wrapText="true" />
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="saveButton">
                             <HBox.margin>
-                                <Insets/>
+                                <Insets />
                             </HBox.margin>
                         </Button>
                     </children>
                     <padding>
-                        <Insets left="5.0" right="5.0"/>
+                        <Insets left="5.0" right="5.0" />
                     </padding>
                 </HBox>
-                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity"
-                      onMouseReleased="#handleMouseSaveAndNextScene" prefWidth="136.0" styleClass="nextBox"
-                      stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="136.0" minHeight="-Infinity" onMouseReleased="#handleMouseSaveAndNextScene" prefWidth="136.0" styleClass="nextBox" stylesheets="@../resources/css/SaveAndNextAndCloseButtons.css">
                     <children>
-                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0"
-                               text="Gem &amp; Næste" wrapText="true"/>
-                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0"
-                                prefWidth="75.0" styleClass="nextButton">
+                        <Label alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="50.0" prefWidth="68.0" text="Gem &amp; Næste" wrapText="true" />
+                        <Button disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" styleClass="nextButton">
                             <HBox.margin>
-                                <Insets/>
+                                <Insets />
                             </HBox.margin>
                         </Button>
                     </children>
                     <padding>
-                        <Insets left="5.0" right="5.0"/>
+                        <Insets left="5.0" right="5.0" />
                     </padding>
                 </HBox>
             </children>
             <padding>
-                <Insets top="15.0"/>
+                <Insets top="15.0" />
             </padding>
             <GridPane.margin>
-                <Insets left="15.0"/>
+                <Insets left="15.0" />
             </GridPane.margin>
         </HBox>
-        <Label styleClass="labelTitle" text="Udførelse/ Levering" GridPane.columnSpan="2147483647"
-               GridPane.valignment="TOP">
+        <Label styleClass="labelTitle" text="Udførelse/ Levering" GridPane.columnSpan="2147483647" GridPane.valignment="TOP">
             <GridPane.margin>
-                <Insets/>
+                <Insets />
             </GridPane.margin>
             <padding>
-                <Insets bottom="5.0"/>
+                <Insets bottom="5.0" />
             </padding>
         </Label>
         <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
@@ -111,102 +98,70 @@
                     <children>
                         <GridPane alignment="TOP_RIGHT" minHeight="160.0" minWidth="160.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES"/>
+                                <ColumnConstraints hgrow="SOMETIMES" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints vgrow="SOMETIMES"/>
+                                <RowConstraints vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <StackPane styleClass="stackPane">
                                     <children>
-                                        <Circle fill="DODGERBLUE" radius="62.5" stroke="BLACK" strokeMiterLimit="1.0"
-                                                strokeType="INSIDE" styleClass="BackgroundCircle"/>
-                                        <Circle fill="DODGERBLUE" layoutX="430.0" layoutY="410.0" radius="46.75"
-                                                stroke="BLACK" strokeType="INSIDE" styleClass="arrowCircle"/>
-                                        <Button fx:id="btnSagsaabning" alignment="CENTER" disable="true"
-                                                maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                                minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75"
-                                                prefWidth="28.75" styleClass="topButton1" text="1"
-                                                textAlignment="CENTER" translateX="-26.25" translateY="-35.0"
-                                                wrapText="true">
+                                        <Circle fill="DODGERBLUE" radius="62.5" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" styleClass="BackgroundCircle" />
+                                        <Circle fill="DODGERBLUE" layoutX="430.0" layoutY="410.0" radius="46.75" stroke="BLACK" strokeType="INSIDE" styleClass="arrowCircle" />
+                                        <Button fx:id="btnSagsaabning" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton1" text="1" textAlignment="CENTER" translateX="-26.25" translateY="-35.0" wrapText="true">
                                             <font>
-                                                <Font name="Cambria Bold" size="96.0"/>
+                                                <Font name="Cambria Bold" size="96.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnSagsOplysning" alignment="CENTER" disable="true"
-                                                layoutX="365.0" layoutY="345.0" maxHeight="-Infinity"
-                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
-                                                styleClass="topButton2" text="2" textAlignment="CENTER"
-                                                translateX="13.75" translateY="-41.25" wrapText="true">
+                                        <Button fx:id="btnSagsOplysning" alignment="CENTER" disable="true" layoutX="365.0" layoutY="345.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton2" text="2" textAlignment="CENTER" translateX="13.75" translateY="-41.25" wrapText="true">
                                             <font>
-                                                <Font name="Cambria Bold" size="16.0"/>
+                                                <Font name="Cambria Bold" size="16.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnAfgorelseBestilling" alignment="CENTER" disable="true"
-                                                layoutX="373.0" layoutY="353.0" maxHeight="-Infinity"
-                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
-                                                styleClass="topButton3" text="3" textAlignment="CENTER"
-                                                translateX="41.25" translateY="-16.25" wrapText="true">
+                                        <Button fx:id="btnAfgorelseBestilling" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="topButton3" text="3" textAlignment="CENTER" translateX="41.25" translateY="-16.25" wrapText="true">
                                             <font>
-                                                <Font name="Cambria Bold" size="16.0"/>
+                                                <Font name="Cambria Bold" size="16.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true"
-                                                layoutX="373.0" layoutY="353.0" maxHeight="-Infinity"
-                                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                                                mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75"
-                                                styleClass="bottomButton4" text="4" textAlignment="CENTER"
-                                                translateX="31.25" translateY="30.0" wrapText="true">
+                                        <Button fx:id="btnPlanlaegning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton4" text="4" textAlignment="CENTER" translateX="31.25" translateY="30.0" wrapText="true">
                                             <font>
-                                                <Font name="Cambria Bold" size="16.0"/>
+                                                <Font name="Cambria Bold" size="16.0" />
                                             </font>
                                             <opaqueInsets>
-                                                <Insets/>
+                                                <Insets />
                                             </opaqueInsets>
                                             <StackPane.margin>
-                                                <Insets/>
+                                                <Insets />
                                             </StackPane.margin>
                                         </Button>
-                                        <Button fx:id="btnUdorelseLevering" alignment="CENTER" layoutX="373.0"
-                                                layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                                                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-                                                prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton5" text="5"
-                                                textAlignment="CENTER" translateX="-13.75" translateY="41.25"
-                                                wrapText="true">
+                                        <Button fx:id="btnUdorelseLevering" alignment="CENTER" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="bottomButton5" text="5" textAlignment="CENTER" translateX="-13.75" translateY="41.25" wrapText="true">
                                             <font>
-                                                <Font name="Cambria Bold" size="16.0"/>
+                                                <Font name="Cambria Bold" size="16.0" />
                                             </font>
                                             <opaqueInsets>
-                                                <Insets/>
+                                                <Insets />
                                             </opaqueInsets>
                                         </Button>
-                                        <Button fx:id="btnOpfolgning" alignment="CENTER" disable="true" layoutX="373.0"
-                                                layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                                                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-                                                prefHeight="28.75" prefWidth="28.75" styleClass="middleButton" text="6"
-                                                textAlignment="CENTER" translateX="-43.75" wrapText="true"/>
-                                        <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-12.5"/>
-                                        <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel"
-                                               text="LEVERANDØR" translateY="12.5"/>
+                                        <Button fx:id="btnOpfolgning" alignment="CENTER" disable="true" layoutX="373.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.75" prefWidth="28.75" styleClass="middleButton" text="6" textAlignment="CENTER" translateX="-43.75" wrapText="true" />
+                                        <Label styleClass="staticLabel" text="MYNDIGHED" translateY="-12.5" />
+                                        <Label layoutX="372.0" layoutY="398.0" styleClass="staticLabel" text="LEVERANDØR" translateY="12.5" />
                                     </children>
                                 </StackPane>
                             </children>
                         </GridPane>
                     </children>
                     <VBox.margin>
-                        <Insets bottom="-20.0"/>
+                        <Insets bottom="-20.0" />
                     </VBox.margin>
                 </HBox>
             </children>
         </VBox>
     </children>
     <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
     </padding>
     <stylesheets>
-        <URL value="@../resources/css/CommonTheme.css"/>
-        <URL value="@../resources/css/UdfoelseOgLeveringView.css"/>
+        <URL value="@../resources/css/CommonTheme.css" />
+        <URL value="@../resources/css/UdfoelseOgLeveringView.css" />
     </stylesheets>
 </GridPane>

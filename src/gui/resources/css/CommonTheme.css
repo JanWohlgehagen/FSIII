@@ -61,14 +61,9 @@
 .button:hover,
 .button:armed,
 .button:focused {
-    -fx-border-width: 2;
     -fx-background-color: rgba(185, 105, 144, 1);
     -fx-text-fill: black;
     -fx-border-color: black;
-    -fx-scale-x: 1.2;
-    -fx-scale-y: 1.2;
-    -fx-scale-z: 1.2;
-    -fx-border-insets: -1 -1 -2 -1;
 }
 
 .scroll-pane,

@@ -232,10 +232,15 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void helbredstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-        updateBorger(borger);
-        goToNextScene();
+        if (dashboardController.getSelectedCase() != null) {
+            updateHelbredstilstandsUnderkategori();
+            updateFunktionstilstandsUnderkategori();
+            updateBorger(borger);
+            goToNextScene();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void funktionstilstandHandleSaveAndExitBtn(MouseEvent mouseEvent) {
@@ -246,10 +251,15 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void funktionstilstandHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        updateFunktionstilstandsUnderkategori();
-        updateHelbredstilstandsUnderkategori();
-        updateBorger(borger);
-        goToNextScene();
+        if (dashboardController.getSelectedCase() != null) {
+            updateHelbredstilstandsUnderkategori();
+            updateFunktionstilstandsUnderkategori();
+            updateBorger(borger);
+            goToNextScene();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void medicinlisteHandleSaveAndExitBtn(MouseEvent mouseEvent) {
@@ -261,11 +271,15 @@ public class SagsoplysningController implements Initializable {
     }
 
     public void medicinlisteHandleSaveAndNextBtn(MouseEvent mouseEvent) throws IOException {
-        updateHelbredstilstandsUnderkategori();
-        updateFunktionstilstandsUnderkategori();
-        extractMedicineList(); //TODO
-        updateBorger(borger);
-        goToNextScene();
+        if (dashboardController.getSelectedCase() != null) {
+            updateHelbredstilstandsUnderkategori();
+            updateFunktionstilstandsUnderkategori();
+            updateBorger(borger);
+            goToNextScene();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void handleAddTxtFieldMedicineList(ActionEvent actionEvent) {
@@ -524,8 +538,6 @@ public class SagsoplysningController implements Initializable {
 
             Observation observation = new Observation();
             observation.setDescription(txtAreaObservationFunktionstilstand1.getText());
-            //observation.setTidspunkt(LocalDateTime.now());
-            observation.setTidspunkt(Timestamp.valueOf(LocalDateTime.now()));
 
             oldValueOfFunktionstilstandsUnderkategori.setObservation(observation);
         }
@@ -541,8 +553,6 @@ public class SagsoplysningController implements Initializable {
 
             Observation observation = new Observation();
             observation.setDescription(txtAreaObservationHelbredstilstand1.getText());
-            //observation.setTidspunkt(LocalDateTime.now());
-            observation.setTidspunkt(Timestamp.valueOf(LocalDateTime.now()));
 
             oldValueOfHelbredstilstandsUnderkategori.setObservation(observation);
         }

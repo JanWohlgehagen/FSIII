@@ -90,7 +90,7 @@ public interface IDatabaseFacade {
     public void getTilstandeOnCitizen(Borger borger);
 
     public void updateFunktiontilstand(Borger borger);
-    
+
 
     public void updateHelbredstilstand(Borger borger);
 

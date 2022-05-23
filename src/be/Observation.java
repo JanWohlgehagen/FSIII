@@ -7,7 +7,6 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 
 public class Observation {
-    private ObjectProperty<Timestamp> tidspunkt = new SimpleObjectProperty<>();
     private StringProperty description = new SimpleStringProperty();
     private StringProperty titel = new SimpleStringProperty();
 
@@ -19,14 +18,6 @@ public class Observation {
         this.description.set(description);
     }
 
-    public Timestamp getTidspunkt() {
-        return tidspunkt.get();
-    }
-
-    public void setTidspunkt(Timestamp tidspunkt) {
-        this.tidspunkt.set(tidspunkt);
-    }
-
     public StringProperty getTitelProperty() {
         return titel;
     }
@@ -35,12 +26,8 @@ public class Observation {
         this.titel.set(titel);
     }
 
-    private String formattingOfTidspunkt() {
-        return new SimpleDateFormat("dd-MM-yyyy  HH:mm").format(tidspunkt.get());
-    }
-
     @Override
     public String toString() {
-        return formattingOfTidspunkt() + " : " + titel.get();
+        return titel.get();
     }
 }
