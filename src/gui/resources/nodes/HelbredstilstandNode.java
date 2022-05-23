@@ -78,9 +78,14 @@ public class HelbredstilstandNode extends VBox {
         gridpaneTekstfelter.add(lbFagligNotat, 0, 4);
         gridpaneTekstfelter.add(createTextArea(huk.getFagligNotatProperty().get()), 0, 5);
 
+        //Fjerde række
+        Label lbObservation = new Label("Observation");
+        gridpaneTekstfelter.add(lbObservation,0,6);
+        gridpaneTekstfelter.add(createTextArea(huk.getObservation().getDescriptionProperty().get()),0,7);
+
         //Separator
         Separator separator = new Separator();
-        separator.setPadding(new Insets(5, 0, 0, 0));
+        separator.setPadding(new Insets(12, 0, 0, 0));
         vBoxUK.getChildren().add(gridpaneUK_Tilstand_ForventetTilstand);
         vBoxUK.getChildren().add(gridpaneTekstfelter);
         vBoxUK.getChildren().add(separator);

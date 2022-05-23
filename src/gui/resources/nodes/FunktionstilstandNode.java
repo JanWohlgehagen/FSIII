@@ -101,11 +101,8 @@ public class FunktionstilstandNode extends VBox {
         Label lbObservation = new Label("Observation");
         gridPaneTekstfelter.add(lbObservation, 0, 6);
 
-        //TODO
-        TextArea txtObservation = new TextArea();
-        txtObservation.setWrapText(true);
-        txtObservation.setMaxHeight(100);
-        gridPaneTekstfelter.add(txtObservation, 0, 7);
+
+        gridPaneTekstfelter.add(createTextArea(fuk.getObservation().getDescriptionProperty().get()), 0, 7);
 
         //Seperator
         Separator separator = new Separator();
