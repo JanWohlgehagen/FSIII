@@ -1,6 +1,8 @@
 package bll;
 
 import be.Case;
+import be.FunctionAssessment;
+import be.HealthAssessment;
 import dal.interfaces.IDatabaseFacade;
 
 import java.util.List;
@@ -31,5 +33,13 @@ public class CaseManager {
 
     public void deleteCaseOnCitizen(int citizenID, int caseID) {
         databaseFacade.deleteCaseOnCitizen(citizenID, caseID);
+    }
+
+    public HealthAssessment getHealthAssessmentTitle(){
+        return databaseFacade.getEmptyHelbredsTilstand();
+    }
+
+    public FunctionAssessment getFunctionAssessmentTitle(){
+        return databaseFacade.getEmptyFunktionsTilstand();
     }
 }

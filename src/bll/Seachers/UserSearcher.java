@@ -1,6 +1,6 @@
 package bll.Seachers;
 
-import be.user.User;
+import be.User;
 
 import java.util.ArrayList;
 import java.util.List;

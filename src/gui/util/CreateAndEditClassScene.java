@@ -1,6 +1,6 @@
 package gui.util;
 
-import gui.controller.CreateAndEditClassController;
+import gui.controller.create_edit.CreateAndEditClassController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

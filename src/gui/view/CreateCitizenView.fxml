@@ -13,7 +13,7 @@
 
 <GridPane fx:id="parentPaneGridPane" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css"
           xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="gui.controller.CreateCitizenViewController">
+          fx:controller="gui.controller.create_edit.CreateCitizenViewController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="0.0" prefWidth="400.0"/>
     </columnConstraints>

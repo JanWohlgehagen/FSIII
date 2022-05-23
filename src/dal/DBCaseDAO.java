@@ -41,17 +41,17 @@ public class DBCaseDAO {
 
                 Case aCase = new Case(citizenid, overkategoriTitle, underkategoriTitle);
                 aCase.setCaseID(id);
-                aCase.setCaseDescription(description);
-                aCase.setHenvisning(henvisning);
-                aCase.setAasagsfritekst(aasagsfritekst);
-                aCase.setAasagsdiagnose(aasagsdiagnose);
-                aCase.setAasagstilstand(aasagstilstand);
-                aCase.setBorgerensonsker(borgerensonsker);
-                aCase.setSagsansvarlig(sagsansvarlig);
-                aCase.isBevilgetProperty().set(bevilling);
-                aCase.getBevillingstekstProperty().set(bevillings_Tekst);
+                aCase.setDescription(description);
+                aCase.setReference(henvisning);
+                aCase.setCause(aasagsfritekst);
+                aCase.setCauseDiagnosis(aasagsdiagnose);
+                aCase.setCauseCondition(aasagstilstand);
+                aCase.setCitizenWishes(borgerensonsker);
+                aCase.setCaseResponsible(sagsansvarlig);
+                aCase.isGrantedProperty().set(bevilling);
+                aCase.getGrantedTextProperty().set(bevillings_Tekst);
                 aCase.getPlanProperty().set(plan);
-                aCase.getOpfoelgningstagProperty().set(opfoelgnings_Tag);
+                aCase.getFollowUpTagProperty().set(opfoelgnings_Tag);
                 allCases.add(aCase);
             }
 
@@ -92,19 +92,19 @@ public class DBCaseDAO {
                     "SagsAnsvarlig = (?)" +
                     " WHERE Borger_ID = (?) AND Case_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, selectCase.getOverkategoriTitleProperty().get());
-            preparedStatement.setString(2, selectCase.getUnderkategoriTitleProperty().get());
-            preparedStatement.setString(3, selectCase.getHenvisningProperty().get());
-            preparedStatement.setString(4, selectCase.getAasagsdiagnoseProperty().get());
-            preparedStatement.setString(5, selectCase.getAasagsfritekstProperty().get());
-            preparedStatement.setString(6, selectCase.getAasagstilstandProperty().get());
-            preparedStatement.setString(7, selectCase.getBorgerensonskerProperty().get());
-            preparedStatement.setString(8, selectCase.getCaseDescriptionProperty().get());
-            preparedStatement.setBoolean(9, selectCase.isBevilgetProperty().get());
-            preparedStatement.setString(10, selectCase.getBevillingstekstProperty().get());
+            preparedStatement.setString(1, selectCase.getOverCategoryTitleProperty().get());
+            preparedStatement.setString(2, selectCase.getSubcategoryTitleProperty().get());
+            preparedStatement.setString(3, selectCase.getReferenceProperty().get());
+            preparedStatement.setString(4, selectCase.getCauseDiagnosisProperty().get());
+            preparedStatement.setString(5, selectCase.getCauseProperty().get());
+            preparedStatement.setString(6, selectCase.getCauseConditionProperty().get());
+            preparedStatement.setString(7, selectCase.getCitizenWishesProperty().get());
+            preparedStatement.setString(8, selectCase.getDescriptionProperty().get());
+            preparedStatement.setBoolean(9, selectCase.isGrantedProperty().get());
+            preparedStatement.setString(10, selectCase.getGrantedTextProperty().get());
             preparedStatement.setString(11, selectCase.getPlanProperty().get());
-            preparedStatement.setString(12, selectCase.getOpfoelgningstagProperty().get());
-            preparedStatement.setString(13, selectCase.getSagsansvarligProperty().get());
+            preparedStatement.setString(12, selectCase.getFollowUpTagProperty().get());
+            preparedStatement.setString(13, selectCase.getCaseResponsibleProperty().get());
             preparedStatement.setInt(14, citizenID);
             preparedStatement.setInt(15, selectCase.getCaseIDProperty().get());
 
@@ -134,19 +134,19 @@ public class DBCaseDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setInt(1, newCase.getCitizenIDProperty().get());
-            preparedStatement.setString(2, newCase.getOverkategoriTitleProperty().get());
-            preparedStatement.setString(3, newCase.getUnderkategoriTitleProperty().get());
-            preparedStatement.setString(4, newCase.getHenvisningProperty().get());
-            preparedStatement.setString(5, newCase.getAasagsdiagnoseProperty().get());
-            preparedStatement.setString(6, newCase.getAasagsfritekstProperty().get());
-            preparedStatement.setString(7, newCase.getAasagstilstandProperty().get());
-            preparedStatement.setString(8, newCase.getBorgerensonskerProperty().get());
-            preparedStatement.setString(9, newCase.getCaseDescriptionProperty().get());
-            preparedStatement.setBoolean(10, newCase.isBevilgetProperty().get());
-            preparedStatement.setString(11, newCase.getBevillingstekstProperty().get());
+            preparedStatement.setString(2, newCase.getOverCategoryTitleProperty().get());
+            preparedStatement.setString(3, newCase.getSubcategoryTitleProperty().get());
+            preparedStatement.setString(4, newCase.getReferenceProperty().get());
+            preparedStatement.setString(5, newCase.getCauseDiagnosisProperty().get());
+            preparedStatement.setString(6, newCase.getCauseProperty().get());
+            preparedStatement.setString(7, newCase.getCauseConditionProperty().get());
+            preparedStatement.setString(8, newCase.getCitizenWishesProperty().get());
+            preparedStatement.setString(9, newCase.getDescriptionProperty().get());
+            preparedStatement.setBoolean(10, newCase.isGrantedProperty().get());
+            preparedStatement.setString(11, newCase.getGrantedTextProperty().get());
             preparedStatement.setString(12, newCase.getPlanProperty().get());
-            preparedStatement.setString(13, newCase.getOpfoelgningstagProperty().get());
-            preparedStatement.setString(14, newCase.getSagsansvarligProperty().get());
+            preparedStatement.setString(13, newCase.getFollowUpTagProperty().get());
+            preparedStatement.setString(14, newCase.getCaseResponsibleProperty().get());
 
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();

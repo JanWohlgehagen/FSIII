@@ -1,7 +1,6 @@
 package dal;
 
-import be.Borger;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+import be.Citizen;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
@@ -15,7 +14,7 @@ public class DBGenerelInformationDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void updateGenerelleOplysninger(Borger borger) {
+    public void updateGenerelleOplysninger(Citizen citizen) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sqlDelete = "DELETE FROM GI_Assessment WHERE [FK_GI_ID] = (?) AND [Citizen_ID] = (?);";
             String sqlInsert = "INSERT INTO GI_Assessment (Citizen_ID, FK_GI_ID, Description)VALUES ((?), (?), (?));";
@@ -23,8 +22,8 @@ public class DBGenerelInformationDAO {
             PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
 
             //Set the ID for the citizen in both preparedstatements, this is not dynamic and is therefore exempt from the loop
-            preparedStatementDelete.setInt(2, borger.getIDProperty().get());
-            preparedStatementInsert.setInt(1, borger.getIDProperty().get());
+            preparedStatementDelete.setInt(2, citizen.getIDProperty().get());
+            preparedStatementInsert.setInt(1, citizen.getIDProperty().get());
 
             for (int i = 1; i < 12; i++) {
 
@@ -34,8 +33,8 @@ public class DBGenerelInformationDAO {
                 //If the property is not null, the row in DB is deleted, and if string is not blank or empty a new row is created as wel
                 switch (i) {
                     case (1) -> {
-                        if (borger.getMestringProperty().get() != null) {
-                            String tempString = borger.getMestringProperty().get();
+                        if (citizen.getGeneralinformation().getMasteryProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getMasteryProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -43,8 +42,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (2) -> {
-                        if (borger.getMotivationProperty().get() != null) {
-                            String tempString = borger.getMotivationProperty().get();
+                        if (citizen.getGeneralinformation().getMotivationProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getMotivationProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -52,8 +51,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (3) -> {
-                        if (borger.getRessourcerProperty().get() != null) {
-                            String tempString = borger.getRessourcerProperty().get();
+                        if (citizen.getGeneralinformation().getResourcesProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getResourcesProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -61,8 +60,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (4) -> {
-                        if (borger.getRollerProperty().get() != null) {
-                            String tempString = borger.getRollerProperty().get();
+                        if (citizen.getGeneralinformation().getRolesProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getRolesProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -70,8 +69,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (5) -> {
-                        if (borger.getVanerProperty().get() != null) {
-                            String tempString = borger.getVanerProperty().get();
+                        if (citizen.getGeneralinformation().getHabitsProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getHabitsProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -79,8 +78,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (6) -> {
-                        if (borger.getUddannelseProperty().get() != null) {
-                            String tempString = borger.getUddannelseProperty().get();
+                        if (citizen.getGeneralinformation().getEducationProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getEducationProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -88,8 +87,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (7) -> {
-                        if (borger.getLivshistorieProperty().get() != null) {
-                            String tempString = borger.getLivshistorieProperty().get();
+                        if (citizen.getGeneralinformation().getLifeStoryProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getLifeStoryProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -97,8 +96,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (8) -> {
-                        if (borger.getNetvaerkProperty().get() != null) {
-                            String tempString = borger.getNetvaerkProperty().get();
+                        if (citizen.getGeneralinformation().getNetworkProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getNetworkProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -106,8 +105,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (9) -> {
-                        if (borger.getHjaelpemidlerProperty().get() != null) {
-                            String tempString = borger.getHjaelpemidlerProperty().get();
+                        if (citizen.getGeneralinformation().getAssistiveDevicesProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getAssistiveDevicesProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -115,8 +114,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (10) -> {
-                        if (borger.getHelbredsoplysningerProperty().get() != null) {
-                            String tempString = borger.getHelbredsoplysningerProperty().get();
+                        if (citizen.getGeneralinformation().getHealthInformationProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getHealthInformationProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -124,8 +123,8 @@ public class DBGenerelInformationDAO {
                         }
                     }
                     case (11) -> {
-                        if (borger.getBoligensIndretningProperty().get() != null) {
-                            String tempString = borger.getBoligensIndretningProperty().get();
+                        if (citizen.getGeneralinformation().getHomeDecorProperty().get() != null) {
+                            String tempString = citizen.getGeneralinformation().getHomeDecorProperty().get();
                             preparedStatementInsert.setString(3, tempString);
                             preparedStatementDelete.execute();
                             if (!tempString.isBlank() || !tempString.isEmpty())
@@ -143,30 +142,30 @@ public class DBGenerelInformationDAO {
     }
 
 
-    public Borger getGenerelleOplysninger(Borger borger) {
+    public Citizen getGenerelleOplysninger(Citizen citizen) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT [Description], [FK_GI_ID] FROM GI_Assessment WHERE [Citizen_ID] = (?);";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, borger.getIDProperty().get());
+            preparedStatement.setInt(1, citizen.getIDProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 switch (resultSet.getInt("FK_GI_ID")) {
-                    case (1) -> borger.setMestring(resultSet.getString("Description"));
-                    case (2) -> borger.setMotivation(resultSet.getString("Description"));
-                    case (3) -> borger.setRessourcer(resultSet.getString("Description"));
-                    case (4) -> borger.setRoller(resultSet.getString("Description"));
-                    case (5) -> borger.setVaner(resultSet.getString("Description"));
-                    case (6) -> borger.setUddannelse(resultSet.getString("Description"));
-                    case (7) -> borger.setLivshistorie(resultSet.getString("Description"));
-                    case (8) -> borger.setNetvaerk(resultSet.getString("Description"));
-                    case (9) -> borger.setHjaelpemidler(resultSet.getString("Description"));
-                    case (10) -> borger.setHelbredsoplysninger(resultSet.getString("Description"));
-                    case (11) -> borger.setBoligensIndretning(resultSet.getString("Description"));
+                    case (1) -> citizen.getGeneralinformation().setMastery(resultSet.getString("Description"));
+                    case (2) -> citizen.getGeneralinformation().setMotivation(resultSet.getString("Description"));
+                    case (3) -> citizen.getGeneralinformation().setResources(resultSet.getString("Description"));
+                    case (4) -> citizen.getGeneralinformation().setRoles(resultSet.getString("Description"));
+                    case (5) -> citizen.getGeneralinformation().setHabits(resultSet.getString("Description"));
+                    case (6) -> citizen.getGeneralinformation().setEducation(resultSet.getString("Description"));
+                    case (7) -> citizen.getGeneralinformation().setLifeStory(resultSet.getString("Description"));
+                    case (8) -> citizen.getGeneralinformation().setNetwork(resultSet.getString("Description"));
+                    case (9) -> citizen.getGeneralinformation().setAssistiveDevices(resultSet.getString("Description"));
+                    case (10) -> citizen.getGeneralinformation().setHealthInformation(resultSet.getString("Description"));
+                    case (11) -> citizen.getGeneralinformation().setHomeDecor(resultSet.getString("Description"));
                 }
             }
-            return borger;
+            return citizen;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

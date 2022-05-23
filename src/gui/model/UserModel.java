@@ -2,8 +2,7 @@ package gui.model;
 
 import be.Credential;
 import be.WClass;
-import be.user.User;
-import be.user.UserType;
+import be.User;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 import bll.Seachers.UserSearcher;
@@ -23,7 +22,6 @@ public class UserModel {
     private List<User> allStudentCache = new ArrayList<>();
     private List<User> allTeacherCache = new ArrayList<>();
     private ObservableList<User> allTeacher = FXCollections.observableArrayList();
-    private ObservableList<User> allAdmin = FXCollections.observableArrayList();
     private ObservableList<WClass> allClass = FXCollections.observableArrayList();
     private ObservableList<User> studentInClass = FXCollections.observableArrayList();
     private ObservableList<User> teacherInClass = FXCollections.observableArrayList();
@@ -36,8 +34,8 @@ public class UserModel {
         userSearcher = new UserSearcher();
     }
 
-    public List<User> allUsers() {
-        return managerFacade.getAllUser();
+    public User checkCredential(String userName, String password) {
+        return managerFacade.loginCredential(userName, password);
     }
 
     public ObservableList<User> getStudentInClass() {
@@ -73,13 +71,6 @@ public class UserModel {
         }
         allTeacherCache.addAll(allTeacher);
         return allTeacher;
-    }
-
-    public ObservableList<User> getAllAdmin() {
-        if (allAdmin.isEmpty()) {
-            allAdmin.addAll(managerFacade.getAllAdmin());
-        }
-        return allAdmin;
     }
 
     public void studentInClass(WClass wClass) {
@@ -130,9 +121,9 @@ public class UserModel {
     }
 
     public void newUser(User newUser) {
-        if (newUser.getUserType().equals(UserType.STUDENT)) {
+        if (newUser.getUserType().equals(User.UserType.STUDENT)) {
             allStudent.add(managerFacade.newUser(newUser));
-        } else if (newUser.getUserType().equals(UserType.TEACHER)) {
+        } else if (newUser.getUserType().equals(User.UserType.TEACHER)) {
             allTeacher.add(managerFacade.newUser(newUser));
         }
     }
@@ -146,9 +137,9 @@ public class UserModel {
     }
 
     public void removeUser(User user) {
-        if (user.getUserType().equals(UserType.STUDENT)) {
+        if (user.getUserType().equals(User.UserType.STUDENT)) {
             allStudent.remove(user);
-        } else if (user.getUserType().equals(UserType.TEACHER)) {
+        } else if (user.getUserType().equals(User.UserType.TEACHER)) {
             allTeacher.remove(user);
         }
         managerFacade.deleteUser(user);

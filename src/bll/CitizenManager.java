@@ -1,6 +1,8 @@
 package bll;
 
-import be.Borger;
+import be.Citizen;
+import be.FunctionAssessment;
+import be.HealthAssessment;
 import dal.DatabaseFacade;
 import dal.interfaces.IDatabaseFacade;
 
@@ -13,45 +15,72 @@ public class CitizenManager {
         this.databaseFacade = databaseFacade;
     }
 
-    public List<Borger> getAllCitizen() {
-        List<Borger> listOfCitizens = databaseFacade.getAllCitizens();
-        for (Borger borger : listOfCitizens) {
-            if (borger.getStudentIDProperty().get() != 0) {
-                borger.setStudent(databaseFacade.getUserById(borger.getStudentIDProperty().get()));
+    public List<Citizen> getAllCitizen() {
+        List<Citizen> listOfCitizens = databaseFacade.getAllCitizens();
+        for (Citizen citizen : listOfCitizens) {
+            if (citizen.getStudentID() != 0) {
+                citizen.setStudent(databaseFacade.getUserById(citizen.getStudentID()));
             }
         }
         return listOfCitizens;
     }
 
-    public List<Borger> getAllTemplates() {
+    public List<Citizen> getAllTemplates() {
         return databaseFacade.getAllTemplates();
     }
 
-    public Borger createCitizen(Borger borger) {
-        return databaseFacade.createCitizen(borger);
+    public Citizen createCitizen(Citizen citizen) {
+        return databaseFacade.createCitizen(citizen);
     }
 
-    public void updateCitizen(Borger borger) {
-        databaseFacade.updateCitizen(borger);
+    public void updateCitizen(Citizen citizen) {
+        databaseFacade.updateCitizen(citizen);
     }
 
-    public void addStudentToCitizen(Borger borger) {
-        databaseFacade.addStudentToCitizen(borger);
+    public void addStudentToCitizen(Citizen citizen) {
+        databaseFacade.addStudentToCitizen(citizen);
     }
 
-    public void deleteCitizen(Borger borger) {
-        databaseFacade.deleteCitizen(borger);
+    public void deleteCitizen(Citizen citizen) {
+        databaseFacade.deleteCitizen(citizen);
     }
 
-    public void updateGenerelleOplysninger(Borger borger) {
-        databaseFacade.updateGenerelleOplysninger(borger);
+
+
+    public Citizen getGenerelleOplysninger(Citizen citizen) {
+        return databaseFacade.getGenerelleOplysninger(citizen);
     }
 
-    public Borger getGenerelleOplysninger(Borger borger) {
-        return databaseFacade.getGenerelleOplysninger(borger);
+    public void updateGenerelleOplysninger(Citizen citizen) {
+        databaseFacade.updateGenerelleOplysninger(citizen);
     }
 
-    public void getTilstande(Borger borger) {
-        databaseFacade.getTilstandeOnCitizen(borger);
+    public void updateHelbredstilstand(Citizen citizen) {
+        databaseFacade.updateHelbredstilstand(citizen);
+    }
+
+    public void updateFunktionstilstand(Citizen citizen) {
+        databaseFacade.updateFunktiontilstand(citizen);
+    }
+
+    public void createEmptyTilstande(Citizen citizen) {
+        databaseFacade.createEmptyHelbredstilstand(citizen);
+        databaseFacade.createEmptyFunktionstilstand(citizen);
+    }
+
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen){
+        return databaseFacade.getHelbredstilstandOnCitizen(citizen);
+    }
+
+    public HealthAssessment getEmptyHelbredsTilstand(){
+        return databaseFacade.getEmptyHelbredsTilstand();
+    }
+
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen){
+        return databaseFacade.getFunktionstilstandOnCitizen(citizen);
+    }
+
+    public FunctionAssessment getEmptyFunktionsTilstand(){
+        return databaseFacade.getEmptyFunktionsTilstand();
     }
 }

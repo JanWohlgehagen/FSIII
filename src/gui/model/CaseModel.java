@@ -1,6 +1,8 @@
 package gui.model;
 
 import be.Case;
+import be.FunctionAssessment;
+import be.HealthAssessment;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 
@@ -18,10 +20,6 @@ public class CaseModel {
         return managerFacade.getAllCasesOnCitizen(id);
     }
 
-    public Case getCaseOnCitizen(int citizenID, int caseID) {
-        return managerFacade.getCaseOnCitizen(citizenID, caseID);
-    }
-
     public void updateCaseOnCitizen(int citizenID, Case selectCase) {
         managerFacade.updateCaseOnCitizen(citizenID, selectCase);
     }
@@ -34,5 +32,11 @@ public class CaseModel {
         return managerFacade.createCaseOnCitizen(newCase);
     }
 
+    public HealthAssessment getTitleHelbredsTilstand(){
+        return managerFacade.getTitleHelbredsTilstand();
+    }
 
+    public FunctionAssessment getTitleFunktionsTilstand(){
+        return managerFacade.getTitleFunktionsTilstand();
+    }
 }

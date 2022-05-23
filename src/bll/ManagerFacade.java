@@ -1,7 +1,7 @@
 package bll;
 
 import be.*;
-import be.user.User;
+import be.User;
 import bll.Interfaces.IManagerFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseFacade;
@@ -15,21 +15,12 @@ public class ManagerFacade implements IManagerFacade {
     private final CaseManager caseManager;
     private final CitizenManager citizenManager;
     private final UserManager userManager;
-    private final FunktionstilstandManager funktionstilstandManager;
-    private final FunktionstilstandsUnderkategoriManager funktionstilstandsUnderkategoriManager;
-    private final HelbredstilstandManager helbredstilstandManager;
-    private final HelbredstilstandsUnderkategoriManager helbredstilstandsUnderkategoriManager;
 
     public ManagerFacade(DatabaseFacade databaseFacade) throws IOException {
         credentialManager = new CredentialManager(databaseFacade);
         caseManager = new CaseManager(databaseFacade);
         citizenManager = new CitizenManager(databaseFacade);
         userManager = new UserManager(databaseFacade);
-        funktionstilstandManager = new FunktionstilstandManager(databaseFacade);
-        funktionstilstandsUnderkategoriManager = new FunktionstilstandsUnderkategoriManager(databaseFacade);
-        helbredstilstandManager = new HelbredstilstandManager(databaseFacade);
-        helbredstilstandsUnderkategoriManager = new HelbredstilstandsUnderkategoriManager(databaseFacade);
-
     }
 
     /***************************************************/
@@ -176,94 +167,84 @@ public class ManagerFacade implements IManagerFacade {
     /***************************************************/
 
     @Override
-    public List<Borger> getAllCitizen() {
+    public List<Citizen> getAllCitizen() {
         return citizenManager.getAllCitizen();
     }
 
     @Override
-    public List<Borger> getAllTemplates() {
+    public List<Citizen> getAllTemplates() {
         return citizenManager.getAllTemplates();
     }
 
     @Override
-    public Borger createCitizen(Borger borger) {
-        return citizenManager.createCitizen(borger);
+    public Citizen createCitizen(Citizen citizen) {
+        return citizenManager.createCitizen(citizen);
     }
 
     @Override
-    public void updateCitizen(Borger borger) {
-        citizenManager.updateCitizen(borger);
+    public void addStudentToCitizen(Citizen citizen) {
+        citizenManager.addStudentToCitizen(citizen);
     }
 
     @Override
-    public void addStudentToCitizen(Borger borger) {
-        citizenManager.addStudentToCitizen(borger);
+    public void deleteCitizen(Citizen citizen) {
+        citizenManager.deleteCitizen(citizen);
     }
 
     @Override
-    public void deleteCitizen(Borger borger) {
-        citizenManager.deleteCitizen(borger);
+    public void updateSagsoplysninger(Citizen citizen) {
+        citizenManager.updateGenerelleOplysninger(citizen);
+        citizenManager.updateCitizen(citizen);
+        citizenManager.updateFunktionstilstand(citizen);
+        citizenManager.updateHelbredstilstand(citizen);
     }
 
     @Override
-    public void updateSagsoplysninger(Borger borger) {
-        citizenManager.updateGenerelleOplysninger(borger);
-        citizenManager.updateCitizen(borger);
-        helbredstilstandManager.updateHelbredstilstand(borger);
-        funktionstilstandManager.updateFunktionstilstand(borger);
-    }
-
-    @Override
-    public Borger getGenerelleOplysninger(Borger borger) {
-        return citizenManager.getGenerelleOplysninger(borger);
+    public Citizen getGenerelleOplysninger(Citizen citizen) {
+        return citizenManager.getGenerelleOplysninger(citizen);
     }
 
     /***************************************************/
     /******************* Tilstande *********************/
     /***************************************************/
 
-
-
-    public List<String> getFunktionstilstandsList() {
-        return funktionstilstandManager.getFunktionstilstandsList();
+    @Override
+    public void createEmptyTilstande(Citizen citizen) {
+        citizenManager.createEmptyTilstande(citizen);
     }
 
     @Override
-    public List<String> getFunktionstilstandsUnderkategoriList() {
-        return funktionstilstandsUnderkategoriManager.getFunktionstilstandsUnderkategoriList();
+    public FunctionAssessment getEmptyFunktionsTilstand() {
+        return citizenManager.getEmptyFunktionsTilstand();
     }
 
     @Override
-    public Funktionstilstand getEmptyFunktionsTilstand() {
-        return funktionstilstandsUnderkategoriManager.getFunktionsTilstandUnderkategorier();
+    public FunctionAssessment getTitleFunktionsTilstand() {
+        return caseManager.getFunctionAssessmentTitle();
     }
 
     @Override
-    public Helbredstilstand getEmptyHelbredsTilstand() {
-        return helbredstilstandManager.getEmptyHelbredstilstand();
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen) {
+        return citizenManager.getFunktionstilstandOnCitizen(citizen);
     }
 
     @Override
-    public void updateHelbredstilstand(Borger borger) {
-        helbredstilstandManager.updateHelbredstilstand(borger);
-    }
-
-
-
-    @Override
-    public List<String> getHelbredstilstandsList() {
-        return helbredstilstandManager.getHelbredstilstandsList();
+    public HealthAssessment getEmptyHelbredsTilstand() {
+        return citizenManager.getEmptyHelbredsTilstand();
     }
 
     @Override
-    public List<String> getHelbredstilstandsUnderkategoriList() {
-        return helbredstilstandsUnderkategoriManager.getHelbredstilstandsUnderkategoriList();
+    public HealthAssessment getTitleHelbredsTilstand() {
+        return caseManager.getHealthAssessmentTitle();
     }
 
     @Override
-    public void getTilstande(Borger borger) {
-        citizenManager.getTilstande(borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen) {
+        return citizenManager.getHelbredstilstandOnCitizen(citizen);
     }
 
-
+    @Override
+    public void updateHelbredstilstand(Citizen citizen) {
+        citizenManager.updateHelbredstilstand(citizen);
+    }
 }

@@ -1,8 +1,7 @@
 package dal;
 
 import be.Credential;
-import be.user.User;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+import be.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,10 +30,9 @@ public class DBUserDAO extends DBLoginDAO {
                 String lastName = resultSet.getString("LastName");
                 String role = resultSet.getString("Role");
                 String loginName = resultSet.getString("UserName");
-                String password = resultSet.getString("Password");
 
                 User user = new User(firstName, lastName);
-                user.setCredential(new Credential(user.getIdProperty().get(), loginName, password));
+                user.setCredential(new Credential(user.getIdProperty().get(), loginName));
                 user.setUserType(role);
                 user.setId(id);
                 return user;
@@ -61,10 +59,9 @@ public class DBUserDAO extends DBLoginDAO {
                 String lastName = resultSet.getString("LastName");
                 String role = resultSet.getString("Role");
                 String loginName = resultSet.getString("UserName");
-                String password = resultSet.getString("Password");
 
                 User user = new User(firstName, lastName);
-                user.setCredential(new Credential(user.getIdProperty().get(), loginName, password));
+                user.setCredential(new Credential(user.getIdProperty().get(), loginName));
                 user.setUserType(role);
                 user.setId(id);
                 allUsers.add(user);
@@ -83,7 +80,7 @@ public class DBUserDAO extends DBLoginDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, newUser.getFirstNameProperty().get());
             preparedStatement.setString(2, newUser.getLastNameProperty().get());
-            preparedStatement.setString(3, newUser.getUserTypeProperty().get());
+            preparedStatement.setString(3, newUser.getUserTypeStringProperty().get());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

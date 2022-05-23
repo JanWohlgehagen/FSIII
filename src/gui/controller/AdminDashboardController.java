@@ -1,10 +1,12 @@
 package gui.controller;
 
 import be.*;
-import be.user.User;
+import be.User;
 import bll.ManagerFacade;
 import dal.DatabaseFacade;
-import gui.model.CitizenModel;
+import gui.controller.create_edit.CreateAndEditClassController;
+import gui.controller.create_edit.CreateTeacherAndStudentController;
+import gui.controller.create_edit.EditTeacherAndStudentController;
 import gui.model.UserModel;
 import gui.util.CreateAndEditClassScene;
 import gui.util.CreateTeacherAndStudentScene;
@@ -96,27 +98,27 @@ public class AdminDashboardController implements Initializable {
         tvAllStudent.setItems(userModel.getAllStudent());
         btnInfoStudent.setTooltip(getTooltipForAddUserToClass());
         tcAllStudentName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
-        tcAllStudentRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
+        tcAllStudentRolle.setCellValueFactory(param -> param.getValue().getUserTypeStringProperty());
 
         tvStudentInClass.setItems(userModel.getStudentInClass());
         tcStudentInClassName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
-        tcStudentInClassRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
+        tcStudentInClassRolle.setCellValueFactory(param -> param.getValue().getUserTypeStringProperty());
 
         tvAllTeacher.setItems(userModel.getAllTeacher());
         btnInfoTeacher.setTooltip(getTooltipForAddUserToClass());
         tcAllTeacherName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
-        tcAllTeacherRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
+        tcAllTeacherRolle.setCellValueFactory(param -> param.getValue().getUserTypeStringProperty());
 
         tvTeacherInClass.setItems(userModel.getTeacherInClass());
         tcTeacherInClassName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
-        tcTeacherInClassRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
+        tcTeacherInClassRolle.setCellValueFactory(param -> param.getValue().getUserTypeStringProperty());
 
         tvClass.setItems(userModel.getAllClass());
         tcClassName.setCellValueFactory(param -> param.getValue().getNameProperty());
 
         tvUserInClass.setItems(userModel.getTeacherAndStudentInClass());
         tcUserName.setCellValueFactory(param -> param.getValue().getFullNameProperty());
-        tcUserRolle.setCellValueFactory(param -> param.getValue().getUserTypeProperty());
+        tcUserRolle.setCellValueFactory(param -> param.getValue().getUserTypeStringProperty());
 
         comboBoxStudentClass.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {

@@ -1,7 +1,7 @@
 package bll.Interfaces;
 
 import be.*;
-import be.user.User;
+import be.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
@@ -67,40 +67,38 @@ public interface IManagerFacade {
 
     /** CITIZEN */
 
-    public List<Borger> getAllCitizen();
+    public List<Citizen> getAllCitizen();
 
-    public List<Borger> getAllTemplates();
+    public List<Citizen> getAllTemplates();
 
-    public Borger createCitizen(Borger borger);
+    public Citizen createCitizen(Citizen citizen);
 
-    public void updateCitizen(Borger borger);
+    public void addStudentToCitizen(Citizen citizen);
 
-    public void addStudentToCitizen(Borger borger);
+    public void deleteCitizen(Citizen citizen);
 
-    public void deleteCitizen(Borger borger);
+    public void updateSagsoplysninger(Citizen citizen);
 
-    public void updateSagsoplysninger(Borger borger);
+    public Citizen getGenerelleOplysninger(Citizen citizen);
 
-    public Borger getGenerelleOplysninger(Borger borger);
+    public void createEmptyTilstande(Citizen citizen);
 
 
-    /** FUNKTIONSTILSTAND */
+    //FUNKTIONSTILSTAND
+    public FunctionAssessment getEmptyFunktionsTilstand();
 
-    public List<String> getFunktionstilstandsList();
+    public FunctionAssessment getTitleFunktionsTilstand();
 
-    public List<String> getFunktionstilstandsUnderkategoriList();
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen);
 
-    public Funktionstilstand getEmptyFunktionsTilstand();
+    //HELBREDSTILSTAND
 
-    /** HELBREDSTILSTAND */
+    public HealthAssessment getEmptyHelbredsTilstand();
 
-    public Helbredstilstand getEmptyHelbredsTilstand();
+    public HealthAssessment getTitleHelbredsTilstand();
 
-    public void updateHelbredstilstand(Borger borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen);
 
-    public List<String> getHelbredstilstandsList();
+    public void updateHelbredstilstand(Citizen citizen);
 
-    public List<String> getHelbredstilstandsUnderkategoriList();
-
-    public void getTilstande(Borger borger);
 }

@@ -1,6 +1,6 @@
 package gui.util;
 
-import gui.controller.CreateCitizenViewController;
+import gui.controller.create_edit.CreateCitizenViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

@@ -1,7 +1,7 @@
 package dal.interfaces;
 
 import be.*;
-import be.user.User;
+import be.User;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.util.List;
@@ -27,7 +27,9 @@ public interface IDatabaseFacade {
 
     void createNewLoginUser(Credential credential);
 
-    void editLoginUser(Credential credential);
+    void updateLoginName(Credential credential);
+
+    void updatePassword(Credential credential);
 
     /** CLASS */
 
@@ -63,44 +65,39 @@ public interface IDatabaseFacade {
 
     public Case createCaseOnCitizen(Case newCase);
 
-    public List<String> getFunktionstilstand();
+    //Citizen DAL Functions
 
-    public List<String> getFunktionstilstandsUnderkategori();
+    public Citizen createCitizen(Citizen citizen);
 
-    /** Citizen DAL Functions */
+    public List<Citizen> getAllCitizens();
 
-    public Borger createCitizen(Borger borger);
+    public List<Citizen> getAllTemplates();
 
-    public List<Borger> getAllCitizens();
+    public void updateCitizen(Citizen citizen);
 
-    public List<Borger> getAllTemplates();
+    public void addStudentToCitizen(Citizen citizen);
 
-    public void updateCitizen(Borger borger);
+    public void deleteCitizen(Citizen citizen);
 
-    public void addStudentToCitizen(Borger borger);
+    public void updateGenerelleOplysninger(Citizen citizen);
 
-    public void deleteCitizen(Borger borger);
-
-    public void updateGenerelleOplysninger(Borger borger);
-
-    public Borger getGenerelleOplysninger(Borger borger);
+    public Citizen getGenerelleOplysninger(Citizen citizen);
 
     /** Tilstande Functions */
 
-    public void getTilstandeOnCitizen(Borger borger);
 
     public void updateFunktiontilstand(Borger borger);
 
+    public FunctionAssessment getEmptyFunktionsTilstand();
 
-    public void updateHelbredstilstand(Borger borger);
+    public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen);
 
+    public void createEmptyHelbredstilstand(Citizen citizen);
 
-    public Funktionstilstand getEmptyFunktionsTilstand();
+    public void updateHelbredstilstand(Citizen citizen);
 
-    public Helbredstilstand getEmptyHelbredsTilstand();
+    public HealthAssessment getEmptyHelbredsTilstand();
 
-    public List<String> getHelbredstilstand();
-
-    public List<String> getHelbredstilstandsUnderkategori();
+    public void deleteHelbredstilstandOnCitizen(Citizen citizen);
 
 }
