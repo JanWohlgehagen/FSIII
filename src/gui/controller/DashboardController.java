@@ -376,16 +376,6 @@ public class DashboardController implements Initializable {
     }
 
     public void btnCitizenToTemplate(ActionEvent actionEvent) {
-
-        if (selectCitizen.getHelbredstilstand() == null && selectCitizen.getFunktionstilstand() == null)
-        {
-            citizenModel.getTilstande(selectCitizen);
-        }
-        Borger citizenToTemplate = new Borger(selectCitizen.getFirstNameProperty().get(), selectCitizen.getLastNameProperty().get(), true, selectCitizen.getAgeProperty().get());
-        citizenToTemplate.setHelbredstilstand(selectCitizen.getHelbredstilstand());
-        citizenToTemplate.setFunktionstilstand(selectCitizen.getFunktionstilstand());
-        citizenToTemplate.setListOfCases(selectCitizen.getListOfCases());
-        citizenToTemplate.setObservationer(selectCitizen.getObservationer());
-        citizenModel.createTemplateFromCitizen(citizenToTemplate);
+        citizenModel.createTemplateFromCitizen(selectCitizen);
     }
 }

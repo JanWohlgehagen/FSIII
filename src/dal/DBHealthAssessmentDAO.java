@@ -14,7 +14,7 @@ public class DBHealthAssessmentDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void updateHelbredstilstand(Borger borger) {
+    public void updateHealthAssessment(Citizen citizen) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sqlDelete = "DELETE FROM HC_Assessment WHERE HC_SC_ID = (?) AND HC_A_ID = (?) AND Citizen_ID = (?);";
             String sqlInsert = "INSERT INTO HC_Assessment (HC_SC_ID, HC_A_ID, Citizen_ID, [Description]) VALUES ((?),(?),(?),(?));";
@@ -22,13 +22,13 @@ public class DBHealthAssessmentDAO {
             PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
             PreparedStatement preparedStatementDelete = connection.prepareStatement(sqlDelete);
 
-            preparedStatementDelete.setInt(3, borger.getIDProperty().get());
-            preparedStatementInsert.setInt(3, borger.getIDProperty().get());
+            preparedStatementDelete.setInt(3, citizen.getIDProperty().get());
+            preparedStatementInsert.setInt(3, citizen.getIDProperty().get());
 
             String tempString = "";
 
-            for (String key : borger.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
-                for (HelbredstilstandsUnderkategori huk : borger.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
+            for (String key : citizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
+                for (HelbredstilstandsUnderkategori huk : citizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
                     preparedStatementDelete.setInt(1, huk.getId().get());
                     preparedStatementInsert.setInt(1, huk.getId().get());
                     for (int i = 1; i<7; i++)
@@ -43,7 +43,7 @@ public class DBHealthAssessmentDAO {
                                     if(!tempString.isEmpty() || !tempString.isBlank())
                                     {
                                         preparedStatementInsert.setInt(2,i);
-                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setInt(3,citizen.getIDProperty().get());
                                         preparedStatementInsert.setString(4,tempString);
                                         preparedStatementInsert.execute();
                                     }
@@ -59,7 +59,7 @@ public class DBHealthAssessmentDAO {
                                     if(!tempString.isEmpty() || !tempString.isBlank())
                                     {
                                         preparedStatementInsert.setInt(2,i);
-                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setInt(3,citizen.getIDProperty().get());
                                         preparedStatementInsert.setString(4,tempString);
                                         preparedStatementInsert.execute();
                                     }
@@ -74,7 +74,7 @@ public class DBHealthAssessmentDAO {
                                     if(!tempString.isEmpty() || !tempString.isBlank())
                                     {
                                         preparedStatementInsert.setInt(2,i);
-                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setInt(3,citizen.getIDProperty().get());
                                         preparedStatementInsert.setString(4,tempString);
                                         preparedStatementInsert.execute();
                                     }
@@ -89,7 +89,7 @@ public class DBHealthAssessmentDAO {
                                     if(!tempString.isEmpty() || !tempString.isBlank())
                                     {
                                         preparedStatementInsert.setInt(2,i);
-                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setInt(3,citizen.getIDProperty().get());
                                         preparedStatementInsert.setString(4,tempString);
                                         preparedStatementInsert.execute();
                                     }
@@ -104,7 +104,7 @@ public class DBHealthAssessmentDAO {
                                     if(!tempString.isEmpty() || !tempString.isBlank())
                                     {
                                         preparedStatementInsert.setInt(2,i);
-                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setInt(3,citizen.getIDProperty().get());
                                         preparedStatementInsert.setString(4,tempString);
                                         preparedStatementInsert.execute();
                                     }
@@ -119,7 +119,7 @@ public class DBHealthAssessmentDAO {
                                     if(!tempString.isEmpty() || !tempString.isBlank())
                                     {
                                         preparedStatementInsert.setInt(2,i);
-                                        preparedStatementInsert.setInt(3,borger.getIDProperty().get());
+                                        preparedStatementInsert.setInt(3,citizen.getIDProperty().get());
                                         preparedStatementInsert.setString(4,tempString);
                                         preparedStatementInsert.execute();
                                     }
@@ -145,11 +145,12 @@ public class DBHealthAssessmentDAO {
         try (Connection connection = dbConnecting.getConnection()) {
             String sqlCategories = "SELECT HC_Subcategory.HC_SC_ID, HC_Subcategory.HC_SC_Title, HC_Category.HC_C_Title FROM HC_Subcategory " +
                     "JOIN [HC_Category] ON HC_Subcategory.HC_C_ID = HC_Category.HC_C_ID;";
+
             String sqlAssessments = "SELECT * FROM HC_Assessment WHERE Citizen_ID = (?) AND HC_SC_ID = (?);";
 
             PreparedStatement preparedStatementCategories = connection.prepareStatement(sqlCategories);
             PreparedStatement preparedStatementAssessments = connection.prepareStatement(sqlAssessments);
-            preparedStatementAssessments.setInt(1, borger.getIDProperty().get());
+            preparedStatementAssessments.setInt(1, citizen.getIDProperty().get());
 
             ResultSet resultSetCategories = preparedStatementCategories.executeQuery();
             while (resultSetCategories.next()) {
@@ -182,7 +183,7 @@ public class DBHealthAssessmentDAO {
                         case(6) ->{
                             Observation observation = new Observation();
                             observation.setDescription(resultSet.getString("Description"));
-                            observation.setTitel(underKategoriTitel);
+                            observation.setTitle(underKategoriTitel);
                             helbredstilstandsUnderkategori.setObservation(observation);
                                                 }
                     }
@@ -197,6 +198,7 @@ public class DBHealthAssessmentDAO {
                 helbredstilstandeHP.get(h.getOverkategoriProperty().get()).add(h);
             }
             healthAssessment.setHelbredstilstandskort(helbredstilstandeHP);
+
             return healthAssessment;
 
         } catch (SQLException throwables) {
@@ -205,47 +207,6 @@ public class DBHealthAssessmentDAO {
         return healthAssessment;
 
 
-    }
-
-    public HealthAssessment getEmptyHelbredstilstand() {
-        HealthAssessment healthAssessment = new HealthAssessment();
-        HashMap<String, List<HelbredstilstandsUnderkategori>> helbredstilstandeHP = new HashMap<>();
-        List<HelbredstilstandsUnderkategori> allHelbredstilstandeUK = new ArrayList<>();
-
-        try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT HC_Subcategory.HC_SC_ID, HC_Subcategory.HC_SC_Title, HC_Category.HC_C_Title, HC_Category.HC_C_ID FROM [HC_Subcategory]" +
-                    "FULL JOIN [HC_Category] ON HC_Subcategory.HC_C_ID = HC_Category.HC_C_ID";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                int UKID = resultSet.getInt("HC_SC_ID");
-
-                //Underkategori
-                String underKategoriTitel = resultSet.getString("HC_SC_Title");
-
-                //Overkategori
-                String overKategoriTitel = resultSet.getString("HC_C_Title");
-
-                HelbredstilstandsUnderkategori h = new HelbredstilstandsUnderkategori(UKID, underKategoriTitel, overKategoriTitel);
-                allHelbredstilstandeUK.add(h);
-
-            }
-
-
-            for (HelbredstilstandsUnderkategori h : allHelbredstilstandeUK) {
-                if (!helbredstilstandeHP.containsKey(h.getOverkategoriProperty().get())) {
-                    helbredstilstandeHP.put(h.getOverkategoriProperty().get(), new ArrayList<HelbredstilstandsUnderkategori>());
-                }
-                helbredstilstandeHP.get(h.getOverkategoriProperty().get()).add(h);
-            }
-            healthAssessment.setHelbredstilstandskort(helbredstilstandeHP);
-            return healthAssessment;
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return null;
-        }
     }
 }
 

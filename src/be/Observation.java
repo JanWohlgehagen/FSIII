@@ -17,8 +17,8 @@ public class Observation {
         this.description.set(description);
     }
 
-    public StringProperty getTitelProperty() {
-        return titel;
+    public StringProperty getTitleProperty() {
+        return title;
     }
 
     public void setTitle(String title) {
@@ -27,6 +27,6 @@ public class Observation {
 
     @Override
     public String toString() {
-        return titel.get();
+        return title.get();
     }
 }

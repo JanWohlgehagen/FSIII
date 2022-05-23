@@ -116,6 +116,7 @@ public class CaseOpeningController implements Initializable {
         CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
         createAndEditCaseController.setDashboardController(dashboardController);
         createAndEditCaseController.newCaseModeIsOn();
+        createAndEditCaseController.setCitizenModel(citizenModel);
         createAndEditCaseController.setCaseModel(caseModel);
     }
 
@@ -125,6 +126,8 @@ public class CaseOpeningController implements Initializable {
         CreateAndEditCaseController createAndEditCaseController = createAndEditCaseScene.getController();
         createAndEditCaseController.setDashboardController(dashboardController);
         createAndEditCaseController.setCaseModel(caseModel);
+        createAndEditCaseController.setCitizenModel(citizenModel);
+
         if (getSelectedCase() != null) {
             createAndEditCaseController.setEditThisCase(getSelectedCase());
             createAndEditCaseController.editCaseModeIsOn();

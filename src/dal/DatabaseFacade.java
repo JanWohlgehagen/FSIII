@@ -219,37 +219,22 @@ public class DatabaseFacade implements IDatabaseFacade {
         return dbHealthAssessmentDAO.getHelbredstilstandOnCitizen(citizen);
     }
 
-    public void updateFunktiontilstand(Borger borger) {
-        dbFunktionstilstandDAO.updateFunktionstilstand(borger);
-    }
-
     @Override
     public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen) {
         return dbFunctionAssessmentDAO.getFunktionstilstandOnCitizen(citizen);
     }
 
     @Override
-    public void createEmptyFunktionstilstand(Citizen citizen) {
-        dbFunctionAssessmentDAO.createEmptyFunktionstilstand(citizen);
+    public void updateHelbredstilstand(Citizen citizen) {
+
     }
 
-    @Override
-    public void createEmptyHelbredstilstand(Citizen citizen) {
-        dbHealthAssessmentDAO.createEmptyHelbredstilstandOnCitizen(citizen);
+    public void updateFunktiontilstand(Citizen citizen) {
+        dbFunctionAssessmentDAO.updateFunktionstilstand(citizen);
     }
 
     /***************************************************/
     /*************** Tilstandskategorier ***************/
     /***************************************************/
-
-    @Override
-    public FunctionAssessment getEmptyFunktionsTilstand() {
-        return dbFunctionAssessmentDAO.getEmptyFunktionstilstands();
-    }
-
-    @Override
-    public HealthAssessment getEmptyHelbredsTilstand() {
-        return dbHealthAssessmentDAO.getEmptyHelbredstilstand();
-    }
 
 }

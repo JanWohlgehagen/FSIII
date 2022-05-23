@@ -63,24 +63,11 @@ public class CitizenManager {
         databaseFacade.updateFunktiontilstand(citizen);
     }
 
-    public void createEmptyTilstande(Citizen citizen) {
-        databaseFacade.createEmptyHelbredstilstand(citizen);
-        databaseFacade.createEmptyFunktionstilstand(citizen);
-    }
-
     public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen){
         return databaseFacade.getHelbredstilstandOnCitizen(citizen);
     }
 
-    public HealthAssessment getEmptyHelbredsTilstand(){
-        return databaseFacade.getEmptyHelbredsTilstand();
-    }
-
     public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen){
         return databaseFacade.getFunktionstilstandOnCitizen(citizen);
-    }
-
-    public FunctionAssessment getEmptyFunktionsTilstand(){
-        return databaseFacade.getEmptyFunktionsTilstand();
     }
 }

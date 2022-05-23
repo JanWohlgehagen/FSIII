@@ -86,18 +86,13 @@ public interface IDatabaseFacade {
     /** Tilstande Functions */
 
 
-    public void updateFunktiontilstand(Borger borger);
-
-    public FunctionAssessment getEmptyFunktionsTilstand();
+    public void updateFunktiontilstand(Citizen citizen);
 
     public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen);
 
-    public void createEmptyHelbredstilstand(Citizen citizen);
+    public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen);
 
     public void updateHelbredstilstand(Citizen citizen);
 
-    public HealthAssessment getEmptyHelbredsTilstand();
-
-    public void deleteHelbredstilstandOnCitizen(Citizen citizen);
 
 }

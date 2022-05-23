@@ -32,11 +32,4 @@ public class CaseModel {
         return managerFacade.createCaseOnCitizen(newCase);
     }
 
-    public HealthAssessment getTitleHelbredsTilstand(){
-        return managerFacade.getTitleHelbredsTilstand();
-    }
-
-    public FunctionAssessment getTitleFunktionsTilstand(){
-        return managerFacade.getTitleFunktionsTilstand();
-    }
 }

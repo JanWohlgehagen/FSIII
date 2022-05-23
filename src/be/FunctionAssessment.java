@@ -18,7 +18,7 @@ public class FunctionAssessment {
         return tilstandsKortet;
     }
 
-    public void setFunktionsTilstande(HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP) {
+    public void setFunktionsTilstandskort(HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP) {
         this.tilstandsKortet = funktionstilstandeHP;
     }
 }

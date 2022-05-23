@@ -143,11 +143,6 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public Case getCaseOnCitizen(int citizenID, int caseID) {
-        return caseManager.getCaseOnCitizen(citizenID, caseID);
-    }
-
-    @Override
     public void updateCaseOnCitizen(int citizenID, Case selectCase) {
         caseManager.updateCaseOnCitizen(citizenID, selectCase);
     }
@@ -209,33 +204,8 @@ public class ManagerFacade implements IManagerFacade {
     /***************************************************/
 
     @Override
-    public void createEmptyTilstande(Citizen citizen) {
-        citizenManager.createEmptyTilstande(citizen);
-    }
-
-    @Override
-    public FunctionAssessment getEmptyFunktionsTilstand() {
-        return citizenManager.getEmptyFunktionsTilstand();
-    }
-
-    @Override
-    public FunctionAssessment getTitleFunktionsTilstand() {
-        return caseManager.getFunctionAssessmentTitle();
-    }
-
-    @Override
     public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen) {
         return citizenManager.getFunktionstilstandOnCitizen(citizen);
-    }
-
-    @Override
-    public HealthAssessment getEmptyHelbredsTilstand() {
-        return citizenManager.getEmptyHelbredsTilstand();
-    }
-
-    @Override
-    public HealthAssessment getTitleHelbredsTilstand() {
-        return caseManager.getHealthAssessmentTitle();
     }
 
     @Override

@@ -4,7 +4,6 @@ import be.Citizen;
 import be.FunctionAssessment;
 import be.FunktionstilstandsUnderkategori;
 import be.Observation;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class DBFunctionAssessmentDAO {
         this.dbConnecting = dbConnecting;
     }
 
-    public void updateFunktionstilstand(Borger borger) {
+    public void updateFunktionstilstand(Citizen citizen) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sqlDelete = "DELETE FROM FC_Assessment WHERE FC_S_ID = (?) AND FC_A_ID = (?) AND Citizen_ID = (?);";
             String sqlInsert = "INSERT INTO FC_Assessment (FC_S_ID, FC_A_ID, Citizen_ID, [Description]) VALUES ((?),(?),(?),(?));";
@@ -27,13 +26,13 @@ public class DBFunctionAssessmentDAO {
             PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
             PreparedStatement preparedStatementDelete = connection.prepareStatement(sqlDelete);
 
-            preparedStatementDelete.setInt(3, borger.getIDProperty().get());
-            preparedStatementInsert.setInt(3, borger.getIDProperty().get());
+            preparedStatementDelete.setInt(3, citizen.getIDProperty().get());
+            preparedStatementInsert.setInt(3, citizen.getIDProperty().get());
 
             String tempString = "";
 
-            for (String key : borger.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
-                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : borger.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
+            for (String key : citizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
+                for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : citizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                     preparedStatementDelete.setInt(1, funktionstilstandsUnderkategori.getId().get());
                     preparedStatementInsert.setInt(1, funktionstilstandsUnderkategori.getId().get());
                     if(funktionstilstandsUnderkategori.getNiveauProperty().get() != -1) {
@@ -180,7 +179,7 @@ public class DBFunctionAssessmentDAO {
 
             PreparedStatement preparedStatementCategories = connection.prepareStatement(sqlCategories);
             PreparedStatement preparedStatementAssessments = connection.prepareStatement(sqlAssessments);
-            preparedStatementAssessments.setInt(1, borger.getIDProperty().get());
+            preparedStatementAssessments.setInt(1, citizen.getIDProperty().get());
 
             ResultSet resultSetCategory = preparedStatementCategories.executeQuery();
             while (resultSetCategory.next())
@@ -226,7 +225,7 @@ public class DBFunctionAssessmentDAO {
                             Observation observation = new Observation();
                             observation.setDescription(resultSet.getString("Description"));
                             funktionstilstandsUnderkategori.setObservation(observation);
-                            funktionstilstandsUnderkategori.getObservation().setTitel(tilstandsKlassifikation);
+                            funktionstilstandsUnderkategori.getObservation().setTitle(tilstandsKlassifikation);
                         }
                         case (10) ->{
                             funktionstilstandsUnderkategori.setOpfølgning(resultSet.getString("Description"));
@@ -244,42 +243,13 @@ public class DBFunctionAssessmentDAO {
                 funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
             }
 
-            functionAssessment.setFunktionsTilstande(funktionstilstandeHP);
+            functionAssessment.setFunktionsTilstandskort(funktionstilstandeHP);
             return functionAssessment;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         return functionAssessment;
-    }
-    public FunctionAssessment getEmptyFunktionstilstands() {
-        FunctionAssessment functionAssessment = new FunctionAssessment();
-        List<FunktionstilstandsUnderkategori> allFunktionstilstande = new ArrayList<>();
-        HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
-
-        try (Connection connection = dbConnecting.getConnection()) {
-            String sql = "SELECT * FROM [FC_Category]";
-            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                String overkategori = rs.getString("FC_C_Title");
-                funktionstilstandList.add(overkategori);
-            }
-
-            for (FunktionstilstandsUnderkategori f : allFunktionstilstande) {
-                if (!funktionstilstandeHP.containsKey(f.getOverKategoriProperty().get())) {
-                    funktionstilstandeHP.put(f.getOverKategoriProperty().get(), new ArrayList<FunktionstilstandsUnderkategori>());
-                }
-                funktionstilstandeHP.get(f.getOverKategoriProperty().get()).add(f);
-            }
-            functionAssessment.setFunktionsTilstande(funktionstilstandeHP);
-            return functionAssessment;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return null;
-        }
     }
 }
 

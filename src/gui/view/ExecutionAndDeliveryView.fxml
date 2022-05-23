@@ -28,7 +28,7 @@
         <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <ListView fx:id="ListViewObservations" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647">
+        <ListView fx:id="listViewObservations" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647">
             <GridPane.margin>
                 <Insets right="-7.0" top="32.0" />
             </GridPane.margin>
@@ -40,7 +40,7 @@
                         <Insets />
                     </VBox.margin>
                 </Label>
-                <TextArea fx:id="txtAreaDok" editable="false" onMouseReleased="#handleMouseReleasedDokumentationArea" wrapText="true" VBox.vgrow="ALWAYS">
+                <TextArea fx:id="txtAreaDok" editable="false" onMouseReleased="#handleMouseReleasedDescriptionArea" wrapText="true" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets bottom="-5.0" />
                     </VBox.margin>

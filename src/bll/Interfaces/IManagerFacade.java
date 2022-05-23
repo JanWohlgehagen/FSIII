@@ -57,8 +57,6 @@ public interface IManagerFacade {
 
     public List<Case> getAllCasesOnCitizen(int citizenid);
 
-    public Case getCaseOnCitizen(int citizenID, int caseID);
-
     public void updateCaseOnCitizen(int citizenID, Case selectCase);
 
     public void deleteCaseOnCitizen(int citizenID, int caseID);
@@ -81,22 +79,11 @@ public interface IManagerFacade {
 
     public Citizen getGenerelleOplysninger(Citizen citizen);
 
-    public void createEmptyTilstande(Citizen citizen);
-
 
     //FUNKTIONSTILSTAND
-    public FunctionAssessment getEmptyFunktionsTilstand();
-
-    public FunctionAssessment getTitleFunktionsTilstand();
-
     public FunctionAssessment getFunktionstilstandOnCitizen(Citizen citizen);
 
     //HELBREDSTILSTAND
-
-    public HealthAssessment getEmptyHelbredsTilstand();
-
-    public HealthAssessment getTitleHelbredsTilstand();
-
     public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen);
 
     public void updateHelbredstilstand(Citizen citizen);

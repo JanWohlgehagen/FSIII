@@ -42,32 +42,70 @@ public class CitizenModel {
 
 
     public void createCitizen(Citizen citizen) {
+        managerFacade.createCitizen(citizen);
         if (citizen.isTemplateProperty().get()) {
-            allTemplates.add(managerFacade.createCitizen(citizen));
+            allTemplates.add(citizen);
+            allTemplatesCache.add(citizen);
         } else {
-            allCitizens.add(managerFacade.createCitizen(citizen));
+            allCitizens.add(citizen);
+            allCitizensCache.add(citizen);
         }
-        borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
-        borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
-
     }
 
 
-    public void createTemplateFromCitizen (Borger borger)
+    public void createTemplateFromCitizen (Citizen citizen)
     {
-        allTemplates.add(managerFacade.createCitizen(borger));
-        updateSagsoplysninger(borger);
-        //TODO Vent på DB Fix ..
+        Citizen tempCitizen = managerFacade.createCitizen(new Citizen(citizen.getFirstNameProperty().get(), citizen.getLastNameProperty().get(),
+                true, citizen.getAgeProperty().get()));
+
+        allTemplates.add(tempCitizen);
+        allTemplatesCache.add(tempCitizen);
+
+        // Add the data from Template
+        var cases = managerFacade.getAllCasesOnCitizen(citizen.getIDProperty().get());
+
+
+        for (var aCase : cases) {
+            var newCase = new Case(tempCitizen.getIDProperty().get(), aCase.getOverCategoryTitleProperty().get(), aCase.getSubcategoryTitleProperty().get());
+            newCase.setIsGranted(false);
+            newCase.setReference(aCase.getReferenceProperty().get());
+            newCase.setCaseResponsible(aCase.getCaseResponsibleProperty().get());
+            newCase.setDescription(aCase.getDescriptionProperty().get());
+            newCase.setCause(aCase.getCauseProperty().get());
+            newCase.setCauseDiagnosis(aCase.getCauseDiagnosisProperty().get());
+            newCase.setCauseCondition(aCase.getCauseConditionProperty().get());
+            newCase.setCitizenWishes(aCase.getCitizenWishesProperty().get());
+            newCase.setGrantedText(aCase.getGrantedTextProperty().get());
+            newCase.setPlan(aCase.getPlanProperty().get());
+            newCase.setFollowUpTag(aCase.getFollowUpTagProperty().get());
+            managerFacade.createCaseOnCitizen(newCase);
+        }
+
+        // Set the Helbredstiltand and Funktionstilstands
+        if (citizen.getHelbredstilstand() == null ) {
+            citizen.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(citizen));
+            citizen.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(citizen));
+        }
+        if(citizen.getGeneralinformation() == null){
+            managerFacade.getGenerelleOplysninger(citizen); // TODO laves om til at man får en Generalinformation og ikke en borger
+        }
+
+        tempCitizen.setHelbredstilstand(citizen.getHelbredstilstand());
+        tempCitizen.setFunktionstilstand(citizen.getFunktionstilstand());
+        tempCitizen.setGeneralinformation(citizen.getGeneralinformation());
+        tempCitizen.setObservations(citizen.getObservations());
+
+        managerFacade.updateSagsoplysninger(tempCitizen);
     }
 
-    public void createCitizenFromTemplate(Borger templateBorger){
 
-        Citizen citizen = new Citizen(templateCitizen.getFirstNameProperty().get(), templateCitizen.getLastNameProperty().get(),
-                false, templateCitizen.getAgeProperty().get());
+    public void createCitizenFromTemplate(Citizen templateCitizen){
+        Citizen citizen = managerFacade.createCitizen(new Citizen(templateCitizen.getFirstNameProperty().get(), templateCitizen.getLastNameProperty().get(),
+                false, templateCitizen.getAgeProperty().get()));
 
-        allCitizens.add(managerFacade.createCitizen(borger));
-        borger.setFunktionstilstand(managerFacade.getEmptyFunktionsTilstand());
-        borger.setHelbredstilstand(managerFacade.getEmptyHelbredsTilstand());
+        allCitizens.add(citizen);
+        allCitizensCache.add(citizen);
+
 
         // Add the data from Template
         var cases = managerFacade.getAllCasesOnCitizen(templateCitizen.getIDProperty().get());
@@ -110,7 +148,13 @@ public class CitizenModel {
 
     public void deleteCitizen(Citizen citizen) {
         managerFacade.deleteCitizen(citizen);
-        allCitizens.remove(citizen);
+        if(citizen.isTemplateProperty().get()){
+            allTemplates.remove(citizen);
+            allTemplatesCache.remove(citizen);
+        }else{
+            allCitizens.remove(citizen);
+            allCitizensCache.remove(citizen);
+        }
     }
 
     public void updateSagsoplysninger(Citizen citizen) {

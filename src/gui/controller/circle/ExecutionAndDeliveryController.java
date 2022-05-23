@@ -6,7 +6,6 @@ import gui.model.CitizenModel;
 import gui.util.ISceneLoader;
 import gui.util.OpfoelgningScene;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,22 +21,14 @@ import java.util.ResourceBundle;
 public class ExecutionAndDeliveryController implements Initializable {
 
     @FXML
-    private ListView<Observation> ListViewObservations;
+    private ListView<Observation> listViewObservations;
     @FXML
     private GridPane parentPane;
     @FXML
     private TextArea txtAreaDok;
-
-    private ExecutionAndDeliveryController executionAndDeliveryController;
     private Citizen selectedCitizen;
     private CitizenModel citizenModel;
     private DashboardController dashboardController;
-    private ObservableList<Observation> observationList;
-    private Observation observation;
-
-    public void setObservationList(ObservableList<Observation> observationList) {
-        this.observationList = observationList;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,19 +40,19 @@ public class ExecutionAndDeliveryController implements Initializable {
                 for (String key : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet())
                     for (FunktionstilstandsUnderkategori fuk : selectedCitizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                         if (fuk.getObservation().getDescriptionProperty().get() != null) {
-                            selectedCitizen.getObservationer().add(fuk.getObservation());
+                            selectedCitizen.getObservations().add(fuk.getObservation());
                         }
                     }
                 for (String key : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet())
                     for (HelbredstilstandsUnderkategori huk : selectedCitizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
                         if (huk.getObservation().getDescriptionProperty().get() != null) {
-                            selectedCitizen.getObservationer().add(huk.getObservation());
+                            selectedCitizen.getObservations().add(huk.getObservation());
                         }
                     }
             }
-            ListViewObservations.setItems(selectedCitizen.getObservations());
+            listViewObservations.setItems(selectedCitizen.getObservations());
 
-            ListViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+            listViewObservations.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
             {
                 if (newValue != null) {
                     txtAreaDok.setText(newValue.getDescriptionProperty().get());
@@ -104,7 +95,7 @@ public class ExecutionAndDeliveryController implements Initializable {
         return (Stage) parentPane.getScene().getWindow();
     }
 
-    public void handleMouseReleasedDokumentationArea(MouseEvent mouseEvent) {
-        txtAreaDok.setText(observation.getDescriptionProperty().get());
+    public void handleMouseReleasedDescriptionArea(MouseEvent mouseEvent) {
+        txtAreaDok.setText(listViewObservations.getSelectionModel().getSelectedItem().getDescriptionProperty().get());
     }
 }

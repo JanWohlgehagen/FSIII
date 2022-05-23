@@ -47,6 +47,7 @@ public class CreateAndEditCaseController implements Initializable {
     private boolean editCaseMode;
 
     private CaseModel caseModel;
+    private CitizenModel citizenModel;
     private Citizen citizen;
 
     private Case editThisCase;
@@ -60,12 +61,13 @@ public class CreateAndEditCaseController implements Initializable {
 
         Platform.runLater(() -> {
             citizen = dashboardController.getSelectedCitizen();
-            functionAssessmentTitle = caseModel.getTitleFunktionsTilstand();
-            healthAssessmentTitle = caseModel.getTitleHelbredsTilstand();
-
+            citizenModel.setTilstandeOnCitizen(citizen);
+            //healthAssessmentTitle.setHelbredstilstandskort(citizen.getHelbredstilstand().getHelbredsTilstandsKort());
+            //functionAssessmentTitle.setFunktionsTilstandskort(citizen.getFunktionstilstand().getFunktionsTilstandsKort());
             setComboBoxOvercategory();
 
             comboboxCaseReference.getItems().addAll(caseReferences());
+
 
             if (editCaseMode) {
                 overkategoriCbx.setPromptText(editThisCase.getOverCategoryTitleProperty().get());
@@ -82,11 +84,15 @@ public class CreateAndEditCaseController implements Initializable {
         });
     }
 
+    public void setCitizenModel(CitizenModel citizenModel) {
+        this.citizenModel = citizenModel;
+    }
+
     public void HandleOverkategoriCbx(ActionEvent actionEvent) {
         underkategoriCbx.getItems().clear();
         String overcategory = overkategoriCbx.getSelectionModel().getSelectedItem();
-        List<HelbredstilstandsUnderkategori> subcategorysOfHelbredstilstand  = healthAssessmentTitle.getHelbredsTilstandsKort().get(overcategory);
-        List<FunktionstilstandsUnderkategori> subcategorysOfFunktionsTilstand = functionAssessmentTitle.getFunktionsTilstandsKort().get(overcategory);
+        List<HelbredstilstandsUnderkategori> subcategorysOfHelbredstilstand  = citizen.getHelbredstilstand().getHelbredsTilstandsKort().get(overcategory);
+        List<FunktionstilstandsUnderkategori> subcategorysOfFunktionsTilstand = citizen.getFunktionstilstand().getFunktionsTilstandsKort().get(overcategory);
         
         if(subcategorysOfHelbredstilstand != null){
             for (HelbredstilstandsUnderkategori subcategory: subcategorysOfHelbredstilstand) {
@@ -100,10 +106,10 @@ public class CreateAndEditCaseController implements Initializable {
     }
 
     private void setComboBoxOvercategory(){
-        for (var overcategory: functionAssessmentTitle.getFunktionsTilstandsKort().keySet()) {
+        for (var overcategory: citizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
             overkategoriCbx.getItems().add(overcategory);
         };
-        for (var overcategory: healthAssessmentTitle.getHelbredsTilstandsKort().keySet()) {
+        for (var overcategory: citizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
             overkategoriCbx.getItems().add(overcategory);
         };
     }

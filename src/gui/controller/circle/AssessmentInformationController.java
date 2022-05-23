@@ -238,7 +238,7 @@ public class AssessmentInformationController implements Initializable {
         if (dashboardController.getSelectedCase() != null) {
             updateHelbredstilstandsUnderkategori();
             updateFunktionstilstandsUnderkategori();
-            updateBorger(borger);
+            updateBorger(citizen);
             goToNextScene();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
@@ -257,7 +257,7 @@ public class AssessmentInformationController implements Initializable {
         if (dashboardController.getSelectedCase() != null) {
             updateHelbredstilstandsUnderkategori();
             updateFunktionstilstandsUnderkategori();
-            updateBorger(borger);
+            updateBorger(citizen);
             goToNextScene();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);
@@ -277,7 +277,7 @@ public class AssessmentInformationController implements Initializable {
         if (dashboardController.getSelectedCase() != null) {
             updateHelbredstilstandsUnderkategori();
             updateFunktionstilstandsUnderkategori();
-            updateBorger(borger);
+            updateBorger(citizen);
             goToNextScene();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Du skal vælge en sag først.", ButtonType.OK);

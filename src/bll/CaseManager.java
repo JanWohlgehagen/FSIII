@@ -34,12 +34,4 @@ public class CaseManager {
     public void deleteCaseOnCitizen(int citizenID, int caseID) {
         databaseFacade.deleteCaseOnCitizen(citizenID, caseID);
     }
-
-    public HealthAssessment getHealthAssessmentTitle(){
-        return databaseFacade.getEmptyHelbredsTilstand();
-    }
-
-    public FunctionAssessment getFunctionAssessmentTitle(){
-        return databaseFacade.getEmptyFunktionsTilstand();
-    }
 }
