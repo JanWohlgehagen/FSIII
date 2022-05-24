@@ -91,7 +91,7 @@
                                     </VBox.margin>
                                 </TextField>
                         <Separator styleClass="dashboardSeparator" />
-                                <ListView fx:id="lvCitizens" prefHeight="390.0" prefWidth="313.0" styleClass="dashList-cell">
+                                <ListView fx:id="lvCitizens" prefHeight="390.0" prefWidth="313.0" stylesheets="@../resources/css/listviews.css">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
@@ -152,7 +152,7 @@
                                             </VBox.margin>
                                         </TextField>
                               <Separator prefWidth="200.0" styleClass="dashboardSeparator" />
-                                        <ListView fx:id="lvTemplates" prefHeight="390.0" prefWidth="313.0" styleClass="dashList-cell">
+                                        <ListView fx:id="lvTemplates" prefHeight="390.0" prefWidth="313.0" stylesheets="@../resources/css/listviews.css">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
@@ -188,7 +188,7 @@
                                             </VBox.margin>
                                         </TextField>
                               <Separator prefWidth="200.0" styleClass="dashboardSeparator" />
-                                        <ListView fx:id="lvStuderende" prefHeight="390.0" prefWidth="313.0" styleClass="dashList-cell">
+                                        <ListView fx:id="lvStuderende" prefHeight="390.0" prefWidth="313.0" stylesheets="@../resources/css/listviews.css">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
@@ -201,7 +201,7 @@
                                 <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
                                     <children>
                                         <Label text="Elevens borgere" />
-                                        <ListView fx:id="lvStuderendesBorgere" prefHeight="390.0" prefWidth="313.0" styleClass="dashList-cell">
+                                        <ListView fx:id="lvStuderendesBorgere" prefHeight="390.0" prefWidth="313.0" stylesheets="@../resources/css/listviews.css">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
