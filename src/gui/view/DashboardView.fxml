@@ -90,6 +90,7 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </TextField>
+                        <Separator styleClass="dashboardSeparator" />
                                 <ListView fx:id="lvCitizens" prefHeight="390.0" prefWidth="313.0">
                                     <opaqueInsets>
                                         <Insets />
@@ -150,6 +151,7 @@
                                                 <Insets top="5.0" />
                                             </VBox.margin>
                                         </TextField>
+                              <Separator prefWidth="200.0" styleClass="dashboardSeparator" />
                                         <ListView fx:id="lvTemplates" prefHeight="390.0" prefWidth="313.0">
                                             <opaqueInsets>
                                                 <Insets />
@@ -185,6 +187,7 @@
                                                 <Insets top="5.0" />
                                             </VBox.margin>
                                         </TextField>
+                              <Separator prefWidth="200.0" styleClass="dashboardSeparator" />
                                         <ListView fx:id="lvStuderende" prefHeight="390.0" prefWidth="313.0">
                                             <opaqueInsets>
                                                 <Insets />
