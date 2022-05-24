@@ -114,27 +114,28 @@
     -fx-border-radius: 5px;
 }
 
-.list-cell:filled:selected:focused, .list-cell:filled:selected {
+.dashList-cell:filled:selected:focused, .dashList-cell:filled:selected {
     -fx-background-color: linear-gradient(to right, rgba(188, 166, 218, 1) 25%, rgba(127, 218, 134, 1) 100%);
     -fx-font-weight: bold;
     -fx-text-fill: Black;
 }
 
-.list-cell:even { /* <=== changed to even */
+.dashList-cell:even { /* <=== changed to even */
     /*-fx-background-color: rgba(188, 166, 218, 0.4);*/
     -fx-background-color: transparent;
+-fx-border-color: rgb(236, 99, 99);
 }
 
-.list-cell:odd { /* <=== changed to even */
+.dashList-cell:odd { /* <=== changed to even */
     /*-fx-background-color: rgba(127, 218, 134, 0.4);*/
     -fx-background-color: transparent;
 }
 
-.list-cell:filled:hover {
+.dashList-cell:filled:hover {
     -fx-background-color: linear-gradient(to right, rgba(188, 166, 218, 0.6) 25%, rgba(127, 218, 134, 0.6) 100%);
 }
 
-.list-view{
+.dashList-cell{
     -fx-background-color: transparent;
     -fx-border-color: linear-gradient(to top, rgba(188, 166, 218, 0.0) 25%, rgba(0, 0, 0, 0.6) 100%);
     -fx-border-width: 3;

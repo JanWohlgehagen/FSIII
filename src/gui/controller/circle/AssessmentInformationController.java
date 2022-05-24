@@ -374,7 +374,7 @@ public class AssessmentInformationController implements Initializable {
                     if (!empty && hsKategori != null) {
                         this.styleProperty().bind(Bindings.createStringBinding(() -> {
                             if (hsKategori.getTilstandProperty().get() == null) {
-                                return "-fx-background-color: rgba(185, 105, 144, 1);";
+                                return "-fx-background-color: rgb(236, 99, 99);";
                             } else if (hsKategori.getTilstandProperty().get().equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")) {
                                 return "-fx-background-color: rgba(119, 161, 131, 1);";
                             } else {
@@ -430,7 +430,7 @@ public class AssessmentInformationController implements Initializable {
                     if (!empty && fsKategori != null) {
                         this.styleProperty().bind(Bindings.createStringBinding(() -> {
                             if (fsKategori.getNiveauProperty().get() == -1) {
-                                return "-fx-background-color: rgba(185, 105, 144, 1);";
+                                return "-fx-background-color: rgb(236, 99, 99);";
                             } else if (fsKategori.getNiveauProperty().get() == 9) {
                                 return "-fx-background-color: rgba(119, 161, 131, 1);";
                             } else {
