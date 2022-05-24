@@ -12,15 +12,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="parentGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.create_edit.CreateAndEditCaseController">
+<GridPane fx:id="parentGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="ParentPane" stylesheets="@../resources/css/CommonTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.create_edit.CreateAndEditCaseController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+        <RowConstraints />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints minHeight="50.0" prefHeight="50.0" />
     </rowConstraints>
     <children>
         <VBox spacing="2.0" GridPane.rowSpan="2">
@@ -40,87 +40,99 @@
                         <Insets bottom="5.0" right="20.0" top="7.0" />
                     </VBox.margin>
                 </ComboBox>
-                <GridPane prefHeight="80.0">
+                <GridPane>
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                  <RowConstraints />
+                        <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
                     </rowConstraints>
                     <children>
                         <Label prefHeight="21.0" prefWidth="134.0" text="SagsHenvisning:" />
-                        <TextField fx:id="lblSagsansvarlig" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="lblSagsansvarlig" minHeight="35.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets right="20.0" />
                      </GridPane.margin></TextField>
-                        <Label prefHeight="21.0" prefWidth="118.0" text="Sagsansvarlig:" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="comboboxCaseReference" prefHeight="35.0" prefWidth="159.0" GridPane.columnIndex="1" />
+                        <Label prefHeight="21.0" prefWidth="118.0" text="Sagsansvarlig:" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="comboboxCaseReference" maxWidth="500.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin></ComboBox>
                     </children>
                     <VBox.margin>
-                        <Insets />
+                        <Insets top="10.0" />
                     </VBox.margin>
                 </GridPane>
+            <GridPane prefWidth="349.0" VBox.vgrow="NEVER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                  <RowConstraints />
+              </rowConstraints>
+               <children>
+                        <Label text="Beskrivelse:" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" top="2.0" />
+                     </GridPane.margin>
+                        </Label>
+                      <Label alignment="CENTER" text="Sagsinformation" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" />
+                     </GridPane.margin>
+                      </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </GridPane>
+                <TextArea fx:id="beskrivelseTxtArea" wrapText="true" VBox.vgrow="ALWAYS" />
             </children>
             <GridPane.margin>
                 <Insets left="20.0" right="20.0" top="20.0" />
             </GridPane.margin>
         </VBox>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <children>
-                <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0">
-                    <children>
-                        <Button fx:id="annullerBtn" mnemonicParsing="false" onAction="#handleAnnuller" text="Annuller" />
-                        <Button fx:id="gemBtn" mnemonicParsing="false" onAction="#handleGem" text="Gem" />
-                    </children>
-                </HBox>
-            </children>
             <GridPane.margin>
                 <Insets bottom="30.0" />
             </GridPane.margin>
         </VBox>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="2">
             <children>
-                <Label alignment="CENTER" text="Sagsinformation">
+                <HBox>
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
-                </Label>
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <Label text="Beskrivelse:">
-                            <HBox.margin>
-                                <Insets top="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets left="20.0" />
-                    </VBox.margin>
+               <children>
+                        <Label text="Årsagsfritekst:" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
                 </HBox>
-                <TextArea fx:id="beskrivelseTxtArea" wrapText="true" VBox.vgrow="ALWAYS">
+                <TextArea fx:id="borgerMaalTxtArea" wrapText="true">
                     <VBox.margin>
-                        <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
+                        <Insets left="20.0" right="20.0" top="2.0" />
                     </VBox.margin>
                 </TextArea>
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <Label text="Årsagsfritekst:" />
-                    </children>
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
+                <HBox>
                     <VBox.margin>
                         <Insets top="2.0" />
                     </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
                 </HBox>
-                <TextArea fx:id="aarsagsfritekstTxtArea" wrapText="true">
-                    <VBox.margin>
-                        <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
-                    </VBox.margin>
-                </TextArea>
-                <HBox prefHeight="100.0" prefWidth="200.0">
+                <HBox>
                     <children>
                         <Label text="Årsagsdiagnose:" />
                     </children>
@@ -136,7 +148,7 @@
                         <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
                     </VBox.margin>
                 </TextArea>
-                <HBox prefHeight="100.0" prefWidth="200.0">
+                <HBox>
                     <children>
                         <Label text="Årsagstilstand:" />
                     </children>
@@ -152,7 +164,7 @@
                         <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
                     </VBox.margin>
                 </TextArea>
-                <HBox prefHeight="100.0" prefWidth="200.0">
+                <HBox>
                     <children>
                         <Label text="Indsats, borgerens ønsker og mål:" />
                     </children>
@@ -163,15 +175,21 @@
                         <Insets top="2.0" />
                     </VBox.margin>
                 </HBox>
-                <TextArea fx:id="borgerMaalTxtArea" wrapText="true">
-                    <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="2.0" />
-                    </VBox.margin>
+                <TextArea fx:id="aarsagsfritekstTxtArea" wrapText="true">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="2.0" />
+               </VBox.margin>
                 </TextArea>
             </children>
             <GridPane.margin>
                 <Insets top="20.0" />
             </GridPane.margin>
         </VBox>
+          <HBox alignment="CENTER" prefWidth="300.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <children>
+                  <Button fx:id="annullerBtn" mnemonicParsing="false" onAction="#handleAnnuller" text="Annuller" />
+                  <Button fx:id="gemBtn" mnemonicParsing="false" onAction="#handleGem" text="Gem" />
+              </children>
+          </HBox>
     </children>
 </GridPane>
