@@ -7,6 +7,8 @@ import bll.ManagerFacade;
 import bll.Seachers.CitizenSearcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +98,9 @@ public class CitizenModel {
         tempCitizen.setObservations(citizen.getObservations());
 
         managerFacade.updateSagsoplysninger(tempCitizen);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Der er nu lavet en nye template i Template-tap.", ButtonType.OK);
+        alert.show();
     }
 
 
@@ -139,6 +144,9 @@ public class CitizenModel {
         citizen.setGeneralinformation(templateCitizen.getGeneralinformation());
 
         managerFacade.updateSagsoplysninger(citizen);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Der er nu lavet en nye borger i Borgere-tap.", ButtonType.OK);
+        alert.show();
     }
 
     public void addStudentToCitizen(Citizen citizen) {
