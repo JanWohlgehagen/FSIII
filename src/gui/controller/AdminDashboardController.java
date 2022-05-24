@@ -23,6 +23,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AdminDashboardController implements Initializable {
@@ -168,8 +169,12 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void handleDeleteTeacher(ActionEvent actionEvent) {
-        User teacher = tvAllTeacher.getSelectionModel().getSelectedItem();
-        userModel.removeUser(teacher);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på du vil slette denne lærer?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get().equals(ButtonType.YES)) {
+            User teacher = tvAllTeacher.getSelectionModel().getSelectedItem();
+            userModel.removeUser(teacher);
+        }
     }
 
     public void handleNewStudent(ActionEvent actionEvent) throws IOException {
@@ -191,8 +196,12 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void handleDeleteStudent(ActionEvent actionEvent) {
-        User student = tvAllStudent.getSelectionModel().getSelectedItem();
-        userModel.removeUser(student);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på du vil slette denne elev?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get().equals(ButtonType.YES)) {
+            User student = tvAllStudent.getSelectionModel().getSelectedItem();
+            userModel.removeUser(student);
+        }
     }
 
     public void handleMouseAddStudentToClass(MouseEvent mouseEvent) {
@@ -263,7 +272,11 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void handleDeleteClass(ActionEvent actionEvent) {
-        userModel.deleteClass(tvClass.getSelectionModel().getSelectedItem());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på du vil slette denne klasse?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get().equals(ButtonType.YES)) {
+            userModel.deleteClass(tvClass.getSelectionModel().getSelectedItem());
+        }
     }
 
     public Tooltip getTooltipForAddUserToClass() {
