@@ -91,7 +91,7 @@
                                     </VBox.margin>
                                 </TextField>
                         <Separator styleClass="dashboardSeparator" />
-                                <ListView fx:id="lvCitizens" prefHeight="390.0" prefWidth="313.0">
+                                <ListView fx:id="lvCitizens" prefHeight="390.0" prefWidth="313.0" stylesheets="@../resources/css/listviews.css">
                                     <opaqueInsets>
                                         <Insets />
                                     </opaqueInsets>
@@ -114,7 +114,7 @@
                                             <children>
                                                 <Label text="Navn" />
                                                 <Label text="Alder" GridPane.rowIndex="1" />
-                                                <Label text="Studerende" GridPane.rowIndex="2" />
+                                                <Label text="Elev" GridPane.rowIndex="2" />
                                                 <Label fx:id="lblName" GridPane.columnIndex="1" />
                                                 <Label fx:id="lblAge" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label fx:id="lblStudent" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -127,10 +127,10 @@
                                 </HBox>
                                 <VBox alignment="BOTTOM_CENTER" spacing="15.0" VBox.vgrow="SOMETIMES">
                                     <children>
-                                        <Button fx:id="btnAddStudent" mnemonicParsing="false" onAction="#btnConnectStudent" prefWidth="227.0" text="Tilføj Studerende" />
-                                        <Button fx:id="btnNewCitizen" mnemonicParsing="false" onAction="#createCitizen" prefWidth="227.0" text="Ny Borger" />
-                                        <Button fx:id="btnDeleteCitizen" layoutX="50.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnDeleteCitizen" prefWidth="227.0" text="Slet Borger" />
-                              <Button fx:id="btnCitizenToTemplate" layoutX="50.0" layoutY="52.0" mnemonicParsing="false" onAction="#btnCitizenToTemplate" prefWidth="227.0" text="Kopier til Template" />
+                                        <Button fx:id="btnAddStudent" mnemonicParsing="false" onAction="#btnConnectStudent" prefWidth="227.0" text="Tilføj elev" />
+                                        <Button fx:id="btnNewCitizen" mnemonicParsing="false" onAction="#createCitizen" prefWidth="227.0" text="Ny borger" />
+                                        <Button fx:id="btnDeleteCitizen" layoutX="50.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnDeleteCitizen" prefWidth="227.0" text="Slet borger" />
+                              <Button fx:id="btnCitizenToTemplate" layoutX="50.0" layoutY="52.0" mnemonicParsing="false" onAction="#btnCitizenToTemplate" prefWidth="227.0" text="Kopier til skabelon" />
                                     </children>
                                     <padding>
                                         <Insets bottom="15.0" />
@@ -140,7 +140,7 @@
                         </VBox>
                     </content>
                 </Tab>
-                <Tab fx:id="tabTemplates" closable="false" onSelectionChanged="#handleChangeTab" text="Templates">
+                <Tab fx:id="tabTemplates" closable="false" onSelectionChanged="#handleChangeTab" text="Skabeloner">
                     <content>
                         <VBox>
                             <children>
@@ -152,7 +152,7 @@
                                             </VBox.margin>
                                         </TextField>
                               <Separator prefWidth="200.0" styleClass="dashboardSeparator" />
-                                        <ListView fx:id="lvTemplates" prefHeight="390.0" prefWidth="313.0">
+                                        <ListView fx:id="lvTemplates" prefHeight="390.0" prefWidth="313.0" stylesheets="@../resources/css/listviews.css">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
@@ -166,7 +166,7 @@
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#handleBtnNewCitizenTemplate" prefWidth="227.0" text="Ny Borger Template" />
                                         <Button mnemonicParsing="false" onAction="#handleBtnDeleteCitizenTemplate" prefWidth="227.0" text="Slet Borger Template" />
-                                        <Button mnemonicParsing="false" onAction="#handleBtnGenerateCitizenFromTemplate" prefWidth="227.0" text="Generer Borger Fra Template" />
+                                        <Button mnemonicParsing="false" onAction="#handleBtnGenerateCitizenFromTemplate" prefWidth="227.0" text="Kopier borger fra skabelon" />
                                     </children>
                                     <padding>
                                         <Insets bottom="15.0" />
@@ -176,7 +176,7 @@
                         </VBox>
                     </content>
                 </Tab>
-                <Tab fx:id="tabStudents" closable="false" onSelectionChanged="#handleChangeTab" text="Studerende">
+                <Tab fx:id="tabStudents" closable="false" onSelectionChanged="#handleChangeTab" text="Elever">
                     <content>
                         <VBox>
                             <children>
@@ -188,7 +188,7 @@
                                             </VBox.margin>
                                         </TextField>
                               <Separator prefWidth="200.0" styleClass="dashboardSeparator" />
-                                        <ListView fx:id="lvStuderende" prefHeight="390.0" prefWidth="313.0">
+                                        <ListView fx:id="lvStuderende" prefHeight="390.0" prefWidth="313.0" stylesheets="@../resources/css/listviews.css">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>
@@ -200,8 +200,8 @@
                                 </VBox>
                                 <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0">
                                     <children>
-                                        <Label text="Den studerendes borgere" />
-                                        <ListView fx:id="lvStuderendesBorgere" prefHeight="390.0" prefWidth="313.0">
+                                        <Label text="Elevens borgere" />
+                                        <ListView fx:id="lvStuderendesBorgere" prefHeight="390.0" prefWidth="313.0" stylesheets="@../resources/css/listviews.css">
                                             <opaqueInsets>
                                                 <Insets />
                                             </opaqueInsets>

@@ -289,7 +289,7 @@
                         </GridPane>
                     </content>
                 </Tab>
-                <Tab text="Funktionstilstand">
+                <Tab text="Funktionsevnetilstand">
                     <content>
                         <GridPane>
                             <columnConstraints>
