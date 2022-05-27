@@ -14,6 +14,11 @@ public class PlanlaegningScene implements ISceneLoader<PlanningController> {
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 
+    /**
+     * Creates a new scene from an FXML file
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void loadNewScene(Stage stage) throws IOException {
         loader = new FXMLLoader(new File("src/gui/view/PlanningView.fxml").toURI().toURL());
@@ -22,7 +27,10 @@ public class PlanlaegningScene implements ISceneLoader<PlanningController> {
         stage.getIcons().add(image);
         stage.show();
     }
-
+    /**
+     * Provides the controller from the new scene
+     * @return Controller
+     */
     @Override
     public PlanningController getController() {
         return loader.getController();

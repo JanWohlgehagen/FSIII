@@ -299,8 +299,8 @@ public class DashboardController implements Initializable {
         ISceneLoader<AddStudentToCitizenController> tilfoejStuderendePaaBorgerControllerSceneLoader = new TilfoejStuderendeScene();
         tilfoejStuderendePaaBorgerControllerSceneLoader.loadNewScene(new Stage());
         AddStudentToCitizenController addStudentToCitizenController = tilfoejStuderendePaaBorgerControllerSceneLoader.getController();
-        addStudentToCitizenController.setBorger(selectCitizen);
-        addStudentToCitizenController.setModelsAndControllers(citizenModel, userModel, this);
+        addStudentToCitizenController.setCitizen(selectCitizen);
+        addStudentToCitizenController.setAllModels(citizenModel, userModel);
     }
 
     public void btnDeleteCitizen(ActionEvent actionEvent) {

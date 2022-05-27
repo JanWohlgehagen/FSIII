@@ -10,14 +10,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class ManagerFacade implements IManagerFacade {
-
-    private final CredentialManager credentialManager;
     private final CaseManager caseManager;
     private final CitizenManager citizenManager;
     private final UserManager userManager;
 
     public ManagerFacade(DatabaseFacade databaseFacade) throws IOException {
-        credentialManager = new CredentialManager(databaseFacade);
         caseManager = new CaseManager(databaseFacade);
         citizenManager = new CitizenManager(databaseFacade);
         userManager = new UserManager(databaseFacade);
@@ -211,10 +208,5 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public HealthAssessment getHelbredstilstandOnCitizen(Citizen citizen) {
         return citizenManager.getHelbredstilstandOnCitizen(citizen);
-    }
-
-    @Override
-    public void updateHelbredstilstand(Citizen citizen) {
-        citizenManager.updateHelbredstilstand(citizen);
     }
 }

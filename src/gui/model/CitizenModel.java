@@ -54,6 +54,10 @@ public class CitizenModel {
         }
     }
 
+    /**
+     * Take a citizen and turn it into a new template.
+     * @param citizen The citizen to be made into a template.
+     */
 
     public void createTemplateFromCitizen (Citizen citizen)
     {
@@ -103,6 +107,10 @@ public class CitizenModel {
         alert.show();
     }
 
+    /**
+     * Take a template and turn it into a new citizen.
+     * @param templateCitizen The template to be made into a citizen.
+     */
 
     public void createCitizenFromTemplate(Citizen templateCitizen){
         Citizen citizen = managerFacade.createCitizen(new Citizen(templateCitizen.getFirstNameProperty().get(), templateCitizen.getLastNameProperty().get(),
@@ -149,6 +157,10 @@ public class CitizenModel {
         alert.show();
     }
 
+    /**
+     * Saves the student on a citizen to the Database
+     * @param citizen The citizen to update
+     */
     public void addStudentToCitizen(Citizen citizen) {
         managerFacade.addStudentToCitizen(citizen);
     }
@@ -165,15 +177,27 @@ public class CitizenModel {
         }
     }
 
+    /**
+     * update the citizen and in the Database
+     * @param citizen The citizen to update
+     */
     public void updateSagsoplysninger(Citizen citizen) {
         managerFacade.updateSagsoplysninger(citizen);
     }
+
+    /**
+     * Get all the data (FunctionAssessment and HealthAssessment) on the citizen.
+     * @param citizen The citizen to get the data from.
+     */
 
     public void setTilstandeOnCitizen(Citizen citizen) {
        citizen.setHelbredstilstand(managerFacade.getHelbredstilstandOnCitizen(citizen));
        citizen.setFunktionstilstand(managerFacade.getFunktionstilstandOnCitizen(citizen));
     }
-
+    /**
+     * Get all the data (Generalinformation) on the citizen.
+     * @param citizen The citizen to get the data from.
+     */
     public void getGenerelleOplysninger(Citizen citizen) {
         managerFacade.getGenerelleOplysninger(citizen);
     }

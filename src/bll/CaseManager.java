@@ -23,10 +23,6 @@ public class CaseManager {
         return databaseFacade.getAllCasesOnCitizen(citizenid);
     }
 
-    public Case getCaseOnCitizen(int citizenID, int caseID) {
-        return databaseFacade.getCaseOnCitizen(citizenID, caseID);
-    }
-
     public void updateCaseOnCitizen(int citizenID, Case selectCase) {
         databaseFacade.updateCaseOnCitizen(citizenID, selectCase);
     }

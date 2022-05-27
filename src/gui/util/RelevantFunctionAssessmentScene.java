@@ -14,6 +14,11 @@ public class RelevantFunctionAssessmentScene implements ISceneLoader<RelevantFun
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 
+    /**
+     * Creates a new scene from an FXML file
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void loadNewScene(Stage stage) throws IOException {
         loader = new FXMLLoader(new File("src/gui/view/RelevantFunctionAssessmentView.fxml").toURI().toURL());
@@ -23,7 +28,10 @@ public class RelevantFunctionAssessmentScene implements ISceneLoader<RelevantFun
         stage.setResizable(false);
         stage.show();
     }
-
+    /**
+     * Provides the controller from the new scene
+     * @return Controller
+     */
     @Override
     public RelevantFunctionAssessmentViewController getController() {
         return loader.getController();

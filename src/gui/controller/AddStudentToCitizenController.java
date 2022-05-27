@@ -31,25 +31,7 @@ public class AddStudentToCitizenController implements Initializable {
     private CitizenModel citizenModel;
     private Citizen selectedCitizen;
     private UserModel userModel;
-    private DashboardController dashboardController;
 
-
-    public void btnAddStudent(ActionEvent actionEvent) {
-        selectedCitizen.setStudent(lvStudents.getSelectionModel().getSelectedItem());
-        citizenModel.addStudentToCitizen(selectedCitizen);
-        getStage().close();
-    }
-
-    public void setModelsAndControllers(CitizenModel citizenModel, UserModel userModel, DashboardController dashboardController) {
-        this.citizenModel = citizenModel;
-        this.userModel = userModel;
-        this.dashboardController = dashboardController;
-
-    }
-
-    public void setBorger(Citizen citizen) {
-        selectedCitizen = citizen;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,6 +46,21 @@ public class AddStudentToCitizenController implements Initializable {
                 }
             }
         });
+    }
+
+    public void btnAddStudentToCitizen(ActionEvent actionEvent) {
+        selectedCitizen.setStudent(lvStudents.getSelectionModel().getSelectedItem());
+        citizenModel.addStudentToCitizen(selectedCitizen);
+        getStage().close();
+    }
+
+    public void setAllModels(CitizenModel citizenModel, UserModel userModel) {
+        this.citizenModel = citizenModel;
+        this.userModel = userModel;
+    }
+
+    public void setCitizen(Citizen citizen) {
+        selectedCitizen = citizen;
     }
 
     public void setCboxClasses() {

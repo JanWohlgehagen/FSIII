@@ -17,9 +17,6 @@ public class Generalinformation {
     private final StringProperty assistiveDevices = new SimpleStringProperty();
     private final StringProperty homeDecor = new SimpleStringProperty();
 
-    public Generalinformation() {
-    }
-
     public StringProperty getMasteryProperty() {
         return mastery;
     }

@@ -11,10 +11,6 @@ public class HealthAssessment {
     public HealthAssessment() {
     }
 
-    public void addCategoryField(String overkategori, List<HelbredstilstandsUnderkategori> underkategorier) {
-        tilstandsKortet.put(overkategori, underkategorier);
-    }
-
     public HashMap<String, List<HelbredstilstandsUnderkategori>> getHelbredsTilstandsKort() {
         return tilstandsKortet;
     }

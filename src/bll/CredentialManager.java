@@ -19,6 +19,9 @@ public class CredentialManager {
     /**
      * loginCredential checks if Username and Password are correct, using the checkCredential method and then logs you in if they are.
      * If incorrect, the method returns a window with an alert that tells you either Username or Password is wrong.
+     * @param userName the input form the user
+     * @param userPassword the input form the user
+     * @return a user if is a correct username and password.
      */
     protected User loginCredential(String userName, String userPassword) {
         if (checkCredential(userName, userPassword)) {
@@ -32,6 +35,10 @@ public class CredentialManager {
         return null;
     }
 
+    /**
+     * Creates a new user in the system, no matter what type of user it is.
+     * @param credential
+     */
     protected void createNewLoginUser(Credential credential) {
         credential.setPassword(newHashPassword(credential.getPassword()));
         databaseFacade.createNewLoginUser(credential);
@@ -39,7 +46,6 @@ public class CredentialManager {
 
     protected void editLoginUser(Credential credential) {
         if(!credential.getPassword().isEmpty()){
-            System.out.println("klfdbmnsæpkdgmææååååååååååååå");
             credential.setPassword(newHashPassword(credential.getPassword()));
             databaseFacade.updatePassword(credential);
         }

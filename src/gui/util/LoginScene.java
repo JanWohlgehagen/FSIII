@@ -13,6 +13,11 @@ public class LoginScene implements ISceneLoader<LoginController> {
     private final Image image = new Image("gui/resources/images/logo.png");
     private static FXMLLoader loader;
 
+    /**
+     * Creates a new scene from an FXML file
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void loadNewScene(Stage stage) throws IOException {
         loader = new FXMLLoader(new File("src/gui/view/LoginView.fxml").toURI().toURL());
@@ -22,6 +27,10 @@ public class LoginScene implements ISceneLoader<LoginController> {
         stage.show();
     }
 
+    /**
+     * Provides the controller from the new scene
+     * @return Controller
+     */
     @Override
     public LoginController getController() {
         return loader.getController();

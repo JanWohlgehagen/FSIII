@@ -31,30 +31,6 @@ public class FunktionstilstandsUnderkategori {
         this.overKategori.set(overKategori);
     }
 
-    public FunktionstilstandsUnderkategori(int id, String udførelse, String betydning, String oenskerOgMaal, String tilstandsklassifikation, String vurdering,
-                                           String aarsag, String fagligNotat, String opfølgning, String overKategori, int niveau, int forventetTilstand, Observation observation) {
-        this.id.set(id);
-        this.udførelse.set(udførelse);
-        this.betydning.set(betydning);
-        this.oenskerOgMaal.set(oenskerOgMaal);
-        this.tilstandsklassifikation.set(tilstandsklassifikation);
-        this.vurdering.set(vurdering);
-        this.aarsag.set(aarsag);
-        this.fagligNotat.set(fagligNotat);
-        this.opfølgning.set(opfølgning);
-        this.overKategori.set(overKategori);
-        this.niveau.set(niveau);
-        this.forventetTilstand.set(forventetTilstand);
-        setObservation(observation);
-    }
-
-    // This constructor is for use, if the user chooses that a subcategory is not relevant
-    public FunktionstilstandsUnderkategori(String overKategori, String tilstandsklassifikation, int niveau) {
-        this.tilstandsklassifikation.set(tilstandsklassifikation);
-        this.niveau.set(niveau);
-        this.setOverKategori(overKategori);
-    }
-
     public IntegerProperty getId() {
         return id;
     }
@@ -89,10 +65,6 @@ public class FunktionstilstandsUnderkategori {
 
     public StringProperty getTilstandsklassifikationProperty() {
         return tilstandsklassifikation;
-    }
-
-    public void setTilstandsklassifikation(String tilstandsklassifikation) {
-        this.tilstandsklassifikation.set(tilstandsklassifikation);
     }
 
     public StringProperty getVurderingProperty() {
@@ -145,10 +117,6 @@ public class FunktionstilstandsUnderkategori {
 
     public StringProperty getOverKategoriProperty() {
         return overKategori;
-    }
-
-    public void setOverKategori(String overKategori) {
-        this.overKategori.set(overKategori);
     }
 
     public Observation getObservation() {

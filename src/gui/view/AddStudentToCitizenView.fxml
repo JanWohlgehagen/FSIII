@@ -56,7 +56,7 @@
                 <Insets bottom="20.0" top="10.0"/>
             </padding>
         </VBox>
-        <Button mnemonicParsing="false" onAction="#btnAddStudent" text="Tilføj" GridPane.halignment="RIGHT"
+        <Button mnemonicParsing="false" onAction="#btnAddStudentToCitizen" text="Tilføj" GridPane.halignment="RIGHT"
                 GridPane.rowIndex="2">
             <GridPane.margin>
                 <Insets bottom="10.0" right="10.0"/>

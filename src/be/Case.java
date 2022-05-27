@@ -3,7 +3,6 @@ package be;
 import javafx.beans.property.*;
 
 public class Case {
-    //Istedet for personID kunne case evt. holde en borger så casen ved hvilken borger den er tilknyttet?
     private final IntegerProperty citizenID = new SimpleIntegerProperty();
     private final IntegerProperty caseID = new SimpleIntegerProperty();
     private final StringProperty overCategoryTitle = new SimpleStringProperty();

@@ -24,24 +24,6 @@ public class HelbredstilstandsUnderkategori {
         this.overkategori.set(overkategori);
     }
 
-    public HelbredstilstandsUnderkategori(int ID, String tilstandsklassifikation, String overkategori, String tilstand, String forventetTilstand, String vurdering, String aarsag, String fagligNotat, Observation observation) {
-        this.id.set(ID);
-        this.setTilstand(tilstand);
-        this.setForventetTilstand(forventetTilstand);
-        this.setOverkategori(overkategori);
-        this.setTilstandsklassifikation(tilstandsklassifikation);
-        this.setVurdering(vurdering);
-        this.setAarsag(aarsag);
-        this.setFagligNotat(fagligNotat);
-        setObservation(observation);
-    }
-
-    // This constructor is for use, if the user chooses that a subcategory is not relevant
-    public HelbredstilstandsUnderkategori(String tilstandsklassifikation, String overkategori) {
-        this.setOverkategori(overkategori);
-        this.setTilstandsklassifikation(tilstandsklassifikation);
-    }
-
     public IntegerProperty getId() {
         return id;
     }
@@ -62,16 +44,8 @@ public class HelbredstilstandsUnderkategori {
         return overkategori;
     }
 
-    public void setOverkategori(String overkategori) {
-        this.overkategori.set(overkategori);
-    }
-
     public StringProperty getTilstandsklassifikationProperty() {
         return tilstandsklassifikation;
-    }
-
-    public void setTilstandsklassifikation(String tilstandsklassifikation) {
-        this.tilstandsklassifikation.set(tilstandsklassifikation);
     }
 
     public StringProperty getVurderingProperty() {
