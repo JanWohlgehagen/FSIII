@@ -15,6 +15,9 @@ public class CitizenManager {
         this.databaseFacade = databaseFacade;
     }
 
+    /**
+     * Returns a list of all citizens in the database, and attaches it to a student, if one is found in the database
+     */
     public List<Citizen> getAllCitizen() {
         List<Citizen> listOfCitizens = databaseFacade.getAllCitizens();
         for (Citizen citizen : listOfCitizens) {

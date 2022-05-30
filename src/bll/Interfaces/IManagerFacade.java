@@ -16,13 +16,9 @@ public interface IManagerFacade {
 
     void editLoginUser(Credential credential);
 
-    List<User> getAllUser();
-
     List<User> getAllStudent();
 
     List<User> getAllTeacher();
-
-    List<User> getAllAdmin();
 
     User newUser(User newUser);
 

@@ -90,8 +90,6 @@ public class AssessmentInformationController implements Initializable {
     @FXML
     private TextField txtOpfoelgningFunktionstilstand;
     @FXML
-    private TextArea txtAreaHelhedsvurdering;
-    @FXML
     private TextArea txtAreaObservationFunktionstilstand1;
     @FXML
     private TextArea txtAreaObservationHelbredstilstand1;
@@ -141,13 +139,6 @@ public class AssessmentInformationController implements Initializable {
     private VBox vBoxLeftFunktionstilstand;
     @FXML
     private VBox vBoxRightFunktionstilstand;
-    @FXML
-    private VBox vBoxMedicinliste;
-
-    @FXML
-    private ScrollPane scrollPaneFunktionstilstand;
-    @FXML
-    private ScrollPane scrollPaneHelbredstilstand;
 
     @FXML
     private TabPane tabPaneParent;
@@ -378,7 +369,6 @@ public class AssessmentInformationController implements Initializable {
                             } else if (hsKategori.getTilstandProperty().get().equalsIgnoreCase("Ingen aktuelle eller potentielle problemer")) {
                                 return "-fx-background-color: rgba(119, 161, 131, 1);";
                             } else {
-                                //return "-fx-background-color: rgba(198,178,47,1);"; themed yellow
                                 return "-fx-background-color: rgb(220, 138, 77);";
                             }
                         }, hsKategori.getTilstandProperty()));
@@ -434,7 +424,6 @@ public class AssessmentInformationController implements Initializable {
                             } else if (fsKategori.getNiveauProperty().get() == 9) {
                                 return "-fx-background-color: rgba(119, 161, 131, 1);";
                             } else {
-                                //return "-fx-background-color: rgba(198,178,47,1);"; themed yellow
                                 return "-fx-background-color: rgb(220, 138, 77);";
                             }
                         }, fsKategori.getNiveauProperty()));
@@ -547,24 +536,6 @@ public class AssessmentInformationController implements Initializable {
         btnInformationFunktionstilstand.setTooltip(tooltip);
         btnInformationFunktionstilstandCopy.setTooltip(tooltip);
     }
-
-    /*
-    Extracts a list of strings from the textfields in the container where the medicine list is shown
-     */
-    private List<String> extractMedicineList() {
-        List<Node> nodeList = vBoxMedicinliste.getChildren();
-        List<String> medicineList = new ArrayList<>();
-
-        for (Node node : nodeList) {
-            TextField txtField = (TextField) node;
-            if (!txtField.getText().isEmpty() || !txtField.getText().isBlank())
-                medicineList.add(txtField.getText());
-        }
-        return medicineList;
-    }
-
-
-
 
     private class TooltipBank {
         final private double TOOLTIP_WIDTH = 250.0;

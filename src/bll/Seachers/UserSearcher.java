@@ -9,6 +9,9 @@ public class UserSearcher {
 
     private List<User> searchResult = new ArrayList<>();
 
+    /**
+     * Searches through a list based on the objects' names and returns a list of matches
+     */
     public List<User> search(List<User> searchBase, String query) {
         searchResult.clear();
         for (User user : searchBase) {

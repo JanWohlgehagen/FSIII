@@ -40,11 +40,6 @@ public class ManagerFacade implements IManagerFacade {
     }
 
     @Override
-    public List<User> getAllUser() {
-        return userManager.getAllUser();
-    }
-
-    @Override
     public List<User> getAllStudent() {
         return userManager.getAllStudent();
     }
@@ -52,11 +47,6 @@ public class ManagerFacade implements IManagerFacade {
     @Override
     public List<User> getAllTeacher() {
         return userManager.getAllTeacher();
-    }
-
-    @Override
-    public List<User> getAllAdmin() {
-        return userManager.getAllAdmin();
     }
 
     @Override

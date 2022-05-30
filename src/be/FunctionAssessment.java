@@ -10,10 +10,6 @@ public class FunctionAssessment {
     public FunctionAssessment() {
     }
 
-    public void addCategoryField(String overkategori, List<FunktionstilstandsUnderkategori> underkategorier) {
-        tilstandsKortet.put(overkategori, underkategorier);
-    }
-
     public HashMap<String, List<FunktionstilstandsUnderkategori>> getFunktionsTilstandsKort() {
         return tilstandsKortet;
     }

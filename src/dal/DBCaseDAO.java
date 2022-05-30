@@ -62,17 +62,6 @@ public class DBCaseDAO {
         return allCases;
     }
 
-    public Case getCaseOnCitizen(int citizenID, int caseID) {
-        try (Connection connection = dbConnecting.getConnection()) {
-            //TODO
-            throw new UnsupportedOperationException();
-
-        } catch (SQLException SQLe) {
-            SQLe.printStackTrace();
-            return null;
-        }
-    }
-
     public void updateCaseOnCitizen(int citizenID, Case selectCase) {
 
         try (Connection connection = dbConnecting.getConnection()) {

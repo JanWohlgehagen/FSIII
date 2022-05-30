@@ -19,8 +19,8 @@ public class UserModel {
     private final IManagerFacade managerFacade;
 
     private ObservableList<User> allStudent = FXCollections.observableArrayList();
-    private List<User> allStudentCache = new ArrayList<>();
-    private List<User> allTeacherCache = new ArrayList<>();
+    private List<User> allStudentCache = new ArrayList<>(); //For searching
+    private List<User> allTeacherCache = new ArrayList<>(); //For searching
     private ObservableList<User> allTeacher = FXCollections.observableArrayList();
     private ObservableList<WClass> allClass = FXCollections.observableArrayList();
     private ObservableList<User> studentInClass = FXCollections.observableArrayList();

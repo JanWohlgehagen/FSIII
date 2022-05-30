@@ -20,7 +20,9 @@ public class DBFunctionAssessmentDAO {
 
     public void updateFunktionstilstand(Citizen citizen) {
         try (Connection connection = dbConnecting.getConnection()) {
+            //Delete statement, this is always executed in case of empty inputs.
             String sqlDelete = "DELETE FROM FC_Assessment WHERE FC_S_ID = (?) AND FC_A_ID = (?) AND Citizen_ID = (?);";
+            //Insert statement, this is executed if the input is not empty, in other words, if the user has written something in the assessment field.
             String sqlInsert = "INSERT INTO FC_Assessment (FC_S_ID, FC_A_ID, Citizen_ID, [Description]) VALUES ((?),(?),(?),(?));";
 
             PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
@@ -31,11 +33,14 @@ public class DBFunctionAssessmentDAO {
 
             String tempString = "";
 
+            //Outer loop going through the keyset of a citizens condition
             for (String key : citizen.getFunktionstilstand().getFunktionsTilstandsKort().keySet()) {
+                //first nested loop going through the subcategories of the assessments
                 for (FunktionstilstandsUnderkategori funktionstilstandsUnderkategori : citizen.getFunktionstilstand().getFunktionsTilstandsKort().get(key)) {
                     preparedStatementDelete.setInt(1, funktionstilstandsUnderkategori.getId().get());
                     preparedStatementInsert.setInt(1, funktionstilstandsUnderkategori.getId().get());
                     if(funktionstilstandsUnderkategori.getNiveauProperty().get() != -1) {
+                        //i goes to 11 because there are 11 different fields to fill out in a functional ability assessment
                         for (int i = 1; i < 11; i++) {
                             switch (i) {
                                 case (1) -> {
@@ -173,6 +178,7 @@ public class DBFunctionAssessmentDAO {
         HashMap<String, List<FunktionstilstandsUnderkategori>> funktionstilstandeHP = new HashMap();
 
         try (Connection connection = dbConnecting.getConnection()) {
+            //Statement that fetches all subcategories of a function ability condition
             String sqlCategories = "SELECT FC_Subcategory.FC_SC_ID, FC_Subcategory.FC_SC_Title, FC_Category.FC_C_Title FROM FC_Subcategory " +
                     "JOIN [FC_Category] ON FC_Subcategory.FC_C_ID = FC_Category.FC_C_ID;";
             String sqlAssessments = "SELECT * FROM FC_Assessment WHERE Citizen_ID = (?) AND FC_S_ID = (?);";
@@ -182,6 +188,7 @@ public class DBFunctionAssessmentDAO {
             preparedStatementAssessments.setInt(1, citizen.getIDProperty().get());
 
             ResultSet resultSetCategory = preparedStatementCategories.executeQuery();
+            //outer loop going through all the subcategories and assigns an ID as well as a super category to it.
             while (resultSetCategory.next())
             {
                 int UKID = resultSetCategory.getInt("FC_SC_ID");
@@ -193,8 +200,10 @@ public class DBFunctionAssessmentDAO {
                 funktionstilstandsUnderkategori.setNiveau(-1);
                 funktionstilstandsUnderkategori.setForventetTilstand(-1);
                 preparedStatementAssessments.setInt(2, UKID);
+                //fetches all assessments on a given subcategory
                 ResultSet resultSet = preparedStatementAssessments.executeQuery();
 
+                //Assigns fields in a subcategory based on the assessment's ID in the database.
                 while (resultSet.next()){
                     switch (resultSet.getInt("FC_A_ID")){
                         case (1) ->{

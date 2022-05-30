@@ -12,6 +12,11 @@ public class DBLoginDAO {
         this.dbConnecting = dbConnecting;
     }
 
+    /**
+     * Fetches the credentials of a username if it exists and creates a Credential object that is to be checked in the manager with BCrypt
+     * @param userName, user input
+     * @return Credential, or null if username does not exist
+     */
     public Credential checkCredential(String userName) {
         try (Connection connection = dbConnecting.getConnection()) {
             String sql = "SELECT * FROM [Credentials] WHERE UserName = (?)";
@@ -53,7 +58,6 @@ public class DBLoginDAO {
 
     public void updatePassword(Credential credential) {
         try (Connection connection = dbConnecting.getConnection()) {
-            System.out.println("sædkmgædslmgs");
             String sql = "UPDATE [Credentials] SET Password = (?) WHERE Person_ID = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, credential.getPassword());

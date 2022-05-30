@@ -2,8 +2,6 @@ package be;
 
 import javafx.beans.property.*;
 
-import java.time.LocalDateTime;
-
 public class FunktionstilstandsUnderkategori {
 
     private IntegerProperty id = new SimpleIntegerProperty(-1); // default int value would not work because zero is part of the scale used in the application.

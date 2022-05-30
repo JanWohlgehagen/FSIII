@@ -16,8 +16,8 @@ import java.util.List;
 public class CitizenModel {
     private ObservableList<Citizen> allCitizens;
     private ObservableList<Citizen> allTemplates;
-    private List<Citizen> allCitizensCache = new ArrayList<>();
-    private List<Citizen> allTemplatesCache = new ArrayList<>();
+    private List<Citizen> allCitizensCache = new ArrayList<>(); //For searching
+    private List<Citizen> allTemplatesCache = new ArrayList<>(); //For searching
     private CitizenSearcher citizenSearcher;
 
     private final IManagerFacade managerFacade;

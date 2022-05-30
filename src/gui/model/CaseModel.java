@@ -1,8 +1,6 @@
 package gui.model;
 
 import be.Case;
-import be.FunctionAssessment;
-import be.HealthAssessment;
 import bll.Interfaces.IManagerFacade;
 import bll.ManagerFacade;
 

@@ -16,7 +16,9 @@ public class DBGenerelInformationDAO {
 
     public void updateGenerelleOplysninger(Citizen citizen) {
         try (Connection connection = dbConnecting.getConnection()) {
+            //Delete statement, this is always executed in case the input is empty
             String sqlDelete = "DELETE FROM GI_Assessment WHERE [FK_GI_ID] = (?) AND [Citizen_ID] = (?);";
+            //Insert statement, this is run if the input is not empty
             String sqlInsert = "INSERT INTO GI_Assessment (Citizen_ID, FK_GI_ID, Description)VALUES ((?), (?), (?));";
             PreparedStatement preparedStatementDelete = connection.prepareStatement(sqlDelete);
             PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);

@@ -28,9 +28,8 @@ public class UserManager extends CredentialManager {
 
     /**
      * getAllUser method looks through all users and adds them into appropriate databases that are contained within the collective database.
-     * @return the collective database with all users.
      */
-    public List<User> getAllUser() {
+    public void getAllUser() {
         if (allUserInDatabase.isEmpty()) {
             allUserInDatabase = databaseFacade.getAllUser();
             for (User user : allUserInDatabase) {
@@ -41,7 +40,6 @@ public class UserManager extends CredentialManager {
                 }
             }
         }
-        return allUserInDatabase;
     }
 
     public List<User> getAllStudent() {
@@ -56,13 +54,6 @@ public class UserManager extends CredentialManager {
             getAllUser();
         }
         return allTeacherInDatabase;
-    }
-
-    public List<User> getAllAdmin() {
-        if (allAdminInDatabase.isEmpty()) {
-            getAllUser();
-        }
-        return allAdminInDatabase;
     }
 
     public WClass createClass(WClass wClass) {

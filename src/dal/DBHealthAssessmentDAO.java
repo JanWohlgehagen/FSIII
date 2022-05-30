@@ -16,7 +16,9 @@ public class DBHealthAssessmentDAO {
 
     public void updateHealthAssessment(Citizen citizen) {
         try (Connection connection = dbConnecting.getConnection()) {
+            //Delete statement, this is always executed in case the input is empty
             String sqlDelete = "DELETE FROM HC_Assessment WHERE HC_SC_ID = (?) AND HC_A_ID = (?) AND Citizen_ID = (?);";
+            //Insert statement, this is executed if the input is not empty
             String sqlInsert = "INSERT INTO HC_Assessment (HC_SC_ID, HC_A_ID, Citizen_ID, [Description]) VALUES ((?),(?),(?),(?));";
 
             PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
@@ -26,11 +28,13 @@ public class DBHealthAssessmentDAO {
             preparedStatementInsert.setInt(3, citizen.getIDProperty().get());
 
             String tempString = "";
-
+            //Outer loop going through the keyset of a citizens condition
             for (String key : citizen.getHelbredstilstand().getHelbredsTilstandsKort().keySet()) {
+                //first nested loop going through the subcategories of the assessments
                 for (HelbredstilstandsUnderkategori huk : citizen.getHelbredstilstand().getHelbredsTilstandsKort().get(key)) {
                     preparedStatementDelete.setInt(1, huk.getId().get());
                     preparedStatementInsert.setInt(1, huk.getId().get());
+                    //i goes to 7 because there are 7 different fields to fill out in a functional ability assessment
                     for (int i = 1; i<7; i++)
                     {
                         switch (i){
@@ -143,6 +147,7 @@ public class DBHealthAssessmentDAO {
         List<HelbredstilstandsUnderkategori> allHelbredstilstandeUK = new ArrayList<>();
 
         try (Connection connection = dbConnecting.getConnection()) {
+            //Statement that fetches all subcategories of a function ability condition
             String sqlCategories = "SELECT HC_Subcategory.HC_SC_ID, HC_Subcategory.HC_SC_Title, HC_Category.HC_C_Title FROM HC_Subcategory " +
                     "JOIN [HC_Category] ON HC_Subcategory.HC_C_ID = HC_Category.HC_C_ID;";
 
@@ -153,6 +158,7 @@ public class DBHealthAssessmentDAO {
             preparedStatementAssessments.setInt(1, citizen.getIDProperty().get());
 
             ResultSet resultSetCategories = preparedStatementCategories.executeQuery();
+            //outer loop going through all the subcategories and assigns an ID as well as a super category to it.
             while (resultSetCategories.next()) {
 
                 int ID = resultSetCategories.getInt("HC_SC_ID");
@@ -162,7 +168,9 @@ public class DBHealthAssessmentDAO {
 
                 HelbredstilstandsUnderkategori helbredstilstandsUnderkategori = new HelbredstilstandsUnderkategori(ID, underKategoriTitel, overKategoriTitel);
                 preparedStatementAssessments.setInt(2, ID);
+                //fetches all assessments on a given subcategory
                 ResultSet resultSet = preparedStatementAssessments.executeQuery();
+                //Assigns fields in a subcategory based on the assessment's ID in the database.
                 while (resultSet.next()) {
                     switch (resultSet.getInt("HC_A_ID")) {
                         case(1) ->{

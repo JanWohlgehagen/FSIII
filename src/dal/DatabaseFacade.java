@@ -142,11 +142,6 @@ public class DatabaseFacade implements IDatabaseFacade {
     }
 
     @Override
-    public Case getCaseOnCitizen(int citizenID, int caseID) {
-        return dbCaseDAO.getCaseOnCitizen(citizenID, caseID);
-    }
-
-    @Override
     public void updateCaseOnCitizen(int citizenID, Case selectCase) {
         dbCaseDAO.updateCaseOnCitizen(citizenID, selectCase);
     }

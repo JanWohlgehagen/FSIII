@@ -9,6 +9,9 @@ public class CitizenSearcher {
 
     private List<Citizen> searchResult = new ArrayList<>();
 
+    /**
+     * Searches through a list based on the objects' names and returns a list of matches
+     */
     public List<Citizen> search(List<Citizen> searchBase, String query) {
         searchResult.clear();
         for (Citizen citizen : searchBase) {

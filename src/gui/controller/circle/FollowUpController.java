@@ -105,12 +105,8 @@ public class FollowUpController implements Initializable {
     }
 
     public void handleMouseGemOgLukScene(MouseEvent mouseEvent) {
-        //caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase); //TODO
-        getStage().close();
-    }
-
-    public void handleMouseGemOgNæsteScene(MouseEvent mouseEvent) {
         caseModel.updateCaseOnCitizen(selectCitizen.getIDProperty().get(), selectCase);
+        getStage().close();
     }
 
     private Stage getStage() {
